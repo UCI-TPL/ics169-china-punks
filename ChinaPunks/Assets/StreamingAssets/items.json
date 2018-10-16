@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "title": "RPG",
+    "value": 200,
+    "description": "COME ON BABY!!",
+    "slug": "RPG HUD"
+  },
+  {
+    "id": 1,
+    "title": "SMG",
+    "value": 100,
+    "description": "When you see me you are dead",
+    "slug": "SMG HUD"
+  }
+]
