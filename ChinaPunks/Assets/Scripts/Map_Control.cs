@@ -1,0 +1,208 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Map_Control : MonoBehaviour
+{
+    public List<GameObject> map_tiles = new List<GameObject>();
+    public List<GameObject> units_state = new List<GameObject>();
+    public List<int> path = new List<int>();
+
+    public GameObject pickTile;
+    public GameObject pickEndTile;
+
+    public bool tile_picked;
+
+    public int pickTile_pos;
+    public int map_size;
+
+    private Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject,int>();
+    private Dictionary<int, List<int>> expansion_of_tiles = new Dictionary<int, List<int>>();
+    private List<int> occupied_tiles = new List<int>();
+    private List<int> expanded_tiles = new List<int>();
+
+    private Dictionary<int, List<int>> all_paths = new Dictionary<int, List<int>>();
+
+    private bool first_click = true;
+
+    private void Awake()
+    {
+        for (int i = 0; i < map_size * map_size; i++){
+            units_state.Add(null);
+        }
+    }
+
+
+    // Use this for initialization
+    void Start()
+    {
+        //store each tile and its position in a dict
+        for (int i = 0; i < map_size * map_size; ++i)
+        {
+            map_tiles_pos.Add(map_tiles[i], i);
+
+            //store expansion of each tile in a dict
+            //not left boundary
+            List<int> temp_tiles = new List<int>();
+            if (i% map_size != 0){
+                temp_tiles.Add(i - 1);
+            }
+            //not right boundary
+            if((i+1)%map_size != 0){
+                temp_tiles.Add(i + 1);
+            }
+            //not top boundary
+            if((i+map_size) <= (map_size*map_size-1)){
+                temp_tiles.Add(i + map_size);
+            }
+            //not bottom boundary
+            if((i-map_size) >= 0){
+                temp_tiles.Add(i - map_size);
+            }
+            expansion_of_tiles[i] = new List<int>(temp_tiles);
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(tile_picked)
+        {
+            if (first_click)
+            {
+                int picked_pos = map_tiles_pos[pickTile];
+
+                if (units_state[picked_pos] != null && units_state[picked_pos].gameObject.tag == "PlayerUnit")
+                {
+                    //Here to detect press button (M or A)
+                    if(Input.GetKeyDown("m")){
+
+                        units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
+                        int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
+                        //First click to show all available tiles
+                        if (!expanded_tiles.Contains(picked_pos))
+                        {
+                            pickEndTile = pickTile;
+
+                            Search_accessible_tiles(picked_pos, move_range);
+                            foreach (int i in expanded_tiles)
+                            {
+                                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
+                            }
+                            tile_picked = false;
+                            first_click = false;
+                        }
+                    }
+
+                    else if(Input.GetKeyDown("a")){
+                        List<int> attackRange = units_state[picked_pos].GetComponent<UserUnit>().attackRange;
+                        foreach(int position in attackRange){
+                            if(map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size*map_size-1){
+                                map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                            }
+                        }
+                        tile_picked = false;
+                        first_click = false;
+                    }
+
+                }
+            }
+            //Second click to choose the end point of the path
+            else
+            {
+                GameObject temp;
+                temp = pickTile; //pickTile here is the end tile
+                pickTile = pickEndTile; //pickEndTile is the start tile from first click
+                pickEndTile = temp; //put temp(real end tile) into pickEndTile
+
+                // For Debug
+                //string ap = "[";
+                //foreach (int i in all_paths.Keys)
+                //{
+                //    ap += i.ToString() + ",";
+                //}
+                //ap = ap.Remove(ap.Length - 1);
+                //ap += "]";
+                //Debug.Log(ap);
+                //Debug.Log(map_tiles_pos[pickEndTile]);
+
+                if (all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
+                {
+                    path = all_paths[map_tiles_pos[pickEndTile]];
+                    path.Insert(0, map_tiles_pos[pickEndTile]);
+                    path.Reverse();
+
+                    // For Debug
+                    //string result = "Path Found:[";
+                    //foreach (int i in path)
+                    //{
+                    //    result += i.ToString() + ",";
+                    //}
+                    //result = result.Remove(result.Length-1);
+                    //result += "]";
+                    //Debug.Log(result);
+
+                    foreach (int i in expanded_tiles)
+                    {
+                        map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    }
+                    expanded_tiles.Clear();
+                    all_paths.Clear();
+                    first_click = true;
+                }
+
+                tile_picked = false;
+            }
+        }
+    }
+
+    //search for all accessible tiles after the player pick one
+    void Search_accessible_tiles(int picked_pos, int range){
+        //search algorithm
+        List<int> temp_tiles_to_explore = new List<int>(){ picked_pos };
+        expanded_tiles.Add(picked_pos);
+        all_paths[picked_pos] = new List<int>();
+
+        for (int i = 0; i < range; ++i){
+            if(occupied_tiles.Contains(pickTile_pos)){
+                //there is a selectible unit on the picked tile
+            }
+            //store the expanded tiles of the currently picked tile
+            foreach(int pos_to_explore in temp_tiles_to_explore){
+                foreach (int pos in expansion_of_tiles[pos_to_explore]){
+                    //add the explored tile to the list
+                    //check if pos already expanded in previous loop
+                    if (!expanded_tiles.Contains(pos) && units_state[pos] == null)
+                    {
+                        expanded_tiles.Add(pos);
+                        //add the explored tile to the path
+                        if (!all_paths.ContainsKey(pos))
+                        {
+                            all_paths[pos] = new List<int>() { pos_to_explore };
+
+                            foreach (int p in all_paths[pos_to_explore])
+                            {
+                                all_paths[pos].Add(p);
+                            }
+                        }
+
+                    }
+                }
+            }
+            //update tiles_to_explore to the list of newly expaneded tiles
+            List<int> temp = new List<int>();
+            foreach(int tile_pos in expanded_tiles){
+                if (!temp_tiles_to_explore.Contains(tile_pos)){
+                    temp.Add(tile_pos);
+                }
+            }
+
+            temp_tiles_to_explore = new List<int>(temp);
+
+            
+        }
+            
+
+    }
+}

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - map_tile
   - Itemdata
+  - PlayerUnit
+  - EnemyUnit
   layers:
   - Default
   - TransparentFX
