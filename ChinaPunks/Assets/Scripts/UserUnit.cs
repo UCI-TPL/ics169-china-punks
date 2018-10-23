@@ -10,6 +10,7 @@ public class UserUnit : Unit {
     private float cd = 0.2f;
     private float next;
     private bool walking = false;
+    
 
     // Use this for initialization
     void Start () {

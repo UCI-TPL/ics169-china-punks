@@ -25,6 +25,9 @@ public class Map_Control : MonoBehaviour
 
     private bool first_click = true;
 
+    //0 for original state, 1 for movement, 2 for attack, 3...
+    private int acting_state = 0;
+
     private void Awake()
     {
         for (int i = 0; i < map_size * map_size; i++){
@@ -34,40 +37,47 @@ public class Map_Control : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
-    {
-        //store each tile and its position in a dict
-        for (int i = 0; i < map_size * map_size; ++i)
-        {
-            map_tiles_pos.Add(map_tiles[i], i);
-
-            //store expansion of each tile in a dict
-            //not left boundary
-            List<int> temp_tiles = new List<int>();
-            if (i% map_size != 0){
-                temp_tiles.Add(i - 1);
-            }
-            //not right boundary
-            if((i+1)%map_size != 0){
-                temp_tiles.Add(i + 1);
-            }
-            //not top boundary
-            if((i+map_size) <= (map_size*map_size-1)){
-                temp_tiles.Add(i + map_size);
-            }
-            //not bottom boundary
-            if((i-map_size) >= 0){
-                temp_tiles.Add(i - map_size);
-            }
-            expansion_of_tiles[i] = new List<int>(temp_tiles);
-        }
-
+    void Start(){
+        Tile_Store();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(tile_picked)
+    void Update(){
+        Character_Click();
+        //click right botton to reset
+        if (Input.GetKeyDown("r"))
+        {
+            Debug.Log("r click!!!");
+            reset();
+        }
+    }
+
+    void reset(){
+        acting_state = 0;
+        //expanded tile empty?
+        if (expanded_tiles.Count != 0)
+        {
+            //recover tile color
+            foreach (int i in expanded_tiles)
+            {
+                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            }
+        }
+        //recover tile colors
+        foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+        {
+            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
+        expanded_tiles.Clear();
+        first_click = true;
+        tile_picked = false;
+        pickTile = null;
+        pickEndTile = null;
+    }
+
+
+    void Character_Click(){
+        if (tile_picked)
         {
             if (first_click)
             {
@@ -76,7 +86,9 @@ public class Map_Control : MonoBehaviour
                 if (units_state[picked_pos] != null && units_state[picked_pos].gameObject.tag == "PlayerUnit")
                 {
                     //Here to detect press button (M or A)
-                    if(Input.GetKeyDown("m")){
+                    if (Input.GetKeyDown("m"))
+                    {
+                        acting_state = 1;
 
                         units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
                         int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
@@ -93,17 +105,36 @@ public class Map_Control : MonoBehaviour
                             tile_picked = false;
                             first_click = false;
                         }
+
                     }
 
-                    else if(Input.GetKeyDown("a")){
+                    else if (Input.GetKeyDown("a"))
+                    {
+                        acting_state = 2;
+                        pickEndTile = pickTile;
+
                         List<int> attackRange = units_state[picked_pos].GetComponent<UserUnit>().attackRange;
-                        foreach(int position in attackRange){
-                            if(map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size*map_size-1){
-                                map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                        int debug = 0; // for debug
+                        foreach (int position in attackRange)
+                        {
+                            if (map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size * map_size - 1)
+                            {
+                                if (units_state[map_tiles_pos[pickTile] + position] != null && units_state[map_tiles_pos[pickTile] + position].gameObject.tag != "PlayerUnit")
+                                {
+                                    debug++;
+                                    map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                                }
                             }
                         }
+
                         tile_picked = false;
                         first_click = false;
+
+                        if (debug == 0)
+                        {
+                            Debug.Log("No target for attacking!");
+                            first_click = true;
+                        }
                     }
 
                 }
@@ -126,34 +157,85 @@ public class Map_Control : MonoBehaviour
                 //ap += "]";
                 //Debug.Log(ap);
                 //Debug.Log(map_tiles_pos[pickEndTile]);
-
-                if (all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
+                if (acting_state == 1)
                 {
-                    path = all_paths[map_tiles_pos[pickEndTile]];
-                    path.Insert(0, map_tiles_pos[pickEndTile]);
-                    path.Reverse();
-
-                    // For Debug
-                    //string result = "Path Found:[";
-                    //foreach (int i in path)
-                    //{
-                    //    result += i.ToString() + ",";
-                    //}
-                    //result = result.Remove(result.Length-1);
-                    //result += "]";
-                    //Debug.Log(result);
-
-                    foreach (int i in expanded_tiles)
+                    if (all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
+                        path = all_paths[map_tiles_pos[pickEndTile]];
+                        path.Insert(0, map_tiles_pos[pickEndTile]);
+                        path.Reverse();
+
+                        // For Debug
+                        //string result = "Path Found:[";
+                        //foreach (int i in path)
+                        //{
+                        //    result += i.ToString() + ",";
+                        //}
+                        //result = result.Remove(result.Length-1);
+                        //result += "]";
+                        //Debug.Log(result);
+
+                        foreach (int i in expanded_tiles)
+                        {
+                            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                        }
+                        expanded_tiles.Clear();
+                        all_paths.Clear();
+                        first_click = true;
+                    }
+                }
+                else if(acting_state == 2){
+                    //check second-clicked tile has unit
+                    if(units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
+                    {
+                        int attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<Unit>().attack_damge;
+                        units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
+                        Debug.Log(units_state[map_tiles_pos[pickTile]].gameObject.name + " attacked "
+                                  + units_state[map_tiles_pos[pickEndTile]].gameObject.name);
+
+                    }
+                    //recover tiles color
+                    foreach(int i in expansion_of_tiles[map_tiles_pos[pickTile]]){
                         map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                     }
-                    expanded_tiles.Clear();
-                    all_paths.Clear();
-                    first_click = true;
+                    reset();
                 }
 
                 tile_picked = false;
             }
+        }
+
+    }
+
+    void Tile_Store(){
+        //store each tile and its position in a dict
+        for (int i = 0; i < map_size * map_size; ++i)
+        {
+            map_tiles_pos.Add(map_tiles[i], i);
+
+            //store expansion of each tile in a dict
+            //not left boundary
+            List<int> temp_tiles = new List<int>();
+            if (i % map_size != 0)
+            {
+                temp_tiles.Add(i - 1);
+            }
+            //not right boundary
+            if ((i + 1) % map_size != 0)
+            {
+                temp_tiles.Add(i + 1);
+            }
+            //not top boundary
+            if ((i + map_size) <= (map_size * map_size - 1))
+            {
+                temp_tiles.Add(i + map_size);
+            }
+            //not bottom boundary
+            if ((i - map_size) >= 0)
+            {
+                temp_tiles.Add(i - map_size);
+            }
+            expansion_of_tiles[i] = new List<int>(temp_tiles);
         }
     }
 

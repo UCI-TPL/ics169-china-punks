@@ -9,6 +9,9 @@ public class Unit : MonoBehaviour {
     public int currentPos;
     public int moveRange;
 
+    public int health;
+    public int attack_damge;
+
     // Use this for initialization
     void Start () {
 		
@@ -21,5 +24,10 @@ public class Unit : MonoBehaviour {
 
     public virtual void TurnUpdate(){
 
+    }
+
+    public virtual void Health_Change(int damage){
+        health -= damage;
+        Debug.Log("Ahhhh, damage taken: " + damage.ToString());
     }
 }

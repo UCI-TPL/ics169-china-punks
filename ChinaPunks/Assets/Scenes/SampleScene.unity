@@ -2197,6 +2197,8 @@ MonoBehaviour:
   mapInfo: []
   currentPos: 55
   moveRange: 3
+  health: 0
+  attack_damge: 1
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
 --- !u!212 &487153361
@@ -4171,7 +4173,7 @@ GameObject:
   - component: {fileID: 733838304}
   m_Layer: 0
   m_Name: EnemyUnit
-  m_TagString: Untagged
+  m_TagString: EnemyUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4191,6 +4193,8 @@ MonoBehaviour:
   mapInfo: []
   currentPos: 0
   moveRange: 0
+  health: 100
+  attack_damge: 0
 --- !u!212 &733838305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5025,6 +5029,8 @@ MonoBehaviour:
   mapInfo: []
   currentPos: 11
   moveRange: 2
+  health: 0
+  attack_damge: 1
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
 --- !u!1 &888678492
