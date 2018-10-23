@@ -15,7 +15,7 @@ public class Map_Control : MonoBehaviour
 
     public int pickTile_pos;
     public int map_size;
-
+    
     private Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject,int>();
     private Dictionary<int, List<int>> expansion_of_tiles = new Dictionary<int, List<int>>();
     private List<int> occupied_tiles = new List<int>();
@@ -28,8 +28,14 @@ public class Map_Control : MonoBehaviour
     //0 for original state, 1 for movement, 2 for attack, 3...
     private int acting_state = 0;
 
+	//Variable used to keep track whose round the current one is.
+    //Value: "Player", "AI"
+	public string gameRound;
+	public GameObject endTurnButton;
+
     private void Awake()
     {
+		gameRound = "Player";
         for (int i = 0; i < map_size * map_size; i++){
             units_state.Add(null);
         }
@@ -50,8 +56,22 @@ public class Map_Control : MonoBehaviour
             Debug.Log("r click!!!");
             reset();
         }
+
+        //Execute AI round
+		if(gameRound == "AI"){
+			Debug.Log("AI round");
+			changeRound();
+		}
+
+        
     }
 
+	IEnumerator pauseSimulator()
+    {
+        yield return new WaitForSeconds(5);
+    }
+
+	//Function used for unselecting character
     void reset(){
         acting_state = 0;
         //expanded tile empty?
@@ -239,52 +259,74 @@ public class Map_Control : MonoBehaviour
         }
     }
 
-    //search for all accessible tiles after the player pick one
-    void Search_accessible_tiles(int picked_pos, int range){
-        //search algorithm
-        List<int> temp_tiles_to_explore = new List<int>(){ picked_pos };
-        expanded_tiles.Add(picked_pos);
-        all_paths[picked_pos] = new List<int>();
+	//search for all accessible tiles after the player pick one
+	void Search_accessible_tiles(int picked_pos, int range)
+	{
+		//search algorithm
+		List<int> temp_tiles_to_explore = new List<int>() { picked_pos };
+		expanded_tiles.Add(picked_pos);
+		all_paths[picked_pos] = new List<int>();
 
-        for (int i = 0; i < range; ++i){
-            if(occupied_tiles.Contains(pickTile_pos)){
-                //there is a selectible unit on the picked tile
-            }
-            //store the expanded tiles of the currently picked tile
-            foreach(int pos_to_explore in temp_tiles_to_explore){
-                foreach (int pos in expansion_of_tiles[pos_to_explore]){
-                    //add the explored tile to the list
-                    //check if pos already expanded in previous loop
-                    if (!expanded_tiles.Contains(pos) && units_state[pos] == null)
-                    {
-                        expanded_tiles.Add(pos);
-                        //add the explored tile to the path
-                        if (!all_paths.ContainsKey(pos))
-                        {
-                            all_paths[pos] = new List<int>() { pos_to_explore };
+		for (int i = 0; i < range; ++i)
+		{
+			if (occupied_tiles.Contains(pickTile_pos))
+			{
+				//there is a selectible unit on the picked tile
+			}
+			//store the expanded tiles of the currently picked tile
+			foreach (int pos_to_explore in temp_tiles_to_explore)
+			{
+				foreach (int pos in expansion_of_tiles[pos_to_explore])
+				{
+					//add the explored tile to the list
+					//check if pos already expanded in previous loop
+					if (!expanded_tiles.Contains(pos) && units_state[pos] == null)
+					{
+						expanded_tiles.Add(pos);
+						//add the explored tile to the path
+						if (!all_paths.ContainsKey(pos))
+						{
+							all_paths[pos] = new List<int>() { pos_to_explore };
 
-                            foreach (int p in all_paths[pos_to_explore])
-                            {
-                                all_paths[pos].Add(p);
-                            }
-                        }
+							foreach (int p in all_paths[pos_to_explore])
+							{
+								all_paths[pos].Add(p);
+							}
+						}
+                        
+					}
+				}
+			}
+			//update tiles_to_explore to the list of newly expaneded tiles
+			List<int> temp = new List<int>();
+			foreach (int tile_pos in expanded_tiles)
+			{
+				if (!temp_tiles_to_explore.Contains(tile_pos))
+				{
+					temp.Add(tile_pos);
+				}
+			}
 
-                    }
-                }
-            }
-            //update tiles_to_explore to the list of newly expaneded tiles
-            List<int> temp = new List<int>();
-            foreach(int tile_pos in expanded_tiles){
-                if (!temp_tiles_to_explore.Contains(tile_pos)){
-                    temp.Add(tile_pos);
-                }
-            }
+			temp_tiles_to_explore = new List<int>(temp);
 
-            temp_tiles_to_explore = new List<int>(temp);
 
-            
-        }
-            
+		}
 
+	}
+
+	//Change round between player and AI, AI units from different group all act in "AI" round
+    public void changeRound()
+    {
+		if (gameRound == "Player"){
+			gameRound = "AI";
+			endTurnButton.SetActive(false);
+		}
+
+		else{
+			gameRound = "Player";
+			endTurnButton.SetActive(true);
+		}    
     }
+
+
 }

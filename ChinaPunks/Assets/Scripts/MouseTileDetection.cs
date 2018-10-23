@@ -21,7 +21,9 @@ public class MouseTileDetection : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        map_control.pickTile = gameObject;
-        map_control.tile_picked = true;
+		if(map_control.gameRound == "Player"){
+			map_control.pickTile = gameObject;
+            map_control.tile_picked = true;
+		}
     }
 }
