@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Map_Control : MonoBehaviour
 {
@@ -25,6 +26,24 @@ public class Map_Control : MonoBehaviour
 
     private bool first_click = true;
 
+    public GameObject selectEffect;
+    GameObject _selectEffect;
+    public GameObject InGameHUD;
+    GameObject _InGameHUD;
+
+    //HUD buttons
+    public Button AttackBtn;
+    public Button Movebtn;
+    public Button Resetbtn;
+
+    public Button AttackBtn2;
+    public Button Movebtn2;
+    public Button Resetbtn2;
+
+    public int picked_pos;
+    int current_picked_pos = -1;
+    bool ShowedClickedEffect;
+
     //0 for original state, 1 for movement, 2 for attack, 3...
     private int acting_state = 0;
 
@@ -40,11 +59,28 @@ public class Map_Control : MonoBehaviour
             units_state.Add(null);
         }
     }
-
-
     // Use this for initialization
     void Start(){
         Tile_Store();
+        Button Move_btn = Movebtn.GetComponent<Button>();
+        Move_btn.onClick.AddListener(Character_Move);
+
+        Button Attack_btn = AttackBtn.GetComponent<Button>();
+        Attack_btn.onClick.AddListener(() => Character_Attack());
+
+        Button Reset_btn = Resetbtn.GetComponent<Button>();
+        Reset_btn.onClick.AddListener(() => reset());
+
+        Button Move_btn2 = Movebtn2.GetComponent<Button>();
+        Move_btn2.onClick.AddListener(Character_Move);
+
+        Button Attack_btn2 = AttackBtn2.GetComponent<Button>();
+        Attack_btn2.onClick.AddListener(() => Character_Attack());
+
+        Button Reset_btn2 = Resetbtn2.GetComponent<Button>();
+        Reset_btn2.onClick.AddListener(() => reset());
+
+        ShowedClickedEffect = false;
     }
 
     // Update is called once per frame
@@ -62,8 +98,6 @@ public class Map_Control : MonoBehaviour
 			Debug.Log("AI round");
 			changeRound();
 		}
-
-        
     }
 
 	IEnumerator pauseSimulator()
@@ -95,68 +129,86 @@ public class Map_Control : MonoBehaviour
         pickEndTile = null;
     }
 
+    void Character_Move()
+    {
+        acting_state = 1;
+        units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
+        int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
+        //First click to show all available tiles
+        if (!expanded_tiles.Contains(picked_pos))
+        {
+            pickEndTile = pickTile;
+
+            Search_accessible_tiles(picked_pos, move_range);
+            foreach (int i in expanded_tiles)
+            {
+                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
+            }
+            tile_picked = false;
+            first_click = false;
+        }
+    }
+
+    void Character_Attack()
+    {
+        acting_state = 2;
+        pickEndTile = pickTile;
+
+        List<int> attackRange = units_state[picked_pos].GetComponent<UserUnit>().attackRange;
+        int debug = 0; // for debug
+        foreach (int position in attackRange)
+        {
+            if (map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size * map_size - 1)
+            {
+                if (units_state[map_tiles_pos[pickTile] + position] != null && units_state[map_tiles_pos[pickTile] + position].gameObject.tag != "PlayerUnit")
+                {
+                    debug++;
+                    map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                }
+            }
+        }
+
+        tile_picked = false;
+        first_click = false;
+
+        if (debug == 0)
+        {
+            Debug.Log("No target for attacking!");
+            first_click = true;
+        }
+    }
 
     void Character_Click(){
         if (tile_picked)
         {
             if (first_click)
             {
-                int picked_pos = map_tiles_pos[pickTile];
+                picked_pos = map_tiles_pos[pickTile];
 
-                if (units_state[picked_pos] != null && units_state[picked_pos].gameObject.tag == "PlayerUnit")
+                if(current_picked_pos == -1)
                 {
-                    //Here to detect press button (M or A)
-                    if (Input.GetKeyDown("m"))
-                    {
-                        acting_state = 1;
+                    current_picked_pos = picked_pos;
+                }
+                else if (picked_pos != current_picked_pos && ShowedClickedEffect)
+                {
+                    //Disable effect if it existed
+                    Destroy(_selectEffect);
+                    units_state[current_picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel.SetActive(false);
+                    ShowedClickedEffect = false;
+                }
+                current_picked_pos = picked_pos;
 
-                        units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
-                        int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
-                        //First click to show all available tiles
-                        if (!expanded_tiles.Contains(picked_pos))
-                        {
-                            pickEndTile = pickTile;
+                if (units_state[picked_pos] != null && units_state[picked_pos].gameObject.tag == "PlayerUnit" && !ShowedClickedEffect)
+                {
+                    //Show effect
+                    _selectEffect = Instantiate(selectEffect, units_state[picked_pos].gameObject.GetComponent<Transform>());
+                    _selectEffect.transform.Translate(new Vector3(0, -0.8f, 0));
+                    ShowedClickedEffect = true;
 
-                            Search_accessible_tiles(picked_pos, move_range);
-                            foreach (int i in expanded_tiles)
-                            {
-                                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
-                            }
-                            tile_picked = false;
-                            first_click = false;
-                        }
-
-                    }
-
-                    else if (Input.GetKeyDown("a"))
-                    {
-                        acting_state = 2;
-                        pickEndTile = pickTile;
-
-                        List<int> attackRange = units_state[picked_pos].GetComponent<UserUnit>().attackRange;
-                        int debug = 0; // for debug
-                        foreach (int position in attackRange)
-                        {
-                            if (map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size * map_size - 1)
-                            {
-                                if (units_state[map_tiles_pos[pickTile] + position] != null && units_state[map_tiles_pos[pickTile] + position].gameObject.tag != "PlayerUnit")
-                                {
-                                    debug++;
-                                    map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
-                                }
-                            }
-                        }
-
-                        tile_picked = false;
-                        first_click = false;
-
-                        if (debug == 0)
-                        {
-                            Debug.Log("No target for attacking!");
-                            first_click = true;
-                        }
-                    }
-
+                    //Show player HUD
+                    InGameHUD = units_state[picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel;
+                    _InGameHUD = InGameHUD;
+                    _InGameHUD.SetActive(true);
                 }
             }
             //Second click to choose the end point of the path
@@ -222,6 +274,9 @@ public class Map_Control : MonoBehaviour
                 }
 
                 tile_picked = false;
+                Destroy(_selectEffect);
+                ShowedClickedEffect = false;
+                _InGameHUD.SetActive(false);
             }
         }
 
@@ -319,12 +374,12 @@ public class Map_Control : MonoBehaviour
     {
 		if (gameRound == "Player"){
 			gameRound = "AI";
-			endTurnButton.SetActive(false);
+            endTurnButton.SetActive(false);
 		}
 
 		else{
 			gameRound = "Player";
-			endTurnButton.SetActive(true);
+            endTurnButton.SetActive(true);
 		}    
     }
 

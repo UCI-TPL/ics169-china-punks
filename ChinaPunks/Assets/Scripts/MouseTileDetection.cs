@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseTileDetection : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class MouseTileDetection : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        if(!EventSystem.current.IsPointerOverGameObject())
 		if(map_control.gameRound == "Player"){
 			map_control.pickTile = gameObject;
             map_control.tile_picked = true;

@@ -31,9 +31,9 @@ public class InventoryHUD : MonoBehaviour {
             itemDataList.Add(new Item()); // init item data list
         }
 
-        AddItemByIDFromDataBase(0); // RPG
-        AddItemByIDFromDataBase(0); // RPG
-        AddItemByIDFromDataBase(1); // SMG
+        //AddItemByIDFromDataBase(0); // RPG
+        //AddItemByIDFromDataBase(0); // RPG
+        //AddItemByIDFromDataBase(1); // SMG
     }
 	
 	public void AddItemByIDFromDataBase(int _id)

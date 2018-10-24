@@ -10,7 +10,6 @@ public class UserUnit : Unit {
     private float cd = 0.2f;
     private float next;
     private bool walking = false;
-    
 
     // Use this for initialization
     void Start () {
@@ -25,7 +24,6 @@ public class UserUnit : Unit {
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.8f, xyPosition.z - 1.0f);      //initialize my current position on map
-
     }
 
     // Update is called once per frame

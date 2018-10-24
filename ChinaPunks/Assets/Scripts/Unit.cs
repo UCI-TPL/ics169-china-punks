@@ -12,6 +12,8 @@ public class Unit : MonoBehaviour {
     public int health;
     public int attack_damge;
 
+    public Animator anim;
+
     // Use this for initialization
     void Start () {
 		
@@ -27,6 +29,7 @@ public class Unit : MonoBehaviour {
     }
 
     public virtual void Health_Change(int damage){
+        anim.Play("Attacked");
         health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());
     }
