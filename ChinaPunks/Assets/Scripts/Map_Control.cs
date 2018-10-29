@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Map_Control : MonoBehaviour
 {
@@ -17,44 +17,30 @@ public class Map_Control : MonoBehaviour
     public int pickTile_pos;
     public int map_size;
     
-    private Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject,int>();
-    private Dictionary<int, List<int>> expansion_of_tiles = new Dictionary<int, List<int>>();
-    private List<int> occupied_tiles = new List<int>();
-    private List<int> expanded_tiles = new List<int>();
+    public Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject,int>();
+    public Dictionary<int, List<int>> expansion_of_tiles = new Dictionary<int, List<int>>();
+    public List<int> occupied_tiles = new List<int>();
+    public List<int> expanded_tiles = new List<int>();
 
-    private Dictionary<int, List<int>> all_paths = new Dictionary<int, List<int>>();
+    public Dictionary<int, List<int>> all_paths = new Dictionary<int, List<int>>();
 
-    private bool first_click = true;
-
-    public GameObject selectEffect;
-    GameObject _selectEffect;
-    public GameObject InGameHUD;
-    GameObject _InGameHUD;
-
-    //HUD buttons
-    public Button AttackBtn;
-    public Button Movebtn;
-    public Button Resetbtn;
-
-    public Button AttackBtn2;
-    public Button Movebtn2;
-    public Button Resetbtn2;
+    public bool first_click = true;
 
     public int picked_pos;
-    int current_picked_pos = -1;
-    bool ShowedClickedEffect;
+    public int current_picked_pos = -1;
+
+    public bool playerHUD_showed = false;
+
+    //bool ShowedClickedEffect;
 
     //0 for original state, 1 for movement, 2 for attack, 3...
-    private int acting_state = 0;
+    public int acting_state = 0;
 
 	//Variable used to keep track whose round the current one is.
     //Value: "Player", "AI"
-	public string gameRound;
-	public GameObject endTurnButton;
 
     private void Awake()
     {
-		gameRound = "Player";
         for (int i = 0; i < map_size * map_size; i++){
             units_state.Add(null);
         }
@@ -62,51 +48,24 @@ public class Map_Control : MonoBehaviour
     // Use this for initialization
     void Start(){
         Tile_Store();
-        Button Move_btn = Movebtn.GetComponent<Button>();
-        Move_btn.onClick.AddListener(Character_Move);
 
-        Button Attack_btn = AttackBtn.GetComponent<Button>();
-        Attack_btn.onClick.AddListener(() => Character_Attack());
-
-        Button Reset_btn = Resetbtn.GetComponent<Button>();
-        Reset_btn.onClick.AddListener(() => reset());
-
-        Button Move_btn2 = Movebtn2.GetComponent<Button>();
-        Move_btn2.onClick.AddListener(Character_Move);
-
-        Button Attack_btn2 = AttackBtn2.GetComponent<Button>();
-        Attack_btn2.onClick.AddListener(() => Character_Attack());
-
-        Button Reset_btn2 = Resetbtn2.GetComponent<Button>();
-        Reset_btn2.onClick.AddListener(() => reset());
-
-        ShowedClickedEffect = false;
     }
 
     // Update is called once per frame
     void Update(){
-        Character_Click();
+
         //click right botton to reset
-        if (Input.GetKeyDown("r"))
-        {
+        if (Input.GetKeyDown("r")){
             Debug.Log("r click!!!");
             reset();
         }
 
-        //Execute AI round
-		if(gameRound == "AI"){
-			Debug.Log("AI round");
-			changeRound();
-		}
     }
 
-	IEnumerator pauseSimulator()
-    {
-        yield return new WaitForSeconds(5);
-    }
+
 
 	//Function used for unselecting character
-    void reset(){
+    public void reset(){
         acting_state = 0;
         //expanded tile empty?
         if (expanded_tiles.Count != 0)
@@ -118,38 +77,43 @@ public class Map_Control : MonoBehaviour
             }
         }
         //recover tile colors
-        foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+        if (pickTile)
         {
-            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+            {
+                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            }
         }
         expanded_tiles.Clear();
         first_click = true;
         tile_picked = false;
         pickTile = null;
         pickEndTile = null;
+
+        playerHUD_showed = false;
     }
 
-    void Character_Move()
+    public void Character_Move()
     {
         acting_state = 1;
         units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
         int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
-        //First click to show all available tiles
-        if (!expanded_tiles.Contains(picked_pos))
-        {
-            pickEndTile = pickTile;
 
-            Search_accessible_tiles(picked_pos, move_range);
-            foreach (int i in expanded_tiles)
-            {
-                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
-            }
-            tile_picked = false;
-            first_click = false;
+        pickEndTile = pickTile;
+
+        Search_accessible_tiles(picked_pos, move_range);
+        foreach (int i in expanded_tiles)
+        {
+            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
         }
+        tile_picked = false;
+        first_click = false;
+        playerHUD_showed = false;
+       
+
     }
 
-    void Character_Attack()
+    public void Character_Attack()
     {
         acting_state = 2;
         pickEndTile = pickTile;
@@ -176,9 +140,12 @@ public class Map_Control : MonoBehaviour
             Debug.Log("No target for attacking!");
             first_click = true;
         }
+
+        playerHUD_showed = false;
     }
 
-    void Character_Click(){
+
+    public void Character_Click(){
         if (tile_picked)
         {
             if (first_click)
@@ -189,27 +156,11 @@ public class Map_Control : MonoBehaviour
                 {
                     current_picked_pos = picked_pos;
                 }
-                else if (picked_pos != current_picked_pos && ShowedClickedEffect)
-                {
-                    //Disable effect if it existed
-                    Destroy(_selectEffect);
-                    units_state[current_picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel.SetActive(false);
-                    ShowedClickedEffect = false;
-                }
                 current_picked_pos = picked_pos;
 
-                if (units_state[picked_pos] != null && units_state[picked_pos].gameObject.tag == "PlayerUnit" && !ShowedClickedEffect)
-                {
-                    //Show effect
-                    _selectEffect = Instantiate(selectEffect, units_state[picked_pos].gameObject.GetComponent<Transform>());
-                    _selectEffect.transform.Translate(new Vector3(0, -0.8f, 0));
-                    ShowedClickedEffect = true;
+                 
+                
 
-                    //Show player HUD
-                    InGameHUD = units_state[picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel;
-                    _InGameHUD = InGameHUD;
-                    _InGameHUD.SetActive(true);
-                }
             }
             //Second click to choose the end point of the path
             else
@@ -230,6 +181,7 @@ public class Map_Control : MonoBehaviour
                 //Debug.Log(ap);
                 //Debug.Log(map_tiles_pos[pickEndTile]);
                 if (acting_state == 1)
+                    //move state
                 {
                     if (all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
@@ -257,6 +209,7 @@ public class Map_Control : MonoBehaviour
                     }
                 }
                 else if(acting_state == 2){
+                    //attack state
                     //check second-clicked tile has unit
                     if(units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
                     {
@@ -274,9 +227,6 @@ public class Map_Control : MonoBehaviour
                 }
 
                 tile_picked = false;
-                Destroy(_selectEffect);
-                ShowedClickedEffect = false;
-                _InGameHUD.SetActive(false);
             }
         }
 
@@ -369,19 +319,7 @@ public class Map_Control : MonoBehaviour
 
 	}
 
-	//Change round between player and AI, AI units from different group all act in "AI" round
-    public void changeRound()
-    {
-		if (gameRound == "Player"){
-			gameRound = "AI";
-            endTurnButton.SetActive(false);
-		}
 
-		else{
-			gameRound = "Player";
-            endTurnButton.SetActive(true);
-		}    
-    }
 
 
 }
