@@ -12,17 +12,21 @@ public class InventoryHUD : MonoBehaviour {
     public List<GameObject> slotInfoList = new List<GameObject>();
 
     GameObject slotPanel;
-
-    public int itemsNumber = 20;
+    public int itemsNumber = 15;
 
     ItemDataBase itemdatabase;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         itemdatabase = GetComponent<ItemDataBase>();
 
-        slotPanel = GameObject.Find("Panel_slot");
+        slotPanel = GameObject.Find("Slot_Panel");
 
+        Init_database();
+    }
+
+    public void Init_database()
+    {
         for (int i = 0; i < itemsNumber; i++)
         {
             slotInfoList.Add(Instantiate(Slot_prefab));
@@ -31,9 +35,9 @@ public class InventoryHUD : MonoBehaviour {
             itemDataList.Add(new Item()); // init item data list
         }
 
-        //AddItemByIDFromDataBase(0); // RPG
-        //AddItemByIDFromDataBase(0); // RPG
-        //AddItemByIDFromDataBase(1); // SMG
+        AddItemByIDFromDataBase(0);
+        AddItemByIDFromDataBase(0);
+        AddItemByIDFromDataBase(1);
     }
 	
 	public void AddItemByIDFromDataBase(int _id)

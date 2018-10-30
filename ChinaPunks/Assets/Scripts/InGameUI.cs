@@ -63,7 +63,7 @@ public class InGameUI : MonoBehaviour {
 
     void exit_on_click()
     {
-        SceneManager.LoadScene("Player_Lobby");
+        SceneManager.LoadScene("Player_Camp");
         Debug.Log("clicked");
     }
 

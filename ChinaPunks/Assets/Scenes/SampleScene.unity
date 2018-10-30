@@ -1199,7 +1199,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306201210
 GameObject:
@@ -7464,7 +7464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154973522
 GameObject:
@@ -8466,9 +8466,13 @@ MonoBehaviour:
   tile_picked: 0
   pickTile_pos: 0
   map_size: 10
+  occupied_tiles: 
+  expanded_tiles: 
   first_click: 1
   picked_pos: 0
   current_picked_pos: -1
+  playerHUD_showed: 0
+  acting_state: 0
 --- !u!1 &1328288316
 GameObject:
   m_ObjectHideFlags: 0

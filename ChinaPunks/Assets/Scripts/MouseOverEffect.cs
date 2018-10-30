@@ -6,7 +6,7 @@ public class MouseOverEffect : MonoBehaviour
 {
     public void PointerEnter()
     {
-        transform.localScale = new Vector2(1.2f, 1.2f);
+        transform.localScale = new Vector2(1.1f, 1.1f);
     }
 
     public void PointerExit()

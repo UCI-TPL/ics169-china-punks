@@ -21,7 +21,7 @@ public class ItemIndividualInfo : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             this.transform.SetParent(transform.parent.parent);
             this.transform.position = eventData.position;
-            this.transform.localScale = new Vector2(1.2f, 1.2f);
+            this.transform.localScale = new Vector2(1.0f, 1.0f);
             GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
@@ -31,13 +31,13 @@ public class ItemIndividualInfo : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (item != null)
         {
             this.transform.position = eventData.position;
-            this.transform.localScale = new Vector2(1.2f, 1.2f);
+            this.transform.localScale = new Vector2(1.0f, 1.0f);
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        this.transform.localScale = new Vector2(1.0f, 1.0f);
+        this.transform.localScale = new Vector2(0.75f, 0.75f);
         this.transform.SetParent(inventoryInfo.slotInfoList[ItemCurrentSlotIndex].transform);
         this.transform.position = this.transform.parent.position; // reset position
         GetComponent<CanvasGroup>().blocksRaycasts = true;

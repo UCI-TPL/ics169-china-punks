@@ -1,16 +1,33 @@
+//[
+//  {
+//    "id": 0,
+//    "title": "RPG",
+//    "value": 200,
+//    "description": "COME ON BABY!!",
+//    "slug": "RPG HUD"
+//  },
+//  {
+//    "id": 1,
+//    "title": "SMG",
+//    "value": 100,
+//    "description": "When you see me you are dead",
+//    "slug": "SMG HUD"
+//  }
+//]
+
 [
   {
     "id": 0,
-    "title": "RPG",
+    "title": "Key",
     "value": 200,
-    "description": "COME ON BABY!!",
-    "slug": "RPG HUD"
+    "description": "key key key",
+    "slug": "item_img_key"
   },
   {
     "id": 1,
-    "title": "SMG",
+    "title": "Red Potion",
     "value": 100,
-    "description": "When you see me you are dead",
-    "slug": "SMG HUD"
+    "description": "healing needed!!",
+    "slug": "item_img_potion_red"
   }
 ]
