@@ -14,6 +14,9 @@ public class Unit : MonoBehaviour {
 
     public Animator anim;
 
+	//Check if a unit has complete its turn
+    public bool turnComplete;
+
     // Use this for initialization
     void Start () {
 		
