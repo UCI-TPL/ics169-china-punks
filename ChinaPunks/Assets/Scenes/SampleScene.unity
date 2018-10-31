@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &33552774
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!114 &35018401 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114634990762198418, guid: afecb9a8723097a49b2a1c99524b7d20,
@@ -536,6 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!114 &123115895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114087452617451396, guid: e6b9ed8993b933940850527846d169f1,
@@ -656,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &202539818
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!114 &212931033 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114804356609113130, guid: e6b9ed8993b933940850527846d169f1,
@@ -890,6 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &258539640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,6 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &275399511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &282061869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1199,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306201210
 GameObject:
@@ -1307,6 +1315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &376500890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &387505911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &423376420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,6 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &432614388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &432633111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &458836120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +2005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &461273608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,6 +2120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &462821779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,6 +2235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &472078319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &487153359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,6 +2562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,6 +2754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &549391754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,6 +2869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &563003994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,6 +2984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &565965837
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &586749842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,6 +3214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &605665277
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,6 +3329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &607248739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,6 +3444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &609649257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,6 +3559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &613993095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,6 +3674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &619153298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,6 +3789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &627568328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3919,6 +3948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &700332768
 GameObject:
   m_ObjectHideFlags: 0
@@ -4033,6 +4063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &702665996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,6 +4178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &709970274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4261,6 +4293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &725017415 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1098809170245748, guid: afecb9a8723097a49b2a1c99524b7d20,
@@ -4385,6 +4418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &733838303
 GameObject:
   m_ObjectHideFlags: 0
@@ -4612,6 +4646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &752258682
 GameObject:
   m_ObjectHideFlags: 0
@@ -4849,6 +4884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &794368650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4963,6 +4999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &799889580
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,6 +5114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &802431237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5191,6 +5229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &805940443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5346,6 +5385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &854612777
 GameObject:
   m_ObjectHideFlags: 0
@@ -5561,6 +5601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1001 &903195822
 Prefab:
   m_ObjectHideFlags: 0
@@ -5606,7 +5647,7 @@ Prefab:
     - target: {fileID: 224564288617316422, guid: afecb9a8723097a49b2a1c99524b7d20,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224564288617316422, guid: afecb9a8723097a49b2a1c99524b7d20,
         type: 2}
@@ -5775,6 +5816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &920116118
 GameObject:
   m_ObjectHideFlags: 0
@@ -5889,6 +5931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &925916523
 GameObject:
   m_ObjectHideFlags: 0
@@ -6003,6 +6046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!114 &943835754 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114396453836334592, guid: afecb9a8723097a49b2a1c99524b7d20,
@@ -6222,6 +6266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &975895503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6336,6 +6381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &996346056
 GameObject:
   m_ObjectHideFlags: 0
@@ -6450,6 +6496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1015851088
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,6 +6611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1017648904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6678,6 +6726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1042215901
 GameObject:
   m_ObjectHideFlags: 0
@@ -6792,6 +6841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!114 &1053744810 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114861128004893358, guid: e6b9ed8993b933940850527846d169f1,
@@ -6912,6 +6962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1076767122
 GameObject:
   m_ObjectHideFlags: 0
@@ -7026,6 +7077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1099620830
 GameObject:
   m_ObjectHideFlags: 0
@@ -7140,6 +7192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1107181294
 GameObject:
   m_ObjectHideFlags: 0
@@ -7254,6 +7307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1109497123
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,6 +7422,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
+--- !u!1 &1153907412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153907414}
+  - component: {fileID: 1153907413}
+  m_Layer: 0
+  m_Name: turn_control
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1153907413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1153907412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d2d0ad8b55b4f15bd1e564034f6b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 1315454259}
+  gameRound: 
+  endTurnButton: {fileID: 752258682}
+--- !u!4 &1153907414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1153907412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.17950691, y: -0.028188895, z: 0.0017872397}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154973522
 GameObject:
   m_ObjectHideFlags: 0
@@ -7544,6 +7642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1191376499
 GameObject:
   m_ObjectHideFlags: 0
@@ -7658,6 +7757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1196741887
 GameObject:
   m_ObjectHideFlags: 0
@@ -7772,6 +7872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1238364591
 GameObject:
   m_ObjectHideFlags: 0
@@ -7886,6 +7987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1245463439
 GameObject:
   m_ObjectHideFlags: 0
@@ -8000,6 +8102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1315182014
 GameObject:
   m_ObjectHideFlags: 0
@@ -8114,6 +8217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1315454259
 GameObject:
   m_ObjectHideFlags: 0
@@ -8362,18 +8466,13 @@ MonoBehaviour:
   tile_picked: 0
   pickTile_pos: 0
   map_size: 10
-  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
-    type: 2}
-  InGameHUD: {fileID: 1637110124890464, guid: e6b9ed8993b933940850527846d169f1, type: 2}
-  AttackBtn: {fileID: 1053744810}
-  Movebtn: {fileID: 212931033}
-  Resetbtn: {fileID: 123115895}
-  AttackBtn2: {fileID: 943835754}
-  Movebtn2: {fileID: 947765637}
-  Resetbtn2: {fileID: 35018401}
+  occupied_tiles: 
+  expanded_tiles: 
+  first_click: 1
   picked_pos: 0
-  gameRound: 
-  endTurnButton: {fileID: 752258682}
+  current_picked_pos: -1
+  playerHUD_showed: 0
+  acting_state: 0
 --- !u!1 &1328288316
 GameObject:
   m_ObjectHideFlags: 0
@@ -8488,6 +8587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1351243748
 GameObject:
   m_ObjectHideFlags: 0
@@ -8602,6 +8702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1360653022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8716,6 +8817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1393920951
 GameObject:
   m_ObjectHideFlags: 0
@@ -8830,6 +8932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1396206653
 GameObject:
   m_ObjectHideFlags: 0
@@ -8944,6 +9047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1401251399
 GameObject:
   m_ObjectHideFlags: 0
@@ -9058,6 +9162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1414204401
 GameObject:
   m_ObjectHideFlags: 0
@@ -9172,6 +9277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1433519240
 GameObject:
   m_ObjectHideFlags: 0
@@ -9286,6 +9392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1472762421
 GameObject:
   m_ObjectHideFlags: 0
@@ -9395,6 +9502,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4f1466f5155db409f23283a1e2d6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 1315454259}
+  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+    type: 2}
+  InGameHUD: {fileID: 1637110124890464, guid: e6b9ed8993b933940850527846d169f1, type: 2}
+  AttackBtn: {fileID: 1053744810}
+  Movebtn: {fileID: 212931033}
+  Resetbtn: {fileID: 123115895}
+  AttackBtn2: {fileID: 943835754}
+  Movebtn2: {fileID: 947765637}
+  Resetbtn2: {fileID: 35018401}
   exit: {fileID: 1603784827}
 --- !u!1 &1474298008
 GameObject:
@@ -9510,6 +9627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1519666291
 GameObject:
   m_ObjectHideFlags: 0
@@ -9624,6 +9742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1587937188
 GameObject:
   m_ObjectHideFlags: 0
@@ -9738,6 +9857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1603784826
 GameObject:
   m_ObjectHideFlags: 0
@@ -9964,6 +10084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1696123475
 GameObject:
   m_ObjectHideFlags: 0
@@ -10078,6 +10199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1699076229
 GameObject:
   m_ObjectHideFlags: 0
@@ -10192,6 +10314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1716124231
 GameObject:
   m_ObjectHideFlags: 0
@@ -10306,6 +10429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1726747351
 GameObject:
   m_ObjectHideFlags: 0
@@ -10420,6 +10544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1765371275
 GameObject:
   m_ObjectHideFlags: 0
@@ -10534,6 +10659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1814718041
 GameObject:
   m_ObjectHideFlags: 0
@@ -10648,6 +10774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1816038017
 GameObject:
   m_ObjectHideFlags: 0
@@ -10762,6 +10889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1822233872
 GameObject:
   m_ObjectHideFlags: 0
@@ -10876,6 +11004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1849624909
 GameObject:
   m_ObjectHideFlags: 0
@@ -10990,6 +11119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1860601232
 GameObject:
   m_ObjectHideFlags: 0
@@ -11104,6 +11234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1865284354
 GameObject:
   m_ObjectHideFlags: 0
@@ -11218,6 +11349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1867246850
 GameObject:
   m_ObjectHideFlags: 0
@@ -11332,6 +11464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1899616500
 GameObject:
   m_ObjectHideFlags: 0
@@ -11446,6 +11579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1925996173
 GameObject:
   m_ObjectHideFlags: 0
@@ -11560,6 +11694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1931864364
 GameObject:
   m_ObjectHideFlags: 0
@@ -11674,6 +11809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1973889775
 GameObject:
   m_ObjectHideFlags: 0
@@ -11788,6 +11924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1980371911
 GameObject:
   m_ObjectHideFlags: 0
@@ -11902,6 +12039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &1985737413
 GameObject:
   m_ObjectHideFlags: 0
@@ -12091,6 +12229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2021061607
 GameObject:
   m_ObjectHideFlags: 0
@@ -12205,6 +12344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2030389436
 GameObject:
   m_ObjectHideFlags: 0
@@ -12319,6 +12459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2041111751
 GameObject:
   m_ObjectHideFlags: 0
@@ -12433,6 +12574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2047358469
 GameObject:
   m_ObjectHideFlags: 0
@@ -12547,6 +12689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2085127968
 GameObject:
   m_ObjectHideFlags: 0
@@ -12661,6 +12804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2093917468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12775,6 +12919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2097876489
 GameObject:
   m_ObjectHideFlags: 0
@@ -12889,6 +13034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1 &2126394477
 GameObject:
   m_ObjectHideFlags: 0
@@ -13003,6 +13149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
 --- !u!1001 &2129702330
 Prefab:
   m_ObjectHideFlags: 0
@@ -13048,7 +13195,7 @@ Prefab:
     - target: {fileID: 224086442494073032, guid: e6b9ed8993b933940850527846d169f1,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224086442494073032, guid: e6b9ed8993b933940850527846d169f1,
         type: 2}
@@ -13231,3 +13378,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_tiles: {fileID: 1315454259}
+  turn_control: {fileID: 1153907412}
