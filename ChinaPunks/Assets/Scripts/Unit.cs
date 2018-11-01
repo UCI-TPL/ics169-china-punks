@@ -14,6 +14,10 @@ public class Unit : MonoBehaviour {
 
     public Animator anim;
 
+    //Check if a unit has complete its turn
+    public bool moveComplete;
+    public bool turnComplete;
+
     // Use this for initialization
     void Start () {
 		
@@ -32,5 +36,10 @@ public class Unit : MonoBehaviour {
         anim.Play("Attacked");
         health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());
+
+        if (health <= 0){
+            Debug.Log(this.gameObject.name + " is Dead!");
+            Destroy(this.gameObject);
+        }
     }
 }

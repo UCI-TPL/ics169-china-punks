@@ -1141,7 +1141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &282061870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2361,6 +2361,7 @@ GameObject:
   - component: {fileID: 487153362}
   - component: {fileID: 487153361}
   - component: {fileID: 487153360}
+  - component: {fileID: 487153363}
   m_Layer: 0
   m_Name: PlayerUnit2
   m_TagString: PlayerUnit
@@ -2383,9 +2384,11 @@ MonoBehaviour:
   mapInfo: []
   currentPos: 55
   moveRange: 3
-  health: 0
-  attack_damge: 1
-  anim: {fileID: 0}
+  health: 100
+  attack_damge: 15
+  anim: {fileID: 487153363}
+  moveComplete: 0
+  turnComplete: 0
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
 --- !u!212 &487153361
@@ -2448,6 +2451,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &487153363
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 487153359}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6333064651a604a4f96395c30611f1ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &518030576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4431,7 +4452,7 @@ GameObject:
   - component: {fileID: 733838304}
   - component: {fileID: 733838307}
   m_Layer: 0
-  m_Name: EnemyUnit
+  m_Name: EnemyUnit1
   m_TagString: EnemyUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4450,11 +4471,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
   mapInfo: []
-  currentPos: 0
-  moveRange: 0
+  currentPos: 34
+  moveRange: 2
   health: 100
-  attack_damge: 0
+  attack_damge: 15
   anim: {fileID: 733838307}
+  moveComplete: 0
+  turnComplete: 0
+  attackRange: 01000000ffffffff0a000000f6ffffff
+  acting: 0
+  walking: 0
 --- !u!212 &733838305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4723,7 +4749,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315454261}
+      - m_Target: {fileID: 1153907413}
         m_MethodName: changeRound
         m_Mode: 1
         m_Arguments:
@@ -5397,6 +5423,7 @@ GameObject:
   - component: {fileID: 854612779}
   - component: {fileID: 854612778}
   - component: {fileID: 854612780}
+  - component: {fileID: 854612781}
   m_Layer: 0
   m_Name: PlayerUnit1
   m_TagString: PlayerUnit
@@ -5482,11 +5509,31 @@ MonoBehaviour:
   mapInfo: []
   currentPos: 11
   moveRange: 2
-  health: 0
-  attack_damge: 1
-  anim: {fileID: 0}
+  health: 100
+  attack_damge: 15
+  anim: {fileID: 854612781}
+  moveComplete: 0
+  turnComplete: 0
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
+--- !u!95 &854612781
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 854612777}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6333064651a604a4f96395c30611f1ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &888678492
 GameObject:
   m_ObjectHideFlags: 0
@@ -6097,6 +6144,21 @@ Prefab:
     - target: {fileID: 4538418640482552, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
+        type: 2}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 854612781}
+    - target: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
+        type: 2}
+      propertyPath: attack_damge
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
+        type: 2}
+      propertyPath: health
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
@@ -8473,6 +8535,7 @@ MonoBehaviour:
   current_picked_pos: -1
   playerHUD_showed: 0
   acting_state: 0
+  AI_units: []
 --- !u!1 &1328288316
 GameObject:
   m_ObjectHideFlags: 0

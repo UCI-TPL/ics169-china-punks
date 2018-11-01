@@ -94,6 +94,13 @@ public class InGameUI : MonoBehaviour {
                 InGameHUD = map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel;
                 _InGameHUD = InGameHUD;
                 _InGameHUD.SetActive(true);
+
+                if (map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().moveComplete){
+                    InGameHUD.transform.GetChild(1).GetComponent<Button>().interactable = false;
+                }
+                else{
+                    InGameHUD.transform.GetChild(1).GetComponent<Button>().interactable = true;
+                }
             }
         }
 

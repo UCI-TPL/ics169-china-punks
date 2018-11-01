@@ -16,8 +16,8 @@ public class Map_Control : MonoBehaviour
 
     public int pickTile_pos;
     public int map_size;
-    
-    public Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject,int>();
+
+    public Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject, int>();
     public Dictionary<int, List<int>> expansion_of_tiles = new Dictionary<int, List<int>>();
     public List<int> occupied_tiles = new List<int>();
     public List<int> expanded_tiles = new List<int>();
@@ -36,36 +36,41 @@ public class Map_Control : MonoBehaviour
     //0 for original state, 1 for movement, 2 for attack, 3...
     public int acting_state = 0;
 
-	//Variable used to keep track whose round the current one is.
-    //Value: "Player", "AI"
+    //Variables used for passing functions to search algorithm
+    //Condition function input:
+    //  pos: the tile that is being checked
+    //  unitTag: the tag the function is compared with
+    public delegate bool Condition(int pos, string unitTag);
+    public Condition solutionCondition;
+
+    //Variable that stores the reference of every AIUnit gameObject
+    public List<GameObject> AI_units = new List<GameObject>();
 
     private void Awake()
     {
-        for (int i = 0; i < map_size * map_size; i++){
+        for (int i = 0; i < map_size * map_size; i++)
+        {
             units_state.Add(null);
         }
     }
     // Use this for initialization
-    void Start(){
+    void Start()
+    {
         Tile_Store();
 
     }
 
     // Update is called once per frame
-    void Update(){
-
-        //click right botton to reset
-        if (Input.GetKeyDown("r")){
-            Debug.Log("r click!!!");
-            reset();
-        }
+    void Update()
+    {
 
     }
 
 
 
-	//Function used for unselecting character
-    public void reset(){
+    //Function used for unselecting character
+    public void reset()
+    {
         acting_state = 0;
         //expanded tile empty?
         if (expanded_tiles.Count != 0)
@@ -101,7 +106,7 @@ public class Map_Control : MonoBehaviour
 
         pickEndTile = pickTile;
 
-        Search_accessible_tiles(picked_pos, move_range);
+        all_paths = Search_solution(picked_pos, move_range, "Player", null, null);
         foreach (int i in expanded_tiles)
         {
             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
@@ -109,7 +114,7 @@ public class Map_Control : MonoBehaviour
         tile_picked = false;
         first_click = false;
         playerHUD_showed = false;
-       
+
 
     }
 
@@ -145,21 +150,19 @@ public class Map_Control : MonoBehaviour
     }
 
 
-    public void Character_Click(){
+    public void Character_Click()
+    {
         if (tile_picked)
         {
             if (first_click)
             {
                 picked_pos = map_tiles_pos[pickTile];
 
-                if(current_picked_pos == -1)
+                if (current_picked_pos == -1)
                 {
                     current_picked_pos = picked_pos;
                 }
                 current_picked_pos = picked_pos;
-
-                 
-                
 
             }
             //Second click to choose the end point of the path
@@ -181,13 +184,13 @@ public class Map_Control : MonoBehaviour
                 //Debug.Log(ap);
                 //Debug.Log(map_tiles_pos[pickEndTile]);
                 if (acting_state == 1)
-                    //move state
+                //move state
                 {
                     if (all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
                         path = all_paths[map_tiles_pos[pickEndTile]];
-                        path.Insert(0, map_tiles_pos[pickEndTile]);
-                        path.Reverse();
+                        path.Add(map_tiles_pos[pickEndTile]);
+
 
                         // For Debug
                         //string result = "Path Found:[";
@@ -203,24 +206,30 @@ public class Map_Control : MonoBehaviour
                         {
                             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                         }
+                        units_state[picked_pos].GetComponent<UserUnit>().moveComplete = true;
                         expanded_tiles.Clear();
                         all_paths.Clear();
                         first_click = true;
                     }
                 }
-                else if(acting_state == 2){
+                else if (acting_state == 2)
+                {
                     //attack state
                     //check second-clicked tile has unit
-                    if(units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
+                    if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
                     {
                         int attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<Unit>().attack_damge;
                         units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
                         Debug.Log(units_state[map_tiles_pos[pickTile]].gameObject.name + " attacked "
                                   + units_state[map_tiles_pos[pickEndTile]].gameObject.name);
 
+                        // Player Unit finshed attack movement
+                        units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
                     }
+
                     //recover tiles color
-                    foreach(int i in expansion_of_tiles[map_tiles_pos[pickTile]]){
+                    foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+                    {
                         map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                     }
                     reset();
@@ -232,7 +241,8 @@ public class Map_Control : MonoBehaviour
 
     }
 
-    void Tile_Store(){
+    void Tile_Store()
+    {
         //store each tile and its position in a dict
         for (int i = 0; i < map_size * map_size; ++i)
         {
@@ -264,62 +274,105 @@ public class Map_Control : MonoBehaviour
         }
     }
 
-	//search for all accessible tiles after the player pick one
-	void Search_accessible_tiles(int picked_pos, int range)
-	{
-		//search algorithm
-		List<int> temp_tiles_to_explore = new List<int>() { picked_pos };
-		expanded_tiles.Add(picked_pos);
-		all_paths[picked_pos] = new List<int>();
+    //search for all tiles that are considered solution for AI
+    public Dictionary<int, List<int>> Search_solution(int start_tile, int range, string userMode, string unitTag, Condition myCondition)
+    {
+        //search algorithm
+        List<int> temp_tiles_to_explore = new List<int>() { start_tile };
+        HashSet<int> searched_tiles = new HashSet<int>();
+        Dictionary<int, List<int>> solution = new Dictionary<int, List<int>>();
 
-		for (int i = 0; i < range; ++i)
-		{
-			if (occupied_tiles.Contains(pickTile_pos))
-			{
-				//there is a selectible unit on the picked tile
-			}
-			//store the expanded tiles of the currently picked tile
-			foreach (int pos_to_explore in temp_tiles_to_explore)
-			{
-				foreach (int pos in expansion_of_tiles[pos_to_explore])
-				{
-					//add the explored tile to the list
-					//check if pos already expanded in previous loop
-					if (!expanded_tiles.Contains(pos) && units_state[pos] == null)
-					{
-						expanded_tiles.Add(pos);
-						//add the explored tile to the path
-						if (!all_paths.ContainsKey(pos))
-						{
-							all_paths[pos] = new List<int>() { pos_to_explore };
+        all_paths.Clear();
+        all_paths[start_tile] = new List<int>();
 
-							foreach (int p in all_paths[pos_to_explore])
-							{
-								all_paths[pos].Add(p);
-							}
-						}
-                        
-					}
-				}
-			}
-			//update tiles_to_explore to the list of newly expaneded tiles
-			List<int> temp = new List<int>();
-			foreach (int tile_pos in expanded_tiles)
-			{
-				if (!temp_tiles_to_explore.Contains(tile_pos))
-				{
-					temp.Add(tile_pos);
-				}
-			}
+        // For AI, if there is a non-AI Unit nearby(in attack range already), don't move(stay on this postion and attack).
+        if (userMode == "AI")
+        {
+            if (myCondition(start_tile, unitTag))
+            {
+                solution[start_tile] = new List<int>() { start_tile };
+                return solution;
+            }
+        }
 
-			temp_tiles_to_explore = new List<int>(temp);
+        for (int i = 0; i < range; ++i)
+        {
+            //store the expanded tiles of the currently picked tile
+            foreach (int pos_to_explore in temp_tiles_to_explore)
+            {
+                foreach (int pos in expansion_of_tiles[pos_to_explore])
+                {
+                    //check if the tile satisfied the condition
+                    if (units_state[pos] == null)
+                    {
+                        //add the explored tile to the list
+                        //check if pos already expanded in previous loop
+                        if (userMode == "Player" && !expanded_tiles.Contains(pos))
+                            expanded_tiles.Add(pos);
 
+                        if (!all_paths.ContainsKey(pos))
+                        {
+                            all_paths[pos] = new List<int>(all_paths[pos_to_explore]);
+                            all_paths[pos].Add(pos_to_explore);
+                            if (userMode == "AI" && i == range - 1)
+                                all_paths[pos].Add(pos);
+                        }
 
-		}
+                    }
+                    if (userMode == "AI" && myCondition(pos, unitTag))            //For AI, there is an attackable Unit in move range.
+                    {
+                        solution[pos] = all_paths[pos];                           //save the path to this attackable Unit
+                        solution[pos].Add(pos);
+                    }
+                    if (userMode == "AI" && solution.Count != 0)                  //For AI, if found a path to attack some Unit, return this path
+                        return solution;
+                }
+                searched_tiles.Add(pos_to_explore);
+            }
+            //update tiles_to_explore to the list of newly expaneded tiles
+            List<int> temp = new List<int>();
+            foreach (int tile_pos in all_paths.Keys)
+                if (!searched_tiles.Contains(tile_pos))
+                    temp.Add(tile_pos);
 
-	}
+            temp_tiles_to_explore = new List<int>(temp);
+        }
 
+        //If AI hasn't find the solution within the range, expand the range endlessly until it finds a solution
+        if (userMode == "AI")
+        {
+            foreach (int pos in all_paths.Keys)
+                all_paths[pos].Add(pos);
+            for (int i = range; i < map_size; ++i)
+            {
+                foreach (int pos_to_explore in temp_tiles_to_explore)
+                {
+                    foreach (int pos in expansion_of_tiles[pos_to_explore])
+                    {
+                        if (units_state[pos] == null)
+                        {
+                            if (!all_paths.ContainsKey(pos))
+                                all_paths[pos] = new List<int>(all_paths[pos_to_explore]);
 
+                            if (userMode == "AI" && myCondition(pos, unitTag))
+                                solution[pos] = all_paths[pos];
+                        }
+                        if (userMode == "AI" && solution.Count != 0)
+                            return solution;
 
+                    }
+                    searched_tiles.Add(pos_to_explore);
+                }
+                List<int> temp = new List<int>();
+                foreach (int tile_pos in all_paths.Keys)
+                    if (!searched_tiles.Contains(tile_pos))
+                        temp.Add(tile_pos);
+
+                temp_tiles_to_explore = new List<int>(temp);
+            }
+        }
+        all_paths.Remove(start_tile);
+        return all_paths;
+    }
 
 }

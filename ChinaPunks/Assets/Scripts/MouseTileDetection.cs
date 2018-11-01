@@ -36,9 +36,12 @@ public class MouseTileDetection : MonoBehaviour {
                 map_ctr.tile_picked = true;
                 //current tile has player unit, so show playerHUD
                 if (map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]] != null &&
-                    map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].tag == "PlayerUnit")
-                //playerHUD_showed = true;
-                map_ctr.playerHUD_showed = true;
+                    map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].tag == "PlayerUnit" &&
+                    !map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].GetComponent<UserUnit>().turnComplete)
+                {
+                    //playerHUD_showed = true;
+                    map_ctr.playerHUD_showed = true;
+                }
             }
 
         }
