@@ -18,10 +18,12 @@ public class InGameUI : MonoBehaviour {
     //HUD buttons
     public Button AttackBtn;
     public Button Movebtn;
+    public Button Pickbtn;
     public Button Resetbtn;
 
     public Button AttackBtn2;
     public Button Movebtn2;
+    public Button Pickbtn2;
     public Button Resetbtn2;
 
 
@@ -38,6 +40,9 @@ public class InGameUI : MonoBehaviour {
         Button Attack_btn = AttackBtn.GetComponent<Button>();
         Attack_btn.onClick.AddListener(() => map_ctr.Character_Attack());
 
+        Button Pick_btn = Pickbtn.GetComponent<Button>();
+        Pick_btn.onClick.AddListener(() => map_ctr.Character_PickUp());
+
         Button Reset_btn = Resetbtn.GetComponent<Button>();
         Reset_btn.onClick.AddListener(() => map_ctr.reset());
 
@@ -46,6 +51,9 @@ public class InGameUI : MonoBehaviour {
 
         Button Attack_btn2 = AttackBtn2.GetComponent<Button>();
         Attack_btn2.onClick.AddListener(() => map_ctr.Character_Attack());
+
+        Button Pick_btn2 = Pickbtn2.GetComponent<Button>();
+        Pick_btn2.onClick.AddListener(() => map_ctr.Character_PickUp());
 
         Button Reset_btn2 = Resetbtn2.GetComponent<Button>();
         Reset_btn2.onClick.AddListener(() => map_ctr.reset());

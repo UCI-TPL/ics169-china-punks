@@ -33,7 +33,7 @@ public class Map_Control : MonoBehaviour
 
     //bool ShowedClickedEffect;
 
-    //0 for original state, 1 for movement, 2 for attack, 3...
+    //0 for original state, 1 for movement, 2 for attack, 3 for PickUp...
     public int acting_state = 0;
 
     //Variables used for passing functions to search algorithm
@@ -98,8 +98,29 @@ public class Map_Control : MonoBehaviour
         playerHUD_showed = false;
     }
 
+    public void Character_PickUp()
+    {
+
+        acting_state = 3;
+
+        pickEndTile = pickTile;
+        List<int> pickRange = units_state[picked_pos].GetComponent<UserUnit>().pickRange;
+
+        foreach (int position in pickRange){
+            if (map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size * map_size - 1){
+                map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
+            }
+        }
+
+        tile_picked = false;
+        first_click = false;
+
+        playerHUD_showed = false;
+    }
+
     public void Character_Move()
     {
+
         acting_state = 1;
         units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
         int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
@@ -129,22 +150,25 @@ public class Map_Control : MonoBehaviour
         {
             if (map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size * map_size - 1)
             {
-                if (units_state[map_tiles_pos[pickTile] + position] != null && units_state[map_tiles_pos[pickTile] + position].gameObject.tag != "PlayerUnit")
-                {
-                    debug++;
-                    map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
-                }
+                map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                //if (units_state[map_tiles_pos[pickTile] + position] != null 
+                //    && units_state[map_tiles_pos[pickTile] + position].gameObject.tag != "PlayerUnit"
+                //    && units_state[map_tiles_pos[pickTile] + position].gameObject.tag != "Peach")
+                //{
+                //    debug++;
+                //    map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                //}
             }
         }
 
         tile_picked = false;
         first_click = false;
 
-        if (debug == 0)
-        {
-            Debug.Log("No target for attacking!");
-            first_click = true;
-        }
+        //if (debug == 0)
+        //{
+        //    Debug.Log("No target for attacking!");
+        //    first_click = true;
+        //}
 
         playerHUD_showed = false;
     }
@@ -212,6 +236,7 @@ public class Map_Control : MonoBehaviour
                         first_click = true;
                     }
                 }
+
                 else if (acting_state == 2)
                 {
                     //attack state
@@ -227,10 +252,33 @@ public class Map_Control : MonoBehaviour
                         units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
                     }
 
-                    //recover tiles color
-                    foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+                    if (units_state[map_tiles_pos[pickEndTile]] == null)
                     {
-                        map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                        Debug.Log("There is no target in attack range!");
+                        //recover tiles color
+                        foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+                        {
+                            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                        }
+                    }
+                    reset();
+                }
+
+                else if (acting_state == 3)
+                {
+                    if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "Peach"){
+                        Debug.Log("Found Peach!");
+                        //here write code to pick up peach
+
+                    }
+                    if (units_state[map_tiles_pos[pickEndTile]] == null)
+                    {
+                        Debug.Log("There is no peach in PickUp range!");
+                        //recover tiles color
+                        foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+                        {
+                            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                        }
                     }
                     reset();
                 }

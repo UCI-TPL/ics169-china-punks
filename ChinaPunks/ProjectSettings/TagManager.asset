@@ -8,6 +8,7 @@ TagManager:
   - Itemdata
   - PlayerUnit
   - EnemyUnit
+  - Peach
   layers:
   - Default
   - TransparentFX
