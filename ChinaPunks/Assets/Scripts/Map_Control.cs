@@ -211,7 +211,7 @@ public class Map_Control : MonoBehaviour
                 current_picked_pos = picked_pos;
 
                 if (units_state[picked_pos] != null 
-                    && (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete || !units_state[picked_pos].GetComponent<UserUnit>().turnComplete)){
+                    && (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete && !units_state[picked_pos].GetComponent<UserUnit>().turnComplete)){
                     Character_Move();
                 }
             }
@@ -226,7 +226,7 @@ public class Map_Control : MonoBehaviour
                 current_picked_pos = picked_pos;
 
                 // if character has not moved and acting state is 1
-                if (acting_state == 1)
+                if (acting_state == 1 && !units_state[picked_pos].GetComponent<UserUnit>().moveComplete)
                 //move state
                 {
                     //move character in the move range
@@ -310,6 +310,7 @@ public class Map_Control : MonoBehaviour
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                             }
                         }
+                        acting_state = 0;
                     }
                     else
                     {

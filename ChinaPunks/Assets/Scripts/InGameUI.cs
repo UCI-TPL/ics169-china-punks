@@ -13,14 +13,10 @@ public class InGameUI : MonoBehaviour {
     public GameObject selectEffect;
     GameObject _selectEffect;
     public GameObject InGameHUD;
-    GameObject _InGameHUD;
 
     //HUD buttons
     public Button AttackBtn;
     public Button Pickbtn;
-
-    public Button AttackBtn2;
-    public Button Pickbtn2;
 
 
     bool ShowedClickedEffect;
@@ -35,12 +31,6 @@ public class InGameUI : MonoBehaviour {
 
         Button Pick_btn = Pickbtn.GetComponent<Button>();
         Pick_btn.onClick.AddListener(() => map_ctr.Character_PickUp());
-
-        Button Attack_btn2 = AttackBtn2.GetComponent<Button>();
-        Attack_btn2.onClick.AddListener(() => map_ctr.Character_Attack());
-
-        Button Pick_btn2 = Pickbtn2.GetComponent<Button>();
-        Pick_btn2.onClick.AddListener(() => map_ctr.Character_PickUp());
 
         ShowedClickedEffect = false;
         Button _exit = exit.GetComponent<Button>();
@@ -69,7 +59,6 @@ public class InGameUI : MonoBehaviour {
                 if (map_ctr.units_state[map_ctr.current_picked_pos] != null)
                 {
                     Destroy(_selectEffect);
-                    map_ctr.units_state[map_ctr.current_picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel.SetActive(false);
                     ShowedClickedEffect = false;
                 }
             }
@@ -82,16 +71,19 @@ public class InGameUI : MonoBehaviour {
                 ShowedClickedEffect = true;
 
                 //Show player HUD
-                InGameHUD = map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<Transform>().GetChild(0).GetComponent<PlayerHUD>().HUDpanel;
-                _InGameHUD = InGameHUD;
-                _InGameHUD.SetActive(true);
+                InGameHUD.SetActive(true);
             }
 
-            // here to disable attack and pickup button
+            // here to disable attack and pickup button (for temp debug use)
             if (map_ctr.units_state[map_ctr.picked_pos] != null && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit"){
                 GameObject player = map_ctr.units_state[map_ctr.picked_pos];
                 if (player.gameObject.GetComponent<UserUnit>().hasPeach){
-
+                    AttackBtn.interactable = false;
+                    Pickbtn.interactable = false;
+                }
+                else{
+                    AttackBtn.interactable = true;
+                    Pickbtn.interactable = true;
                 }
             }
         }
@@ -102,7 +94,7 @@ public class InGameUI : MonoBehaviour {
             {
                 Destroy(_selectEffect);
                 ShowedClickedEffect = false;
-                _InGameHUD.SetActive(false);
+                InGameHUD.SetActive(false);
             }
         }
 
