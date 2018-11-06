@@ -14,7 +14,7 @@ public class Map_Control : MonoBehaviour
 
     public bool tile_picked;
 
-    public int pickTile_pos;
+    public int pickTile_pos = -1;
     public int map_size;
 
     public Dictionary<GameObject, int> map_tiles_pos = new Dictionary<GameObject, int>();
@@ -88,9 +88,9 @@ public class Map_Control : MonoBehaviour
             }
         }
         //recover tile colors
-        if (pickTile)
+        if (picked_pos != -1)
         {
-            foreach (int i in expansion_of_tiles[map_tiles_pos[pickTile]])
+            foreach (int i in expansion_of_tiles[picked_pos])
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
             }
@@ -100,6 +100,7 @@ public class Map_Control : MonoBehaviour
         tile_picked = false;
         pickTile = null;
         pickEndTile = null;
+        picked_pos = -1;
 
         playerHUD_showed = false;
     }
@@ -124,13 +125,19 @@ public class Map_Control : MonoBehaviour
             if (picked_pos + position >= 0 && picked_pos + position <= map_size * map_size - 1)
             {
                 map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(0, 0, 250);
+                if (picked_pos % 10 == 0 && (picked_pos + position + 1) % 10 == 0)
+                {
+                    map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
+                else if ((picked_pos + 1) % 10 == 0 && (picked_pos + position) % 10 == 0)
+                {
+                    map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
             }
         }
 
         tile_picked = false;
         first_click = false;
-
-        playerHUD_showed = false;
     }
 
     public void Character_Move()
@@ -172,21 +179,19 @@ public class Map_Control : MonoBehaviour
             if (picked_pos + position >= 0 && picked_pos + position <= map_size * map_size - 1)
             {
                 map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+                if (picked_pos % 10 == 0 && (picked_pos + position + 1) % 10 == 0)
+                {
+                    map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
+                else if ((picked_pos + 1) % 10 == 0 && (picked_pos + position) % 10 == 0)
+                {
+                    map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
             }
         }
 
-        //foreach (int position in attackRange)
-        //{
-        //    if (map_tiles_pos[pickTile] + position >= 0 && map_tiles_pos[pickTile] + position <= map_size * map_size - 1)
-        //    {
-        //        map_tiles[map_tiles_pos[pickTile] + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
-        //    }
-        //}
-
         tile_picked = false;
         first_click = false;
-
-        playerHUD_showed = false;
     }
 
 
@@ -205,7 +210,8 @@ public class Map_Control : MonoBehaviour
                 }
                 current_picked_pos = picked_pos;
 
-                if (units_state[picked_pos] != null && !units_state[picked_pos].GetComponent<UserUnit>().moveComplete){
+                if (units_state[picked_pos] != null 
+                    && (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete || !units_state[picked_pos].GetComponent<UserUnit>().turnComplete)){
                     Character_Move();
                 }
             }
@@ -216,6 +222,8 @@ public class Map_Control : MonoBehaviour
                 temp = pickTile; //pickTile here is the end tile
                 pickTile = pickEndTile; //pickEndTile is the start tile from first click
                 pickEndTile = temp; //put temp(real end tile) into pickEndTile
+
+                current_picked_pos = picked_pos;
 
                 // if character has not moved and acting state is 1
                 if (acting_state == 1)
@@ -263,9 +271,19 @@ public class Map_Control : MonoBehaviour
 
                         // Player Unit finshed attack movement
                         units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
+
+                        if (picked_pos != -1)
+                        {
+                            foreach (int i in expansion_of_tiles[picked_pos])
+                            {
+                                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                            }
+                        }
+
+                        reset();
                     }
 
-                    else if (units_state[map_tiles_pos[pickEndTile]] == null)
+                    else
                     {
                         Debug.Log("There is no target in attack range!");
                     }
@@ -284,9 +302,16 @@ public class Map_Control : MonoBehaviour
 
                         units_state[map_tiles_pos[pickEndTile]] = null;
                         Destroy(peach);
-                        units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
+
+                        if (picked_pos != -1)
+                        {
+                            foreach (int i in expansion_of_tiles[picked_pos])
+                            {
+                                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                            }
+                        }
                     }
-                    else if (units_state[map_tiles_pos[pickEndTile]] == null)
+                    else
                     {
                         Debug.Log("There is no peach in PickUp range!");
                     }

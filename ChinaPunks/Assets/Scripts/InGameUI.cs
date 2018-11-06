@@ -86,6 +86,14 @@ public class InGameUI : MonoBehaviour {
                 _InGameHUD = InGameHUD;
                 _InGameHUD.SetActive(true);
             }
+
+            // here to disable attack and pickup button
+            if (map_ctr.units_state[map_ctr.picked_pos] != null && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit"){
+                GameObject player = map_ctr.units_state[map_ctr.picked_pos];
+                if (player.gameObject.GetComponent<UserUnit>().hasPeach){
+
+                }
+            }
         }
 
         else

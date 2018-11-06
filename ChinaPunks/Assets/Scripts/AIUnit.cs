@@ -7,6 +7,8 @@ public class AIUnit : Unit
 
     //Variables for AI unit moving and attacking
     public List<int> attackRange = new List<int>() { 1, -1, 10, -10 };
+    public List<int> pickRange = new List<int>() { 1, -1, 10, -10 };
+    public bool hasPeach = false;
     public bool acting = false;
     public bool walking = false;
     private float cd = 0.2f;
@@ -39,6 +41,10 @@ public class AIUnit : Unit
 
         if (walking)                                                                     //if the unit need to move then...
         {
+            if (hasPeach){
+                mc.peach_pos = currentPos;
+            }
+
             if (mc.path.Count > 0 && mc.path[0] == currentPos)                           //check if my current position is same as the first node of the node list I get from map
             {
                 if (Time.time > next)
@@ -60,9 +66,22 @@ public class AIUnit : Unit
                 {
                     if (currentPos + position >= 0 && currentPos + position <= mc.map_size * mc.map_size - 1)
                     {
-                        if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.tag != this.gameObject.tag)
+                        if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.tag != this.gameObject.tag
+                            && !mc.units_state[currentPos + position].gameObject.CompareTag("Peach") && !hasPeach)
                         {
                             mc.units_state[currentPos + position].GetComponent<Unit>().Health_Change(attack_damge);
+                            break;
+                        }
+                        else if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.CompareTag("Peach")
+                                 && !hasPeach)
+                        {
+                            GameObject peach = mc.units_state[currentPos + position].gameObject;
+                            mc.peach_pos = currentPos;
+
+                            hasPeach = true;
+
+                            mc.units_state[currentPos + position] = null;
+                            Destroy(peach);
                             break;
                         }
                     }
@@ -83,6 +102,26 @@ public class AIUnit : Unit
         {
             walking = true;                                                              //this unit(myself) can move right now
             mc.units_state[currentPos] = null;
+        }
+    }
+
+    public override void Health_Change(int damage)
+    {
+        base.Health_Change(damage);
+
+        if (hasPeach)
+        {
+            int peach_pos = mc.peach_pos;
+            foreach (int i in pickRange)
+            {
+                if (mc.units_state[i + peach_pos] == null)
+                {
+                    GameObject peach = Instantiate(mc.PeachPrefab);
+                    peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
+                    break;
+                }
+            }
+            hasPeach = false;
         }
     }
 }
