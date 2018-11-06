@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UserUnit : Unit {
 
+    public bool hasPeach = false;
     public bool isClicked = false;
     public List<int> attackRange = new List<int>() { 1, -1, 10, -10 };
     public List<int> pickRange = new List<int>() { 1, -1, 10, -10 };
@@ -69,6 +70,26 @@ public class UserUnit : Unit {
         {
             walking = true;                                                              //this unit(myself) can move right now
             mc.units_state[currentPos] = null;
+        }
+    }
+
+    public override void Health_Change(int damage)
+    {
+        base.Health_Change(damage);
+
+        if (hasPeach)
+        {
+            int peach_pos = mc.peach_pos;
+            foreach (int i in pickRange)
+            {
+                if (mc.units_state[i + peach_pos] == null)
+                {
+                    GameObject peach = Instantiate(mc.PeachPrefab);
+                    peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
+                    break;
+                }
+            }
+            hasPeach = false;
         }
     }
 }

@@ -48,6 +48,7 @@ public class Turn_Control : MonoBehaviour
                 //If unit has been assigned operation, do not calculate again
                 if (!enemy.turnComplete)
                 {
+                    enemy.turnComplete = true;
                     //Find where the AI unit should go
                     int move_range = enemy.moveRange;
                     map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkEnemy);
@@ -59,7 +60,7 @@ public class Turn_Control : MonoBehaviour
                     map_ctr.all_paths.Clear();
                     //AI unit move in the front end
                     enemy.acting = true;
-                    enemy.turnComplete = true;
+
                 }
 
 
@@ -92,6 +93,7 @@ public class Turn_Control : MonoBehaviour
     {
         if (gameRound == "Player")
         {
+            map_ctr.reset();
             gameRound = "AI";
             endTurnButton.SetActive(false);
 

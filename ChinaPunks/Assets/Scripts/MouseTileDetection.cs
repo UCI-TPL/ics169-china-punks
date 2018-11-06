@@ -29,8 +29,7 @@ public class MouseTileDetection : MonoBehaviour {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             //it's player's round and players' hud isn't showed
-            if (turn_ctr.gameRound == "Player" && 
-                !(map_ctr.tile_picked && map_ctr.first_click && map_ctr.playerHUD_showed))
+            if (turn_ctr.gameRound == "Player")
                {
                 map_ctr.pickTile = gameObject;
                 map_ctr.tile_picked = true;
@@ -41,6 +40,7 @@ public class MouseTileDetection : MonoBehaviour {
                 {
                     //playerHUD_showed = true;
                     map_ctr.playerHUD_showed = true;
+
                 }
             }
 
