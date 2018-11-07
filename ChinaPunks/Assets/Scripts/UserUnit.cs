@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserUnit : Unit {
 
@@ -12,6 +13,8 @@ public class UserUnit : Unit {
     private float cd = 0.2f;
     private float next;
     private bool walking = false;
+
+    public Image healthFillImage;
 
     // Use this for initialization
     void Start () {
@@ -73,7 +76,7 @@ public class UserUnit : Unit {
         }
     }
 
-    public override void Health_Change(int damage)
+    public override void Health_Change(float damage)
     {
         base.Health_Change(damage);
 
@@ -91,5 +94,6 @@ public class UserUnit : Unit {
             }
             hasPeach = false;
         }
+        healthFillImage.fillAmount = health / 100f;
     }
 }

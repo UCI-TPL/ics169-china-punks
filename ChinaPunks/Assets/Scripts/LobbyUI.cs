@@ -25,6 +25,17 @@ public class LobbyUI : MonoBehaviour {
     public Button Inventory_Close_button;
     public GameObject Inventory_HUD;
 
+    public GameObject ShopHUD;
+    public Button Shop_Button;
+    public Button CloseShop_Button;
+
+    public GameObject BarrackHUD;
+    public Button Barrack_Button;
+    public Button CloseBarrack_Button;
+
+    public GameObject RecruitButton;
+    public GameObject Completed;
+
     GameObject database;
 
     // Use this for initialization
@@ -101,6 +112,32 @@ public class LobbyUI : MonoBehaviour {
     public void CloseInventory()
     {
         Inventory_HUD.SetActive(false);
+    }
+
+    public void OpenShop()
+    {
+        ShopHUD.SetActive(true);
+    }
+
+    public void CloseShop()
+    {
+        ShopHUD.SetActive(false);
+    }
+
+    public void OpenBarrack()
+    {
+        BarrackHUD.SetActive(true);
+    }
+
+    public void CloseBarrack()
+    {
+        BarrackHUD.SetActive(false);
+    }
+
+    public void RecruitClick()
+    {
+        RecruitButton.SetActive(false);
+        Completed.SetActive(true);
     }
 
     public void doExitGame()

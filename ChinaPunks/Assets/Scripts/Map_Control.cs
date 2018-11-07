@@ -264,7 +264,7 @@ public class Map_Control : MonoBehaviour
                     //check second-clicked tile has unit
                     if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
                     {
-                        int attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<Unit>().attack_damge;
+                        float attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<Unit>().attack_damge;
                         units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
                         Debug.Log(units_state[map_tiles_pos[pickTile]].gameObject.name + " attacked "
                                   + units_state[map_tiles_pos[pickEndTile]].gameObject.name);

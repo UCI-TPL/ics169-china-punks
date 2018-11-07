@@ -36,8 +36,10 @@ public class InventoryHUD : MonoBehaviour {
         }
 
         AddItemByIDFromDataBase(0);
-        AddItemByIDFromDataBase(0);
         AddItemByIDFromDataBase(1);
+        AddItemByIDFromDataBase(2);
+        AddItemByIDFromDataBase(3);
+        AddItemByIDFromDataBase(4);
     }
 	
 	public void AddItemByIDFromDataBase(int _id)

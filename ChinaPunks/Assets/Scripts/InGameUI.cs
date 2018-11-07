@@ -43,7 +43,7 @@ public class InGameUI : MonoBehaviour {
         Character_Click();
     }
 
-    void exit_on_click()
+    public void exit_on_click()
     {
         SceneManager.LoadScene("Player_Camp");
         Debug.Log("clicked");

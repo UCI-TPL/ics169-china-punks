@@ -9,8 +9,8 @@ public class Unit : MonoBehaviour {
     public int currentPos;
     public int moveRange;
 
-    public int health;
-    public int attack_damge;
+    public float health;
+    public float attack_damge;
 
     public Animator anim;
 
@@ -32,7 +32,7 @@ public class Unit : MonoBehaviour {
 
     }
 
-    public virtual void Health_Change(int damage){
+    public virtual void Health_Change(float damage){
         anim.Play("Attacked");
         health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());

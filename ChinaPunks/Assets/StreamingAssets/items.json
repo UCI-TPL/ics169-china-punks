@@ -1,20 +1,3 @@
-//[
-//  {
-//    "id": 0,
-//    "title": "RPG",
-//    "value": 200,
-//    "description": "COME ON BABY!!",
-//    "slug": "RPG HUD"
-//  },
-//  {
-//    "id": 1,
-//    "title": "SMG",
-//    "value": 100,
-//    "description": "When you see me you are dead",
-//    "slug": "SMG HUD"
-//  }
-//]
-
 [
   {
     "id": 0,
@@ -29,5 +12,26 @@
     "value": 100,
     "description": "healing needed!!",
     "slug": "item_img_potion_red"
+  },
+  {
+    "id": 2,
+    "title": "purple Potion",
+    "value": 100,
+    "description": "healing needed!!",
+    "slug": "icon_poiton_purple"
+  },
+  {
+    "id": 3,
+    "title": "bomb",
+    "value": 100,
+    "description": "healing needed!!",
+    "slug": "icon_bomb"
+  },
+  {
+    "id": 4,
+    "title": "chicken",
+    "value": 100,
+    "description": "healing needed!!",
+    "slug": "icon_chicken"
   }
 ]
