@@ -12,11 +12,6 @@ public class Unit : MonoBehaviour {
     public float health;
     public float attack_damge;
 
-<<<<<<< HEAD
-=======
-    public Animator anim;
-
->>>>>>> 350ff241c047136fb1e29268cd32eb7b429084db
     //Check if a unit has complete its turn
     public bool moveComplete;
     public bool turnComplete;
@@ -43,10 +38,6 @@ public class Unit : MonoBehaviour {
     }
 
     public virtual void Health_Change(float damage){
-<<<<<<< HEAD
-=======
-        anim.Play("Attacked");
->>>>>>> 350ff241c047136fb1e29268cd32eb7b429084db
         health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());
 

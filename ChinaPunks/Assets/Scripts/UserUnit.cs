@@ -15,10 +15,7 @@ public class UserUnit : Unit {
     private bool walking = false;
 
     public Image healthFillImage;
-<<<<<<< HEAD
     public Animator anim;
-=======
->>>>>>> 350ff241c047136fb1e29268cd32eb7b429084db
 
     // Use this for initialization
     void Start () {
