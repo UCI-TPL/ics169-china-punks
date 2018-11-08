@@ -9,10 +9,8 @@ public class Unit : MonoBehaviour {
     public int currentPos;
     public int moveRange;
 
-    public int health;
-    public int attack_damge;
-
-    public Animator anim;
+    public float health;
+    public float attack_damge;
 
     //Check if a unit has complete its turn
     public bool moveComplete;
@@ -20,8 +18,15 @@ public class Unit : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
+        mc = controller.GetComponent<Map_Control>();                                     //same as above
+
+        mc.units_state[currentPos] = this.gameObject;
+
+        mapInfo = mc.map_tiles;                                                          //get map info from GameController
+        Vector3 xyPosition = mapInfo[currentPos].transform.position;
+        transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.6f, xyPosition.z - 1.0f);      //initialize my current position on map
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,8 +37,7 @@ public class Unit : MonoBehaviour {
 
     }
 
-    public virtual void Health_Change(int damage){
-        anim.Play("Attacked");
+    public virtual void Health_Change(float damage){
         health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());
 

@@ -9,8 +9,6 @@ public class MainMenuUI : MonoBehaviour {
     public string lvName;
     public Button Quit_Button;
 
-    public GameObject SettingHUD;
-
     // Use this for initialization
     void Start()
     {

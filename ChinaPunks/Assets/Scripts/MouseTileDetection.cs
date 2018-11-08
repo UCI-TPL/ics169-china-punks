@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class MouseTileDetection : MonoBehaviour {
 
+    public bool exit;
     public GameObject map_tiles;
     Map_Control map_ctr;
 

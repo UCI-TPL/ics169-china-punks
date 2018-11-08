@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AIUnit : Unit
 {
@@ -13,6 +14,9 @@ public class AIUnit : Unit
     public bool walking = false;
     private float cd = 0.2f;
     private float next;
+
+    public Animator anim;
+    public Image healthFillImage;
 
     // Use this for initialization
     void Start()
@@ -34,7 +38,7 @@ public class AIUnit : Unit
     void Update()
     {
 
-        if (acting)
+        if (acting && !mc.CheckIfLose())
         {
             TurnUpdate();                                                                //call turn update
         }
@@ -105,9 +109,11 @@ public class AIUnit : Unit
         }
     }
 
-    public override void Health_Change(int damage)
+    public override void Health_Change(float damage)
     {
         base.Health_Change(damage);
+
+        anim.Play("Attacked");
 
         if (hasPeach)
         {
@@ -123,5 +129,6 @@ public class AIUnit : Unit
             }
             hasPeach = false;
         }
+        healthFillImage.fillAmount = health / 100f;
     }
 }

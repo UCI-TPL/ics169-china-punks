@@ -14,6 +14,8 @@ public class Turn_Control : MonoBehaviour
     public string gameRound;
     public GameObject endTurnButton;
 
+    public GameObject WinScene;
+    public GameObject LoseScene;
 
     // Use this for initialization
     void Start()
@@ -30,6 +32,18 @@ public class Turn_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (map_ctr.CheckIfWin()){
+            WinScene.SetActive(true);
+            map_ctr.reset();
+            Time.timeScale = 0;
+        }
+
+        else if (map_ctr.CheckIfLose()){
+            LoseScene.SetActive(true);
+            map_ctr.reset();
+            Time.timeScale = 0;
+        }
+
         //Player round
         if (gameRound == "Player")
         {
@@ -129,8 +143,10 @@ public class Turn_Control : MonoBehaviour
     private bool checkEnemy(int pos, string unitTag)
     {
         foreach (int i in map_ctr.expansion_of_tiles[pos])
+        {
             if (map_ctr.units_state[i] != null && !map_ctr.units_state[i].CompareTag(unitTag))
                 return true;
+        }
         return false;
     }
 
