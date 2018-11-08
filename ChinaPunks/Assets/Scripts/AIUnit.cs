@@ -38,7 +38,7 @@ public class AIUnit : Unit
     void Update()
     {
 
-        if (acting && !mc.CheckIfLose())
+        if (acting)
         {
             TurnUpdate();                                                                //call turn update
         }
@@ -59,8 +59,12 @@ public class AIUnit : Unit
                     next = Time.time + cd;
 
                     mc.path.RemoveAt(0);                                                 //remove past node
-                    if (mc.path.Count > 0)                                               //if the node list is empty
+                    if (mc.path.Count > 0)
+                    {                                                                    //if the node list is empty
+                        mc.units_state[currentPos] = null;
                         currentPos = mc.path[0];                                         //set my current position to the grid#
+                        mc.units_state[currentPos] = this.gameObject;
+                    }
                 }
             }
             else
@@ -112,6 +116,7 @@ public class AIUnit : Unit
     public override void Health_Change(float damage)
     {
         base.Health_Change(damage);
+        mc.AI_units.Remove(this.gameObject);
 
         anim.Play("Attacked");
 

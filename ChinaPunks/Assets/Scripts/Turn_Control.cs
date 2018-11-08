@@ -74,7 +74,6 @@ public class Turn_Control : MonoBehaviour
                     map_ctr.all_paths.Clear();
                     //AI unit move in the front end
                     enemy.acting = true;
-
                 }
 
 

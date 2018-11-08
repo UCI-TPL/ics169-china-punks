@@ -54,7 +54,9 @@ public class UserUnit : Unit {
                     mc.path.RemoveAt(0);                                                 //remove past node
                     if (mc.path.Count > 0)                                               //if the node list is empty
                     {
+                        mc.units_state[currentPos] = null;
                         currentPos = mc.path[0];                                         //set my current position to the grid#
+                        mc.units_state[currentPos] = this.gameObject;
                     }
                 }
             }
@@ -73,7 +75,6 @@ public class UserUnit : Unit {
         if (mc.path.Count > 0)                                          //check if the map now has the node list
         {
             walking = true;                                                              //this unit(myself) can move right now
-            mc.units_state[currentPos] = null;
         }
     }
 

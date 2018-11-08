@@ -43,6 +43,7 @@ public class Unit : MonoBehaviour {
 
         if (health <= 0){
             Debug.Log(this.gameObject.name + " is Dead!");
+            mc.units_state[currentPos] = null;
             Destroy(this.gameObject);
         }
     }

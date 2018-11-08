@@ -265,7 +265,6 @@ public class Map_Control : MonoBehaviour
                     if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
                     {
                         float attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<Unit>().attack_damge;
-                        units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
                         Debug.Log(units_state[map_tiles_pos[pickTile]].gameObject.name + " attacked "
                                   + units_state[map_tiles_pos[pickEndTile]].gameObject.name);
 
@@ -279,7 +278,7 @@ public class Map_Control : MonoBehaviour
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                             }
                         }
-
+                        units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
                         reset();
                     }
 
