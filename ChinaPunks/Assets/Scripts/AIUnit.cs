@@ -15,7 +15,10 @@ public class AIUnit : Unit
     private float cd = 0.2f;
     private float next;
 
+<<<<<<< HEAD
     public Animator anim;
+=======
+>>>>>>> 350ff241c047136fb1e29268cd32eb7b429084db
     public Image healthFillImage;
 
     // Use this for initialization
