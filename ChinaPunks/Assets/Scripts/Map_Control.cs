@@ -78,6 +78,13 @@ public class Map_Control : MonoBehaviour
     public void reset()
     {
         acting_state = 0;
+
+        //detroy selectEffect if picked_pos has playerUnit
+        if(picked_pos != -1 
+           &&units_state[picked_pos] != null
+           && units_state[picked_pos].CompareTag("PlayerUnit"))
+            units_state[picked_pos].GetComponent<UserUnit>().destory_clickEffect();
+
         //expanded tile empty?
         if (expanded_tiles.Count != 0)
         {
@@ -147,7 +154,7 @@ public class Map_Control : MonoBehaviour
         units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
         int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
 
-        pickEndTile = pickTile;
+        //pickEndTile = pickTile;
 
         all_paths = Search_solution(picked_pos, move_range, "Player", null, null);
         foreach (int i in expanded_tiles)
@@ -157,6 +164,7 @@ public class Map_Control : MonoBehaviour
         tile_picked = false;
         first_click = false;
         playerHUD_showed = true;
+
 
     }
 
@@ -204,15 +212,27 @@ public class Map_Control : MonoBehaviour
                 picked_pos = -1;                      // set it to default value
                 picked_pos = map_tiles_pos[pickTile];
 
+                pickEndTile = pickTile;
+
                 if (current_picked_pos == -1)
                 {
                     current_picked_pos = picked_pos;
                 }
                 current_picked_pos = picked_pos;
 
-                if (units_state[picked_pos] != null 
-                    && (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete && !units_state[picked_pos].GetComponent<UserUnit>().turnComplete)){
-                    Character_Move();
+                if (units_state[picked_pos] != null
+                    && units_state[map_tiles_pos[pickEndTile]].tag == "PlayerUnit")
+                {
+                    //if this tile has playerUnit, show its clickEffect
+                    units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
+                    first_click = false;
+                    acting_state = 1;
+                    playerHUD_showed = true;
+
+                    //if this playerUnit can still move, then call Character_Move()
+                    if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
+                        && !units_state[picked_pos].GetComponent<UserUnit>().turnComplete)
+                            Character_Move();
                 }
             }
             //Second click to choose the end point of the path
@@ -226,11 +246,12 @@ public class Map_Control : MonoBehaviour
                 current_picked_pos = picked_pos;
 
                 // if character has not moved and acting state is 1
-                if (acting_state == 1 && !units_state[picked_pos].GetComponent<UserUnit>().moveComplete)
+                if (acting_state == 1 )
                 //move state
                 {
                     //move character in the move range
-                    if (all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
+                    if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete 
+                        && all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
                         path = all_paths[map_tiles_pos[pickEndTile]];
                         path.Add(map_tiles_pos[pickEndTile]);
@@ -248,14 +269,54 @@ public class Map_Control : MonoBehaviour
                             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                         }
 
-                        acting_state = 0;
+                        //acting_state = 0;
+                        //finised moving, clear all_path, expanded tiles
+                        all_paths.Clear();
+                        expanded_tiles.Clear();
                     }
                     // switch character
+                    else if (units_state[map_tiles_pos[pickEndTile]] != null &&
+                             units_state[map_tiles_pos[pickEndTile]].tag == "PlayerUnit")
+                    {
 
-                    //click out of move range
-                    else{
+
+                        picked_pos = map_tiles_pos[pickEndTile];
+                        current_picked_pos = picked_pos;
+
+                        //detroy selectEffect of current character
+                        if(units_state[map_tiles_pos[pickTile]] != null
+                           && units_state[map_tiles_pos[pickTile]].tag == "PlayerUnit")
+                            units_state[map_tiles_pos[pickTile]].GetComponent<UserUnit>().destory_clickEffect();
+                        //create selectEffect of switched character
+                        units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
+
+                        pickTile = pickEndTile;
+
+
+                        //reset color and some other attributes
+                        foreach (int i in expanded_tiles)
+                        {
+                            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                        }
+                        all_paths.Clear();
+                        expanded_tiles.Clear();
+
+                        if (units_state[picked_pos] != null
+                            && (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
+                                && !units_state[picked_pos].GetComponent<UserUnit>().turnComplete))
+                        {
+
+                            Character_Move();
+                        }
 
                     }
+                    //click out of move range
+                    else if (!all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
+                    {
+                        reset();
+                    }
+
+
                 }
 
                 else if (acting_state == 2)
@@ -289,9 +350,11 @@ public class Map_Control : MonoBehaviour
                     //reset();
                 }
 
+                //picking state
                 else if (acting_state == 3)
                 {
-                    if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "Peach"){
+                    if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "Peach")
+                    {
                         Debug.Log("Found Peach!");
                         //here write code to pick up peach
                         GameObject peach = units_state[map_tiles_pos[pickEndTile]].gameObject;
@@ -315,11 +378,12 @@ public class Map_Control : MonoBehaviour
                     {
                         Debug.Log("There is no peach in PickUp range!");
                     }
-                   //reset();
+                    //reset();
                 }
 
                 tile_picked = false;
             }
+            
         }
 
     }

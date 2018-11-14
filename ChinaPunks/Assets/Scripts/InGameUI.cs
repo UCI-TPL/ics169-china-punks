@@ -53,23 +53,10 @@ public class InGameUI : MonoBehaviour {
 
         if (map_ctr.playerHUD_showed)
         {
-            if (map_ctr.current_picked_pos != -1 && map_ctr.picked_pos != map_ctr.current_picked_pos && ShowedClickedEffect)
+            //pick tile has player unit
+            if (map_ctr.units_state[map_ctr.picked_pos] != null 
+                && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit")
             {
-                //Disable effect if it existed
-                if (map_ctr.units_state[map_ctr.current_picked_pos] != null)
-                {
-                    Destroy(_selectEffect);
-                    ShowedClickedEffect = false;
-                }
-            }
-
-            else if (map_ctr.units_state[map_ctr.picked_pos] != null && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit" && !ShowedClickedEffect)
-            {
-                //Show effect
-                _selectEffect = Instantiate(selectEffect, map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<Transform>());
-                _selectEffect.transform.Translate(new Vector3(0, -0.8f, 0));
-                ShowedClickedEffect = true;
-
                 //Show player HUD
                 InGameHUD.SetActive(true);
             }
@@ -90,12 +77,8 @@ public class InGameUI : MonoBehaviour {
 
         else
         {
-            if (ShowedClickedEffect)
-            {
-                Destroy(_selectEffect);
-                ShowedClickedEffect = false;
-                InGameHUD.SetActive(false);
-            }
+            //Destroy(_selectEffect);
+            InGameHUD.SetActive(false);
         }
 
 

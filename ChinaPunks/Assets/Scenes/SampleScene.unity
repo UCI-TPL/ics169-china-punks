@@ -3573,6 +3573,8 @@ MonoBehaviour:
   pickRange: 01000000ffffffff0a000000f6ffffff
   healthFillImage: {fileID: 1228244024}
   anim: {fileID: 487153363}
+  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+    type: 2}
 --- !u!212 &487153361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7468,6 +7470,8 @@ MonoBehaviour:
   pickRange: 01000000ffffffff0a000000f6ffffff
   healthFillImage: {fileID: 385000748}
   anim: {fileID: 854612781}
+  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+    type: 2}
 --- !u!95 &854612781
 Animator:
   serializedVersion: 3
@@ -8305,6 +8309,18 @@ Prefab:
       propertyPath: currentPos
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
+        type: 2}
+      propertyPath: select_effect
+      value: 
+      objectReference: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+        type: 2}
+    - target: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
+        type: 2}
+      propertyPath: selectEffect
+      value: 
+      objectReference: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
   m_IsPrefabAsset: 0

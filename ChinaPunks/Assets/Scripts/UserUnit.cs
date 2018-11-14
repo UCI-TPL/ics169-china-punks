@@ -17,6 +17,10 @@ public class UserUnit : Unit {
     public Image healthFillImage;
     public Animator anim;
 
+    public GameObject selectEffect;
+    GameObject _selectEffect;
+    bool selectEffect_exist = false;
+
     // Use this for initialization
     void Start () {
         //currentPos = 11;
@@ -34,6 +38,8 @@ public class UserUnit : Unit {
 
     // Update is called once per frame
     void Update() {
+
+
 
         if (isClicked)
         {
@@ -99,5 +105,22 @@ public class UserUnit : Unit {
             hasPeach = false;
         }
         healthFillImage.fillAmount = health / 100f;
+    }
+
+    public void show_clickEffect(){
+        if (!selectEffect_exist)
+        {
+            _selectEffect = Instantiate(selectEffect, gameObject.GetComponent<Transform>());
+            _selectEffect.transform.Translate(new Vector3(0, -0.8f, 0));
+            selectEffect_exist = true;
+        }
+    }
+
+    public void destory_clickEffect(){
+        if (selectEffect_exist)
+        {
+            Destroy(_selectEffect);
+            selectEffect_exist = false;
+        }
     }
 }
