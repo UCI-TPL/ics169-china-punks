@@ -380,7 +380,6 @@ MonoBehaviour:
   moveRange: 0
   health: 200
   attack_damge: 0
-  passable: 0
   moveComplete: 0
   turnComplete: 0
 --- !u!212 &57857199
@@ -791,117 +790,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1637110124890464, guid: e6b9ed8993b933940850527846d169f1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114059787761705776, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 75440cffd4c314d3089a8134f3840aaa,
-        type: 3}
-    - target: {fileID: 114059787761705776, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224636301220890586, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 224636301220890586, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 224636301220890586, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 224771442425469972, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -34.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254987446784774, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254987446784774, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254987446784774, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254987446784774, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 224771442425469972, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.79999924
-      objectReference: {fileID: 0}
-    - target: {fileID: 114265663772767326, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: bbfb229357cc3446eb05b8dfc4afec27,
-        type: 3}
-    - target: {fileID: 114265663772767326, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224511682052690850, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 224511682052690850, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 224636301220890586, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768916639618862, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768916639618862, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768916639618862, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768916639618862, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224281790241694692, guid: e6b9ed8993b933940850527846d169f1,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -42.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b9ed8993b933940850527846d169f1, type: 2}
@@ -3581,7 +3469,6 @@ MonoBehaviour:
   moveRange: 3
   health: 100
   attack_damge: 15
-  passable: 0
   moveComplete: 0
   turnComplete: 0
   hasPeach: 0
@@ -5482,7 +5369,7 @@ MonoBehaviour:
   turn_control: {fileID: 1153907412}
 --- !u!114 &637995225 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114804356609113130, guid: e6b9ed8993b933940850527846d169f1,
+  m_CorrespondingSourceObject: {fileID: 114078534328403890, guid: e6b9ed8993b933940850527846d169f1,
     type: 2}
   m_PrefabInternal: {fileID: 171489436}
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -6235,7 +6122,6 @@ MonoBehaviour:
   moveRange: 2
   health: 100
   attack_damge: 15
-  passable: 0
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -7480,7 +7366,6 @@ MonoBehaviour:
   moveRange: 2
   health: 100
   attack_damge: 15
-  passable: 0
   moveComplete: 0
   turnComplete: 0
   hasPeach: 0
@@ -11867,6 +11752,7 @@ MonoBehaviour:
   - {fileID: 2126394477}
   - {fileID: 1017648904}
   units_state: []
+  blocks_state: []
   path: 
   pickTile: {fileID: 0}
   pickEndTile: {fileID: 0}
@@ -13078,8 +12964,9 @@ MonoBehaviour:
   selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
     type: 2}
   InGameHUD: {fileID: 2129702332}
-  AttackBtn: {fileID: 1053744810}
+  Attackbtn: {fileID: 1053744810}
   Pickbtn: {fileID: 637995225}
+  Skillbtn: {fileID: 1607978705}
   exit: {fileID: 1603784827}
 --- !u!1 &1474298008
 GameObject:
@@ -13789,6 +13676,12 @@ RectTransform:
   m_AnchoredPosition: {x: 873, y: 461}
   m_SizeDelta: {x: 71, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1607978705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114804356609113130, guid: e6b9ed8993b933940850527846d169f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 171489436}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1628719619
 GameObject:
   m_ObjectHideFlags: 0

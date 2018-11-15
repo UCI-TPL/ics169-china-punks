@@ -203,6 +203,10 @@ public class Map_Control : MonoBehaviour
         first_click = false;
     }
 
+    public void Character_Skill(){
+
+    }
+
 
     public void Character_Click()
     {

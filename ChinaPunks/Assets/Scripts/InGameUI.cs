@@ -15,8 +15,9 @@ public class InGameUI : MonoBehaviour {
     public GameObject InGameHUD;
 
     //HUD buttons
-    public Button AttackBtn;
+    public Button Attackbtn;
     public Button Pickbtn;
+    public Button Skillbtn;
 
 
     bool ShowedClickedEffect;
@@ -26,11 +27,14 @@ public class InGameUI : MonoBehaviour {
     void Start () {
         map_ctr = map.GetComponent<Map_Control>();
 
-        Button Attack_btn = AttackBtn.GetComponent<Button>();
+        Button Attack_btn = Attackbtn.GetComponent<Button>();
         Attack_btn.onClick.AddListener(() => map_ctr.Character_Attack());
 
         Button Pick_btn = Pickbtn.GetComponent<Button>();
         Pick_btn.onClick.AddListener(() => map_ctr.Character_PickUp());
+
+        Button Skill_btn = Skillbtn.GetComponent<Button>();
+        Skillbtn.onClick.AddListener(() => map_ctr.Character_Skill());
 
         ShowedClickedEffect = false;
         Button _exit = exit.GetComponent<Button>();
@@ -68,11 +72,11 @@ public class InGameUI : MonoBehaviour {
                 if (player.gameObject.GetComponent<UserUnit>().hasPeach
                    || map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete)
                 {
-                    AttackBtn.interactable = false;
+                    Attackbtn.interactable = false;
                     Pickbtn.interactable = false;
                 }
                 else {
-                    AttackBtn.interactable = true;
+                    Attackbtn.interactable = true;
                     Pickbtn.interactable = true;
                 }
             }

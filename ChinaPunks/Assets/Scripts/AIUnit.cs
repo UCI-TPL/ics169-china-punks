@@ -12,6 +12,7 @@ public class AIUnit : Unit
     public bool hasPeach = false;
     public bool acting = false;
     public bool walking = false;
+    public int moveRange;
     private float cd = 0.2f;
     private float next;
 

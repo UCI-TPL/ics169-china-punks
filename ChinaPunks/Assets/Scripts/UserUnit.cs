@@ -9,10 +9,13 @@ public class UserUnit : Unit {
     public bool isClicked = false;
     public List<int> attackRange = new List<int>() { 1, -1, 10, -10 };
     public List<int> pickRange = new List<int>() { 1, -1, 10, -10 };
+    
 
     private float cd = 0.2f;
     private float next;
     private bool walking = false;
+
+    public int moveRange;
 
     public Image healthFillImage;
     public Animator anim;

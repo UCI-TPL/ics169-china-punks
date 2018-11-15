@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour {
     public List<GameObject> mapInfo = new List<GameObject>();
 
     public int currentPos;
-    public int moveRange;
+
 
     public float health;
     public float attack_damge;
