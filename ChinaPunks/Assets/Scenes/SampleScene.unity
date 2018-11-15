@@ -355,9 +355,10 @@ GameObject:
   - component: {fileID: 57857200}
   - component: {fileID: 57857199}
   - component: {fileID: 57857198}
+  - component: {fileID: 57857201}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: EnemyUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   moveRange: 0
   health: 200
   attack_damge: 0
+  passable: 0
   moveComplete: 0
   turnComplete: 0
 --- !u!212 &57857199
@@ -440,6 +442,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &57857201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57857197}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea1a9f2eaedb4e65bc776f9ed18f596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mc: {fileID: 0}
+  mapInfo: []
+  currentPos: 67
 --- !u!1 &80854902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,7 +3558,7 @@ GameObject:
   - component: {fileID: 487153360}
   - component: {fileID: 487153363}
   m_Layer: 0
-  m_Name: PlayerUnit2
+  m_Name: TrapMaster
   m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3565,6 +3581,7 @@ MonoBehaviour:
   moveRange: 3
   health: 100
   attack_damge: 15
+  passable: 0
   moveComplete: 0
   turnComplete: 0
   hasPeach: 0
@@ -6218,6 +6235,7 @@ MonoBehaviour:
   moveRange: 2
   health: 100
   attack_damge: 15
+  passable: 0
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -7377,7 +7395,7 @@ GameObject:
   - component: {fileID: 854612780}
   - component: {fileID: 854612781}
   m_Layer: 0
-  m_Name: PlayerUnit1
+  m_Name: Monk
   m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7462,6 +7480,7 @@ MonoBehaviour:
   moveRange: 2
   health: 100
   attack_damge: 15
+  passable: 0
   moveComplete: 0
   turnComplete: 0
   hasPeach: 0
@@ -8321,6 +8340,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
         type: 2}
+    - target: {fileID: 1707590791195866, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
+      propertyPath: m_Name
+      value: Monk
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
   m_IsPrefabAsset: 0

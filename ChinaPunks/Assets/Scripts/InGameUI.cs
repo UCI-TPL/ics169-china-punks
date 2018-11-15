@@ -62,13 +62,16 @@ public class InGameUI : MonoBehaviour {
             }
 
             // here to disable attack and pickup button (for temp debug use)
-            if (map_ctr.units_state[map_ctr.picked_pos] != null && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit"){
+            if (map_ctr.units_state[map_ctr.picked_pos] != null 
+                && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit"){
                 GameObject player = map_ctr.units_state[map_ctr.picked_pos];
-                if (player.gameObject.GetComponent<UserUnit>().hasPeach){
+                if (player.gameObject.GetComponent<UserUnit>().hasPeach
+                   || map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete)
+                {
                     AttackBtn.interactable = false;
                     Pickbtn.interactable = false;
                 }
-                else{
+                else {
                     AttackBtn.interactable = true;
                     Pickbtn.interactable = true;
                 }

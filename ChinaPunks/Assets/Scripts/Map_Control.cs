@@ -7,6 +7,7 @@ public class Map_Control : MonoBehaviour
 {
     public List<GameObject> map_tiles = new List<GameObject>();
     public List<GameObject> units_state = new List<GameObject>();
+    public List<GameObject> blocks_state = new List<GameObject>();
     public List<int> path = new List<int>();
 
     public GameObject pickTile;
@@ -372,7 +373,11 @@ public class Map_Control : MonoBehaviour
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                             }
                         }
-                        acting_state = 0;
+
+                        // Player Unit finshed attack movement
+                        units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
+                        reset();
+
                     }
                     else
                     {

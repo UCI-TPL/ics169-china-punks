@@ -9,6 +9,7 @@ TagManager:
   - PlayerUnit
   - EnemyUnit
   - Peach
+  - Block
   layers:
   - Default
   - TransparentFX

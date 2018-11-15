@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour {
     public float health;
     public float attack_damge;
 
+
     //Check if a unit has complete its turn
     public bool moveComplete;
     public bool turnComplete;
