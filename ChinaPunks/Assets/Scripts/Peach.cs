@@ -26,8 +26,8 @@ public class Peach : Unit {
 
     public override void Health_Change(float damage)
     {
-        base.Health_Change(damage);
+        //base.Health_Change(damage);
 
-        health = 100;
+        //health = 100;
     }
 }

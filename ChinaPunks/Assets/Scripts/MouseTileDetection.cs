@@ -47,4 +47,20 @@ public class MouseTileDetection : MonoBehaviour {
 
         }
     }
+
+    //for monk skill range showing
+    private void OnMouseEnter()
+    {
+        if(map_ctr.acting_state == 4){
+            map_ctr.color_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (map_ctr.acting_state == 4)
+        {
+            map_ctr.uncolor_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
+        }
+    }
 }

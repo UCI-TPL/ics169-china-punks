@@ -24,6 +24,9 @@ public class UserUnit : Unit {
     GameObject _selectEffect;
     bool selectEffect_exist = false;
 
+    public string charater_type;
+
+
     // Use this for initialization
     void Start () {
         //currentPos = 11;

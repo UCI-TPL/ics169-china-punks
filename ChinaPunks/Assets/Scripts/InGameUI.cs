@@ -74,10 +74,12 @@ public class InGameUI : MonoBehaviour {
                 {
                     Attackbtn.interactable = false;
                     Pickbtn.interactable = false;
+                    Skillbtn.interactable = false;
                 }
                 else {
                     Attackbtn.interactable = true;
                     Pickbtn.interactable = true;
+                    Skillbtn.interactable = true;
                 }
             }
         }

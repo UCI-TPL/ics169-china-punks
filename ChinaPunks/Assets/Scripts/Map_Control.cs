@@ -51,6 +51,9 @@ public class Map_Control : MonoBehaviour
 
     public GameObject PeachPrefab;
 
+    //tiles for showing skill range
+    public Dictionary<int, List<int>> skill_tiles = new Dictionary<int, List<int>>();
+
     private void Awake()
     {
         for (int i = 0; i < map_size * map_size; i++)
@@ -68,7 +71,8 @@ public class Map_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)){
+        if (Input.GetMouseButtonDown(1))
+        {
             reset();
         }
 
@@ -81,8 +85,8 @@ public class Map_Control : MonoBehaviour
         acting_state = 0;
 
         //detroy selectEffect if picked_pos has playerUnit
-        if(picked_pos != -1 
-           &&units_state[picked_pos] != null
+        if (picked_pos != -1
+           && units_state[picked_pos] != null
            && units_state[picked_pos].CompareTag("PlayerUnit"))
             units_state[picked_pos].GetComponent<UserUnit>().destory_clickEffect();
 
@@ -104,6 +108,7 @@ public class Map_Control : MonoBehaviour
             }
         }
         expanded_tiles.Clear();
+        skill_tiles.Clear();
         first_click = true;
         tile_picked = false;
         pickTile = null;
@@ -172,7 +177,8 @@ public class Map_Control : MonoBehaviour
     public void Character_Attack()
     {
         // reset color
-        if (expanded_tiles.Count != 0){
+        if (expanded_tiles.Count != 0)
+        {
             foreach (int i in expanded_tiles)
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
@@ -203,8 +209,97 @@ public class Map_Control : MonoBehaviour
         first_click = false;
     }
 
-    public void Character_Skill(){
+    public void Character_Skill()
+    {
+        // reset color
+        if (expanded_tiles.Count != 0)
+        {
+            foreach (int i in expanded_tiles)
+            {
+                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            }
+        }
 
+        //clear skill_tiles, just in case
+        skill_tiles.Clear();
+
+        acting_state = 4;
+
+        Skill skill = units_state[picked_pos].GetComponent<Skill>();
+        //monk skill
+        if (skill.charater_type == "monk")
+        {
+            //
+            foreach(int p in expansion_of_tiles[picked_pos]){
+                map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
+            }
+
+            KeyValuePair<int, int> current_pos = new KeyValuePair<int, int>(picked_pos % map_size, picked_pos / map_size);
+            //top boundary & no teammate character
+            if (current_pos.Value + 1 < map_size)
+            {
+                List<int> temp = new List<int>();
+                temp.Add(current_pos.Key + (current_pos.Value + 1) * map_size);
+                if (current_pos.Key - 1 >= 0){
+                    int pos = current_pos.Key - 1 + (current_pos.Value + 1) * map_size;
+                    temp.Add(pos);
+                }
+                if (current_pos.Key + 1 < map_size){
+                    int pos = current_pos.Key + 1 + (current_pos.Value + 1) * map_size;
+                    temp.Add(pos);
+                }
+
+                skill_tiles.Add((current_pos.Key + (current_pos.Value + 1) * map_size), temp);
+            }
+            //bottom boundary & no teammate character
+            if (current_pos.Value - 1 >= 0)
+            {
+                List<int> temp = new List<int>();
+                temp.Add(current_pos.Key + (current_pos.Value - 1) * map_size);
+                if (current_pos.Key - 1 >= 0){
+                    int pos = current_pos.Key - 1 + (current_pos.Value - 1) * map_size;
+                    temp.Add(pos);
+                }
+                if (current_pos.Key + 1 < map_size){
+                    int pos = current_pos.Key + 1 + (current_pos.Value - 1) * map_size;
+                    temp.Add(pos);
+                }
+                skill_tiles.Add((current_pos.Key + (current_pos.Value - 1) * map_size), temp);
+            }
+            //left boundary & no teammate character
+            if (current_pos.Key - 1 >= 0)
+            {
+                List<int> temp = new List<int>();
+                temp.Add(current_pos.Key - 1 + current_pos.Value * map_size);
+                if (current_pos.Value - 1 >= 0)
+                {
+                    int pos = current_pos.Key - 1 + (current_pos.Value - 1) * map_size;
+                    temp.Add(pos);
+                }
+                if (current_pos.Value + 1 < map_size){
+                    int pos = current_pos.Key - 1 + (current_pos.Value + 1) * map_size;
+                    temp.Add(pos);
+                }
+                skill_tiles.Add((current_pos.Key - 1 + current_pos.Value * map_size), temp);
+            }
+            //right boundary & no teammate character
+            if (current_pos.Key + 1 < map_size)
+            {
+                List<int> temp = new List<int>();
+                temp.Add(current_pos.Key + 1 + current_pos.Value * map_size);
+                if (current_pos.Value - 1 >= 0){
+                    int pos = current_pos.Key + 1 + (current_pos.Value - 1) * map_size;
+                    temp.Add(pos);
+                }
+                if (current_pos.Value + 1 < map_size){
+                    int pos = current_pos.Key + 1 + (current_pos.Value + 1) * map_size;
+                    temp.Add(pos);
+                }
+                skill_tiles.Add((current_pos.Key + 1 + current_pos.Value * map_size), temp);
+            }
+            
+
+        }
     }
 
 
@@ -237,7 +332,7 @@ public class Map_Control : MonoBehaviour
                     //if this playerUnit can still move, then call Character_Move()
                     if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
                         && !units_state[picked_pos].GetComponent<UserUnit>().turnComplete)
-                            Character_Move();
+                        Character_Move();
                 }
             }
             //Second click to choose the end point of the path
@@ -251,11 +346,11 @@ public class Map_Control : MonoBehaviour
                 current_picked_pos = picked_pos;
 
                 // if character has not moved and acting state is 1
-                if (acting_state == 1 )
+                if (acting_state == 1)
                 //move state
                 {
                     //move character in the move range
-                    if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete 
+                    if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
                         && all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
                         path = all_paths[map_tiles_pos[pickEndTile]];
@@ -289,7 +384,7 @@ public class Map_Control : MonoBehaviour
                         current_picked_pos = picked_pos;
 
                         //detroy selectEffect of current character
-                        if(units_state[map_tiles_pos[pickTile]] != null
+                        if (units_state[map_tiles_pos[pickTile]] != null
                            && units_state[map_tiles_pos[pickTile]].tag == "PlayerUnit")
                             units_state[map_tiles_pos[pickTile]].GetComponent<UserUnit>().destory_clickEffect();
                         //create selectEffect of switched character
@@ -323,10 +418,9 @@ public class Map_Control : MonoBehaviour
 
 
                 }
-
+                //attack state
                 else if (acting_state == 2)
                 {
-                    //attack state
                     //check second-clicked tile has unit
                     if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
                     {
@@ -370,6 +464,7 @@ public class Map_Control : MonoBehaviour
                         units_state[map_tiles_pos[pickEndTile]] = null;
                         Destroy(peach);
 
+                        //recover tile colors after attack
                         if (picked_pos != -1)
                         {
                             foreach (int i in expansion_of_tiles[picked_pos])
@@ -389,10 +484,38 @@ public class Map_Control : MonoBehaviour
                     }
                     //reset();
                 }
+                //skill state
+                else if (acting_state == 4)
+                {   
+                    //second click is on the available tile
+                    if (skill_tiles.ContainsKey(map_tiles_pos[pickEndTile])){
+                        //get skill damage
+                        float skill_damage = units_state[picked_pos].GetComponent<Skill>().skill_damage;
+                        foreach (int pos in skill_tiles[map_tiles_pos[pickEndTile]]){
+                            //there is unit on this tile
+                            if(units_state[pos]!= null){
+                                //showing attack message
+                                Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
+                                  + units_state[pos].gameObject.name);
+                                units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
+
+                            }
+                        }
+                        //recover the tile colors after using skill
+                        foreach(int k in skill_tiles.Keys){
+                            foreach(int pos in skill_tiles[k]){
+                                map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                            }
+                        }
+                        // Player turn ends after using skill
+                        units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
+                        reset();
+                    }
+                }
 
                 tile_picked = false;
             }
-            
+
         }
 
     }
@@ -531,19 +654,25 @@ public class Map_Control : MonoBehaviour
         return all_paths;
     }
 
-    public bool CheckIfWin(){
+    public bool CheckIfWin()
+    {
         int exit_pos = -1;
-        foreach (GameObject tile in map_tiles){
-            if (tile.GetComponent<MouseTileDetection>().exit){
+        foreach (GameObject tile in map_tiles)
+        {
+            if (tile.GetComponent<MouseTileDetection>().exit)
+            {
                 exit_pos = map_tiles_pos[tile];
                 break;
             }
         }
 
-        foreach (GameObject unit in units_state){
-            if (unit != null && unit.CompareTag("PlayerUnit")){
+        foreach (GameObject unit in units_state)
+        {
+            if (unit != null && unit.CompareTag("PlayerUnit"))
+            {
                 if (unit.GetComponent<UserUnit>().hasPeach
-                    && unit.GetComponent<UserUnit>().currentPos == exit_pos){
+                    && unit.GetComponent<UserUnit>().currentPos == exit_pos)
+                {
                     return true;
                 }
             }
@@ -552,14 +681,39 @@ public class Map_Control : MonoBehaviour
         return false;
     }
 
-    public bool CheckIfLose(){
+    public bool CheckIfLose()
+    {
 
-        foreach (GameObject unit in units_state){
-            if (unit != null && unit.CompareTag("PlayerUnit")){
+        foreach (GameObject unit in units_state)
+        {
+            if (unit != null && unit.CompareTag("PlayerUnit"))
+            {
                 return false;
             }
         }
 
         return true;
+
+
     }
+
+    public void color_skill_tiles(int pos) {
+        if(skill_tiles.ContainsKey(pos)){
+            foreach(int p in skill_tiles[pos]){
+                map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
+            }
+        }
+    }
+    public void uncolor_skill_tiles(int pos){
+        if (skill_tiles.ContainsKey(pos)){
+            foreach (int p in skill_tiles[pos]){
+                if(!skill_tiles.ContainsKey(p))
+                    map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                else{
+                    map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
+                }
+            }
+        }
+    }
+
 }
