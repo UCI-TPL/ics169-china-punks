@@ -19,9 +19,11 @@ public class AIUnit : Unit
     public Animator anim;
     public Image healthFillImage;
 
+    public float attack_damage;
+
     // Use this for initialization
     void Start()
-    {      
+    {
         GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
         mc = controller.GetComponent<Map_Control>();                                     //same as above
 
@@ -44,7 +46,8 @@ public class AIUnit : Unit
 
         if (walking)                                                                     //if the unit need to move then...
         {
-            if (hasPeach){
+            if (hasPeach)
+            {
                 mc.peach_pos = currentPos;
             }
 
@@ -76,7 +79,7 @@ public class AIUnit : Unit
                         if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.tag != this.gameObject.tag
                             && !mc.units_state[currentPos + position].gameObject.CompareTag("Peach") && !hasPeach)
                         {
-                            mc.units_state[currentPos + position].GetComponent<Unit>().Health_Change(attack_damge);
+                            mc.units_state[currentPos + position].GetComponent<UserUnit>().Health_Change(attack_damage);
                             break;
                         }
                         else if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.CompareTag("Peach")

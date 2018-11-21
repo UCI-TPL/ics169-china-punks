@@ -26,15 +26,14 @@ public class UserUnit : Unit {
 
     public string charater_type;
 
+    public float skill_damage;
+    public float attack_damage;
+
 
     // Use this for initialization
     void Start () {
         //currentPos = 11;
         //moveRange = 2;
-
-        GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
-        mc = controller.GetComponent<Map_Control>();                                     //same as above
-
         mc.units_state[currentPos] = gameObject;
 
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
@@ -128,5 +127,9 @@ public class UserUnit : Unit {
             Destroy(_selectEffect);
             selectEffect_exist = false;
         }
+    }
+
+    public virtual void Skill(){
+
     }
 }

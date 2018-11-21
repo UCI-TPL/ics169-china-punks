@@ -10,17 +10,20 @@ public class Unit : MonoBehaviour {
 
 
     public float health;
-    public float attack_damge;
-
 
     //Check if a unit has complete its turn
     public bool moveComplete;
     public bool turnComplete;
 
-    // Use this for initialization
-    void Start () {
+    void Awake()
+    {
         GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
         mc = controller.GetComponent<Map_Control>();                                     //same as above
+    }
+
+    // Use this for initialization
+    void Start () {
+
 
         mc.units_state[currentPos] = this.gameObject;
 

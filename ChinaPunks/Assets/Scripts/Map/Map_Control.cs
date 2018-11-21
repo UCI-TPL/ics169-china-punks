@@ -51,6 +51,8 @@ public class Map_Control : MonoBehaviour
 
     public GameObject PeachPrefab;
 
+    public int turn_count;
+
     //tiles for showing skill range
     public Dictionary<int, List<int>> skill_tiles = new Dictionary<int, List<int>>();
 
@@ -64,6 +66,7 @@ public class Map_Control : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        turn_count = 1;
         Tile_Store();
 
     }
@@ -225,81 +228,11 @@ public class Map_Control : MonoBehaviour
 
         acting_state = 4;
 
-        Skill skill = units_state[picked_pos].GetComponent<Skill>();
-        //monk skill
-        if (skill.charater_type == "monk")
-        {
-            //
-            foreach(int p in expansion_of_tiles[picked_pos]){
-                map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
-            }
 
-            KeyValuePair<int, int> current_pos = new KeyValuePair<int, int>(picked_pos % map_size, picked_pos / map_size);
-            //top boundary & no teammate character
-            if (current_pos.Value + 1 < map_size)
-            {
-                List<int> temp = new List<int>();
-                temp.Add(current_pos.Key + (current_pos.Value + 1) * map_size);
-                if (current_pos.Key - 1 >= 0){
-                    int pos = current_pos.Key - 1 + (current_pos.Value + 1) * map_size;
-                    temp.Add(pos);
-                }
-                if (current_pos.Key + 1 < map_size){
-                    int pos = current_pos.Key + 1 + (current_pos.Value + 1) * map_size;
-                    temp.Add(pos);
-                }
+        //skill
+        units_state[picked_pos].GetComponent<UserUnit>().Skill();
+       
 
-                skill_tiles.Add((current_pos.Key + (current_pos.Value + 1) * map_size), temp);
-            }
-            //bottom boundary & no teammate character
-            if (current_pos.Value - 1 >= 0)
-            {
-                List<int> temp = new List<int>();
-                temp.Add(current_pos.Key + (current_pos.Value - 1) * map_size);
-                if (current_pos.Key - 1 >= 0){
-                    int pos = current_pos.Key - 1 + (current_pos.Value - 1) * map_size;
-                    temp.Add(pos);
-                }
-                if (current_pos.Key + 1 < map_size){
-                    int pos = current_pos.Key + 1 + (current_pos.Value - 1) * map_size;
-                    temp.Add(pos);
-                }
-                skill_tiles.Add((current_pos.Key + (current_pos.Value - 1) * map_size), temp);
-            }
-            //left boundary & no teammate character
-            if (current_pos.Key - 1 >= 0)
-            {
-                List<int> temp = new List<int>();
-                temp.Add(current_pos.Key - 1 + current_pos.Value * map_size);
-                if (current_pos.Value - 1 >= 0)
-                {
-                    int pos = current_pos.Key - 1 + (current_pos.Value - 1) * map_size;
-                    temp.Add(pos);
-                }
-                if (current_pos.Value + 1 < map_size){
-                    int pos = current_pos.Key - 1 + (current_pos.Value + 1) * map_size;
-                    temp.Add(pos);
-                }
-                skill_tiles.Add((current_pos.Key - 1 + current_pos.Value * map_size), temp);
-            }
-            //right boundary & no teammate character
-            if (current_pos.Key + 1 < map_size)
-            {
-                List<int> temp = new List<int>();
-                temp.Add(current_pos.Key + 1 + current_pos.Value * map_size);
-                if (current_pos.Value - 1 >= 0){
-                    int pos = current_pos.Key + 1 + (current_pos.Value - 1) * map_size;
-                    temp.Add(pos);
-                }
-                if (current_pos.Value + 1 < map_size){
-                    int pos = current_pos.Key + 1 + (current_pos.Value + 1) * map_size;
-                    temp.Add(pos);
-                }
-                skill_tiles.Add((current_pos.Key + 1 + current_pos.Value * map_size), temp);
-            }
-            
-
-        }
     }
 
 
@@ -424,7 +357,7 @@ public class Map_Control : MonoBehaviour
                     //check second-clicked tile has unit
                     if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
                     {
-                        float attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<Unit>().attack_damge;
+                        float attack_damage = units_state[map_tiles_pos[pickTile]].GetComponent<UserUnit>().attack_damage;
                         Debug.Log(units_state[map_tiles_pos[pickTile]].gameObject.name + " attacked "
                                   + units_state[map_tiles_pos[pickEndTile]].gameObject.name);
 
@@ -490,7 +423,7 @@ public class Map_Control : MonoBehaviour
                     //second click is on the available tile
                     if (skill_tiles.ContainsKey(map_tiles_pos[pickEndTile])){
                         //get skill damage
-                        float skill_damage = units_state[picked_pos].GetComponent<Skill>().skill_damage;
+                        float skill_damage = units_state[picked_pos].GetComponent<UserUnit>().skill_damage;
                         foreach (int pos in skill_tiles[map_tiles_pos[pickEndTile]]){
                             //there is unit on this tile
                             if(units_state[pos]!= null){
@@ -598,7 +531,7 @@ public class Map_Control : MonoBehaviour
                         }
 
                     }
-					if (userMode == "AI" && myCondition(pos, unitTag) & all_paths.ContainsKey(pos))            //For AI, there is an attackable Unit in move range.
+                    if (userMode == "AI" && myCondition(pos, unitTag))            //For AI, there is an attackable Unit in move range.
                     {
                         solution[pos] = all_paths[pos];                           //save the path to this attackable Unit
                         solution[pos].Add(pos);
