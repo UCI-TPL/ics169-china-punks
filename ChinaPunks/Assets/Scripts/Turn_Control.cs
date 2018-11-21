@@ -50,54 +50,6 @@ public class Turn_Control : MonoBehaviour
             map_ctr.Character_Click();
         }
 
-
-        //Execute AI round
-        if (gameRound == "AI")
-        {
-            bool AI_finish = true;
-            foreach (GameObject ob in map_ctr.AI_units)
-            {
-                AIUnit enemy = ob.GetComponent<AIUnit>();
-
-                //If unit has been assigned operation, do not calculate again
-                if (!enemy.turnComplete)
-                {
-                    enemy.turnComplete = true;
-                    //Find where the AI unit should go
-                    int move_range = enemy.moveRange;
-                    map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkEnemy);
-                    int solution_key = -1;
-                    foreach (int i in map_ctr.all_paths.Keys)
-                        solution_key = i;
-                    if (solution_key != -1)
-                        map_ctr.path = map_ctr.all_paths[solution_key];
-                    map_ctr.all_paths.Clear();
-                    //AI unit move in the front end
-                    enemy.acting = true;
-                }
-
-
-            }
-            //If there are still units moving, do not pass the turn back to player
-            foreach (GameObject ob in map_ctr.AI_units)
-            {
-                if (ob.GetComponent<AIUnit>().acting)
-                {
-                    AI_finish = false;
-                }
-            }
-
-            //If all units finishing their actions, reset turnComplete and give turn to player
-            if (AI_finish)
-            {
-                foreach (GameObject ob in map_ctr.AI_units)
-                    ob.GetComponent<AIUnit>().turnComplete = false;
-                changeRound();
-            }
-
-
-        }
-
     }
 
 
@@ -113,24 +65,48 @@ public class Turn_Control : MonoBehaviour
             //debug for printing turn
             Debug.Log("turn :" + gameRound);
 
-        }
+            //Excute AI turn
+			StartCoroutine(AIBlocker());
 
-        else
-        {
-            gameRound = "Player";
-            endTurnButton.SetActive(true);
-
-            foreach (GameObject ob in map_ctr.units_state){
-                if (ob != null && ob.CompareTag("PlayerUnit")){
-                    ob.GetComponent<UserUnit>().turnComplete = false;
-                    ob.GetComponent<UserUnit>().moveComplete = false;
-                }
-            }
-
-            //debug for printing turn
-            Debug.Log("turn :" + gameRound);
         }
     }
+
+	IEnumerator AIBlocker(){
+    
+        foreach (GameObject ob in map_ctr.AI_units)
+        {
+            AIUnit enemy = ob.GetComponent<AIUnit>();
+            
+            //Find where the AI unit should go
+            int move_range = enemy.moveRange;
+            map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkEnemy);
+            int solution_key = -1;
+            foreach (int i in map_ctr.all_paths.Keys)
+                solution_key = i;
+            if (solution_key != -1)
+                map_ctr.path = map_ctr.all_paths[solution_key];
+            map_ctr.all_paths.Clear();
+            //AI unit move in the front end
+            enemy.acting = true;
+			yield return new WaitUntil(() => !enemy.acting);
+        }
+
+		gameRound = "Player";
+        endTurnButton.SetActive(true);
+
+        foreach (GameObject ob in map_ctr.units_state)
+        {
+            if (ob != null && ob.CompareTag("PlayerUnit"))
+            {
+                ob.GetComponent<UserUnit>().turnComplete = false;
+                ob.GetComponent<UserUnit>().moveComplete = false;
+            }
+        }
+
+        //debug for printing turn
+        Debug.Log("turn :" + gameRound);
+
+	}
 
     //---All other functions should be placed before here---
     //
