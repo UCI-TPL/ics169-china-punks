@@ -598,7 +598,7 @@ public class Map_Control : MonoBehaviour
                         }
 
                     }
-                    if (userMode == "AI" && myCondition(pos, unitTag))            //For AI, there is an attackable Unit in move range.
+					if (userMode == "AI" && myCondition(pos, unitTag) & all_paths.ContainsKey(pos))            //For AI, there is an attackable Unit in move range.
                     {
                         solution[pos] = all_paths[pos];                           //save the path to this attackable Unit
                         solution[pos].Add(pos);

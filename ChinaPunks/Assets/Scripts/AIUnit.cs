@@ -21,9 +21,7 @@ public class AIUnit : Unit
 
     // Use this for initialization
     void Start()
-    {
-        currentPos = 34;
-
+    {      
         GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
         mc = controller.GetComponent<Map_Control>();                                     //same as above
 
