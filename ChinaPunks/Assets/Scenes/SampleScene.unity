@@ -7371,7 +7371,7 @@ GameObject:
   - component: {fileID: 854612781}
   - component: {fileID: 854612782}
   m_Layer: 0
-  m_Name: Monk
+  m_Name: Scholar
   m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7496,7 +7496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42689f2dc2ad14712b83b01eead4c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charater_type: monk
+  charater_type: Scholar
   skill_damage: 0
 --- !u!1 &888678492
 GameObject:
@@ -8331,7 +8331,7 @@ Prefab:
         type: 2}
     - target: {fileID: 1707590791195866, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_Name
-      value: Monk
+      value: Scholar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}

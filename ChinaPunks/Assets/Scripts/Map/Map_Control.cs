@@ -226,8 +226,8 @@ public class Map_Control : MonoBehaviour
         acting_state = 4;
 
         Skill skill = units_state[picked_pos].GetComponent<Skill>();
-        //monk skill
-        if (skill.charater_type == "monk")
+        //Scholar skill
+        if (skill.charater_type == "Scholar")
         {
             //
             foreach(int p in expansion_of_tiles[picked_pos]){
@@ -300,6 +300,8 @@ public class Map_Control : MonoBehaviour
             
 
         }
+
+
     }
 
 
