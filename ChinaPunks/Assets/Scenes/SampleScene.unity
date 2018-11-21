@@ -3643,7 +3643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42689f2dc2ad14712b83b01eead4c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charater_type: Monk
+  charater_type: TrapMaster
   skill_damage: 0
 --- !u!1 &499250362
 GameObject:
