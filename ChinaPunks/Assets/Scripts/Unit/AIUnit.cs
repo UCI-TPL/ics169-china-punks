@@ -32,7 +32,7 @@ public class AIUnit : Unit
 
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
-        transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.8f, xyPosition.z - 1.0f);      //initialize my current position on map
+        transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class AIUnit : Unit
                 if (Time.time > next)
                 {
                     Vector3 moveDestination = mapInfo[mc.path[0]].transform.position;    //get the destination/goalnode I need to move to
-                    moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.8f, moveDestination.z - 1.0f);
+                    moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
                     transform.position = moveDestination;                                //set my position to destination
                     next = Time.time + cd;
 

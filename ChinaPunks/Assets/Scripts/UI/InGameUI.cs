@@ -18,9 +18,6 @@ public class InGameUI : MonoBehaviour {
     public Button Attackbtn;
     public Button Pickbtn;
     public Button Skillbtn;
-
-
-    bool ShowedClickedEffect;
     public Button exit;
 
     // Use this for initialization
@@ -36,7 +33,6 @@ public class InGameUI : MonoBehaviour {
         Button Skill_btn = Skillbtn.GetComponent<Button>();
         Skillbtn.onClick.AddListener(() => map_ctr.Character_Skill());
 
-        ShowedClickedEffect = false;
         Button _exit = exit.GetComponent<Button>();
         _exit.onClick.AddListener(exit_on_click);
 
@@ -65,15 +61,27 @@ public class InGameUI : MonoBehaviour {
                 InGameHUD.SetActive(true);
             }
 
-            // here to disable attack and pickup button (for temp debug use)
+            // disable buttons if character's turn ends
             if (map_ctr.units_state[map_ctr.picked_pos] != null 
                 && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit"){
                 GameObject player = map_ctr.units_state[map_ctr.picked_pos];
-                if (player.gameObject.GetComponent<UserUnit>().hasPeach
-                   || map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete)
+                //character has peach
+                if (player.gameObject.GetComponent<UserUnit>().hasPeach)
                 {
                     Attackbtn.interactable = false;
                     Pickbtn.interactable = false;
+                    Skillbtn.interactable = false;
+                }
+                //character's turn ends
+                else if (map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete){
+                    Attackbtn.interactable = false;
+                    Pickbtn.interactable = false;
+                    Skillbtn.interactable = false;
+                }
+                //character's skill in CD
+                else if (map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().coolDown != 0){
+                    Attackbtn.interactable = true;
+                    Pickbtn.interactable = true;
                     Skillbtn.interactable = false;
                 }
                 else {

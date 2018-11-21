@@ -16,6 +16,8 @@ public class UserUnit : Unit {
     private bool walking = false;
 
     public int moveRange;
+    public float attack_damage;
+    public float skill_damage;
 
     public Image healthFillImage;
     public Animator anim;
@@ -26,8 +28,7 @@ public class UserUnit : Unit {
 
     public string charater_type;
 
-    public float skill_damage;
-    public float attack_damage;
+    public int coolDown = 0;
 
 
     // Use this for initialization
@@ -38,7 +39,7 @@ public class UserUnit : Unit {
 
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
-        transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.8f, xyPosition.z - 1.0f);      //initialize my current position on map
+        transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class UserUnit : Unit {
                 if (Time.time > next)
                 {
                     Vector3 moveDestination = mapInfo[mc.path[0]].transform.position;    //get the destination/goalnode I need to move to
-                    moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.8f, moveDestination.z - 1.0f);
+                    moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
                     transform.position = moveDestination;                                //set my position to destination
                     next = Time.time + cd;
 
@@ -102,9 +103,15 @@ public class UserUnit : Unit {
             {
                 if (mc.units_state[i + peach_pos] == null)
                 {
-                    GameObject peach = Instantiate(mc.PeachPrefab);
-                    peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
-                    break;
+                    if (i + peach_pos >= 0 && i + peach_pos <= mc.map_size*mc.map_size-1){
+                        if (peach_pos % 10 != 0){
+                            if ((peach_pos + i) % 10 != 0){
+                                GameObject peach = Instantiate(mc.PeachPrefab);
+                                peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             hasPeach = false;
@@ -130,6 +137,9 @@ public class UserUnit : Unit {
     }
 
     public virtual void Skill(){
+
+    }
+    public virtual void Reset_Skill(){
 
     }
 }

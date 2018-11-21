@@ -60,6 +60,17 @@ public class Turn_Control : MonoBehaviour
     {
         if (gameRound == "Player")
         {
+            //reduce skill cd of each character by 1
+            foreach(GameObject character in map_ctr.units_state){
+                //this gameobject is a character
+                if(character != null && character.tag == "PlayerUnit"){
+                    //skill cd is not 0
+                    if (character.GetComponent<UserUnit>().coolDown != 0)
+                        character.GetComponent<UserUnit>().coolDown--;
+                    if (character.GetComponent<UserUnit>().coolDown == 0)
+                        character.GetComponent<UserUnit>().Reset_Skill();
+                }
+            }
             map_ctr.reset();
             gameRound = "AI";
             endTurnButton.SetActive(false);
