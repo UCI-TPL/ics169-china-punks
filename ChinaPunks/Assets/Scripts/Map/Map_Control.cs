@@ -612,8 +612,11 @@ public class Map_Control : MonoBehaviour
         {
             if (unit != null && unit.CompareTag("PlayerUnit"))
             {
+                Vector3 xyPosition = map_tiles[exit_pos].transform.position;
+                Vector3 exit_position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);
                 if (unit.GetComponent<UserUnit>().hasPeach
-                    && unit.GetComponent<UserUnit>().currentPos == exit_pos)
+                    && unit.GetComponent<UserUnit>().currentPos == exit_pos
+                    && unit.transform.position == exit_position )
                 {
                     return true;
                 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Monk : UserUnit {
 
-    public int skill_cd = 3;
+    public int skill_cd;
 
     private float attack_dmg;
     private int move_range;

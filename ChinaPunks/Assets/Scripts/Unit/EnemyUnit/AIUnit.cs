@@ -128,7 +128,6 @@ public class AIUnit : Unit
                     mc.character_moving = true;
                 }
                 else{
-
                     foreach (int position in attackRange)
                     {
                         if (currentPos + position >= 0 && currentPos + position <= mc.map_size * mc.map_size - 1)
