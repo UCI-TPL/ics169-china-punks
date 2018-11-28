@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f19fa1a145c3d644ead1a5e87518ac35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -229,6 +229,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &33552774
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +349,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &57857197
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +366,7 @@ GameObject:
   - component: {fileID: 57857201}
   m_Layer: 0
   m_Name: Block
-  m_TagString: EnemyUnit
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,10 +383,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
-  currentPos: 55
+  currentPos: 54
+  hide: 0
+  on_fire: 0
+  fire_cd: 0
   health: 200
-  attack_damge: 0
   moveComplete: 0
   turnComplete: 0
 --- !u!212 &57857199
@@ -438,7 +449,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &57857201
 MonoBehaviour:
@@ -570,6 +581,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &92724537
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +805,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1637110124890464, guid: e6b9ed8993b933940850527846d169f1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b9ed8993b933940850527846d169f1, type: 2}
   m_IsPrefabAsset: 0
@@ -909,6 +928,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &200618884
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,10 +980,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
   currentPos: 10
+  hide: 0
+  on_fire: 0
+  fire_cd: 2
   health: 100
-  attack_damge: 15
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -970,7 +996,10 @@ MonoBehaviour:
   walking: 0
   moveRange: 2
   anim: {fileID: 200618885}
-  healthFillImage: {fileID: 684006195}
+  healthFillImage: {fileID: 518044107}
+  attack_damage: 0
+  moveSpeed: 1
+  slippery: 0
 --- !u!212 &200618887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1006,7 +1035,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64268197d77284fa0be817116d9a46f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2740e6368a2124af7b81a08874309abb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1025,10 +1054,10 @@ Transform:
   m_GameObject: {fileID: 200618884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.28, y: 1.78, z: -1}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202539818
 GameObject:
@@ -1083,7 +1112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef14886e0a930b54ab5a29ec3d7b60b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1146,6 +1175,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &208194678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,7 +1290,7 @@ Transform:
   m_LocalScale: {x: 0.5563355, y: 0.5002631, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &239758061
 GameObject:
@@ -1375,6 +1408,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &258539640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,6 +1528,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &275399511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,7 +1585,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1607,6 +1648,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &282061869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,7 +1725,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &300439352
 GameObject:
@@ -1808,7 +1853,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61ff7d2f444cada46bc7b947340994c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1871,6 +1916,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Muddy
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &317311398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,7 +2172,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -155, y: 14}
-  m_SizeDelta: {x: 64, y: 128}
+  m_SizeDelta: {x: 148, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &366147611
 MonoBehaviour:
@@ -2144,7 +2193,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 93fac899f931e49d6ad269afd46f6ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 086e0a08d48654a2f8019db0d2ad0ae4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2212,7 +2261,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc88e5be61642e44885c2d7d8048513f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2275,6 +2324,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Snow
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!224 &378192920 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
@@ -2475,6 +2528,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1001 &397588862
 Prefab:
   m_ObjectHideFlags: 0
@@ -2512,7 +2569,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4960056881141912, guid: 333a93766b3af4f1cbcd53b780b6c760, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114152077502835002, guid: 333a93766b3af4f1cbcd53b780b6c760,
         type: 2}
@@ -2713,6 +2770,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &432614388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,6 +2890,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &432633111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2947,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6772d1026061fd244a988489ce84f01f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2945,6 +3010,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!224 &451747755 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
@@ -2983,7 +3052,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -155, y: 14}
-  m_SizeDelta: {x: 64, y: 128}
+  m_SizeDelta: {x: 148, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &452039511
 MonoBehaviour:
@@ -3004,7 +3073,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 93fac899f931e49d6ad269afd46f6ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58a1465e2d14b444d9d9759fe6a2d1ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3135,6 +3204,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &461273608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,6 +3324,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &462821779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3444,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &467729755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3556,6 +3637,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &482569105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,44 +3723,15 @@ GameObject:
   m_Component:
   - component: {fileID: 487153362}
   - component: {fileID: 487153361}
-  - component: {fileID: 487153360}
   - component: {fileID: 487153363}
   - component: {fileID: 487153364}
   m_Layer: 0
-  m_Name: TrapMaster
+  m_Name: Monk
   m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &487153360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 487153359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2211a53960954066a4b84b95b2b6fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mc: {fileID: 0}
-  mapInfo: []
-  currentPos: 98
-  health: 100
-  attack_damge: 15
-  moveComplete: 0
-  turnComplete: 0
-  hasPeach: 0
-  isClicked: 0
-  attackRange: 01000000ffffffff0a000000f6ffffff
-  pickRange: 01000000ffffffff0a000000f6ffffff
-  moveRange: 3
-  healthFillImage: {fileID: 1228244024}
-  anim: {fileID: 487153363}
-  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
-    type: 2}
-  charater_type: 
 --- !u!212 &487153361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3711,7 +3767,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93fac899f931e49d6ad269afd46f6ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 086e0a08d48654a2f8019db0d2ad0ae4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3729,8 +3785,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 487153359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 1, z: -1}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalPosition: {x: 3.13, y: 0.44, z: -1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3761,11 +3817,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 487153359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42689f2dc2ad14712b83b01eead4c0bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 610a2f2b818a449f59b70997a27b91d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charater_type: TrapMaster
-  skill_damage: 0
+  mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
+  mapInfo: []
+  currentPos: 85
+  hide: 0
+  on_fire: 0
+  fire_cd: 2
+  health: 100
+  moveComplete: 0
+  turnComplete: 0
+  hasPeach: 0
+  isClicked: 0
+  attackRange: 01000000ffffffff0a000000f6ffffff
+  pickRange: 01000000ffffffff0a000000f6ffffff
+  moveRange: 2
+  attack_damage: 15
+  skill_damage: 5
+  healthFillImage: {fileID: 1228244024}
+  anim: {fileID: 487153363}
+  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+    type: 2}
+  charater_type: 
+  coolDown: 0
+  moveSpeed: 1
+  slippery: 0
+  skill_cd: 3
 --- !u!1 &499250362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3977,7 +4057,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4040,6 +4120,139 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
+--- !u!1001 &518044105
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1472762425}
+    m_Modifications:
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 757
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -73.500015
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -1437.0999
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -844.19995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439753801905206, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
+      propertyPath: m_Name
+      value: Char_info_ingame_enemy3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344120315540266, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
+      propertyPath: m_Name
+      value: Health_FILLImage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!224 &518044106 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+    type: 2}
+  m_PrefabInternal: {fileID: 518044105}
+--- !u!114 &518044107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114068591961945722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+    type: 2}
+  m_PrefabInternal: {fileID: 518044105}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,7 +4383,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc88e5be61642e44885c2d7d8048513f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4233,6 +4446,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &549391754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,6 +4566,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &563003994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,7 +4623,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4465,6 +4686,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &565965837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4581,6 +4806,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &567018250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,6 +5153,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &595375388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5050,7 +5283,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a40a5d6062d3994eb89546484780c26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5113,6 +5346,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &607248739
 GameObject:
   m_ObjectHideFlags: 0
@@ -5166,7 +5403,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc88e5be61642e44885c2d7d8048513f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5229,6 +5466,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &609649257
 GameObject:
   m_ObjectHideFlags: 0
@@ -5282,7 +5523,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5345,6 +5586,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Snow
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &613993095
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,6 +5706,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &619153298
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,6 +5826,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!114 &637995225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114078534328403890, guid: e6b9ed8993b933940850527846d169f1,
@@ -5708,6 +5961,44 @@ Prefab:
       propertyPath: m_Name
       value: Health_FILLImage
       objectReference: {fileID: 0}
+    - target: {fileID: 114400371362179464, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ff35860cdff8b54ca5f3555ba8c0741,
+        type: 3}
+    - target: {fileID: 114068591961945722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24c0aaeb993f6ff49bcca89f38978ae8,
+        type: 3}
+    - target: {fileID: 224448199168503722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224448199168503722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224448199168503722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224705597935966780, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114191648297533828, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a07766fe601f7b4e9bb278f8737e332,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
   m_IsPrefabAsset: 0
@@ -5827,6 +6118,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!114 &684006195 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114068591961945722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
@@ -5949,6 +6244,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &702665996
 GameObject:
   m_ObjectHideFlags: 0
@@ -6065,6 +6364,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &709970274
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,7 +6421,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6772d1026061fd244a988489ce84f01f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6181,6 +6484,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &731137643
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,7 +6541,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b90af6ca594e3244b9ef0bd0f20603a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6297,6 +6604,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &733838303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6327,10 +6638,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
   currentPos: 34
+  hide: 0
+  on_fire: 0
+  fire_cd: 2
   health: 100
-  attack_damge: 15
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -6341,6 +6655,9 @@ MonoBehaviour:
   moveRange: 2
   anim: {fileID: 733838307}
   healthFillImage: {fileID: 684006195}
+  attack_damage: 0
+  moveSpeed: 1
+  slippery: 0
 --- !u!212 &733838305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6376,7 +6693,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64268197d77284fa0be817116d9a46f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2740e6368a2124af7b81a08874309abb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6395,7 +6712,7 @@ Transform:
   m_GameObject: {fileID: 733838303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: 1, z: -1}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -6607,6 +6924,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &752258682
 GameObject:
   m_ObjectHideFlags: 0
@@ -6846,6 +7167,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &794368650
 GameObject:
   m_ObjectHideFlags: 0
@@ -6899,7 +7224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6962,6 +7287,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &799889580
 GameObject:
   m_ObjectHideFlags: 0
@@ -7078,6 +7407,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &802431237
 GameObject:
   m_ObjectHideFlags: 0
@@ -7131,7 +7464,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9e9398b6c8f12e42a340ed2b455d191, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7194,6 +7527,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &830384732
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,7 +7752,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 618a53cdf166b5948991fb74cc6b130c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7478,6 +7815,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &845535936
 GameObject:
   m_ObjectHideFlags: 0
@@ -7526,10 +7867,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
   currentPos: 28
+  hide: 0
+  on_fire: 0
+  fire_cd: 2
   health: 100
-  attack_damge: 15
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -7539,7 +7883,10 @@ MonoBehaviour:
   walking: 0
   moveRange: 2
   anim: {fileID: 845535937}
-  healthFillImage: {fileID: 684006195}
+  healthFillImage: {fileID: 1384060630}
+  attack_damage: 0
+  moveSpeed: 1
+  slippery: 0
 --- !u!212 &845535939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7575,7 +7922,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64268197d77284fa0be817116d9a46f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2740e6368a2124af7b81a08874309abb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7593,11 +7940,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 845535936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 2.14, z: -1}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalPosition: {x: -0.21, y: 2.14, z: -1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &854612777
 GameObject:
@@ -7609,11 +7956,10 @@ GameObject:
   m_Component:
   - component: {fileID: 854612779}
   - component: {fileID: 854612778}
-  - component: {fileID: 854612780}
   - component: {fileID: 854612781}
   - component: {fileID: 854612782}
   m_Layer: 0
-  m_Name: Monk
+  m_Name: Scholar
   m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7655,7 +8001,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93fac899f931e49d6ad269afd46f6ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58a1465e2d14b444d9d9759fe6a2d1ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7674,41 +8020,12 @@ Transform:
   m_PrefabInternal: {fileID: 952739325}
   m_GameObject: {fileID: 854612777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 1, z: -1}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalPosition: {x: 2.61, y: 1, z: -1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &854612780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
-    type: 2}
-  m_PrefabInternal: {fileID: 952739325}
-  m_GameObject: {fileID: 854612777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2211a53960954066a4b84b95b2b6fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mc: {fileID: 0}
-  mapInfo: []
-  currentPos: 99
-  health: 100
-  attack_damge: 15
-  moveComplete: 0
-  turnComplete: 0
-  hasPeach: 0
-  isClicked: 0
-  attackRange: 01000000ffffffff0a000000f6ffffff
-  pickRange: 01000000ffffffff0a000000f6ffffff
-  moveRange: 2
-  healthFillImage: {fileID: 385000748}
-  anim: {fileID: 854612781}
-  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
-    type: 2}
-  charater_type: 
 --- !u!95 &854612781
 Animator:
   serializedVersion: 3
@@ -7738,8 +8055,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42689f2dc2ad14712b83b01eead4c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
+  mapInfo: []
+  currentPos: 99
+  hide: 0
+  on_fire: 0
+  fire_cd: 2
+  health: 100
+  moveComplete: 0
+  turnComplete: 0
+  hasPeach: 0
+  isClicked: 0
+  attackRange: 01000000ffffffff0a000000f6ffffff
+  pickRange: 01000000ffffffff0a000000f6ffffff
+  moveRange: 2
+  attack_damage: 0
+  skill_damage: 5
+  healthFillImage: {fileID: 385000748}
+  anim: {fileID: 854612781}
+  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+    type: 2}
   charater_type: monk
-  skill_damage: 0
+  coolDown: 0
+  moveSpeed: 1
+  slippery: 0
 --- !u!1 &888678492
 GameObject:
   m_ObjectHideFlags: 0
@@ -7793,7 +8133,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7856,6 +8196,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &917207005
 GameObject:
   m_ObjectHideFlags: 0
@@ -7909,7 +8253,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73c381840b9e96945986aa9fac9dcaf5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7972,6 +8316,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &920116118
 GameObject:
   m_ObjectHideFlags: 0
@@ -8088,6 +8436,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &925916523
 GameObject:
   m_ObjectHideFlags: 0
@@ -8204,6 +8556,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &926942441
 GameObject:
   m_ObjectHideFlags: 0
@@ -8410,7 +8766,7 @@ Prefab:
     - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 708
+      value: 757
       objectReference: {fileID: 0}
     - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
         type: 2}
@@ -8469,7 +8825,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1439753801905206, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
       propertyPath: m_Name
-      value: Char_info_ingame_enemy
+      value: Char_info_ingame_enemy1
       objectReference: {fileID: 0}
     - target: {fileID: 1344120315540266, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
       propertyPath: m_Name
@@ -8487,7 +8843,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4538418640482552, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 4538418640482552, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8538,11 +8894,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4538418640482552, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4538418640482552, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 114373687389348476, guid: d96de17094c5b5b41a6d743a8f10eeef,
         type: 2}
@@ -8573,9 +8929,16 @@ Prefab:
         type: 2}
     - target: {fileID: 1707590791195866, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
       propertyPath: m_Name
-      value: Monk
+      value: Scholar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 212180542148229710, guid: d96de17094c5b5b41a6d743a8f10eeef,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 58a1465e2d14b444d9d9759fe6a2d1ff,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d96de17094c5b5b41a6d743a8f10eeef, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &969550922
@@ -8704,7 +9067,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a40a5d6062d3994eb89546484780c26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8767,6 +9130,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &975895503
 GameObject:
   m_ObjectHideFlags: 0
@@ -8883,6 +9250,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &979826700
 GameObject:
   m_ObjectHideFlags: 0
@@ -8955,6 +9326,75 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 979826700}
+  m_CullTransparentMesh: 0
+--- !u!1 &982311868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982311869}
+  - component: {fileID: 982311871}
+  - component: {fileID: 982311870}
+  m_Layer: 5
+  m_Name: char_image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &982311869
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982311868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1384060629}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -156, y: 11}
+  m_SizeDelta: {x: 148, y: 125}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &982311870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982311868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 2740e6368a2124af7b81a08874309abb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &982311871
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982311868}
   m_CullTransparentMesh: 0
 --- !u!1 &996346056
 GameObject:
@@ -9072,6 +9512,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &996641149
 GameObject:
   m_ObjectHideFlags: 0
@@ -9273,7 +9717,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a0616b303beb3c458acd3efd863e3ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9336,6 +9780,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1017648904
 GameObject:
   m_ObjectHideFlags: 0
@@ -9389,7 +9837,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2f859d245f0aa0c4e923833663d25f04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc88e5be61642e44885c2d7d8048513f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9452,6 +9900,85 @@ MonoBehaviour:
   exit: 1
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
+--- !u!1 &1024217760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1024217761}
+  - component: {fileID: 1024217762}
+  m_Layer: 0
+  m_Name: bush-576310_960_720
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1024217761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024217760}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.545, z: -1}
+  m_LocalScale: {x: 0.074820235, y: 0.106854714, z: 0.371604}
+  m_Children: []
+  m_Father: {fileID: 1899616502}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1024217762
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024217760}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 42d7e44a359354016bb711b88db807d3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 9.6, y: 5.68}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1042215901
 GameObject:
   m_ObjectHideFlags: 0
@@ -9505,7 +10032,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9568,6 +10095,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!114 &1053744810 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114861128004893358, guid: e6b9ed8993b933940850527846d169f1,
@@ -9700,7 +10231,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6731511aa78ff2469895f654ba9957a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9763,6 +10294,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1064795544
 GameObject:
   m_ObjectHideFlags: 0
@@ -9952,6 +10487,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1099620830
 GameObject:
   m_ObjectHideFlags: 0
@@ -10068,6 +10607,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1107181294
 GameObject:
   m_ObjectHideFlags: 0
@@ -10121,7 +10664,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92988273c73cf3a498dc94a1b2c8c71d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10184,6 +10727,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1109243969
 GameObject:
   m_ObjectHideFlags: 0
@@ -10310,7 +10857,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10373,6 +10920,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1001 &1111568433
 Prefab:
   m_ObjectHideFlags: 0
@@ -10488,6 +11039,44 @@ Prefab:
       propertyPath: m_Name
       value: Health_FILLImage
       objectReference: {fileID: 0}
+    - target: {fileID: 114191648297533828, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a07766fe601f7b4e9bb278f8737e332,
+        type: 3}
+    - target: {fileID: 114400371362179464, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ff35860cdff8b54ca5f3555ba8c0741,
+        type: 3}
+    - target: {fileID: 114068591961945722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24c0aaeb993f6ff49bcca89f38978ae8,
+        type: 3}
+    - target: {fileID: 224448199168503722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224448199168503722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224448199168503722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224705597935966780, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
   m_IsPrefabAsset: 0
@@ -10568,6 +11157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 1315454259}
+  UI: {fileID: 1472762421}
   gameRound: 
   endTurnButton: {fileID: 752258682}
   WinScene: {fileID: 1222781064}
@@ -10583,7 +11173,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154973522
 GameObject:
@@ -10645,7 +11235,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167315981
 GameObject:
@@ -10700,7 +11290,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351d188ac5383de43a0c2fe2129e7789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10763,6 +11353,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1191376499
 GameObject:
   m_ObjectHideFlags: 0
@@ -10879,6 +11473,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1193997457
 GameObject:
   m_ObjectHideFlags: 0
@@ -11141,6 +11739,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1207925622
 GameObject:
   m_ObjectHideFlags: 0
@@ -11263,7 +11865,7 @@ RectTransform:
   - {fileID: 1125669415}
   - {fileID: 1591116905}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11365,7 +11967,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc88e5be61642e44885c2d7d8048513f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11428,6 +12030,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1245463439
 GameObject:
   m_ObjectHideFlags: 0
@@ -11481,7 +12087,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11544,6 +12150,85 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
+--- !u!1 &1271127288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271127289}
+  - component: {fileID: 1271127290}
+  m_Layer: 0
+  m_Name: bush-576310_960_720
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271127289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1271127288}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.545, z: -1}
+  m_LocalScale: {x: 0.074820235, y: 0.106854714, z: 0.371604}
+  m_Children: []
+  m_Father: {fileID: 1849624911}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1271127290
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1271127288}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 42d7e44a359354016bb711b88db807d3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 9.6, y: 5.68}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1286758486
 GameObject:
   m_ObjectHideFlags: 0
@@ -11740,6 +12425,75 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1301056032}
   m_CullTransparentMesh: 0
+--- !u!1 &1305368861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305368862}
+  - component: {fileID: 1305368864}
+  - component: {fileID: 1305368863}
+  m_Layer: 5
+  m_Name: char_image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1305368862
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305368861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 518044106}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -156, y: 11}
+  m_SizeDelta: {x: 148, y: 125}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1305368863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305368861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 2740e6368a2124af7b81a08874309abb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1305368864
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305368861}
+  m_CullTransparentMesh: 0
 --- !u!1 &1315182014
 GameObject:
   m_ObjectHideFlags: 0
@@ -11793,7 +12547,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351d188ac5383de43a0c2fe2129e7789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11856,6 +12610,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1315454259
 GameObject:
   m_ObjectHideFlags: 0
@@ -12116,6 +12874,8 @@ MonoBehaviour:
   AI_units: []
   PeachPrefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
     type: 2}
+  turn_count: 0
+  character_moving: 0
 --- !u!1 &1325294129
 GameObject:
   m_ObjectHideFlags: 0
@@ -12242,7 +13002,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92988273c73cf3a498dc94a1b2c8c71d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12305,6 +13065,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1330624674
 GameObject:
   m_ObjectHideFlags: 0
@@ -12496,6 +13260,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1360653022
 GameObject:
   m_ObjectHideFlags: 0
@@ -12549,7 +13317,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bee87d22d490ae468271651b579a909, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12612,6 +13380,139 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
+--- !u!1001 &1384060628
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1472762425}
+    m_Modifications:
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 757.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 109
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -1437.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -851.19995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439753801905206, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
+      propertyPath: m_Name
+      value: Char_info_ingame_enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344120315540266, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
+      propertyPath: m_Name
+      value: Health_FILLImage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 51e92dab480e5e7419a9d6ced34d3edc, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!224 &1384060629 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1384060628}
+--- !u!114 &1384060630 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114068591961945722, guid: 51e92dab480e5e7419a9d6ced34d3edc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1384060628}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1393920951
 GameObject:
   m_ObjectHideFlags: 0
@@ -12665,7 +13566,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b90af6ca594e3244b9ef0bd0f20603a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12728,6 +13629,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1396206653
 GameObject:
   m_ObjectHideFlags: 0
@@ -12781,7 +13686,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c504652684caa84c9d5b0bf8347ec39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12844,6 +13749,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1401251399
 GameObject:
   m_ObjectHideFlags: 0
@@ -12897,7 +13806,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12960,6 +13869,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1414204401
 GameObject:
   m_ObjectHideFlags: 0
@@ -13013,7 +13926,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b90af6ca594e3244b9ef0bd0f20603a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13076,6 +13989,113 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
+--- !u!1 &1430902775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430902778}
+  - component: {fileID: 1430902777}
+  - component: {fileID: 1430902776}
+  m_Layer: 0
+  m_Name: Volcano
+  m_TagString: Block
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1430902776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430902775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c5b1b695c9d49a0ac2b17b941ec4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mc: {fileID: 0}
+  turn_ctr: {fileID: 1153907413}
+  mapInfo: []
+  currentPos: 42
+  hide: 0
+  on_fire: 0
+  fire_cd: 0
+  health: 0
+  moveComplete: 0
+  turnComplete: 0
+  SprayCD: 0
+  fire_prefab: {fileID: 1175653368292556, guid: bebe69aee63de4f3498b67f403e05a24,
+    type: 2}
+  fire_moving: 0
+  fire1: {fileID: 0}
+  fire2: {fileID: 0}
+--- !u!212 &1430902777
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430902775}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 6c064af7be04b426389071549fde69a0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 12.3, y: 10.3}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1430902778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430902775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.51, y: 0.1, z: -0.08823334}
+  m_LocalScale: {x: 0.09195229, y: 0.10360897, z: 0.05}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1433519240
 GameObject:
   m_ObjectHideFlags: 0
@@ -13129,7 +14149,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b90af6ca594e3244b9ef0bd0f20603a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13192,6 +14212,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1472762421
 GameObject:
   m_ObjectHideFlags: 0
@@ -13284,11 +14308,13 @@ RectTransform:
   - {fileID: 378192920}
   - {fileID: 933726469}
   - {fileID: 451747755}
+  - {fileID: 1384060629}
+  - {fileID: 518044106}
   - {fileID: 1509243182}
   - {fileID: 1222781065}
   - {fileID: 1628719620}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13367,7 +14393,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc88e5be61642e44885c2d7d8048513f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13430,6 +14456,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Snow
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1498980015
 GameObject:
   m_ObjectHideFlags: 0
@@ -13557,7 +14587,7 @@ RectTransform:
   - {fileID: 1064795545}
   - {fileID: 926942442}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13653,7 +14683,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13716,6 +14746,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1587937188
 GameObject:
   m_ObjectHideFlags: 0
@@ -13769,7 +14803,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13832,6 +14866,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1591116904
 GameObject:
   m_ObjectHideFlags: 0
@@ -14039,7 +15077,7 @@ GameObject:
   - component: {fileID: 1628719622}
   - component: {fileID: 1628719621}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14053,14 +15091,14 @@ RectTransform:
   m_GameObject: {fileID: 1628719619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 540, y: 90}
+  m_AnchoredPosition: {x: 520, y: 70}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1628719621
@@ -14130,7 +15168,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -156, y: 11}
-  m_SizeDelta: {x: 64, y: 128}
+  m_SizeDelta: {x: 148, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666084819
 MonoBehaviour:
@@ -14151,7 +15189,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 64268197d77284fa0be817116d9a46f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2740e6368a2124af7b81a08874309abb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14282,6 +15320,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1696123475
 GameObject:
   m_ObjectHideFlags: 0
@@ -14398,6 +15440,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1699076229
 GameObject:
   m_ObjectHideFlags: 0
@@ -14514,6 +15560,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1716124231
 GameObject:
   m_ObjectHideFlags: 0
@@ -14630,6 +15680,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1726747351
 GameObject:
   m_ObjectHideFlags: 0
@@ -14683,7 +15737,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec1b266780a724d4d8c8d46e6b212f85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -14746,6 +15800,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1765371275
 GameObject:
   m_ObjectHideFlags: 0
@@ -14862,6 +15920,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1814718041
 GameObject:
   m_ObjectHideFlags: 0
@@ -14978,6 +16040,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1816038017
 GameObject:
   m_ObjectHideFlags: 0
@@ -15094,6 +16160,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1822233872
 GameObject:
   m_ObjectHideFlags: 0
@@ -15147,7 +16217,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 38f0f07655250c84c8d60e98f52ddd59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15210,6 +16280,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1848640235
 GameObject:
   m_ObjectHideFlags: 0
@@ -15362,7 +16436,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: -0.5, z: -0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1271127289}
   m_Father: {fileID: 1315454260}
   m_RootOrder: 75
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15405,6 +16480,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Hide
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1860601232
 GameObject:
   m_ObjectHideFlags: 0
@@ -15458,7 +16537,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b90af6ca594e3244b9ef0bd0f20603a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15521,6 +16600,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1865284354
 GameObject:
   m_ObjectHideFlags: 0
@@ -15637,6 +16720,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1867246850
 GameObject:
   m_ObjectHideFlags: 0
@@ -15690,7 +16777,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15753,6 +16840,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Snow
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1899616500
 GameObject:
   m_ObjectHideFlags: 0
@@ -15806,7 +16897,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15826,7 +16917,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.5, y: 0.75, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1024217761}
   m_Father: {fileID: 1315454260}
   m_RootOrder: 69
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15869,6 +16961,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Hide
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1925996173
 GameObject:
   m_ObjectHideFlags: 0
@@ -15922,7 +17018,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a0616b303beb3c458acd3efd863e3ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15985,6 +17081,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1931864364
 GameObject:
   m_ObjectHideFlags: 0
@@ -16101,6 +17201,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1973889775
 GameObject:
   m_ObjectHideFlags: 0
@@ -16217,6 +17321,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1980371911
 GameObject:
   m_ObjectHideFlags: 0
@@ -16270,7 +17378,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b90af6ca594e3244b9ef0bd0f20603a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16333,6 +17441,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &1985737413
 GameObject:
   m_ObjectHideFlags: 0
@@ -16524,6 +17636,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2021061607
 GameObject:
   m_ObjectHideFlags: 0
@@ -16640,6 +17756,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2030389436
 GameObject:
   m_ObjectHideFlags: 0
@@ -16756,6 +17876,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2041111751
 GameObject:
   m_ObjectHideFlags: 0
@@ -16809,7 +17933,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bee87d22d490ae468271651b579a909, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16872,6 +17996,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2047358469
 GameObject:
   m_ObjectHideFlags: 0
@@ -16925,7 +18053,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f60a2e6adc7a1b1499affb2860b714ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16988,6 +18116,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2055539507
 GameObject:
   m_ObjectHideFlags: 0
@@ -17347,6 +18479,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2088005129
 GameObject:
   m_ObjectHideFlags: 0
@@ -17473,7 +18609,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17536,6 +18672,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: Snow
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2097876489
 GameObject:
   m_ObjectHideFlags: 0
@@ -17652,6 +18792,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2124638133
 GameObject:
   m_ObjectHideFlags: 0
@@ -17784,7 +18928,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4bee87d22d490ae468271651b579a909, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2c21fa0f5adea4e811730949ce9578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17847,6 +18991,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!224 &2129702331 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224086442494073032, guid: e6b9ed8993b933940850527846d169f1,
@@ -17973,6 +19121,10 @@ MonoBehaviour:
   exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  tile_type: 
+  on_fire: 0
+  fire_cd: 2
+  fire_damage: 10
 --- !u!1 &2144185252
 GameObject:
   m_ObjectHideFlags: 0
