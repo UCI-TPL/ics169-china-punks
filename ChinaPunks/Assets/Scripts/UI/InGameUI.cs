@@ -65,8 +65,10 @@ public class InGameUI : MonoBehaviour {
             if (map_ctr.units_state[map_ctr.picked_pos] != null 
                 && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit"){
                 GameObject player = map_ctr.units_state[map_ctr.picked_pos];
-                //character has peach
-                if (player.gameObject.GetComponent<UserUnit>().hasPeach)
+                //character has peach or is moving
+                if (player.gameObject.GetComponent<UserUnit>().hasPeach
+                    || player.gameObject.GetComponent<UserUnit>().hide
+                    || map_ctr.character_moving)
                 {
                     Attackbtn.interactable = false;
                     Pickbtn.interactable = false;

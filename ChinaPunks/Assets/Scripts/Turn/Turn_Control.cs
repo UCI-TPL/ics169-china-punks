@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turn_Control : MonoBehaviour
 {
 
 
     public GameObject map;
-    private Map_Control map_ctr;
-
+    Map_Control map_ctr;
+    public GameObject UI;
+    InGameUI UI_ctr;
     //Variable used to keep track whose round the current one is.
     //Value: "Player", "AI"
     public string gameRound;
@@ -27,6 +29,7 @@ public class Turn_Control : MonoBehaviour
 
 
         map_ctr = map.GetComponent<Map_Control>();
+        UI_ctr = UI.GetComponent<InGameUI>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,12 @@ public class Turn_Control : MonoBehaviour
             map_ctr.Character_Click();
         }
 
+        if (map_ctr.character_moving)
+        {
+            endTurnButton.GetComponent<Button>().interactable = false;
+        }
+        else
+            endTurnButton.GetComponent<Button>().interactable = true;
     }
 
 
@@ -60,29 +69,87 @@ public class Turn_Control : MonoBehaviour
     {
         if (gameRound == "Player")
         {
-            //reduce skill cd of each character by 1
-            foreach(GameObject character in map_ctr.units_state){
-                //this gameobject is a character
-                if(character != null && character.tag == "PlayerUnit"){
-                    //skill cd is not 0
-                    if (character.GetComponent<UserUnit>().coolDown != 0)
-                        character.GetComponent<UserUnit>().coolDown--;
-                    if (character.GetComponent<UserUnit>().coolDown == 0)
-                        character.GetComponent<UserUnit>().Reset_Skill();
+
+            for (int i = 0; i < map_ctr.map_size * map_ctr.map_size; i++)
+            {
+                //reduce tile fire cd
+                if (map_ctr.map_tiles[i].GetComponent<Tile>().on_fire)
+                {
+                    map_ctr.map_tiles[i].GetComponent<Tile>().update_fire();
                 }
+                ////apply fire damage and reduce skill cd
+                if (map_ctr.units_state[i] != null)
+                {
+                    if (map_ctr.units_state[i].tag == "PlayerUnit")
+                    {
+                        //apply fire damage to character if on fire
+                        if(map_ctr.units_state[i].GetComponent<UserUnit>().on_fire)
+                            map_ctr.units_state[i].GetComponent<UserUnit>().Health_Change(map_ctr.map_tiles[i].GetComponent<Tile>().fire_damage);
+                        //reduce fire cd
+                        if(map_ctr.units_state[i].GetComponent<UserUnit>().on_fire){
+                            map_ctr.units_state[i].GetComponent<UserUnit>().fire_cd--;
+                            if(map_ctr.units_state[i].GetComponent<UserUnit>().fire_cd == 0){
+                                map_ctr.units_state[i].GetComponent<UserUnit>().on_fire = false;
+                                map_ctr.units_state[i].GetComponent<UserUnit>().Reset_FireCD();
+                            }
+                        }
+                        //reduce skill cd
+                        if (map_ctr.units_state[i].GetComponent<UserUnit>().coolDown != 0)
+                            map_ctr.units_state[i].GetComponent<UserUnit>().coolDown--;
+                        if (map_ctr.units_state[i].GetComponent<UserUnit>().coolDown == 0)
+                            map_ctr.units_state[i].GetComponent<UserUnit>().Reset_Skill();
+                    }
+                    else if (map_ctr.units_state[i].tag == "EnemyUnit")
+                    {   //apply fire damage to enemy
+                        if (map_ctr.units_state[i].GetComponent<AIUnit>().on_fire)
+                            map_ctr.units_state[i].GetComponent<AIUnit>().Health_Change(map_ctr.map_tiles[i].GetComponent<Tile>().fire_damage);
+                        //reduce fire cd
+                        if (map_ctr.units_state[i].GetComponent<AIUnit>().on_fire)
+                        {
+                            map_ctr.units_state[i].GetComponent<AIUnit>().fire_cd--;
+                            if (map_ctr.units_state[i].GetComponent<AIUnit>().fire_cd == 0)
+                            {
+                                map_ctr.units_state[i].GetComponent<AIUnit>().on_fire = false;
+                                map_ctr.units_state[i].GetComponent<AIUnit>().Reset_FireCD();
+                            }
+                        }
+                    }
+                }
+
             }
+
+
+
             map_ctr.reset();
-            gameRound = "AI";
             endTurnButton.SetActive(false);
 
-            //debug for printing turn
-            Debug.Log("turn :" + gameRound);
-
-            //Excute AI turn
-            StartCoroutine(AIBlocker());
+            StartCoroutine(map_routine());
 
         }
     }
+
+    IEnumerator map_routine()
+    {
+        gameRound = "Map";
+        Debug.Log("turn :" + gameRound);
+        //Volcano
+        foreach (GameObject ob in map_ctr.units_state)
+        {
+            if (ob != null && ob.name == "Volcano")
+            {
+                ob.GetComponent<Volcano>().Spray();
+                yield return new WaitUntil(() => !ob.GetComponent<Volcano>().fire_moving);
+                break;
+            }
+        }
+
+        //start AI round
+        gameRound = "AI";
+        Debug.Log("turn :" + gameRound);
+        //Excute AI turn
+        StartCoroutine(AIBlocker());
+    }
+
 
     IEnumerator AIBlocker()
     {
@@ -92,7 +159,12 @@ public class Turn_Control : MonoBehaviour
             AIUnit enemy = ob.GetComponent<AIUnit>();
 
             //Find where the AI unit should go
-            int move_range = enemy.moveRange;
+            int move_range;
+            //if enemy is on muddy tile, move_range becomes 1
+            if (map_ctr.map_tiles[enemy.currentPos].GetComponent<Tile>().tile_type == "Muddy")
+                move_range = 1;
+            else
+                move_range = enemy.moveRange;
             map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkEnemy);
             int solution_key = -1;
             foreach (int i in map_ctr.all_paths.Keys)
@@ -135,7 +207,10 @@ public class Turn_Control : MonoBehaviour
     {
         foreach (int i in map_ctr.expansion_of_tiles[pos])
         {
-            if (map_ctr.units_state[i] != null && !map_ctr.units_state[i].CompareTag(unitTag))
+            if (map_ctr.units_state[i] != null
+                && !map_ctr.units_state[i].CompareTag(unitTag)
+                && !map_ctr.units_state[i].CompareTag("Block")
+                && !map_ctr.units_state[i].GetComponent<Unit>().hide)
                 return true;
         }
         return false;

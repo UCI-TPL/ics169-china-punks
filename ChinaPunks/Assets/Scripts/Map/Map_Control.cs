@@ -56,6 +56,8 @@ public class Map_Control : MonoBehaviour
     //tiles for showing skill range
     public Dictionary<int, List<int>> skill_tiles = new Dictionary<int, List<int>>();
 
+    public bool character_moving = false;
+
     private void Awake()
     {
         for (int i = 0; i < map_size * map_size; i++)
@@ -160,8 +162,13 @@ public class Map_Control : MonoBehaviour
     {
 
         acting_state = 1;
+        int move_range;
         units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
-        int move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
+        //check if character is on Muddy tile
+        if (map_tiles[picked_pos].GetComponent<Tile>().tile_type == "Muddy")
+            move_range = 1;
+        else 
+            move_range = units_state[picked_pos].GetComponent<UserUnit>().moveRange;
 
         //pickEndTile = pickTile;
 
@@ -311,7 +318,8 @@ public class Map_Control : MonoBehaviour
                     else if (units_state[map_tiles_pos[pickEndTile]] != null &&
                              units_state[map_tiles_pos[pickEndTile]].tag == "PlayerUnit")
                     {
-
+                        //previous character is not being clicked now
+                        units_state[picked_pos].GetComponent<UserUnit>().isClicked = false;
 
                         picked_pos = map_tiles_pos[pickEndTile];
                         current_picked_pos = picked_pos;
@@ -320,6 +328,7 @@ public class Map_Control : MonoBehaviour
                         if (units_state[map_tiles_pos[pickTile]] != null
                            && units_state[map_tiles_pos[pickTile]].tag == "PlayerUnit")
                             units_state[map_tiles_pos[pickTile]].GetComponent<UserUnit>().destory_clickEffect();
+
                         //create selectEffect of switched character
                         units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
 
@@ -592,7 +601,7 @@ public class Map_Control : MonoBehaviour
         int exit_pos = -1;
         foreach (GameObject tile in map_tiles)
         {
-            if (tile.GetComponent<MouseTileDetection>().exit)
+            if (tile.GetComponent<Tile>().exit)
             {
                 exit_pos = map_tiles_pos[tile];
                 break;

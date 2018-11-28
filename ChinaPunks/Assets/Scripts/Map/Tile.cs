@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseTileDetection : MonoBehaviour {
+public class Tile : MonoBehaviour {
 
     public bool exit;
     public GameObject map_tiles;
@@ -12,16 +12,22 @@ public class MouseTileDetection : MonoBehaviour {
     public GameObject turn_control;
     Turn_Control turn_ctr;
 
+    public string tile_type;
+    public bool on_fire;
+    public int fire_cd;
+    public int fire_damage;
+    int _fire_cd;
+
 
 	// Use this for initialization
 	void Start () {
+        _fire_cd = fire_cd;
         map_ctr = map_tiles.GetComponent<Map_Control>();
         turn_ctr = turn_control.GetComponent<Turn_Control>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
 
     }
 
@@ -29,8 +35,8 @@ public class MouseTileDetection : MonoBehaviour {
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            //it's player's round and players' hud isn't showed
-            if (turn_ctr.gameRound == "Player")
+            //it's player's round
+            if (turn_ctr.gameRound == "Player" && !map_ctr.character_moving)
                {
                 map_ctr.pickTile = gameObject;
                 map_ctr.tile_picked = true;
@@ -62,5 +68,18 @@ public class MouseTileDetection : MonoBehaviour {
         {
             map_ctr.uncolor_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
         }
+    }
+
+    public void update_fire(){
+        if(on_fire){
+            if (fire_cd != 0)
+                fire_cd--;
+            else
+            {
+                on_fire = false;
+                fire_cd = _fire_cd;
+            }
+        }
+        
     }
 }

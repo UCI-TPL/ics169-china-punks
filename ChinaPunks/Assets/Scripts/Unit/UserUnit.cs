@@ -9,11 +9,6 @@ public class UserUnit : Unit {
     public bool isClicked = false;
     public List<int> attackRange = new List<int>() { 1, -1, 10, -10 };
     public List<int> pickRange = new List<int>() { 1, -1, 10, -10 };
-    
-
-    private float cd = 0.2f;
-    private float next;
-    private bool walking = false;
 
     public int moveRange;
     public float attack_damage;
@@ -29,6 +24,14 @@ public class UserUnit : Unit {
     public string charater_type;
 
     public int coolDown = 0;
+    public float moveSpeed = 1;
+    public bool slippery = false;
+
+    public int fire_cd;
+    int _fire_cd;
+
+
+    Vector3 moveDestination = new Vector3();
 
 
     // Use this for initialization
@@ -40,54 +43,119 @@ public class UserUnit : Unit {
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
+        _fire_cd = fire_cd;
     }
 
     // Update is called once per frame
     void Update() {
 
-
-
-        if (isClicked)
+        if (isClicked && turn_ctr.gameRound == "Player")
         {
-            TurnUpdate();                                                                //call turn update
+            TurnUpdate();
+            if(mc.character_moving){
+                float step = moveSpeed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, moveDestination, step);
+            }
+
+
         }
 
-        if (walking)                                                                     //if the unit need to move then...
+        if (hide)
         {
-            if (mc.path.Count > 0 && mc.path[0] == currentPos)                           //check if my current position is same as the first node of the node list I get from map
+            if (transform.position == moveDestination)
             {
-                if (Time.time > next)
-                {
-                    Vector3 moveDestination = mapInfo[mc.path[0]].transform.position;    //get the destination/goalnode I need to move to
-                    moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
-                    transform.position = moveDestination;                                //set my position to destination
-                    next = Time.time + cd;
-
-                    mc.path.RemoveAt(0);                                                 //remove past node
-                    if (mc.path.Count > 0)                                               //if the node list is empty
-                    {
-                        mc.units_state[currentPos] = null;
-                        currentPos = mc.path[0];                                         //set my current position to the grid#
-                        mc.units_state[currentPos] = this.gameObject;
-                    }
-                }
-            }
-            else{                                                                        //the node list is now empty
-                walking = false;                                                         //set the walking flag to false (unit movement is end)
-                mc.units_state[currentPos] = this.gameObject;
-                isClicked = false;
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
             }
         }
+        else
+        {
+            if (transform.position == moveDestination)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            }
+        }
+
+
     }
 
     public override void TurnUpdate()
     {
         base.TurnUpdate();
-
-        if (mc.path.Count > 0)                                          //check if the map now has the node list
+        //if path got, starts walking
+        if (mc.path.Count > 0)
         {
-            walking = true;                                                              //this unit(myself) can move right now
+            moveDestination = mapInfo[mc.path[0]].transform.position;
+            moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
+            //already move to the destination(next tile)
+            if (transform.position == moveDestination && currentPos == mc.path[0]){
+                mc.path.RemoveAt(0);
+                //check if there is next tile to go to
+                if (mc.path.Count > 0)
+                {
+                    //check if next tile is snow tile
+                    if(mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Snow"){
+                        Debug.Log("Slippery!!!!!!!!!!!!!!!");
+                        int next_tile = mc.path[0];
+                        int offset = mc.path[0] - currentPos;
+                        int slippery_tile = next_tile + offset;
+                        mc.path = new List<int>();
+                        mc.path.Add(next_tile);
+                        //no unit on slippery tile
+                        if (mc.units_state[slippery_tile] == null)
+                        {
+                            int next_tile_x = next_tile % mc.map_size;
+                            int next_tile_y = next_tile / mc.map_size;
+                            int slippery_tile_x = slippery_tile % mc.map_size;
+                            int slippery_tile_y = slippery_tile / mc.map_size;
+                            if (Mathf.Abs(next_tile_x - slippery_tile_x) <= 1
+                               && Mathf.Abs(next_tile_y - slippery_tile_y) <= 1)
+                            {
+                                slippery = true;
+                                mc.path.Add(slippery_tile);
+                            }
+                        }
+                    }
+                    //check if next tile is muddy tile
+                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Muddy"){
+                        Debug.Log("Muddy!!!!!!!!!!!!!!!");
+                        int next_tile = mc.path[0];
+                        mc.path = new List<int>();
+                        mc.path.Add(next_tile);
+                    }
+                    //check if next tile is hide tile
+                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Hide"){
+                        hide = true;
+                    }
+                    else{
+                        hide = false;
+                    }
+                    //check if next tile is on fire
+                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().on_fire)
+                        on_fire = true;
+
+                    if (slippery && mc.map_tiles[currentPos].GetComponent<Tile>().tile_type == "Snow")//&& mc.path.Count <= 1)
+                        moveSpeed = 3;
+
+                    mc.units_state[currentPos] = null;
+                    mc.picked_pos = mc.path[0];
+                    mc.pickTile = mc.pickEndTile = mc.map_tiles[mc.path[0]];
+                    currentPos = mc.path[0];
+                    mc.units_state[currentPos] = gameObject;
+                    moveDestination = mapInfo[mc.path[0]].transform.position;
+                    moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
+                    mc.character_moving = true;
+                }
+                //if no next tile, moveing ends
+                else
+                {
+                    isClicked = false;
+                    mc.character_moving = false;
+                    moveSpeed = 1;
+                    slippery = false;
+                }
+            }                                                                                                                                           
         }
+
     }
 
     public override void Health_Change(float damage)
@@ -95,6 +163,7 @@ public class UserUnit : Unit {
         base.Health_Change(damage);
 
         anim.Play("Attacked");
+        hide = false;
 
         if (hasPeach)
         {
@@ -142,4 +211,8 @@ public class UserUnit : Unit {
     public virtual void Reset_Skill(){
 
     }
+    public virtual void Reset_FireCD(){
+        fire_cd = _fire_cd;
+    }
+
 }

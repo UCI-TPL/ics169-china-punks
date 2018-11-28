@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour {
     public Map_Control mc;
+    public Turn_Control turn_ctr;
     public List<GameObject> mapInfo = new List<GameObject>();
 
     public int currentPos;
+    public bool hide;
+    public bool on_fire;
+
 
 
     public float health;
@@ -18,14 +22,17 @@ public class Unit : MonoBehaviour {
     void Awake()
     {
         GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
-        mc = controller.GetComponent<Map_Control>();                                     //same as above
+        mc = controller.GetComponent<Map_Control>();
+        GameObject controller2 = GameObject.Find("turn_control");                            //get reference of GameController
+        turn_ctr = controller2.GetComponent<Turn_Control>();
+
     }
 
     // Use this for initialization
     void Start () {
 
 
-        mc.units_state[currentPos] = this.gameObject;
+        mc.units_state[currentPos] = gameObject;
 
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
         Vector3 xyPosition = mapInfo[currentPos].transform.position;

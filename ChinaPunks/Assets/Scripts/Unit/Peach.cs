@@ -6,9 +6,6 @@ public class Peach : Unit {
 
 	// Use this for initialization
 	void Start () {
-        GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
-        mc = controller.GetComponent<Map_Control>();                                     //same as above
-
         mc.units_state[currentPos] = gameObject;
         mc.peach_pos = currentPos;
 
