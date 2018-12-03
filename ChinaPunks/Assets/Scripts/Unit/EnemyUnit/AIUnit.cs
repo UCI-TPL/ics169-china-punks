@@ -28,6 +28,7 @@ public class AIUnit : Unit
     int _poison_cd;
     public int poison_damage;
     public int fire_damage;
+    public int trap_damage;
 
     Vector3 moveDestination = new Vector3();
 
@@ -143,6 +144,13 @@ public class AIUnit : Unit
                     {
                         Health_Change(fire_damage);
                         on_fire = true;
+                    }
+
+                    //if moves to trap tile, change health
+                    if (mc.map_tiles[currentPos].GetComponent<Tile>().trap)
+                    {
+                        Health_Change(trap_damage);
+                        mc.map_tiles[currentPos].GetComponent<Tile>().trap.GetComponent<trap>().triggered = true;
                     }
 
                     //attack first
