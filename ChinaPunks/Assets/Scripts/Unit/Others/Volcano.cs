@@ -12,12 +12,19 @@ public class Volcano : Unit {
     public GameObject fire1;
     public GameObject fire2;
 
+    public GameObject BGCurve1;
+    public GameObject BGCurve2;
+
 
     void Update()
     {
-        if(fire_moving){
-            if (!fire1.GetComponent<Fire>().fire_moving && !fire2.GetComponent<Fire>().fire_moving)
-                fire_moving = false;
+        //if(fire_moving){
+        //    if (!fire1.GetComponent<Fire>().fire_moving && !fire2.GetComponent<Fire>().fire_moving)
+        //        fire_moving = false;
+        //}
+
+        if(fire1 == null && fire2 == null){
+            fire_moving = false;
         }
 
     }
@@ -53,6 +60,69 @@ public class Volcano : Unit {
         fire1.GetComponent<Fire>().fire_move();
         fire2.GetComponent<Fire>().fire_move();
         fire_moving = true;
+
+        BGCurve1.GetComponent<BansheeGz.BGSpline.Components.BGCcTrs>().ObjectToManipulate = fire1.transform;
+        BGCurve2.GetComponent<BansheeGz.BGSpline.Components.BGCcTrs>().ObjectToManipulate = fire2.transform;
+
+
+        //move f1
+        Vector3 xyPosition = mc.map_tiles[f1].transform.position;
+        Vector3 end = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);
+        Vector3 start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        BansheeGz.BGSpline.Curve.BGCurvePoint point1 = BGCurve1.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().CreatePointFromWorldPosition(
+            start, (BansheeGz.BGSpline.Curve.BGCurvePoint.ControlTypeEnum)1);
+        BansheeGz.BGSpline.Curve.BGCurvePoint point2 = BGCurve1.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().CreatePointFromWorldPosition(
+            end, (BansheeGz.BGSpline.Curve.BGCurvePoint.ControlTypeEnum)1);
+
+
+        point1.ControlFirstLocal = new Vector3(0f, 0f);
+        point1.ControlSecondLocal = new Vector3(0f, 0f);
+        if (start.x > end.x)
+        {
+            point2.ControlFirstLocal = new Vector3(0.5f, 4f);
+            point2.ControlSecondLocal = new Vector3(-0.5f, -4f);
+        }
+        else
+        {
+            point2.ControlFirstLocal = new Vector3(-0.5f, 4f);
+            point2.ControlSecondLocal = new Vector3(0.5f, -4f);
+        }
+        BGCurve1.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().Clear();
+        BGCurve1.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().AddPoint(point1);
+        BGCurve1.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().AddPoint(point2);
+
+        BGCurve1.GetComponent<BansheeGz.BGSpline.Components.BGCcTrs>().Distance = 0;
+
+
+        //move f2
+        Vector3 xyPosition2 = mc.map_tiles[f2].transform.position;
+        Vector3 end2 = new Vector3(xyPosition2.x, xyPosition2.y + 0.7f, xyPosition2.z - 1.0f);
+        Vector3 start2 = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        BansheeGz.BGSpline.Curve.BGCurvePoint point3 = BGCurve2.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().CreatePointFromWorldPosition(
+            start2, (BansheeGz.BGSpline.Curve.BGCurvePoint.ControlTypeEnum)1);
+        BansheeGz.BGSpline.Curve.BGCurvePoint point4 = BGCurve2.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().CreatePointFromWorldPosition(
+            end2, (BansheeGz.BGSpline.Curve.BGCurvePoint.ControlTypeEnum)1);
+
+
+        point3.ControlFirstLocal = new Vector3(0f, 0f);
+        point3.ControlSecondLocal = new Vector3(0f, 0f);
+        if (start2.x > end2.x)
+        {
+            point4.ControlFirstLocal = new Vector3(0.5f, 4f);
+            point4.ControlSecondLocal = new Vector3(-0.5f, -4f);
+        }
+        else
+        {
+            point4.ControlFirstLocal = new Vector3(-0.5f, 4f);
+            point4.ControlSecondLocal = new Vector3(0.5f, -4f);
+        }
+        BGCurve2.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().Clear();
+        BGCurve2.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().AddPoint(point3);
+        BGCurve2.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().AddPoint(point4);
+
+        BGCurve2.GetComponent<BansheeGz.BGSpline.Components.BGCcTrs>().Distance = 0;
 
 
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Archer : UserUnit {
-    public int skill_cd;
+
 
     public override void Skill(){
         base.Skill();
@@ -51,6 +51,36 @@ public class Archer : UserUnit {
             mc.skill_tiles.Add((current_pos.Key + 2 + current_pos.Value * mc.map_size), temp);
         }
 
-        coolDown += skill_cd;
+
+    }
+
+    public List<int> Attack_range(){
+        List<int> range = new List<int>();
+
+        KeyValuePair<int, int> current_pos = new KeyValuePair<int, int>(mc.picked_pos % mc.map_size, mc.picked_pos / mc.map_size);
+        //top boundary & no teammate character
+        if (current_pos.Value + 2 < mc.map_size)
+        {
+            range.Add(current_pos.Key + (current_pos.Value + 2) * mc.map_size);
+
+        }
+        //bottom boundary & no teammate character
+        if (current_pos.Value - 2 >= 0)
+        {
+            range.Add(current_pos.Key + (current_pos.Value - 2) * mc.map_size);
+        }
+        //left boundary & no teammate character
+        if (current_pos.Key - 2 >= 0)
+        {
+            range.Add(current_pos.Key - 2 + current_pos.Value * mc.map_size);
+        }
+        //right boundary & no teammate character
+        if (current_pos.Key + 2 < mc.map_size)
+        {
+            range.Add(current_pos.Key + 2 + current_pos.Value * mc.map_size);
+        }
+
+
+        return range;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Monk : UserUnit {
 
-    public int skill_cd;
 
     private float attack_dmg;
     private int move_range;
@@ -36,6 +35,8 @@ public class Monk : UserUnit {
         }
         turnComplete = true;
         coolDown += skill_cd;
+        provocative = true;
+        mc.provocative = true;
         mc.reset();
 
     }
@@ -44,5 +45,7 @@ public class Monk : UserUnit {
         base.Reset_Skill();
         attack_damage = attack_dmg;
         moveRange = move_range;
+        provocative = false;
+        mc.provocative = false;
     }
 }

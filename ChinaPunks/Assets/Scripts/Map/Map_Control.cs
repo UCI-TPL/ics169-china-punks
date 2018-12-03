@@ -34,6 +34,10 @@ public class Map_Control : MonoBehaviour
 
     public int peach_pos;
 
+    public bool provocative;
+
+    public GameObject BGCurve;
+
     //bool ShowedClickedEffect;
 
     //0 for original state, 1 for movement, 2 for attack, 3 for PickUp...
@@ -89,29 +93,56 @@ public class Map_Control : MonoBehaviour
     {
         acting_state = 0;
 
-        //detroy selectEffect if picked_pos has playerUnit
+
+        //detroy selectEffect if picked_pos has playerUnit, and deselect the character
         if (picked_pos != -1
            && units_state[picked_pos] != null
-           && units_state[picked_pos].CompareTag("PlayerUnit"))
+            && units_state[picked_pos].CompareTag("PlayerUnit"))
+        {
             units_state[picked_pos].GetComponent<UserUnit>().destory_clickEffect();
+            units_state[picked_pos].GetComponent<UserUnit>().isClicked = false;
+        }
+
 
         //expanded tile empty?
         if (expanded_tiles.Count != 0)
         {
-            //recover tile color
+            //recover tile color from moving state
             foreach (int i in expanded_tiles)
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
             }
         }
-        //recover tile colors
+        //recover tile colors from attack state and pick state
         if (picked_pos != -1)
         {
             foreach (int i in expansion_of_tiles[picked_pos])
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
             }
+
+            //Archer
+            if(units_state[picked_pos] != null && units_state[picked_pos].name == "Archer"){
+                foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
+                {
+                    map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
+            }
+
         }
+        //recover skill tiles
+        if(skill_tiles.Count!=0){
+            foreach(KeyValuePair<int,List<int>> pair in skill_tiles){
+                foreach(int pos in pair.Value){
+                    map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
+            }
+
+            
+        }
+        //disable bgcurve
+        BGCurve.SetActive(false);
+
         expanded_tiles.Clear();
         skill_tiles.Clear();
         first_click = true;
@@ -197,22 +228,16 @@ public class Map_Control : MonoBehaviour
 
         acting_state = 2;
 
-        List<int> attackRange = units_state[picked_pos].GetComponent<UserUnit>().attackRange;
+        List<int> attackRange = new List<int>();
+        //check if it's archer's round
+        if (units_state[picked_pos].name == "Archer")
+            attackRange = units_state[picked_pos].GetComponent<Archer>().Attack_range();
+        else
+            attackRange = expansion_of_tiles[picked_pos];
 
         foreach (int position in attackRange)
         {
-            if (picked_pos + position >= 0 && picked_pos + position <= map_size * map_size - 1)
-            {
-                map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
-                if (picked_pos % 10 == 0 && (picked_pos + position + 1) % 10 == 0)
-                {
-                    map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-                }
-                else if ((picked_pos + 1) % 10 == 0 && (picked_pos + position) % 10 == 0)
-                {
-                    map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-                }
-            }
+            map_tiles[position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
         }
 
         tile_picked = false;
@@ -440,7 +465,9 @@ public class Map_Control : MonoBehaviour
                                 Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
                                   + units_state[pos].gameObject.name);
                                 units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
-
+                                //apply fire effect if attacker is archer
+                                if (units_state[picked_pos].gameObject.name == "Archer")
+                                    units_state[pos].GetComponent<Unit>().on_fire = true;
                             }
                         }
                         //recover the tile colors after using skill
@@ -449,6 +476,9 @@ public class Map_Control : MonoBehaviour
                                 map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
                             }
                         }
+                        //apply skill cd
+                        units_state[picked_pos].GetComponent<UserUnit>().coolDown +=
+                            units_state[picked_pos].GetComponent<UserUnit>().skill_cd;
                         // Player turn ends after using skill
                         units_state[picked_pos].GetComponent<UserUnit>().turnComplete = true;
                         reset();

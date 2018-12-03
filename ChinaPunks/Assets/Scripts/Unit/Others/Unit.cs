@@ -10,6 +10,9 @@ public class Unit : MonoBehaviour {
     public int currentPos;
     public bool hide;
     public bool on_fire;
+    public bool provocative;
+    public bool poisoned;
+    
 
 
 

@@ -30,6 +30,17 @@ public class UserUnit : Unit {
     public int fire_cd;
     int _fire_cd;
 
+    public int poison_cd;
+    int _poison_cd;
+
+    public int poison_damage;
+    public int fire_damage;
+    public int trap_damage;
+
+    public int skill_cd;
+
+
+
 
     Vector3 moveDestination = new Vector3();
 
@@ -130,11 +141,15 @@ public class UserUnit : Unit {
                         hide = false;
                     }
                     //check if next tile is on fire
-                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().on_fire)
-                        on_fire = true;
+                    //if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().on_fire)
+                        //on_fire = true;
 
+                    //if next tile is snow, increase movespeed
                     if (slippery && mc.map_tiles[currentPos].GetComponent<Tile>().tile_type == "Snow")//&& mc.path.Count <= 1)
                         moveSpeed = 3;
+                    //if walk through a fire tile, change health
+                    //if (on_fire && mc.map_tiles[currentPos].GetComponent<Tile>().on_fire)
+                        //Health_Change(fire_damage);
 
                     mc.units_state[currentPos] = null;
                     mc.picked_pos = mc.path[0];
@@ -148,6 +163,20 @@ public class UserUnit : Unit {
                 //if no next tile, moveing ends
                 else
                 {
+                    //if moves to fire tile, change health
+                    if (mc.map_tiles[currentPos].GetComponent<Tile>().on_fire)
+                    {
+                        Health_Change(fire_damage);
+                        on_fire = true;
+                    }
+
+                    //if moves to trap tile, change health
+                    if (mc.map_tiles[currentPos].GetComponent<Tile>().trap)
+                    {
+                        Health_Change(trap_damage);
+                        mc.map_tiles[currentPos].GetComponent<Tile>().trap.GetComponent<trap>().triggered = true;
+                    }
+
                     isClicked = false;
                     mc.character_moving = false;
                     moveSpeed = 1;
@@ -213,6 +242,9 @@ public class UserUnit : Unit {
     }
     public virtual void Reset_FireCD(){
         fire_cd = _fire_cd;
+    }
+    public virtual void Reset_PoisonCD(){
+        poison_cd = _poison_cd;
     }
 
 }

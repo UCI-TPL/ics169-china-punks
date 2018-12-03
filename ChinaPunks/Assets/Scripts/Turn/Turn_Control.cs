@@ -77,6 +77,14 @@ public class Turn_Control : MonoBehaviour
                 {
                     map_ctr.map_tiles[i].GetComponent<Tile>().update_fire();
                 }
+                //traps disappear
+                if (map_ctr.map_tiles[i].GetComponent<Tile>().trap != null)
+                {
+                    if(map_ctr.map_tiles[i].GetComponent<Tile>().trap.GetComponent<trap>().visible_time !=0)
+                        map_ctr.map_tiles[i].GetComponent<Tile>().trap.GetComponent<trap>().visible_time--;
+                }
+
+
                 ////apply fire damage and reduce skill cd
                 if (map_ctr.units_state[i] != null)
                 {
@@ -84,9 +92,12 @@ public class Turn_Control : MonoBehaviour
                     {
                         //apply fire damage to character if on fire
                         if(map_ctr.units_state[i].GetComponent<UserUnit>().on_fire)
-                            map_ctr.units_state[i].GetComponent<UserUnit>().Health_Change(map_ctr.map_tiles[i].GetComponent<Tile>().fire_damage);
+                            map_ctr.units_state[i].GetComponent<UserUnit>().Health_Change(map_ctr.units_state[i].GetComponent<UserUnit>().fire_damage);
+                        //apply poison damage to character if poisoned;
+                        if (map_ctr.units_state[i].GetComponent<UserUnit>().poisoned)
+                            map_ctr.units_state[i].GetComponent<UserUnit>().Health_Change(map_ctr.units_state[i].GetComponent<UserUnit>().poison_damage);
                         //reduce fire cd
-                        if(map_ctr.units_state[i].GetComponent<UserUnit>().on_fire){
+                        if (map_ctr.units_state[i].GetComponent<UserUnit>().on_fire){
                             map_ctr.units_state[i].GetComponent<UserUnit>().fire_cd--;
                             if(map_ctr.units_state[i].GetComponent<UserUnit>().fire_cd == 0){
                                 map_ctr.units_state[i].GetComponent<UserUnit>().on_fire = false;
@@ -98,11 +109,24 @@ public class Turn_Control : MonoBehaviour
                             map_ctr.units_state[i].GetComponent<UserUnit>().coolDown--;
                         if (map_ctr.units_state[i].GetComponent<UserUnit>().coolDown == 0)
                             map_ctr.units_state[i].GetComponent<UserUnit>().Reset_Skill();
+                        //reduce poison cd
+                        if (map_ctr.units_state[i].GetComponent<UserUnit>().poisoned)
+                        {
+                            map_ctr.units_state[i].GetComponent<UserUnit>().poison_cd--;
+                            if (map_ctr.units_state[i].GetComponent<UserUnit>().poison_cd == 0)
+                            {
+                                map_ctr.units_state[i].GetComponent<UserUnit>().poisoned = false;
+                                map_ctr.units_state[i].GetComponent<UserUnit>().Reset_PoisonCD();
+                            }
+                        }
                     }
                     else if (map_ctr.units_state[i].tag == "EnemyUnit")
                     {   //apply fire damage to enemy
                         if (map_ctr.units_state[i].GetComponent<AIUnit>().on_fire)
-                            map_ctr.units_state[i].GetComponent<AIUnit>().Health_Change(map_ctr.map_tiles[i].GetComponent<Tile>().fire_damage);
+                            map_ctr.units_state[i].GetComponent<AIUnit>().Health_Change(map_ctr.units_state[i].GetComponent<AIUnit>().fire_damage);
+                        //apply poison damage to character if poisoned;
+                        if (map_ctr.units_state[i].GetComponent<AIUnit>().poisoned)
+                            map_ctr.units_state[i].GetComponent<AIUnit>().Health_Change(map_ctr.units_state[i].GetComponent<AIUnit>().poison_damage);
                         //reduce fire cd
                         if (map_ctr.units_state[i].GetComponent<AIUnit>().on_fire)
                         {
@@ -113,15 +137,31 @@ public class Turn_Control : MonoBehaviour
                                 map_ctr.units_state[i].GetComponent<AIUnit>().Reset_FireCD();
                             }
                         }
+                        //reduce poison cd
+                        if (map_ctr.units_state[i].GetComponent<AIUnit>().poisoned)
+                        {
+                            map_ctr.units_state[i].GetComponent<AIUnit>().poison_cd--;
+                            if (map_ctr.units_state[i].GetComponent<AIUnit>().poison_cd == 0)
+                            {
+                                map_ctr.units_state[i].GetComponent<AIUnit>().poisoned = false;
+                                map_ctr.units_state[i].GetComponent<AIUnit>().Reset_PoisonCD();
+                            }
+                        }
                     }
                 }
 
             }
 
-
-
             map_ctr.reset();
             endTurnButton.SetActive(false);
+
+            //reset AI turncomplete
+            foreach (GameObject ob in map_ctr.AI_units)
+            {
+                ob.GetComponent<AIUnit>().turnComplete = false;
+                ob.GetComponent<AIUnit>().moveComplete = false;
+
+            }
 
             StartCoroutine(map_routine());
 
@@ -153,9 +193,12 @@ public class Turn_Control : MonoBehaviour
 
     IEnumerator AIBlocker()
     {
+        List<GameObject> temp_AI_units = new List<GameObject>(map_ctr.AI_units);
 
-        foreach (GameObject ob in map_ctr.AI_units)
+        foreach (GameObject ob in temp_AI_units)
         {
+
+            Debug.Log(ob.name);
             AIUnit enemy = ob.GetComponent<AIUnit>();
 
             //Find where the AI unit should go
@@ -177,7 +220,9 @@ public class Turn_Control : MonoBehaviour
             //AI unit move in the front end
             enemy.acting = true;
             yield return new WaitUntil(() => !enemy.acting);
+
         }
+
 
         gameRound = "Player";
         endTurnButton.SetActive(true);
@@ -211,7 +256,15 @@ public class Turn_Control : MonoBehaviour
                 && !map_ctr.units_state[i].CompareTag(unitTag)
                 && !map_ctr.units_state[i].CompareTag("Block")
                 && !map_ctr.units_state[i].GetComponent<Unit>().hide)
-                return true;
+            {
+                if(!map_ctr.provocative)
+                    return true;    
+                else if(map_ctr.units_state[i].GetComponent<Unit>().provocative)
+                {
+                    return true;
+                }
+            }
+                
         }
         return false;
     }

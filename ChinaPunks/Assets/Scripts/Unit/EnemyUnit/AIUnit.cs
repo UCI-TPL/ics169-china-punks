@@ -24,8 +24,14 @@ public class AIUnit : Unit
 
     public int fire_cd;
     int _fire_cd;
+    public int poison_cd;
+    int _poison_cd;
+    public int poison_damage;
+    public int fire_damage;
 
     Vector3 moveDestination = new Vector3();
+
+    private int myIndex;
 
     // Use this for initialization
     void Start()
@@ -33,8 +39,9 @@ public class AIUnit : Unit
         GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
         mc = controller.GetComponent<Map_Control>();                                     //same as above
 
-        mc.units_state[currentPos] = this.gameObject;
-        mc.AI_units.Add(this.gameObject);
+        mc.units_state[currentPos] = gameObject;
+        mc.AI_units.Add(gameObject);
+        myIndex = mc.AI_units.Count;
 
 
 
@@ -115,11 +122,13 @@ public class AIUnit : Unit
                         mc.path.Add(next_tile);
                     }
                     //check if next tile is on fire
-                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().on_fire)
-                        on_fire = true;
+                    //if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().on_fire)
+                        //on_fire = true;
 
+                    //if next tile is snow, increase movespeed
                     if (slippery && mc.path.Count <= 1)
                         moveSpeed = 3;
+
                     mc.units_state[currentPos] = null;
                     currentPos = mc.path[0];
                     mc.units_state[currentPos] = gameObject;
@@ -127,30 +136,63 @@ public class AIUnit : Unit
                     moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
                     mc.character_moving = true;
                 }
+                //AI finished moving, start attacking or picking the peach
                 else{
-                    foreach (int position in attackRange)
+                    //if moves to fire tile, change health
+                    if (mc.map_tiles[currentPos].GetComponent<Tile>().on_fire)
                     {
-                        if (currentPos + position >= 0 && currentPos + position <= mc.map_size * mc.map_size - 1)
+                        Health_Change(fire_damage);
+                        on_fire = true;
+                    }
+
+                    //attack first
+                    if (!turnComplete)
+                    {
+                        foreach (int position in attackRange)
                         {
-                            if (mc.units_state[currentPos + position] != null 
-                                && mc.units_state[currentPos + position].gameObject.tag == "PlayerUnit"
-                                && !hasPeach
-                                && !mc.units_state[currentPos + position].GetComponent<Unit>().hide)
+                            if (currentPos + position >= 0 && currentPos + position <= mc.map_size * mc.map_size - 1)
                             {
-                                mc.units_state[currentPos + position].GetComponent<UserUnit>().Health_Change(attack_damage);
-                                break;
+                                if (mc.units_state[currentPos + position] != null
+                                    && mc.units_state[currentPos + position].gameObject.tag == "PlayerUnit"
+                                    && !hasPeach
+                                    && !mc.units_state[currentPos + position].GetComponent<Unit>().hide)
+                                {
+                                    if (!mc.provocative)
+                                    {
+                                        mc.units_state[currentPos + position].GetComponent<UserUnit>().Health_Change(attack_damage);
+                                        turnComplete = true;
+                                        break;
+                                    }
+                                    else if (mc.units_state[currentPos + position].GetComponent<UserUnit>().provocative)
+                                    {
+                                        mc.units_state[currentPos + position].GetComponent<UserUnit>().Health_Change(attack_damage);
+                                        turnComplete = true;
+                                        break;
+                                    }
+                                }
+
                             }
-                            else if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.CompareTag("Peach")
-                                     && !hasPeach)
+                        }
+                    }
+                    //if didn't attack, check if can pick the peach
+                    if(!turnComplete)
+                    {
+                        foreach (int position in pickRange)
+                        {
+                            if (currentPos + position >= 0 && currentPos + position <= mc.map_size * mc.map_size - 1)
                             {
-                                GameObject peach = mc.units_state[currentPos + position].gameObject;
-                                mc.peach_pos = currentPos;
+                                if (mc.units_state[currentPos + position] != null && mc.units_state[currentPos + position].gameObject.CompareTag("Peach")
+                                         && !hasPeach)
+                                {
+                                    GameObject peach = mc.units_state[currentPos + position].gameObject;
+                                    mc.peach_pos = currentPos;
 
-                                hasPeach = true;
-
-                                mc.units_state[currentPos + position] = null;
-                                Destroy(peach);
-                                break;
+                                    hasPeach = true;
+                                    turnComplete = true;
+                                    mc.units_state[currentPos + position] = null;
+                                    Destroy(peach);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -168,9 +210,9 @@ public class AIUnit : Unit
     public override void Health_Change(float damage)
     {
         base.Health_Change(damage);
-        mc.AI_units.Remove(this.gameObject);
 
-        anim.Play("Attacked");
+        //if AI dies, destory it after the anim finishes
+        StartCoroutine(waitforanim(anim));
 
         if (hasPeach)
         {
@@ -192,5 +234,24 @@ public class AIUnit : Unit
     public virtual void Reset_FireCD()
     {
         fire_cd = _fire_cd;
+    }
+    public virtual void Reset_PoisonCD()
+    {
+        poison_cd = _poison_cd;
+    }
+
+    IEnumerator waitforanim(Animator anim){
+        anim.Play("Attacked");
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length-0.1f);
+        if (health <= 0)
+        {
+            mc.AI_units.Remove(gameObject);
+            gameObject.SetActive(false);
+        }
+
+        //while (
+        //    true
+        ////Time.time < t + anim.GetCurrentAnimatorStateInfo(0).length);
+        //;
     }
 }
