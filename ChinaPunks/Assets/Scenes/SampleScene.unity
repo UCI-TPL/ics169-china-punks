@@ -1520,7 +1520,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93fac899f931e49d6ad269afd46f6ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e596c07de8c924f66b33b0d45d3c9d08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1539,7 +1539,7 @@ Transform:
   m_GameObject: {fileID: 140094535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: -0.5, z: -0.38150883}
-  m_LocalScale: {x: 0.70586, y: 0.70586, z: 0.70586}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -8669,7 +8669,7 @@ MonoBehaviour:
   hidden: 0
   parent: {fileID: 803726899}
   ccName: 
-  distance: 2.7479024
+  distance: 0
   handlesScale: 1
   handlesColor: {r: 1, g: 1, b: 1, a: 1}
   objectToManipulate: {fileID: 1076355239}
@@ -19440,7 +19440,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1360653022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.25, z: 0.03}
+  m_LocalPosition: {x: -4.5, y: 0.25, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315454260}
@@ -20725,7 +20725,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 93fac899f931e49d6ad269afd46f6ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e596c07de8c924f66b33b0d45d3c9d08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21940,7 +21940,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726747351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0.5, z: 0.03}
+  m_LocalPosition: {x: -4, y: 0.5, z: 0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315454260}
