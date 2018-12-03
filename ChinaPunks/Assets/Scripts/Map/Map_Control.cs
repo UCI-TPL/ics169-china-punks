@@ -154,9 +154,15 @@ public class Map_Control : MonoBehaviour
         playerHUD_showed = false;
     }
 
-    public void Character_PickUp()
-    {
-        // reset color
+    void reset_color(){
+        if (units_state[picked_pos] != null && units_state[picked_pos].name == "Archer")
+        {
+            foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
+            {
+                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            }
+        }
+
         if (expanded_tiles.Count != 0)
         {
             foreach (int i in expanded_tiles)
@@ -164,6 +170,31 @@ public class Map_Control : MonoBehaviour
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
             }
         }
+
+        //recover tile colors from attack state and pick state
+        if (picked_pos != -1)
+        {
+            foreach (int i in expansion_of_tiles[picked_pos])
+            {
+                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            }
+
+            //Archer
+            if (units_state[picked_pos] != null && units_state[picked_pos].name == "Archer")
+            {
+                foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
+                {
+                    map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
+            }
+
+        }
+    }
+
+    public void Character_PickUp()
+    {
+        // reset color
+        reset_color();
 
         acting_state = 3;
 
@@ -218,13 +249,7 @@ public class Map_Control : MonoBehaviour
     public void Character_Attack()
     {
         // reset color
-        if (expanded_tiles.Count != 0)
-        {
-            foreach (int i in expanded_tiles)
-            {
-                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            }
-        }
+        reset_color();
 
         acting_state = 2;
 
@@ -247,13 +272,7 @@ public class Map_Control : MonoBehaviour
     public void Character_Skill()
     {
         // reset color
-        if (expanded_tiles.Count != 0)
-        {
-            foreach (int i in expanded_tiles)
-            {
-                map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            }
-        }
+        reset_color();
 
         //clear skill_tiles, just in case
         skill_tiles.Clear();
