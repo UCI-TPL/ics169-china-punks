@@ -3,4 +3,4 @@ Peaches of Immortality is a 2D SLG turn-based chess-like game. The major goal of
 
 Contorl:Left-Click to select characters
 
-After selection: Player HUD will come out which will have Attack Button, Move Button and Reset Button
+After selection: Buttons will show on the bottom of scene which will include Attack Button, Skill Button and PickUp Button.
