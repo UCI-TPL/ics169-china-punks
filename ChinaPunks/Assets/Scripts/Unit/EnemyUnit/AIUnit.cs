@@ -217,10 +217,10 @@ public class AIUnit : Unit
 
     public override void Health_Change(float damage)
     {
-        base.Health_Change(damage);
-
         //if AI dies, destory it after the anim finishes
         StartCoroutine(waitforanim(anim));
+        //anim.Play("Attacked");
+        base.Health_Change(damage);
 
         if (hasPeach)
         {
@@ -254,7 +254,9 @@ public class AIUnit : Unit
         if (health <= 0)
         {
             mc.AI_units.Remove(gameObject);
-            gameObject.SetActive(false);
+            Debug.Log(this.gameObject.name + " is Dead!");
+            mc.units_state[currentPos] = null;
+            Destroy(this.gameObject);
         }
 
         //while (

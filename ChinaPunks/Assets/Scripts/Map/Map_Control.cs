@@ -149,7 +149,6 @@ public class Map_Control : MonoBehaviour
         tile_picked = false;
         pickTile = null;
         pickEndTile = null;
-        picked_pos = -1;
 
         playerHUD_showed = false;
     }

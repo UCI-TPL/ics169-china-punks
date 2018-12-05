@@ -54,11 +54,5 @@ public class Unit : MonoBehaviour {
     public virtual void Health_Change(float damage){
         health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());
-
-        if (health <= 0){
-            Debug.Log(this.gameObject.name + " is Dead!");
-            mc.units_state[currentPos] = null;
-            Destroy(this.gameObject);
-        }
     }
 }

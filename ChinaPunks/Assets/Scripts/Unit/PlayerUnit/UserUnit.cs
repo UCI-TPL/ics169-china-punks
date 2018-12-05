@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserUnit : Unit {
+public class UserUnit : Unit
+{
 
     public bool hasPeach = false;
     public bool isClicked = false;
@@ -46,7 +47,8 @@ public class UserUnit : Unit {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         //currentPos = 11;
         //moveRange = 2;
         mc.units_state[currentPos] = gameObject;
@@ -58,12 +60,14 @@ public class UserUnit : Unit {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
         if (isClicked && turn_ctr.gameRound == "Player")
         {
             TurnUpdate();
-            if(mc.character_moving){
+            if (mc.character_moving)
+            {
                 float step = moveSpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, moveDestination, step);
             }
@@ -98,13 +102,15 @@ public class UserUnit : Unit {
             moveDestination = mapInfo[mc.path[0]].transform.position;
             moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
             //already move to the destination(next tile)
-            if (transform.position == moveDestination && currentPos == mc.path[0]){
+            if (transform.position == moveDestination && currentPos == mc.path[0])
+            {
                 mc.path.RemoveAt(0);
                 //check if there is next tile to go to
                 if (mc.path.Count > 0)
                 {
                     //check if next tile is snow tile
-                    if(mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Snow"){
+                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Snow")
+                    {
                         Debug.Log("Slippery!!!!!!!!!!!!!!!");
                         int next_tile = mc.path[0];
                         int offset = mc.path[0] - currentPos;
@@ -127,29 +133,32 @@ public class UserUnit : Unit {
                         }
                     }
                     //check if next tile is muddy tile
-                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Muddy"){
+                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Muddy")
+                    {
                         Debug.Log("Muddy!!!!!!!!!!!!!!!");
                         int next_tile = mc.path[0];
                         mc.path = new List<int>();
                         mc.path.Add(next_tile);
                     }
                     //check if next tile is hide tile
-                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Hide"){
+                    if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Hide")
+                    {
                         hide = true;
                     }
-                    else{
+                    else
+                    {
                         hide = false;
                     }
                     //check if next tile is on fire
                     //if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().on_fire)
-                        //on_fire = true;
+                    //on_fire = true;
 
                     //if next tile is snow, increase movespeed
                     if (slippery && mc.map_tiles[currentPos].GetComponent<Tile>().tile_type == "Snow")//&& mc.path.Count <= 1)
                         moveSpeed = 3;
                     //if walk through a fire tile, change health
                     //if (on_fire && mc.map_tiles[currentPos].GetComponent<Tile>().on_fire)
-                        //Health_Change(fire_damage);
+                    //Health_Change(fire_damage);
 
                     mc.units_state[currentPos] = null;
                     mc.picked_pos = mc.path[0];
@@ -182,7 +191,7 @@ public class UserUnit : Unit {
                     moveSpeed = 1;
                     slippery = false;
                 }
-            }                                                                                                                                           
+            }
         }
 
     }
@@ -190,8 +199,9 @@ public class UserUnit : Unit {
     public override void Health_Change(float damage)
     {
         base.Health_Change(damage);
+        StartCoroutine(waitforanim(anim));
 
-        anim.Play("Attacked");
+        //anim.Play("Attacked");
         hide = false;
 
         if (hasPeach)
@@ -201,9 +211,12 @@ public class UserUnit : Unit {
             {
                 if (mc.units_state[i + peach_pos] == null)
                 {
-                    if (i + peach_pos >= 0 && i + peach_pos <= mc.map_size*mc.map_size-1){
-                        if (peach_pos % 10 != 0){
-                            if ((peach_pos + i) % 10 != 0){
+                    if (i + peach_pos >= 0 && i + peach_pos <= mc.map_size * mc.map_size - 1)
+                    {
+                        if (peach_pos % 10 != 0)
+                        {
+                            if ((peach_pos + i) % 10 != 0)
+                            {
                                 GameObject peach = Instantiate(mc.PeachPrefab);
                                 peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
                                 break;
@@ -215,9 +228,17 @@ public class UserUnit : Unit {
             hasPeach = false;
         }
         healthFillImage.fillAmount = health / 100f;
+
+        //if (health <= 0)
+        //{
+        //    Debug.Log(this.gameObject.name + " is Dead!");
+        //    mc.units_state[currentPos] = null;
+        //    Destroy(this.gameObject);
+        //}
     }
 
-    public void show_clickEffect(){
+    public void show_clickEffect()
+    {
         if (!selectEffect_exist)
         {
             _selectEffect = Instantiate(selectEffect, gameObject.GetComponent<Transform>());
@@ -226,7 +247,8 @@ public class UserUnit : Unit {
         }
     }
 
-    public void destory_clickEffect(){
+    public void destory_clickEffect()
+    {
         if (selectEffect_exist)
         {
             Destroy(_selectEffect);
@@ -234,17 +256,33 @@ public class UserUnit : Unit {
         }
     }
 
-    public virtual void Skill(){
+    public virtual void Skill()
+    {
 
     }
-    public virtual void Reset_Skill(){
+    public virtual void Reset_Skill()
+    {
 
     }
-    public virtual void Reset_FireCD(){
+    public virtual void Reset_FireCD()
+    {
         fire_cd = _fire_cd;
     }
-    public virtual void Reset_PoisonCD(){
+    public virtual void Reset_PoisonCD()
+    {
         poison_cd = _poison_cd;
     }
 
+    IEnumerator waitforanim(Animator anim)
+    {
+        anim.Play("Attacked");
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
+        if (health <= 0)
+        {
+            Debug.Log(this.gameObject.name + " is Dead!");
+            mc.units_state[currentPos] = null;
+            Destroy(this.gameObject);
+        }
+
+    }
 }

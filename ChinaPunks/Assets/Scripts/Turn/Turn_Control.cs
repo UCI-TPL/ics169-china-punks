@@ -67,6 +67,7 @@ public class Turn_Control : MonoBehaviour
     //Change round between player and AI, AI units from different group all act in "AI" round
     public void changeRound()
     {
+
         if (gameRound == "Player")
         {
 
@@ -156,11 +157,14 @@ public class Turn_Control : MonoBehaviour
             endTurnButton.SetActive(false);
 
             //reset AI turncomplete
-            foreach (GameObject ob in map_ctr.AI_units)
+            if (map_ctr.AI_units.Count >= 1)
             {
-                ob.GetComponent<AIUnit>().turnComplete = false;
-                ob.GetComponent<AIUnit>().moveComplete = false;
+                foreach (GameObject ob in map_ctr.AI_units)
+                {
+                    ob.GetComponent<AIUnit>().turnComplete = false;
+                    ob.GetComponent<AIUnit>().moveComplete = false;
 
+                }
             }
 
             StartCoroutine(map_routine());

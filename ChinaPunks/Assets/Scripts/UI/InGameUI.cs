@@ -54,7 +54,7 @@ public class InGameUI : MonoBehaviour {
         if (map_ctr.playerHUD_showed)
         {
 			//pick tile has player unit
-            if (map_ctr.units_state[map_ctr.picked_pos] != null 
+            if (map_ctr.picked_pos != -1 && map_ctr.units_state[map_ctr.picked_pos] != null 
                 && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag == "PlayerUnit")
             {
                 //Show player HUD
