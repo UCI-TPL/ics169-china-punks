@@ -30,6 +30,8 @@ public class AIUnit : Unit
     public int fire_damage;
     public int trap_damage;
 
+    public bool anim_is_playing;
+
     Vector3 moveDestination = new Vector3();
 
     private int myIndex;
@@ -221,6 +223,11 @@ public class AIUnit : Unit
         StartCoroutine(waitforanim(anim));
         //anim.Play("Attacked");
         base.Health_Change(damage);
+        if (health <= 0){
+            moveComplete = true;
+            turnComplete = true;
+            acting = false;
+        }
 
         if (hasPeach)
         {
@@ -250,7 +257,9 @@ public class AIUnit : Unit
 
     IEnumerator waitforanim(Animator anim){
         anim.Play("Attacked");
+        mc.animation_is_playing = true;
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length-0.1f);
+        mc.animation_is_playing = false;
         if (health <= 0)
         {
             mc.AI_units.Remove(gameObject);

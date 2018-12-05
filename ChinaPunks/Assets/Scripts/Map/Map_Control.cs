@@ -38,6 +38,8 @@ public class Map_Control : MonoBehaviour
 
     public GameObject BGCurve;
 
+    public bool animation_is_playing;
+
     //bool ShowedClickedEffect;
 
     //0 for original state, 1 for movement, 2 for attack, 3 for PickUp...

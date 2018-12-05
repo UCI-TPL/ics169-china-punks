@@ -174,6 +174,9 @@ public class Turn_Control : MonoBehaviour
 
     IEnumerator map_routine()
     {
+        yield return new WaitUntil(() => !map_ctr.animation_is_playing);
+
+
         gameRound = "Map";
         Debug.Log("turn :" + gameRound);
         //Volcano

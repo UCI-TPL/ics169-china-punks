@@ -4127,7 +4127,7 @@ Transform:
   m_GameObject: {fileID: 419502468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.8097656, y: -1.0292068, z: 7.310707}
-  m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 836529962}
   m_RootOrder: 1
@@ -4203,7 +4203,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa47c6af9e5c1734b9250fee4078d48d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d34d30d6b34a64500ac9b37d41c78507, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4360,7 +4360,7 @@ Transform:
   m_GameObject: {fileID: 438940439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.8097656, y: -1.0292068, z: 7.310707}
-  m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 836529962}
   m_RootOrder: 3
@@ -4436,7 +4436,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa47c6af9e5c1734b9250fee4078d48d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d34d30d6b34a64500ac9b37d41c78507, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5885,6 +5885,7 @@ MonoBehaviour:
   poison_damage: 10
   fire_damage: 10
   trap_damage: 10
+  anim_is_playing: 0
 --- !u!212 &609640831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6159,7 +6160,7 @@ Transform:
   m_GameObject: {fileID: 692486666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.8097656, y: -1.0292068, z: 7.310707}
-  m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 836529962}
   m_RootOrder: 2
@@ -6235,7 +6236,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa47c6af9e5c1734b9250fee4078d48d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d34d30d6b34a64500ac9b37d41c78507, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -22734,7 +22735,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa47c6af9e5c1734b9250fee4078d48d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d34d30d6b34a64500ac9b37d41c78507, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -22753,7 +22754,7 @@ Transform:
   m_GameObject: {fileID: 1876904072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.8097656, y: -1.0292068, z: 7.310707}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 836529962}
   m_RootOrder: 0
@@ -24260,6 +24261,7 @@ MonoBehaviour:
   peach_pos: 0
   provocative: 0
   BGCurve: {fileID: 1186053753}
+  animation_is_playing: 0
   acting_state: 0
   AI_units: []
   PeachPrefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
