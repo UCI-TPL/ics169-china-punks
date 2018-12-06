@@ -1922,7 +1922,7 @@ MonoBehaviour:
   tile_type: 
   on_fire: 0
   fire_cd: 2
-  trap: {fileID: 1296132908931726, guid: 775eacff3c0804ac7bbf7cdedbc4295f, type: 2}
+  trap: {fileID: 0}
 --- !u!61 &215646335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15405,6 +15405,7 @@ MonoBehaviour:
   peach_pos: 0
   provocative: 0
   BGCurve: {fileID: 331478502}
+  animation_is_playing: 0
   acting_state: 0
   AI_units: []
   PeachPrefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
