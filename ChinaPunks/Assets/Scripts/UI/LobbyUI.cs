@@ -68,6 +68,20 @@ public class LobbyUI : MonoBehaviour {
         //AudioListener.volume = SoundVol.value;
     }
 
+    public void StartLevel1(){
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void StartLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void StartLevel3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+
     public void StartOnClick()
     {
         SceneManager.LoadScene(lvName);

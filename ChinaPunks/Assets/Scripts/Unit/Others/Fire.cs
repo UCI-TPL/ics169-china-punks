@@ -38,7 +38,7 @@ public class Fire : MonoBehaviour {
                 fire_moving = false;
                 if (mc.map_tiles[pos].GetComponent<Tile>().tile_type == "Hide")
                 {
-                    mc.map_tiles[pos].transform.GetChild(0).gameObject.SetActive(false);
+                    mc.map_tiles[pos].transform.GetChild(1).gameObject.SetActive(false);
                 }
                 mc.map_tiles[pos].GetComponent<Tile>().tile_type = "";
                 mc.map_tiles[pos].GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Lava")[0];

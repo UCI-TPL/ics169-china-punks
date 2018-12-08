@@ -61,15 +61,16 @@ public class Map_Control : MonoBehaviour
 
     //tiles for showing skill range
     public Dictionary<int, List<int>> skill_tiles = new Dictionary<int, List<int>>();
+    public List<int> attackRange = new List<int>();
 
     public bool character_moving = false;
 
     private void Awake()
     {
-        for (int i = 0; i < map_size * map_size; i++)
-        {
-            units_state.Add(null);
-        }
+        //for (int i = 0; i < map_size * map_size; i++)
+        //{
+        //    units_state.Add(null);
+        //}
     }
     // Use this for initialization
     void Start()
@@ -124,7 +125,7 @@ public class Map_Control : MonoBehaviour
             }
 
             //Archer
-            if(units_state[picked_pos] != null && units_state[picked_pos].name == "Archer"){
+            if(units_state[picked_pos] != null && units_state[picked_pos].name.StartsWith("Archer")){
                 foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
                 {
                     map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
@@ -132,6 +133,13 @@ public class Map_Control : MonoBehaviour
             }
 
         }
+        //recover attack range tile colors;
+        foreach(int pos in attackRange){
+            map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
+        attackRange.Clear();
+
+
         //recover skill tiles
         if(skill_tiles.Count!=0){
             foreach(KeyValuePair<int,List<int>> pair in skill_tiles){
@@ -156,7 +164,7 @@ public class Map_Control : MonoBehaviour
     }
 
     void reset_color(){
-        if (units_state[picked_pos] != null && units_state[picked_pos].name == "Archer")
+        if (units_state[picked_pos] != null && units_state[picked_pos].name.StartsWith("Archer"))
         {
             foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
             {
@@ -181,7 +189,7 @@ public class Map_Control : MonoBehaviour
             }
 
             //Archer
-            if (units_state[picked_pos] != null && units_state[picked_pos].name == "Archer")
+            if (units_state[picked_pos] != null && units_state[picked_pos].name.StartsWith("Archer"))
             {
                 foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
                 {
@@ -249,17 +257,24 @@ public class Map_Control : MonoBehaviour
 
     public void Character_Attack()
     {
+
+        Debug.Log("atk!!!!!!!!");
         // reset color
         reset_color();
 
         acting_state = 2;
 
-        List<int> attackRange = new List<int>();
         //check if it's archer's round
-        if (units_state[picked_pos].name == "Archer")
+        if (units_state[picked_pos].name.StartsWith("Archer"))
             attackRange = units_state[picked_pos].GetComponent<Archer>().Attack_range();
         else
-            attackRange = expansion_of_tiles[picked_pos];
+        {
+            Debug.Log("atkRage!!!!!!!!!!!!!!!");
+            Debug.Log(expansion_of_tiles.Count);
+            attackRange = new List<int>( expansion_of_tiles[picked_pos]);
+            foreach (int pos in attackRange)
+                Debug.Log(pos);
+        }
 
         foreach (int position in attackRange)
         {
@@ -409,7 +424,9 @@ public class Map_Control : MonoBehaviour
                 else if (acting_state == 2)
                 {
                     //check second-clicked tile has unit
-                    if (units_state[map_tiles_pos[pickEndTile]] != null && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit")
+                    if (units_state[map_tiles_pos[pickEndTile]] != null 
+                        && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit"
+                        && attackRange.Contains(map_tiles_pos[pickEndTile]) )
                     {
                         float attack_damage = units_state[picked_pos].GetComponent<UserUnit>().attack_damage;
                         Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
@@ -480,14 +497,20 @@ public class Map_Control : MonoBehaviour
                         float skill_damage = units_state[picked_pos].GetComponent<UserUnit>().skill_damage;
                         foreach (int pos in skill_tiles[map_tiles_pos[pickEndTile]]){
                             //there is unit on this tile
-                            if(units_state[pos]!= null){
+                            //apply fire effect if attacker is archer
+                            if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
+                            {
+                                map_tiles[pos].GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Mud")[0];
+                                if(map_tiles[pos].GetComponent<Tile>().tile_type == "Hide")
+                                    map_tiles[pos].transform.GetChild(1).gameObject.SetActive(false);
+                                map_tiles[pos].GetComponent<Tile>().tile_type = "Muddy";
+                            }
+                            else if (units_state[pos]!= null){
                                 //showing attack message
                                 Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
                                   + units_state[pos].gameObject.name);
+                                
                                 units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
-                                //apply fire effect if attacker is archer
-                                if (units_state[picked_pos].gameObject.name == "Archer")
-                                    units_state[pos].GetComponent<Unit>().on_fire = true;
                             }
                         }
                         //recover the tile colors after using skill
@@ -598,12 +621,13 @@ public class Map_Control : MonoBehaviour
                     if (userMode == "AI" && solution.Count != 0)                  //For AI, if found a path to attack some Unit, return this path
                         return solution;
                 }
+
                 searched_tiles.Add(pos_to_explore);
             }
             //update tiles_to_explore to the list of newly expaneded tiles
             List<int> temp = new List<int>();
             foreach (int tile_pos in all_paths.Keys)
-                if (!searched_tiles.Contains(tile_pos))
+                if (!searched_tiles.Contains(tile_pos) && map_tiles[tile_pos].GetComponent<Tile>().tile_type != "Muddy")
                     temp.Add(tile_pos);
 
             temp_tiles_to_explore = new List<int>(temp);

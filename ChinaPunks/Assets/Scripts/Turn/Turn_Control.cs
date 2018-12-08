@@ -67,7 +67,7 @@ public class Turn_Control : MonoBehaviour
     //Change round between player and AI, AI units from different group all act in "AI" round
     public void changeRound()
     {
-
+        map_ctr.turn_count++;
         if (gameRound == "Player")
         {
 
