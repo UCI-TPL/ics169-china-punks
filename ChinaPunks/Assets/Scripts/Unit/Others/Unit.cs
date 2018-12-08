@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour {
 
 
     public float health;
+    public float current_health;
 
     //Check if a unit has complete its turn
     public bool moveComplete;
@@ -52,7 +53,7 @@ public class Unit : MonoBehaviour {
     }
 
     public virtual void Health_Change(float damage){
-        health -= damage;
+        current_health -= damage;
         Debug.Log("Ahhhh, damage taken: " + damage.ToString());
     }
 }

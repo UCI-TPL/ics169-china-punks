@@ -57,6 +57,7 @@ public class UserUnit : Unit
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
         _fire_cd = fire_cd;
+        current_health = health;
     }
 
     // Update is called once per frame
@@ -227,7 +228,7 @@ public class UserUnit : Unit
             }
             hasPeach = false;
         }
-        healthFillImage.fillAmount = health / 100f;
+        healthFillImage.fillAmount = current_health / health;
 
         //if (health <= 0)
         //{
@@ -277,7 +278,7 @@ public class UserUnit : Unit
     {
         anim.Play("Attacked");
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
-        if (health <= 0)
+        if (current_health <= 0)
         {
             Debug.Log(this.gameObject.name + " is Dead!");
             mc.units_state[currentPos] = null;

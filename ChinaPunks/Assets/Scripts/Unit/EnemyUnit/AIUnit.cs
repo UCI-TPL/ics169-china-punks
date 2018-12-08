@@ -52,6 +52,7 @@ public class AIUnit : Unit
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
         _fire_cd = fire_cd;
+        current_health = health;
     }
 
     // Update is called once per frame
@@ -243,7 +244,7 @@ public class AIUnit : Unit
             }
             hasPeach = false;
         }
-        healthFillImage.fillAmount = health / 100f;
+        healthFillImage.fillAmount = current_health / health;
     }
 
     public virtual void Reset_FireCD()
@@ -260,7 +261,7 @@ public class AIUnit : Unit
         mc.animation_is_playing = true;
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length-0.1f);
         mc.animation_is_playing = false;
-        if (health <= 0)
+        if (current_health <= 0)
         {
             mc.AI_units.Remove(gameObject);
             Debug.Log(this.gameObject.name + " is Dead!");

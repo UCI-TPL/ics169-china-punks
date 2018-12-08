@@ -115,7 +115,7 @@ MonoBehaviour:
   tile_type: 
   on_fire: 0
   fire_cd: 2
-  trap: {fileID: 1296132908931726, guid: 775eacff3c0804ac7bbf7cdedbc4295f, type: 2}
+  trap: {fileID: 0}
 --- !u!212 &212003586065186558
 SpriteRenderer:
   m_ObjectHideFlags: 1
