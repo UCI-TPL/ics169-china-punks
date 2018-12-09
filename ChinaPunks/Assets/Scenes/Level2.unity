@@ -298,7 +298,7 @@ MonoBehaviour:
     type: 2}
   LevelManager_prefab: {fileID: 1829822790954528, guid: dff0c64881afc4a2c91fb157bd4b0784,
     type: 2}
-  Dialogue_prefab: {fileID: 1291581799926946, guid: 9b4e37bfcff174d04bf9fa80cfd365c8,
+  Dialogue_prefab: {fileID: 1851928659628838, guid: ee92cbc722225423d9dac50a842db01c,
     type: 2}
   level: 2
   Tiles_prefabs:

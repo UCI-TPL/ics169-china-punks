@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour {
 
         if (Level == 1)
         {
-            InGameHUD = InGameUI.transform.GetChild(2).gameObject;
+            InGameHUD = InGameUI.transform.GetChild(4).gameObject;
             InGameHUD.transform.GetChild(0).gameObject.SetActive(false);
             InGameHUD.transform.GetChild(1).gameObject.SetActive(false);
             InGameHUD.transform.GetChild(2).gameObject.SetActive(false);
@@ -57,16 +57,19 @@ public class LevelManager : MonoBehaviour {
                     DialogueManager.gameObject.SetActive(false);
                 }
             }
-
-            if (curt_turn_count == 3)
+            if (Level == 1)
             {
-                InGameHUD.transform.GetChild(0).gameObject.SetActive(true);
-            }
-            if (curt_turn_count == 4)
-            {
-                InGameHUD.transform.GetChild(2).gameObject.SetActive(true);
-            }
 
+                if (curt_turn_count == 3)
+                {
+                    InGameHUD.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                if (curt_turn_count == 4)
+                {
+                    InGameHUD.transform.GetChild(2).gameObject.SetActive(true);
+                }
+
+            }
             prev_turn_count = curt_turn_count;
         }
 	}
