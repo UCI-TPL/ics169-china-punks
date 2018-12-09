@@ -69,17 +69,23 @@ public class LobbyUI : MonoBehaviour {
     }
 
     public void StartLevel1(){
-        SceneManager.LoadScene("Level1");
+        SceneManager.UnloadSceneAsync("Player_Camp");
+        SceneManager.LoadSceneAsync("Level1");
+        //Application.LoadLevel("Level1");
     }
 
     public void StartLevel2()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.UnloadSceneAsync("Player_Camp");
+        SceneManager.LoadSceneAsync("Level2");
+        //Application.LoadLevel("Level2");
     }
 
     public void StartLevel3()
     {
-        SceneManager.LoadScene("Level3");
+        SceneManager.UnloadSceneAsync("Player_Camp");
+        SceneManager.LoadSceneAsync("Level3");
+        //Application.LoadLevel("Level3");
     }
 
     public void StartOnClick()

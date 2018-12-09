@@ -69,6 +69,7 @@ public class UserUnit : Unit
             TurnUpdate();
             if (mc.character_moving)
             {
+                Debug.Log("Move!!!!!!");
                 float step = moveSpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, moveDestination, step);
             }
