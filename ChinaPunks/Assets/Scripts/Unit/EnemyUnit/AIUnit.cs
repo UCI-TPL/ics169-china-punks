@@ -23,9 +23,9 @@ public class AIUnit : Unit
     public bool slippery = false;
 
     public int fire_cd;
-    int _fire_cd;
+    protected int _fire_cd;
     public int poison_cd;
-    int _poison_cd;
+    protected int _poison_cd;
     public int poison_damage;
     public int fire_damage;
     public int trap_damage;
@@ -34,13 +34,13 @@ public class AIUnit : Unit
 
     Vector3 moveDestination = new Vector3();
 
-    private int myIndex;
+    protected int myIndex;
 
     // Use this for initialization
     void Start()
     {
-        GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
-        mc = controller.GetComponent<Map_Control>();                                     //same as above
+        //GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
+        //mc = controller.GetComponent<Map_Control>();                                     //same as above
 
         mc.units_state[currentPos] = gameObject;
         mc.AI_units.Add(gameObject);
@@ -238,6 +238,8 @@ public class AIUnit : Unit
                 if (mc.units_state[i + peach_pos] == null)
                 {
                     GameObject peach = Instantiate(mc.PeachPrefab);
+                    peach.gameObject.GetComponent<Peach>().mc = mc;
+                    peach.gameObject.GetComponent<Peach>().turn_ctr = turn_ctr;
                     peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
                     break;
                 }

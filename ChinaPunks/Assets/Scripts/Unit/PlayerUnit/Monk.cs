@@ -18,6 +18,7 @@ public class Monk : UserUnit {
         //store values for Reset_Skill
         attack_dmg = attack_damage;
         move_range = moveRange;
+        current_health = health;
     }
 
     public override void Skill(){

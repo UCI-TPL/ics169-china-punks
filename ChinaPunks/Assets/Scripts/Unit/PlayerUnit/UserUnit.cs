@@ -219,6 +219,8 @@ public class UserUnit : Unit
                             if ((peach_pos + i) % 10 != 0)
                             {
                                 GameObject peach = Instantiate(mc.PeachPrefab);
+                                peach.gameObject.GetComponent<Peach>().mc = mc;
+                                peach.gameObject.GetComponent<Peach>().turn_ctr = turn_ctr;
                                 peach.gameObject.GetComponent<Peach>().currentPos = i + peach_pos;
                                 break;
                             }

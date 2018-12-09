@@ -9,10 +9,10 @@ public class trap : MonoBehaviour {
     public bool triggered;
     public bool fading;
     public int visible_time;
-    Map_Control mc;
+    public Map_Control mc;
 
     void Start () {
-                                                                  
+        set_trap();                                            
     }
 	
 	// Update is called once per frame
@@ -43,8 +43,8 @@ public class trap : MonoBehaviour {
 	}
 
     public void set_trap(){
-        GameObject map = GameObject.Find("map_tiles");
-        mc = map.GetComponent<Map_Control>();
+        //GameObject map = GameObject.Find("map_tiles");
+        //mc = map.GetComponent<Map_Control>();
         Vector3 xyPosition = mc.map_tiles[pos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.4f, xyPosition.z - 1.0f);
     }
