@@ -153,9 +153,9 @@ MonoBehaviour:
     curve: {fileID: 114271169882291178}
     fieldsValues: []
   - controlType: 1
-    positionLocal: {x: -9.38, y: -1.12, z: -1.08}
-    controlFirstLocal: {x: -0.5, y: 4, z: -0}
-    controlSecondLocal: {x: 0.5, y: -4, z: 0}
+    positionLocal: {x: -10.38, y: -1.12, z: -1.08}
+    controlFirstLocal: {x: 0.5, y: 4, z: -0}
+    controlSecondLocal: {x: -0.5, y: -4, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 114271169882291178}
     fieldsValues: []

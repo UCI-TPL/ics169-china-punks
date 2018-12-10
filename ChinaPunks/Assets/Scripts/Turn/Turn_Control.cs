@@ -39,14 +39,12 @@ public class Turn_Control : MonoBehaviour
         {
             WinScene.SetActive(true);
             map_ctr.reset();
-            Time.timeScale = 0;
         }
 
         else if (map_ctr.CheckIfLose())
         {
             LoseScene.SetActive(true);
             map_ctr.reset();
-            Time.timeScale = 0;
         }
 
         //Player round

@@ -66,8 +66,13 @@ public class WorldGenerator : MonoBehaviour
         Dialogue = Instantiate(Dialogue_prefab);
         Dialogue.transform.SetParent(UI.transform);
         Dialogue.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        //Debug.Log(UI.GetComponent<RectTransform>().rect);
+        //Dialogue.transform.GetChild(0).gameObject.GetComponent<RectTransform>().rect.Set(0,0,UI.GetComponent<Rect>().width,
+        //UI.GetComponent<Rect>().height);
+        //for (int i = 0; i < Dialogue.transform.childCount;++i)
+        Dialogue.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(UI.GetComponent<RectTransform>().rect.width,UI.GetComponent<RectTransform>().rect.height);
+        Dialogue.transform.localScale = new Vector3(1, 1, 1);
 
-        
         map_ctr = map.GetComponent<Map_Control>();
         UI_ctr = UI.GetComponent<InGameUI>();
         Turn_ctr = Turn.GetComponent<Turn_Control>();

@@ -353,7 +353,7 @@ public class Map_Control : MonoBehaviour
                     if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
                         && all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
-                        path = all_paths[map_tiles_pos[pickEndTile]];
+                        path = new List<int>( all_paths[map_tiles_pos[pickEndTile]]);
                         path.Add(map_tiles_pos[pickEndTile]);
 
                         units_state[picked_pos].GetComponent<UserUnit>().moveComplete = true;
