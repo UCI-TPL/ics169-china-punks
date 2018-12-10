@@ -42,8 +42,13 @@ PlayerSettings:
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
+<<<<<<< HEAD
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
+=======
+  defaultScreenWidth: 1920
+  defaultScreenHeight: 1080
+>>>>>>> 6ac55bb6ebc5a74b149db08c227e8b29f86b4485
   defaultScreenWidthWeb: 1024
   defaultScreenHeightWeb: 768
   m_StereoRenderingPath: 0
@@ -90,7 +95,11 @@ PlayerSettings:
   visibleInBackground: 1
   allowFullscreenSwitch: 1
   graphicsJobMode: 0
+<<<<<<< HEAD
   fullscreenMode: 1
+=======
+  fullscreenMode: 3
+>>>>>>> 6ac55bb6ebc5a74b149db08c227e8b29f86b4485
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0

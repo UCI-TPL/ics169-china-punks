@@ -10,7 +10,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
+<<<<<<< HEAD:ChinaPunks/demo_v1.app/Contents/Info.plist
 	<string>demo_v1</string>
+=======
+	<string>demo</string>
+>>>>>>> 6ac55bb6ebc5a74b149db08c227e8b29f86b4485:ChinaPunks/demo.app/Contents/Info.plist
 	<key>CFBundleGetInfoString</key>
 	<string>Unity Player version 2018.2.10f1 (674aa5a67ed5). (c) 2018 Unity Technologies ApS. All rights reserved.</string>
 	<key>CFBundleIconFile</key>
