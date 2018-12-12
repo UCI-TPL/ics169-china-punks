@@ -11205,7 +11205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &845535937
 Animator:
   serializedVersion: 3
@@ -22483,6 +22483,7 @@ MonoBehaviour:
   peach_pos: 0
   provocative: 0
   BGCurve: {fileID: 803726894}
+  BGCurve_prefab: {fileID: 0}
   animation_is_playing: 0
   acting_state: 0
   AI_units: []
