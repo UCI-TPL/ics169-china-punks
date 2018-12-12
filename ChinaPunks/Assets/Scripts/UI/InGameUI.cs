@@ -13,6 +13,8 @@ public class InGameUI : MonoBehaviour {
     public GameObject selectEffect;
     GameObject _selectEffect;
     public GameObject InGameHUD;
+    public Image Player_roundUI;
+    public Image Enemy_roundUI;
 
     //HUD buttons
     public Button Attackbtn;

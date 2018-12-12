@@ -19,6 +19,9 @@ public class Turn_Control : MonoBehaviour
     public GameObject WinScene;
     public GameObject LoseScene;
 
+
+    public bool roundUI_showing;
+
     // Use this for initialization
     void Start()
     {
@@ -59,6 +62,53 @@ public class Turn_Control : MonoBehaviour
         }
         else
             endTurnButton.GetComponent<Button>().interactable = true;
+
+        if (roundUI_showing)
+        {
+            Image round_UI;
+            if (gameRound == "Player")
+            {
+                round_UI = UI.GetComponent<InGameUI>().Player_roundUI;
+            }
+            else if (gameRound == "AI")
+            {
+                round_UI = UI.GetComponent<InGameUI>().Enemy_roundUI;
+            }
+            else
+            {
+                round_UI = null;
+                roundUI_showing = false;
+            }
+
+
+            if (round_UI != null)
+            {
+                round_UI.gameObject.SetActive(true);
+                float screen_width = UI.GetComponent<RectTransform>().rect.width;
+                float speed;
+                float mid_1 = screen_width * 9 / 20;
+                float mid_2 = screen_width * 11 / 20;
+                if (round_UI.rectTransform.anchoredPosition.x > mid_1 &&
+                    round_UI.rectTransform.anchoredPosition.x < mid_2)
+                {
+                    speed = 200;
+                }
+                else
+                    speed = 2500;
+
+                round_UI.rectTransform.anchoredPosition = new Vector2(round_UI.rectTransform.anchoredPosition.x
+                                                                            + speed * Time.deltaTime, 0);
+
+                if (round_UI.rectTransform.anchoredPosition.x > screen_width)
+                {
+                    roundUI_showing = false;
+                    round_UI.rectTransform.anchoredPosition = new Vector2(0, 0);
+                    round_UI.gameObject.SetActive(false);
+                }
+            }
+
+        }
+
     }
 
 
@@ -191,6 +241,7 @@ public class Turn_Control : MonoBehaviour
         //start AI round
         gameRound = "AI";
         Debug.Log("turn :" + gameRound);
+
         //Excute AI turn
         StartCoroutine(AIBlocker());
     }
@@ -198,7 +249,11 @@ public class Turn_Control : MonoBehaviour
 
     IEnumerator AIBlocker()
     {
-        List<GameObject> temp_AI_units = new List<GameObject>(map_ctr.AI_units);
+        roundUI_showing = true;
+        yield return new WaitUntil(() => !roundUI_showing);
+
+
+        List <GameObject> temp_AI_units = new List<GameObject>(map_ctr.AI_units);
 
         foreach (GameObject ob in temp_AI_units)
         {
@@ -244,6 +299,9 @@ public class Turn_Control : MonoBehaviour
         //debug for printing turn
         Debug.Log("turn :" + gameRound);
 
+        roundUI_showing = true;
+        yield return new WaitUntil(() => !roundUI_showing);
+
     }
 
     //---All other functions should be placed before here---
@@ -274,4 +332,9 @@ public class Turn_Control : MonoBehaviour
         return false;
     }
 
+    IEnumerator Show_Round_UI(){
+        roundUI_showing = true;
+        yield return new WaitUntil(() => roundUI_showing = false);
+
+    }
 }

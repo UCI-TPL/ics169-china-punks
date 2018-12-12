@@ -37,6 +37,7 @@ public class Map_Control : MonoBehaviour
     public bool provocative;
 
     public GameObject BGCurve;
+    public GameObject BGCurve_prefab;
 
     public bool animation_is_playing;
 

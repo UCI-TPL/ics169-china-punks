@@ -75,6 +75,7 @@ public class Tile : MonoBehaviour {
 
             if (map_ctr.acting_state == 4 && map_ctr.skill_tiles.ContainsKey(map_ctr.map_tiles_pos[gameObject]))
             {
+                map_ctr.BGCurve = Instantiate(map_ctr.BGCurve_prefab);
                 map_ctr.color_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
                 Vector3 start_pos = map_ctr.units_state[map_ctr.picked_pos].transform.position;
                 Vector3 end_pos = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z - 1.0f);
@@ -116,8 +117,12 @@ public class Tile : MonoBehaviour {
         if (map_ctr.acting_state == 4)
         {
             map_ctr.uncolor_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
-            map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().Clear();
-            map_ctr.BGCurve.SetActive(false);
+            if (map_ctr.BGCurve != null)
+            {
+                map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().Clear();
+                map_ctr.BGCurve.SetActive(false);
+                Destroy(map_ctr.BGCurve);
+            }
 
         }
     }
