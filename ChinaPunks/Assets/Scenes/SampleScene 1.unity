@@ -226,8 +226,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &33552774
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,79 +347,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &49551045
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 49551046}
-  - component: {fileID: 49551048}
-  - component: {fileID: 49551047}
-  m_Layer: 5
-  m_Name: Panel (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &49551046
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 49551045}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.8, y: 0.79999995, z: 1}
-  m_Children:
-  - {fileID: 981508137}
-  - {fileID: 1635750301}
-  m_Father: {fileID: 1472762425}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 761, y: -276}
-  m_SizeDelta: {x: -1437.0999, y: -851.2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &49551047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 49551045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &49551048
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 49551045}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &67455540
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,11 +462,11 @@ RectTransform:
   m_Children:
   - {fileID: 1083155891}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 736, y: -459}
+  m_AnchoredPosition: {x: 773, y: -440}
   m_SizeDelta: {x: 293.5, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &68381252
@@ -719,8 +660,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!224 &108755045 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224529829478316394, guid: 51e92dab480e5e7419a9d6ced34d3edc,
@@ -756,7 +703,7 @@ RectTransform:
   m_Children:
   - {fileID: 1320499887}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -838,75 +785,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 110178429}
   m_CullTransparentMesh: 0
---- !u!1 &126027487
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 126027488}
-  - component: {fileID: 126027490}
-  - component: {fileID: 126027489}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &126027488
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 126027487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4977, y: 1.4977, z: 1.4977}
-  m_Children: []
-  m_Father: {fileID: 760067549}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156, y: 8}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &126027489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 126027487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01c904e9d7c9eee4997e512e5ae4f069, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &126027490
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 126027487}
-  m_CullTransparentMesh: 0
 --- !u!1 &183527366
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +813,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 17
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1089,8 +967,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &202539818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,78 +1088,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &212627505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 212627506}
-  - component: {fileID: 212627508}
-  - component: {fileID: 212627507}
-  m_Layer: 5
-  m_Name: Image (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &212627506
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 212627505}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4559174, y: 0.4559174, z: 0.4559174}
-  m_Children:
-  - {fileID: 1267165261}
-  m_Father: {fileID: 760067549}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64, y: 15}
-  m_SizeDelta: {x: 680, y: 82}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &212627507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 212627505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fe6838350f043854a8da1bde4427c4ce, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &212627508
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 212627505}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &227949467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,7 +1124,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1458,8 +1278,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &252715440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,8 +1474,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &262602048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,11 +1512,11 @@ RectTransform:
   m_Children:
   - {fileID: 1072466179}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: -409}
+  m_AnchoredPosition: {x: 342, y: -409}
   m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262602050
@@ -1875,8 +1707,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &282061869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,78 +1903,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &351994323
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 351994324}
-  - component: {fileID: 351994326}
-  - component: {fileID: 351994325}
-  m_Layer: 5
-  m_Name: Image (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &351994324
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 351994323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4559174, y: 0.4559174, z: 0.4559174}
-  m_Children:
-  - {fileID: 1933321321}
-  m_Father: {fileID: 1235011035}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64, y: 15}
-  m_SizeDelta: {x: 680, y: 82}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &351994325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 351994323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fe6838350f043854a8da1bde4427c4ce, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &351994326
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 351994323}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &376500890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,8 +2024,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &387505911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,8 +2145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &423376420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,8 +2266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &432614388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,8 +2387,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &432633111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,8 +2508,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &458836120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2825,8 +2629,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &461273608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2940,8 +2750,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &462821779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,8 +2871,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &472078319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,8 +2992,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &487153359
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,18 +3029,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
   currentPos: 55
-  moveRange: 3
+  hide: 0
+  on_fire: 0
+  provocative: 0
+  poisoned: 0
   health: 0
-  attack_damge: 1
-  anim: {fileID: 0}
+  current_health: 0
   moveComplete: 0
   turnComplete: 0
   hasPeach: 0
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
+  moveRange: 3
+  attack_damage: 0
+  skill_damage: 0
+  healthFillImage: {fileID: 0}
+  anim: {fileID: 0}
+  selectEffect: {fileID: 0}
+  charater_type: 
+  coolDown: 0
+  moveSpeed: 1
+  slippery: 0
+  fire_cd: 0
+  poison_cd: 0
+  poison_damage: 0
+  fire_damage: 0
+  trap_damage: 0
+  skill_cd: 0
 --- !u!212 &487153361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3386,8 +3233,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,8 +3431,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &549391754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3693,8 +3552,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &563003994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3808,8 +3673,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &565965837
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,8 +3794,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &586749842
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,8 +3915,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &605665277
 GameObject:
   m_ObjectHideFlags: 0
@@ -4153,8 +4036,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &607248739
 GameObject:
   m_ObjectHideFlags: 0
@@ -4268,8 +4157,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &609649257
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,8 +4278,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &613993095
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,8 +4399,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &619153298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4613,8 +4520,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &627568328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4772,8 +4685,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &669758154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,7 +4721,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 18
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4956,8 +4875,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &702665996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5071,8 +4996,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &709970274
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,8 +5117,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &725017415 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1098809170245748, guid: afecb9a8723097a49b2a1c99524b7d20,
@@ -5311,8 +5248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &733838303
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,12 +5286,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
   currentPos: 0
-  moveRange: 0
+  hide: 0
+  on_fire: 0
+  provocative: 0
+  poisoned: 0
   health: 100
-  attack_damge: 0
-  anim: {fileID: 733838307}
+  current_health: 0
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -5356,6 +5302,18 @@ MonoBehaviour:
   hasPeach: 0
   acting: 0
   walking: 0
+  moveRange: 0
+  anim: {fileID: 733838307}
+  healthFillImage: {fileID: 0}
+  attack_damage: 0
+  moveSpeed: 1
+  slippery: 0
+  fire_cd: 0
+  poison_cd: 0
+  poison_damage: 0
+  fire_damage: 0
+  trap_damage: 0
+  anim_is_playing: 0
 --- !u!212 &733838305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5546,8 +5504,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &752258682
 GameObject:
   m_ObjectHideFlags: 0
@@ -5784,148 +5748,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &760067548
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 760067549}
-  - component: {fileID: 760067551}
-  - component: {fileID: 760067550}
-  m_Layer: 5
-  m_Name: Panel (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &760067549
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 760067548}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.8, y: 0.79999995, z: 1}
-  m_Children:
-  - {fileID: 126027488}
-  - {fileID: 212627506}
-  m_Father: {fileID: 1472762425}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 761, y: -9}
-  m_SizeDelta: {x: -1437.0999, y: -851.2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &760067550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 760067548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &760067551
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 760067548}
-  m_CullTransparentMesh: 0
---- !u!1 &764476977
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 764476978}
-  - component: {fileID: 764476980}
-  - component: {fileID: 764476979}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &764476978
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 764476977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4977, y: 1.4977, z: 1.4977}
-  m_Children: []
-  m_Father: {fileID: 1840467211}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156, y: 8}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &764476979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 764476977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01c904e9d7c9eee4997e512e5ae4f069, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &764476980
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 764476977}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &794368650
 GameObject:
   m_ObjectHideFlags: 0
@@ -6039,8 +5869,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &799889580
 GameObject:
   m_ObjectHideFlags: 0
@@ -6154,8 +5990,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &802431237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6269,8 +6111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &804655802
 GameObject:
   m_ObjectHideFlags: 0
@@ -6301,11 +6149,11 @@ RectTransform:
   m_Children:
   - {fileID: 807944072}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -124, y: -409}
+  m_AnchoredPosition: {x: -330, y: -409}
   m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &804655804
@@ -6612,78 +6460,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &851092295
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 851092296}
-  - component: {fileID: 851092298}
-  - component: {fileID: 851092297}
-  m_Layer: 5
-  m_Name: Image (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &851092296
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 851092295}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4559174, y: 0.4559174, z: 0.4559174}
-  m_Children:
-  - {fileID: 1576561970}
-  m_Father: {fileID: 1840467211}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64, y: 15}
-  m_SizeDelta: {x: 680, y: 82}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &851092297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 851092295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fe6838350f043854a8da1bde4427c4ce, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &851092298
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 851092295}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &854612777
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,18 +6561,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
   mapInfo: []
   currentPos: 11
-  moveRange: 2
+  hide: 0
+  on_fire: 0
+  provocative: 0
+  poisoned: 0
   health: 0
-  attack_damge: 1
-  anim: {fileID: 0}
+  current_health: 0
   moveComplete: 0
   turnComplete: 0
   hasPeach: 0
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
+  moveRange: 2
+  attack_damage: 0
+  skill_damage: 0
+  healthFillImage: {fileID: 0}
+  anim: {fileID: 0}
+  selectEffect: {fileID: 0}
+  charater_type: 
+  coolDown: 0
+  moveSpeed: 1
+  slippery: 0
+  fire_cd: 0
+  poison_cd: 0
+  poison_damage: 0
+  fire_damage: 0
+  trap_damage: 0
+  skill_cd: 0
 --- !u!1001 &857591929
 Prefab:
   m_ObjectHideFlags: 0
@@ -7002,8 +6805,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1001 &903195822
 Prefab:
   m_ObjectHideFlags: 0
@@ -7217,8 +7026,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &920116118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7332,8 +7147,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &925916523
 GameObject:
   m_ObjectHideFlags: 0
@@ -7447,8 +7268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1001 &952739325
 Prefab:
   m_ObjectHideFlags: 0
@@ -7655,8 +7482,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &975895503
 GameObject:
   m_ObjectHideFlags: 0
@@ -7770,77 +7603,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &981508136
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 981508137}
-  - component: {fileID: 981508139}
-  - component: {fileID: 981508138}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &981508137
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 981508136}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4977, y: 1.4977, z: 1.4977}
-  m_Children: []
-  m_Father: {fileID: 49551046}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156, y: 8}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &981508138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 981508136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01c904e9d7c9eee4997e512e5ae4f069, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &981508139
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 981508136}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &996346056
 GameObject:
   m_ObjectHideFlags: 0
@@ -7954,8 +7724,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1015851088
 GameObject:
   m_ObjectHideFlags: 0
@@ -8069,8 +7845,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1017648904
 GameObject:
   m_ObjectHideFlags: 0
@@ -8184,8 +7966,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1042215901
 GameObject:
   m_ObjectHideFlags: 0
@@ -8299,83 +8087,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &1043334155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1043334156}
-  - component: {fileID: 1043334158}
-  - component: {fileID: 1043334157}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1043334156
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1043334155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4977, y: 1.4977, z: 1.4977}
-  m_Children: []
-  m_Father: {fileID: 1235011035}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156, y: 8}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1043334157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1043334155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01c904e9d7c9eee4997e512e5ae4f069, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1043334158
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1043334155}
-  m_CullTransparentMesh: 0
---- !u!114 &1053744810 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114861128004893358, guid: e6b9ed8993b933940850527846d169f1,
-    type: 2}
-  m_PrefabInternal: {fileID: 2129702330}
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1061618592
 GameObject:
   m_ObjectHideFlags: 0
@@ -8489,8 +8208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1072466178
 GameObject:
   m_ObjectHideFlags: 0
@@ -8679,8 +8404,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1083155890
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,11 +8520,11 @@ RectTransform:
   m_Children:
   - {fileID: 2094016586}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -112, y: 457}
+  m_AnchoredPosition: {x: -491, y: 489}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084661421
@@ -8943,8 +8674,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1107181294
 GameObject:
   m_ObjectHideFlags: 0
@@ -9058,8 +8795,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1109497123
 GameObject:
   m_ObjectHideFlags: 0
@@ -9173,8 +8916,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1153907412
 GameObject:
   m_ObjectHideFlags: 0
@@ -9203,8 +8952,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 1315454259}
+  UI: {fileID: 0}
   gameRound: 
   endTurnButton: {fileID: 752258682}
+  WinScene: {fileID: 0}
+  LoseScene: {fileID: 0}
+  roundUI_showing: 0
 --- !u!4 &1153907414
 Transform:
   m_ObjectHideFlags: 0
@@ -9393,8 +9146,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1191376499
 GameObject:
   m_ObjectHideFlags: 0
@@ -9508,8 +9267,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1194955688
 GameObject:
   m_ObjectHideFlags: 0
@@ -9692,79 +9457,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &1235011034
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1235011035}
-  - component: {fileID: 1235011037}
-  - component: {fileID: 1235011036}
-  m_Layer: 5
-  m_Name: Panel (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1235011035
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1235011034}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
-  m_Children:
-  - {fileID: 1043334156}
-  - {fileID: 351994324}
-  m_Father: {fileID: 1472762425}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -756, y: 26}
-  m_SizeDelta: {x: -1437.0999, y: -851.2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1235011036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1235011034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1235011037
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1235011034}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1238364591
 GameObject:
   m_ObjectHideFlags: 0
@@ -9878,8 +9578,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1245463439
 GameObject:
   m_ObjectHideFlags: 0
@@ -9993,77 +9699,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &1267165260
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1267165261}
-  - component: {fileID: 1267165263}
-  - component: {fileID: 1267165262}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1267165261
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1267165260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9671576, y: 1.3006, z: 1.3006}
-  m_Children: []
-  m_Father: {fileID: 212627506}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -8}
-  m_SizeDelta: {x: 289, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1267165262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1267165260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 556141b6add73e14380e34e9cbad7a7f, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1267165263
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1267165260}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1315182014
 GameObject:
   m_ObjectHideFlags: 0
@@ -10177,8 +9820,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1315454259
 GameObject:
   m_ObjectHideFlags: 0
@@ -10202,8 +9851,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1315454259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.70483, y: 0, z: 0}
+  m_LocalScale: {x: 1.4096912, y: 1.4096912, z: 1.4096912}
   m_Children:
   - {fileID: 2851886}
   - {fileID: 1360653024}
@@ -10421,6 +10070,7 @@ MonoBehaviour:
   - {fileID: 2126394477}
   - {fileID: 1017648904}
   units_state: []
+  blocks_state: []
   path: 
   pickTile: {fileID: 0}
   pickEndTile: {fileID: 0}
@@ -10434,9 +10084,16 @@ MonoBehaviour:
   current_picked_pos: -1
   playerHUD_showed: 0
   peach_pos: 0
+  provocative: 0
+  BGCurve: {fileID: 0}
+  BGCurve_prefab: {fileID: 0}
+  animation_is_playing: 0
   acting_state: 0
   AI_units: []
   PeachPrefab: {fileID: 0}
+  turn_count: 0
+  attackRange: 
+  character_moving: 0
 --- !u!1 &1320499886
 GameObject:
   m_ObjectHideFlags: 0
@@ -10625,8 +10282,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1351243748
 GameObject:
   m_ObjectHideFlags: 0
@@ -10740,8 +10403,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1360653022
 GameObject:
   m_ObjectHideFlags: 0
@@ -10855,8 +10524,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1393920951
 GameObject:
   m_ObjectHideFlags: 0
@@ -10970,8 +10645,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1396206653
 GameObject:
   m_ObjectHideFlags: 0
@@ -11085,8 +10766,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1401251399
 GameObject:
   m_ObjectHideFlags: 0
@@ -11200,8 +10887,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1414204401
 GameObject:
   m_ObjectHideFlags: 0
@@ -11315,8 +11008,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1433519240
 GameObject:
   m_ObjectHideFlags: 0
@@ -11430,8 +11129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1472762421
 GameObject:
   m_ObjectHideFlags: 0
@@ -11523,11 +11228,7 @@ RectTransform:
   - {fileID: 2129702331}
   - {fileID: 725017416}
   - {fileID: 108755045}
-  - {fileID: 1235011035}
-  - {fileID: 1840467211}
-  - {fileID: 760067549}
   - {fileID: 1708779445}
-  - {fileID: 49551046}
   - {fileID: 262602049}
   - {fileID: 804655803}
   - {fileID: 68381251}
@@ -11561,8 +11262,11 @@ MonoBehaviour:
   selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
     type: 2}
   InGameHUD: {fileID: 1637110124890464, guid: e6b9ed8993b933940850527846d169f1, type: 2}
-  AttackBtn: {fileID: 1053744810}
+  Player_roundUI: {fileID: 0}
+  Enemy_roundUI: {fileID: 0}
+  Attackbtn: {fileID: 0}
   Pickbtn: {fileID: 0}
+  Skillbtn: {fileID: 0}
   exit: {fileID: 1603784827}
 --- !u!1 &1474298008
 GameObject:
@@ -11677,8 +11381,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1519666291
 GameObject:
   m_ObjectHideFlags: 0
@@ -11792,77 +11502,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &1576561969
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1576561970}
-  - component: {fileID: 1576561972}
-  - component: {fileID: 1576561971}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1576561970
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1576561969}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9671576, y: 1.3006, z: 1.3006}
-  m_Children: []
-  m_Father: {fileID: 851092296}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -8}
-  m_SizeDelta: {x: 289, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1576561971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1576561969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 556141b6add73e14380e34e9cbad7a7f, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1576561972
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1576561969}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1587937188
 GameObject:
   m_ObjectHideFlags: 0
@@ -11976,8 +11623,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1603784826
 GameObject:
   m_ObjectHideFlags: 0
@@ -12090,76 +11743,6 @@ RectTransform:
   m_AnchoredPosition: {x: 390, y: 288}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1635750300
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1635750301}
-  - component: {fileID: 1635750303}
-  - component: {fileID: 1635750302}
-  m_Layer: 5
-  m_Name: Image (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1635750301
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1635750300}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4559174, y: 0.4559174, z: 0.4559174}
-  m_Children:
-  - {fileID: 2122526517}
-  m_Father: {fileID: 49551046}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64, y: 15}
-  m_SizeDelta: {x: 680, y: 82}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1635750302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1635750300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fe6838350f043854a8da1bde4427c4ce, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1635750303
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1635750300}
-  m_CullTransparentMesh: 0
 --- !u!1 &1669086998
 GameObject:
   m_ObjectHideFlags: 0
@@ -12188,7 +11771,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 19
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12342,8 +11925,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1696123475
 GameObject:
   m_ObjectHideFlags: 0
@@ -12457,8 +12046,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1699076229
 GameObject:
   m_ObjectHideFlags: 0
@@ -12572,8 +12167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1708779444
 GameObject:
   m_ObjectHideFlags: 0
@@ -12604,11 +12205,11 @@ RectTransform:
   - {fileID: 1194955689}
   - {fileID: 2022178161}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 761, y: 253}
+  m_AnchoredPosition: {x: 756, y: 288}
   m_SizeDelta: {x: -1437.0999, y: -851.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708779446
@@ -12827,8 +12428,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1726747351
 GameObject:
   m_ObjectHideFlags: 0
@@ -12942,8 +12549,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1765371275
 GameObject:
   m_ObjectHideFlags: 0
@@ -13057,8 +12670,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1814718041
 GameObject:
   m_ObjectHideFlags: 0
@@ -13172,8 +12791,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1816038017
 GameObject:
   m_ObjectHideFlags: 0
@@ -13287,8 +12912,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1822233872
 GameObject:
   m_ObjectHideFlags: 0
@@ -13402,79 +13033,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &1840467210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1840467211}
-  - component: {fileID: 1840467213}
-  - component: {fileID: 1840467212}
-  m_Layer: 5
-  m_Name: Panel (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1840467211
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840467210}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
-  m_Children:
-  - {fileID: 764476978}
-  - {fileID: 851092296}
-  m_Father: {fileID: 1472762425}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -756, y: -241}
-  m_SizeDelta: {x: -1437.0999, y: -851.2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1840467212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840467210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1840467213
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840467210}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1849624909
 GameObject:
   m_ObjectHideFlags: 0
@@ -13588,8 +13154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1860601232
 GameObject:
   m_ObjectHideFlags: 0
@@ -13703,8 +13275,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1865284354
 GameObject:
   m_ObjectHideFlags: 0
@@ -13818,8 +13396,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1867246850
 GameObject:
   m_ObjectHideFlags: 0
@@ -13933,8 +13517,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1899616500
 GameObject:
   m_ObjectHideFlags: 0
@@ -14048,8 +13638,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1925996173
 GameObject:
   m_ObjectHideFlags: 0
@@ -14163,8 +13759,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1931864364
 GameObject:
   m_ObjectHideFlags: 0
@@ -14278,77 +13880,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &1933321320
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1933321321}
-  - component: {fileID: 1933321323}
-  - component: {fileID: 1933321322}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1933321321
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1933321320}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9671576, y: 1.3006, z: 1.3006}
-  m_Children: []
-  m_Father: {fileID: 351994324}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -8}
-  m_SizeDelta: {x: 289, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1933321322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1933321320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 556141b6add73e14380e34e9cbad7a7f, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1933321323
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1933321320}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1964486522
 GameObject:
   m_ObjectHideFlags: 0
@@ -14378,11 +13917,11 @@ RectTransform:
   m_Children:
   - {fileID: 252715441}
   m_Father: {fileID: 1472762425}
-  m_RootOrder: 15
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 614, y: 457}
+  m_AnchoredPosition: {x: 235, y: 489}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964486524
@@ -14532,8 +14071,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1980371911
 GameObject:
   m_ObjectHideFlags: 0
@@ -14647,8 +14192,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &1985737413
 GameObject:
   m_ObjectHideFlags: 0
@@ -14837,8 +14388,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2021061607
 GameObject:
   m_ObjectHideFlags: 0
@@ -14952,8 +14509,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2022178160
 GameObject:
   m_ObjectHideFlags: 0
@@ -15137,8 +14700,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2041111751
 GameObject:
   m_ObjectHideFlags: 0
@@ -15252,8 +14821,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2047358469
 GameObject:
   m_ObjectHideFlags: 0
@@ -15367,8 +14942,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2085127968
 GameObject:
   m_ObjectHideFlags: 0
@@ -15482,8 +15063,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2093917468
 GameObject:
   m_ObjectHideFlags: 0
@@ -15597,8 +15184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2094016585
 GameObject:
   m_ObjectHideFlags: 0
@@ -15787,77 +15380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
---- !u!1 &2122526516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2122526517}
-  - component: {fileID: 2122526519}
-  - component: {fileID: 2122526518}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2122526517
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2122526516}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9671576, y: 1.3006, z: 1.3006}
-  m_Children: []
-  m_Father: {fileID: 1635750301}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -8}
-  m_SizeDelta: {x: 289, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2122526518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2122526516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 556141b6add73e14380e34e9cbad7a7f, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &2122526519
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2122526516}
-  m_CullTransparentMesh: 0
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1 &2126394477
 GameObject:
   m_ObjectHideFlags: 0
@@ -15971,8 +15501,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}
 --- !u!1001 &2129702330
 Prefab:
   m_ObjectHideFlags: 0
@@ -16200,5 +15736,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78776a4fc51261d44ad16623025cbb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: 0
   map_tiles: {fileID: 1315454259}
   turn_control: {fileID: 1153907412}
+  currentPos: 0
+  tile_type: 
+  on_fire: 0
+  fire_cd: 0
+  trap: {fileID: 0}

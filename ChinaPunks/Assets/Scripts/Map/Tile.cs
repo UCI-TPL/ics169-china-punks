@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour {
 
@@ -18,9 +19,10 @@ public class Tile : MonoBehaviour {
     public int fire_cd;
     int _fire_cd;
 
-
     public GameObject trap;
 
+    public GameObject Enemy_info_HUD;
+    Text _enemy_name;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +36,9 @@ public class Tile : MonoBehaviour {
                                          0 + XYpos.Key * (0.25f) + XYpos.Value * (-0.25f),
                                          0 + XYpos.Key * (0.01f) + XYpos.Value * (-0.01f));
 
+        GameObject selected_Enemy_name = Enemy_info_HUD.transform.Find("Enemy_avatar_back/Text").gameObject;
+        _enemy_name = selected_Enemy_name.GetComponent<Text>();
+        Enemy_info_HUD.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -124,6 +129,21 @@ public class Tile : MonoBehaviour {
                 Destroy(map_ctr.BGCurve);
             }
 
+        }
+
+        //hide enemy char info
+        Enemy_info_HUD.SetActive(false);
+    }
+
+    private void OnMouseOver()
+    {
+        if (map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]] != null &&
+                    map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].tag != "Untagged"&&
+                     map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].tag != "PlayerUnit")
+        {
+            Enemy_info_HUD.SetActive(true);
+            _enemy_name.text = map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].name;
+            Debug.Log("find enemy!!");
         }
     }
 

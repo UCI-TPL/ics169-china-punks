@@ -40,9 +40,6 @@ public class UserUnit : Unit
 
     public int skill_cd;
 
-
-
-
     Vector3 moveDestination = new Vector3();
 
 
@@ -245,6 +242,9 @@ public class UserUnit : Unit
     {
         if (!selectEffect_exist)
         {
+            //Selected_Char_info_HUD.SetActive(true);
+            //Char_avatar.sprite = Scholar;
+
             _selectEffect = Instantiate(selectEffect, gameObject.GetComponent<Transform>());
             _selectEffect.transform.Translate(new Vector3(0, -0.8f, 0));
             selectEffect_exist = true;

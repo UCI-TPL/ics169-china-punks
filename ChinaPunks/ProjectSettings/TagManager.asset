@@ -10,6 +10,7 @@ TagManager:
   - EnemyUnit
   - Peach
   - Block
+  - small_health_fill
   layers:
   - Default
   - TransparentFX
