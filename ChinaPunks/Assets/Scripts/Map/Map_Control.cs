@@ -96,19 +96,19 @@ public class Map_Control : MonoBehaviour
         turn_count = 1;
         Tile_Store();
 
-        GameObject select_Char_Avatar = Selected_Char_info_HUD.transform.Find("Char_avatar_back").Find("Char_avatar").gameObject;
-        GameObject select_Char_Health = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_number").gameObject;
-        GameObject select_Char_Health_bar = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject;
-        GameObject select_Char_Move   = Selected_Char_info_HUD.transform.Find("Char_Move").Find("Move_range").gameObject;
-        GameObject select_Char_Attack = Selected_Char_info_HUD.transform.Find("Char_Attack").Find("Attack_Damage").gameObject;
+        //GameObject select_Char_Avatar = Selected_Char_info_HUD.transform.Find("Char_avatar_back").Find("Char_avatar").gameObject;
+        //GameObject select_Char_Health = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_number").gameObject;
+        //GameObject select_Char_Health_bar = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject;
+        //GameObject select_Char_Move   = Selected_Char_info_HUD.transform.Find("Char_Move").Find("Move_range").gameObject;
+        //GameObject select_Char_Attack = Selected_Char_info_HUD.transform.Find("Char_Attack").Find("Attack_Damage").gameObject;
 
-        Char_avatar = select_Char_Avatar.GetComponent<Image>();
-        Health_number = select_Char_Health.GetComponent<Text>();
-        Char_Move = select_Char_Move.GetComponent<Text>();
-        Char_attack = select_Char_Attack.GetComponent<Text>();
-        healthfill = select_Char_Health_bar.GetComponent<Image>();
+        //Char_avatar = select_Char_Avatar.GetComponent<Image>();
+        //Health_number = select_Char_Health.GetComponent<Text>();
+        //Char_Move = select_Char_Move.GetComponent<Text>();
+        //Char_attack = select_Char_Attack.GetComponent<Text>();
+        //healthfill = select_Char_Health_bar.GetComponent<Image>();
 
-        Selected_Char_info_HUD.SetActive(false);
+        //Selected_Char_info_HUD.SetActive(false);
     }
 
     // Update is called once per frame
@@ -119,62 +119,62 @@ public class Map_Control : MonoBehaviour
             reset();
         }
 
-        if (small_health_bars == null)
-        {
-            small_health_bars = GameObject.FindGameObjectsWithTag("small_health_fill");
-        }
+        //if (small_health_bars == null)
+        //{
+        //    small_health_bars = GameObject.FindGameObjectsWithTag("small_health_fill");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (small_health_bars_is_hidden == true)
-                small_health_bars_is_hidden = false;
-            else
-                small_health_bars_is_hidden = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (small_health_bars_is_hidden == true)
+        //        small_health_bars_is_hidden = false;
+        //    else
+        //        small_health_bars_is_hidden = true;
+        //}
 
-        if(small_health_bars_is_hidden == true)
-        {
-            foreach (GameObject small_health_bar in small_health_bars)
-            {
-                small_health_bar.SetActive(false);
-            }
-        }
-        else
-        {
-            foreach (GameObject small_health_bar in small_health_bars)
-            {
-                small_health_bar.SetActive(true);
-            }
-        }
+        //if(small_health_bars_is_hidden == true)
+        //{
+        //    foreach (GameObject small_health_bar in small_health_bars)
+        //    {
+        //        small_health_bar.SetActive(false);
+        //    }
+        //}
+        //else
+        //{
+        //    foreach (GameObject small_health_bar in small_health_bars)
+        //    {
+        //        small_health_bar.SetActive(true);
+        //    }
+        //}
 
 
         //scholar info
-        Health_number.text = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health).ToString() + "/" + (GameObject.Find("Scholar").GetComponent<Scholar>().health).ToString());
-        healthfill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
-        GameObject _FILL = GameObject.Find("Scholar").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        Image _fill = _FILL.GetComponent<Image>();
-        _fill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
+        //Health_number.text = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health).ToString() + "/" + (GameObject.Find("Scholar").GetComponent<Scholar>().health).ToString());
+        //healthfill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
+        //GameObject _FILL = GameObject.Find("Scholar").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+        //Image _fill = _FILL.GetComponent<Image>();
+        //_fill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
 
-        //monk info
-        Health_number.text = ((GameObject.Find("Monk").GetComponent<Monk>().current_health).ToString() + "/" + (GameObject.Find("Monk").GetComponent<Monk>().health).ToString());
-        healthfill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
-        GameObject _1FILL = GameObject.Find("Monk").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        Image _1fill = _1FILL.GetComponent<Image>();
-        _1fill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
+        ////monk info
+        //Health_number.text = ((GameObject.Find("Monk").GetComponent<Monk>().current_health).ToString() + "/" + (GameObject.Find("Monk").GetComponent<Monk>().health).ToString());
+        //healthfill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
+        //GameObject _1FILL = GameObject.Find("Monk").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+        //Image _1fill = _1FILL.GetComponent<Image>();
+        //_1fill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
 
-        //trap info
-        Health_number.text = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health).ToString() + "/" + (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health).ToString());
-        healthfill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
-        GameObject _2FILL = GameObject.Find("Trapmaster").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        Image _2fill = _2FILL.GetComponent<Image>();
-        _2fill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
+        ////trap info
+        //Health_number.text = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health).ToString() + "/" + (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health).ToString());
+        //healthfill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
+        //GameObject _2FILL = GameObject.Find("Trapmaster").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+        //Image _2fill = _2FILL.GetComponent<Image>();
+        //_2fill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
 
-        //archor info
-        Health_number.text = ((GameObject.Find("Archer").GetComponent<Archer>().current_health).ToString() + "/" + (GameObject.Find("Archer").GetComponent<Archer>().health).ToString());
-        healthfill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
-        GameObject _3FILL = GameObject.Find("Archer").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        Image _3fill = _3FILL.GetComponent<Image>();
-        _3fill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
+        ////archor info
+        //Health_number.text = ((GameObject.Find("Archer").GetComponent<Archer>().current_health).ToString() + "/" + (GameObject.Find("Archer").GetComponent<Archer>().health).ToString());
+        //healthfill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
+        //GameObject _3FILL = GameObject.Find("Archer").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+        //Image _3fill = _3FILL.GetComponent<Image>();
+        //_3fill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
 
 
 
@@ -193,7 +193,7 @@ public class Map_Control : MonoBehaviour
             && units_state[picked_pos].CompareTag("PlayerUnit"))
         {
             units_state[picked_pos].GetComponent<UserUnit>().destory_clickEffect();
-            Selected_Char_info_HUD.SetActive(false);
+//            Selected_Char_info_HUD.SetActive(false);
             units_state[picked_pos].GetComponent<UserUnit>().isClicked = false;
         }
 
@@ -416,32 +416,8 @@ public class Map_Control : MonoBehaviour
                 {
                     //if this tile has playerUnit, show its clickEffect
                     units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
-                    Selected_Char_info_HUD.SetActive(true);
-
-                    if((units_state[map_tiles_pos[pickEndTile]].name) == "Scholar")
-                    {
-                        Char_avatar.sprite = Scholar;
-                        Char_Move.text = (GameObject.Find("Scholar").GetComponent<Scholar>().moveRange).ToString();
-                        Char_attack.text = (GameObject.Find("Scholar").GetComponent<Scholar>().attack_damage).ToString();
-                    }
-                    else if((units_state[map_tiles_pos[pickEndTile]].name) == "Monk")
-                    {
-                        Char_avatar.sprite = Monk;
-                        Char_Move.text = (GameObject.Find("Monk").GetComponent<Monk>().moveRange).ToString();
-                        Char_attack.text = (GameObject.Find("Monk").GetComponent<Monk>().attack_damage).ToString();
-                    }
-                    else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Archer")
-                    {
-                        Char_avatar.sprite = archer;
-                        Char_Move.text = (GameObject.Find("Archer").GetComponent<Archer>().moveRange).ToString();
-                        Char_attack.text = (GameObject.Find("Archer").GetComponent<Archer>().attack_damage).ToString();
-                    }
-                    else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Trapmaster")
-                    {
-                        Char_avatar.sprite = trapmaster;
-                        Char_Move.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().moveRange).ToString();
-                        Char_attack.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().attack_damage).ToString();
-                    }
+                    
+                    //lock the Mouse Over info to character
 
                     first_click = false;
                     acting_state = 1;
@@ -507,38 +483,38 @@ public class Map_Control : MonoBehaviour
                            && units_state[map_tiles_pos[pickTile]].tag == "PlayerUnit")
                             units_state[map_tiles_pos[pickTile]].GetComponent<UserUnit>().destory_clickEffect();
 
-                        if ((units_state[map_tiles_pos[pickEndTile]].name) == "Scholar")
-                        {
-                            Char_avatar.sprite = Scholar;
-                            Health_number.text = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health).ToString() + "/" + (GameObject.Find("Scholar").GetComponent<Scholar>().health).ToString());
-                            Char_Move.text = (GameObject.Find("Scholar").GetComponent<Scholar>().moveRange).ToString();
-                            Char_attack.text = (GameObject.Find("Scholar").GetComponent<Scholar>().attack_damage).ToString();
-                            healthfill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
-                        }
-                        else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Monk")
-                        {
-                            Char_avatar.sprite = Monk;
-                            Health_number.text = ((GameObject.Find("Monk").GetComponent<Monk>().current_health).ToString() + "/" + (GameObject.Find("Monk").GetComponent<Monk>().health).ToString());
-                            Char_Move.text = (GameObject.Find("Monk").GetComponent<Monk>().moveRange).ToString();
-                            Char_attack.text = (GameObject.Find("Monk").GetComponent<Monk>().attack_damage).ToString();
-                            healthfill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
-                        }
-                        else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Archer")
-                        {
-                            Char_avatar.sprite = archer;
-                            Health_number.text = ((GameObject.Find("Archer").GetComponent<Archer>().current_health).ToString() + "/" + (GameObject.Find("Archer").GetComponent<Archer>().health).ToString());
-                            Char_Move.text = (GameObject.Find("Archer").GetComponent<Archer>().moveRange).ToString();
-                            Char_attack.text = (GameObject.Find("Archer").GetComponent<Archer>().attack_damage).ToString();
-                            healthfill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
-                        }
-                        else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Trapmaster")
-                        {
-                            Char_avatar.sprite = trapmaster;
-                            Health_number.text = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health).ToString() + "/" + (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health).ToString());
-                            Char_Move.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().moveRange).ToString();
-                            Char_attack.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().attack_damage).ToString();
-                            healthfill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
-                        }
+                        //if ((units_state[map_tiles_pos[pickEndTile]].name) == "Scholar")
+                        //{
+                        //    Char_avatar.sprite = Scholar;
+                        //    Health_number.text = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health).ToString() + "/" + (GameObject.Find("Scholar").GetComponent<Scholar>().health).ToString());
+                        //    Char_Move.text = (GameObject.Find("Scholar").GetComponent<Scholar>().moveRange).ToString();
+                        //    Char_attack.text = (GameObject.Find("Scholar").GetComponent<Scholar>().attack_damage).ToString();
+                        //    healthfill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
+                        //}
+                        //else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Monk")
+                        //{
+                        //    Char_avatar.sprite = Monk;
+                        //    Health_number.text = ((GameObject.Find("Monk").GetComponent<Monk>().current_health).ToString() + "/" + (GameObject.Find("Monk").GetComponent<Monk>().health).ToString());
+                        //    Char_Move.text = (GameObject.Find("Monk").GetComponent<Monk>().moveRange).ToString();
+                        //    Char_attack.text = (GameObject.Find("Monk").GetComponent<Monk>().attack_damage).ToString();
+                        //    healthfill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
+                        //}
+                        //else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Archer")
+                        //{
+                        //    Char_avatar.sprite = archer;
+                        //    Health_number.text = ((GameObject.Find("Archer").GetComponent<Archer>().current_health).ToString() + "/" + (GameObject.Find("Archer").GetComponent<Archer>().health).ToString());
+                        //    Char_Move.text = (GameObject.Find("Archer").GetComponent<Archer>().moveRange).ToString();
+                        //    Char_attack.text = (GameObject.Find("Archer").GetComponent<Archer>().attack_damage).ToString();
+                        //    healthfill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
+                        //}
+                        //else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Trapmaster")
+                        //{
+                        //    Char_avatar.sprite = trapmaster;
+                        //    Health_number.text = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health).ToString() + "/" + (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health).ToString());
+                        //    Char_Move.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().moveRange).ToString();
+                        //    Char_attack.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().attack_damage).ToString();
+                        //    healthfill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
+                        //}
 
                         //create selectEffect of switched character
                         units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();

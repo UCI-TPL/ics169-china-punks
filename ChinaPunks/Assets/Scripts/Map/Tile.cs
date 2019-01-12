@@ -18,11 +18,16 @@ public class Tile : MonoBehaviour {
     public bool on_fire;
     public int fire_cd;
     int _fire_cd;
-
     public GameObject trap;
 
-    public GameObject Enemy_info_HUD;
-    Text _enemy_name;
+    //UI
+    InGameUI UI_ctr;
+
+    // UI codes which should not be here
+ //   public GameObject Enemy_info_HUD;
+	//public GameObject Char_detailed_info_hud;
+ //   Text _enemy_name;
+	//Text _char_detail_info;
 
 	// Use this for initialization
 	void Start () {
@@ -36,9 +41,20 @@ public class Tile : MonoBehaviour {
                                          0 + XYpos.Key * (0.25f) + XYpos.Value * (-0.25f),
                                          0 + XYpos.Key * (0.01f) + XYpos.Value * (-0.01f));
 
-        GameObject selected_Enemy_name = Enemy_info_HUD.transform.Find("Enemy_avatar_back/Text").gameObject;
-        _enemy_name = selected_Enemy_name.GetComponent<Text>();
-        Enemy_info_HUD.SetActive(false);
+		//GameObject IngameUI = turn_ctr.UI.gameObject;
+
+		//GameObject MoveOver_Char_info = IngameUI.gameObject.transform.FindChild
+
+
+		//      GameObject selected_Enemy_name = Enemy_info_HUD.transform.Find("Enemy_avatar_back/Text").gameObject;
+		//      _enemy_name = selected_Enemy_name.GetComponent<Text>();
+		//      Enemy_info_HUD.SetActive(false);
+
+		//GameObject Mouse_over_Char_name = Char_detailed_info_hud.transform.Find("Char_avatar_back/Text").gameObject;
+		//_char_detail_info = Mouse_over_Char_name.GetComponent<Text>();
+		//Char_detailed_info_hud.SetActive(false);
+
+		UI_ctr = turn_control.GetComponent<Turn_Control>().UI.GetComponent<InGameUI>();
     }
 	
 	// Update is called once per frame
@@ -116,6 +132,12 @@ public class Tile : MonoBehaviour {
 
     private void OnMouseExit()
     {
+        //clear mouse over info
+		UI_ctr.MoveOver_Map_Info.Clear();
+
+		//Check mouse is on map
+		UI_ctr.mouse_is_on_map = false;
+
         //hide selection outline
         transform.GetChild(0).gameObject.SetActive(false);
 
@@ -128,22 +150,24 @@ public class Tile : MonoBehaviour {
                 map_ctr.BGCurve.SetActive(false);
                 Destroy(map_ctr.BGCurve);
             }
-
         }
 
-        //hide enemy char info
-        Enemy_info_HUD.SetActive(false);
     }
 
     private void OnMouseOver()
-    {
-        if (map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]] != null &&
-                    map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].tag != "Untagged"&&
-                     map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].tag != "PlayerUnit")
+	{
+		//Check mouse is on map
+		UI_ctr.mouse_is_on_map = true;
+
+		if (map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]] != null)
         {
-            Enemy_info_HUD.SetActive(true);
-            _enemy_name.text = map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].name;
-            Debug.Log("find enemy!!");
+			if(UI_ctr.MoveOver_Map_Info.Count == 0)
+			{
+                UI_ctr.MoveOver_Map_Info.Add(map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]]);
+			}
+
+			//Char_detailed_info_hud.SetActive(true);
+			//_char_detail_info.text = map_ctr.units_state[map_ctr.map_tiles_pos[gameObject]].name;
         }
     }
 

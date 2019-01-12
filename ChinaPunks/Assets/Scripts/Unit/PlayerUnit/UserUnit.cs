@@ -15,7 +15,7 @@ public class UserUnit : Unit
     public float attack_damage;
     public float skill_damage;
 
-    public Image healthFillImage;
+    //public Image healthFillImage;
     public Animator anim;
 
     public GameObject selectEffect;
@@ -228,7 +228,7 @@ public class UserUnit : Unit
             }
             hasPeach = false;
         }
-        healthFillImage.fillAmount = current_health / health;
+        //healthFillImage.fillAmount = current_health / health;
 
         //if (health <= 0)
         //{

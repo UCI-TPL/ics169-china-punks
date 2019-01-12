@@ -34,13 +34,13 @@ public class LevelManager : MonoBehaviour {
         prev_turn_count = 1;
         curt_turn_count = mc.turn_count;
 
-        if (Level == 1)
-        {
-            InGameHUD = InGameUI.transform.GetChild(4).gameObject;
-            InGameHUD.transform.GetChild(0).gameObject.SetActive(false);
-            InGameHUD.transform.GetChild(1).gameObject.SetActive(false);
-            InGameHUD.transform.GetChild(2).gameObject.SetActive(false);
-        }
+        //if (Level == 1)
+        //{
+        //    InGameHUD = InGameUI.transform.GetChild(4).gameObject;
+        //    InGameHUD.transform.GetChild(0).gameObject.SetActive(false);
+        //    InGameHUD.transform.GetChild(1).gameObject.SetActive(false);
+        //    InGameHUD.transform.GetChild(2).gameObject.SetActive(false);
+        //}
     }
 	
 	// Update is called once per frame
