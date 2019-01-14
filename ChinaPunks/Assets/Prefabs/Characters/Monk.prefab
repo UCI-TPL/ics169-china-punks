@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225757512519208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.13, y: 0.44, z: -1}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 3.13, y: 0.8, z: -1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
-  health: 100
+  health: 25
   current_health: 0
   moveComplete: 0
   turnComplete: 0
@@ -88,9 +88,8 @@ MonoBehaviour:
   attackRange: 01000000ffffffff0a000000f6ffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
   moveRange: 2
-  attack_damage: 15
+  attack_damage: 6
   skill_damage: 0
-  healthFillImage: {fileID: 0}
   anim: {fileID: 95824877085274160}
   selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
     type: 2}
@@ -104,6 +103,8 @@ MonoBehaviour:
   fire_damage: 10
   trap_damage: 10
   skill_cd: 3
+  LostControl_Probability: 0
+  control_lost: 0
 --- !u!212 &212134354144729680
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -139,7 +140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 086e0a08d48654a2f8019db0d2ad0ae4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0241e7ad866ed42ee9a077ea1ffe00b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class WorldGenerator : MonoBehaviour
 {
@@ -13,6 +15,11 @@ public class WorldGenerator : MonoBehaviour
     InGameUI UI_ctr;
     public GameObject Turn_prefab;
     Turn_Control Turn_ctr;
+    public GameObject timeline;
+    PlayableDirector director;
+    public GameObject WLcheck_prefab;
+    WinLoseCheck WLcheck_ctr;
+
     //public GameObject LevelManager_prefab;
     //LevelManager level_ctr;
     //public GameObject Dialogue_prefab;
@@ -32,11 +39,12 @@ public class WorldGenerator : MonoBehaviour
     public List<Gameobject_Position_prefab> Block_prefabs = new List<Gameobject_Position_prefab>();
 
     public GameObject trap_prefab;
-    public List<int> trap_positions;
+    public List<int> trap_positions = new List<int>();
     public GameObject peach_prefab;
     public int peach_pos;
     public GameObject exit_icon_prefab;
-    public int exit_pos;
+    public List<int> exit_pos = new List<int>();
+
 
 
 
@@ -44,6 +52,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject map;
     public GameObject UI;
     public GameObject Turn;
+    public GameObject WLcheck;
     public GameObject LevelManager;
     public GameObject Dialogue;
     public List<GameObject> blocks = new List<GameObject>();
@@ -55,6 +64,7 @@ public class WorldGenerator : MonoBehaviour
 
 
 
+
     // Use this for initialization
 
     void Awake()
@@ -62,6 +72,10 @@ public class WorldGenerator : MonoBehaviour
         map = Instantiate(map_prefab);
         UI = Instantiate(UI_prefab);
         Turn = Instantiate(Turn_prefab);
+        WLcheck = Instantiate(WLcheck_prefab);
+
+
+
         //LevelManager = Instantiate(LevelManager_prefab);
         //Dialogue = Instantiate(Dialogue_prefab);
         //Dialogue.transform.SetParent(UI.transform);
@@ -76,10 +90,23 @@ public class WorldGenerator : MonoBehaviour
         map_ctr = map.GetComponent<Map_Control>();
         UI_ctr = UI.GetComponent<InGameUI>();
         Turn_ctr = Turn.GetComponent<Turn_Control>();
+        WLcheck_ctr = WLcheck.GetComponent<WinLoseCheck>();
         //level_ctr = LevelManager.GetComponent<LevelManager>();
         //dialogue_ctr = Dialogue.GetComponent<DialogueManager>();
 
+        director = timeline.GetComponent<PlayableDirector>();
+        PlayableAsset playable = director.playableAsset;
+        TimelineAsset timelineAsset = (TimelineAsset)playable;
+        TrackAsset UItrack = timelineAsset.GetOutputTrack(5);
+        director.SetGenericBinding(UItrack, UI);
+        director.Play();
+
         LevelStart();
+
+
+
+        UI.SetActive(false);
+
     }
 
     void Start () {
@@ -89,10 +116,12 @@ public class WorldGenerator : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
 	}
 
 	void LevelStart(){
+
 
         UI_ctr.map = map;
         UI_ctr.transform.GetChild(0).gameObject.GetComponent<Button>().onClick.AddListener(Turn_ctr.changeRound);
@@ -102,6 +131,12 @@ public class WorldGenerator : MonoBehaviour
         Turn_ctr.endTurnButton = UI.transform.GetChild(0).gameObject;
         Turn_ctr.WinScene = UI.transform.GetChild(1).gameObject;
         Turn_ctr.LoseScene = UI.transform.GetChild(2).gameObject;
+
+        WLcheck_ctr.mc = map_ctr;
+        WLcheck_ctr.turn = Turn_ctr;
+        WLcheck_ctr.Level = level;
+        WLcheck_ctr.timeline = timeline;
+        
         //level_ctr.DialogueManager = Dialogue;
         //level_ctr.MapController = map;
         //level_ctr.TurnController = Turn;
@@ -139,10 +174,15 @@ public class WorldGenerator : MonoBehaviour
 
         }
 
-        map_ctr.map_tiles[exit_pos].GetComponent<Tile>().exit = true;
-        GameObject exit_icon = Instantiate(exit_icon_prefab);
-        exit_icon.GetComponent<Exit_icon>().map = map;
-        exit_icon.GetComponent<Exit_icon>().currentPos = exit_pos;
+        foreach (int pos in exit_pos)
+        {
+            map_ctr.map_tiles[pos].GetComponent<Tile>().exit = true;
+            GameObject exit_icon = Instantiate(exit_icon_prefab);
+            exit_icon.GetComponent<Exit_icon>().map = map;
+            exit_icon.GetComponent<Exit_icon>().currentPos = pos;
+
+            WLcheck_ctr.exits.Add(pos);
+        }
 
 
 
@@ -173,6 +213,7 @@ public class WorldGenerator : MonoBehaviour
 				character.GetComponent<UserUnit>().currentPos = GP.positions[i];
 
 				UI_ctr.Characters_clone.Add(character);
+                WLcheck_ctr.character_list.Add(character);
 			}         
 		}
 
@@ -226,7 +267,7 @@ public class WorldGenerator : MonoBehaviour
         //}
 
 
-            
+
     }
 
 	IEnumerator StartPause()

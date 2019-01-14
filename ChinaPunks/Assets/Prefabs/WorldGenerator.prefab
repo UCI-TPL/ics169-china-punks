@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1412115672539972}
+  m_IsPrefabAsset: 1
+--- !u!1 &1412115672539972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4856426212600310}
+  - component: {fileID: 114510403198695534}
+  m_Layer: 0
+  m_Name: WorldGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4856426212600310
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412115672539972}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.2389364, y: -0.529928, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114510403198695534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412115672539972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767789bb86f8d48fa82a12387fac67b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map_prefab: {fileID: 1193922694066054, guid: 33e92743f8b764072856f010d1c3ccce, type: 2}
+  UI_prefab: {fileID: 1875810080982064, guid: b11aad38b6a924a919e42f1ed841094e, type: 2}
+  Turn_prefab: {fileID: 1869701087958602, guid: c4167d91ac00645d78e7f1d6ae86c3c3,
+    type: 2}
+  level: 1
+  Tiles_prefabs:
+  - prefab: {fileID: 1792288182856016, guid: dfe6afd255e9a46e893a307ba9f2ab0a, type: 2}
+    positions: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000150000001600000017000000190000001b0000001c0000001d0000001e0000001f00000020000000220000002300000025000000260000002700000028000000290000002a0000002c0000002e0000002f00000030000000310000003200000033000000340000003600000037000000390000003a0000003b0000003c0000003d0000003e0000003f00000041000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f00000060000000610000006200000063000000
+  - prefab: {fileID: 1925571638415964, guid: aa7dff7240880432bb485c47ea79666d, type: 2}
+    positions: 180000001a00000021000000240000002b0000002d00000035000000380000004000000042000000
+  characters_prefab:
+  - prefab: {fileID: 1225757512519208, guid: 990c99ab5f6ce40bdb50b065a61b226f, type: 2}
+    positions: 54000000
+  AI_prefabs:
+  - prefab: {fileID: 1350294918014192, guid: 3038dd856516b458390e777bfecbb64b, type: 2}
+    positions: 0e000000
+  Block_prefabs:
+  - prefab: {fileID: 1587593934060140, guid: dd3e65d4e7d004fceb604be34ea29190, type: 2}
+    positions: 030000000d000000050000000f000000
+  trap_prefab: {fileID: 1296132908931726, guid: 775eacff3c0804ac7bbf7cdedbc4295f,
+    type: 2}
+  trap_positions: 
+  peach_prefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
+    type: 2}
+  peach_pos: 4
+  exit_icon_prefab: {fileID: 1033292084980674, guid: 8442fc627610849a9af612eded936226,
+    type: 2}
+  exit_pos: 0
+  map: {fileID: 0}
+  UI: {fileID: 0}
+  Turn: {fileID: 0}
+  LevelManager: {fileID: 0}
+  Dialogue: {fileID: 0}
+  blocks:
+  - {fileID: 0}
+  AIs: []
+  characters:
+  - {fileID: 0}
+  traps: []
+  peach: {fileID: 0}

@@ -38,17 +38,17 @@ public class Turn_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (map_ctr.CheckIfWin())
-        {
-            WinScene.SetActive(true);
-            map_ctr.reset();
-        }
+        //if (map_ctr.CheckIfWin())
+        //{
+        //    WinScene.SetActive(true);
+        //    map_ctr.reset();
+        //}
 
-        else if (map_ctr.CheckIfLose())
-        {
-            LoseScene.SetActive(true);
-            map_ctr.reset();
-        }
+        //else if (map_ctr.CheckIfLose())
+        //{
+        //    LoseScene.SetActive(true);
+        //    map_ctr.reset();
+        //}
 
         //Player round
         if (gameRound == "Player")

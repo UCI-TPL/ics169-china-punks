@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class InGameUI : MonoBehaviour {
 
@@ -168,7 +169,9 @@ public class InGameUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Character_Click();
-		if(mouse_is_on_map == true)
+
+
+        if (mouse_is_on_map == true)
 		{
 			if (MoveOver_Map_Info.Count != 0)
             {
