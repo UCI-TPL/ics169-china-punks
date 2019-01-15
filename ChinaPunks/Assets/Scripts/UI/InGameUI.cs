@@ -36,6 +36,8 @@ public class InGameUI : MonoBehaviour {
 	public Sprite Scholar;
 	public Sprite Trapmaster;
 	public Sprite Archor;
+	public Sprite Farmer;
+	public Sprite Farmer_Leader;
 	public Sprite Tile_1;
 
 	Image Char_avatar;
@@ -200,6 +202,16 @@ public class InGameUI : MonoBehaviour {
                         Move_Over_Avatar.sprite = Archor;
 						Move_Over_Text.text = "Archer";
                     }
+					if (MoveOver_Map_Info[0].name == "Farmer(Clone)")
+                    {
+                        Move_Over_Avatar.sprite = Farmer;
+                        Move_Over_Text.text = "Farmer";
+                    }
+					if (MoveOver_Map_Info[0].name == "FarmerLeader(Clone)")
+                    {
+						Move_Over_Avatar.sprite = Farmer_Leader;
+						Move_Over_Text.text = "FarmerLeader";
+                    }
 				}            
             }
             else if (MoveOver_Map_Info.Count == 0)
@@ -222,8 +234,7 @@ public class InGameUI : MonoBehaviour {
 		}
 
         //update character info in the left
-
-		//scholar info
+     
         
         for (int i = 0; i < 4; i++)
 		{
@@ -256,6 +267,8 @@ public class InGameUI : MonoBehaviour {
                 Image _fill_image = _Fill.GetComponent<Image>();
 				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
 				                          (Characters_clone[i].GetComponent<Monk>().health));
+
+				Debug.Log("monk current health: " + (Characters_clone[i].GetComponent<Monk>().current_health).ToString());
 				foreach (var item in Char_infos)
                 {
                     if (item.active == true)
