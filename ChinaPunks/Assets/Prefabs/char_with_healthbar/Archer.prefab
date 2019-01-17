@@ -170,13 +170,12 @@ MonoBehaviour:
   moveRange: 2
   attack_damage: 15
   skill_damage: 15
-  healthFillImage: {fileID: 0}
   anim: {fileID: 95434497530356034}
   selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
     type: 2}
   charater_type: Archer
   coolDown: 0
-  moveSpeed: 1
+  moveSpeed: 3
   slippery: 0
   fire_cd: 2
   poison_cd: 2

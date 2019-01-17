@@ -23,6 +23,10 @@ public class Monk : UserUnit {
         attack_dmg = attack_damage;
         move_range = moveRange;
         current_health = health;
+		_moveSpeed = moveSpeed;
+        
+        
+        
     }
 
     public override void Skill(){

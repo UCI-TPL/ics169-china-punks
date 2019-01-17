@@ -11,6 +11,7 @@ public class CutSceneDialogues : MonoBehaviour {
     public GameObject timeline;
     public int level;
     int idx;
+	bool skipped;
     
 
 	void Start () {
@@ -43,14 +44,37 @@ public class CutSceneDialogues : MonoBehaviour {
 
     }
 
-    //void OnDisable()
-    //{
-    //    if (idx < dialogues.Count - 1)
-    //    {
-    //        current_dialogue = dialogues[idx];
-    //        idx++;
-    //    }
-    //}
+	public void Skip()
+	{
+		if (level == 0)
+		{
+			if (idx < 18)
+			{
+				idx = 18;
+				timeline.GetComponent<PlayableDirector>().time = 56.90;
+				skipped = true;
+
+
+			}
+			else
+			{
+				idx = dialogues.Count;
+				skipped = true;
+				timeline.GetComponent<PlayableDirector>().time = 82.0;
+			}
+		}
+	}
+
+	void LateUpdate()
+    {
+        if (skipped)
+        {
+            if (idx == 18)
+                timeline.GetComponent<PlayableDirector>().Pause();
+            skipped = false;
+        }
+    }
+   
 
 
 }

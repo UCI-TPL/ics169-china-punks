@@ -25,7 +25,8 @@ public class UserUnit : Unit
     public string charater_type;
 
     public int coolDown = 0;
-    public float moveSpeed = 1;
+    public float moveSpeed;
+	protected float _moveSpeed;
     public bool slippery = false;
 
     public int fire_cd;
@@ -54,6 +55,7 @@ public class UserUnit : Unit
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
         _fire_cd = fire_cd;
+		_moveSpeed = moveSpeed;
         current_health = health;
     }
 
@@ -154,7 +156,7 @@ public class UserUnit : Unit
 
                     //if next tile is snow, increase movespeed
                     if (slippery && mc.map_tiles[currentPos].GetComponent<Tile>().tile_type == "Snow")//&& mc.path.Count <= 1)
-                        moveSpeed = 3;
+                        moveSpeed += 3;
                     //if walk through a fire tile, change health
                     //if (on_fire && mc.map_tiles[currentPos].GetComponent<Tile>().on_fire)
                     //Health_Change(fire_damage);
@@ -187,7 +189,7 @@ public class UserUnit : Unit
 
                     isClicked = false;
                     mc.character_moving = false;
-                    moveSpeed = 1;
+					moveSpeed = _moveSpeed;
                     slippery = false;
                 }
             }

@@ -80,6 +80,7 @@ MonoBehaviour:
   provocative: 0
   poisoned: 0
   health: 100
+  current_health: 0
   moveComplete: 0
   turnComplete: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
@@ -91,7 +92,7 @@ MonoBehaviour:
   anim: {fileID: 95340182238180626}
   healthFillImage: {fileID: 0}
   attack_damage: 15
-  moveSpeed: 1
+  moveSpeed: 3
   slippery: 0
   fire_cd: 2
   poison_cd: 2

@@ -95,7 +95,7 @@ MonoBehaviour:
     type: 2}
   charater_type: Scholar
   coolDown: 0
-  moveSpeed: 1
+  moveSpeed: 3
   slippery: 0
   fire_cd: 2
   poison_cd: 2

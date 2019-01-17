@@ -19,7 +19,8 @@ public class AIUnit : Unit
 
     public float attack_damage;
 
-    public float moveSpeed = 1;
+    public float moveSpeed;
+	float _moveSpeed;
     public bool slippery = false;
 
     public int fire_cd;
@@ -52,6 +53,7 @@ public class AIUnit : Unit
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
         _fire_cd = fire_cd;
+		_moveSpeed = moveSpeed;
         current_health = health;
     }
 
@@ -131,7 +133,7 @@ public class AIUnit : Unit
 
                     //if next tile is snow, increase movespeed
                     if (slippery && mc.path.Count <= 1)
-                        moveSpeed = 3;
+                        moveSpeed += 3;
 
                     mc.units_state[currentPos] = null;
                     currentPos = mc.path[0];
@@ -209,7 +211,7 @@ public class AIUnit : Unit
                     }
                     acting = false;
                     mc.character_moving = false;
-                    moveSpeed = 1;
+					moveSpeed = _moveSpeed;
                     slippery = false;
 
                 }
@@ -246,7 +248,7 @@ public class AIUnit : Unit
             }
             hasPeach = false;
         }
-        healthFillImage.fillAmount = current_health / health;
+        //healthFillImage.fillAmount = current_health / health;
     }
 
     public virtual void Reset_FireCD()

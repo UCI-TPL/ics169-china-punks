@@ -97,7 +97,7 @@ public class WorldGenerator : MonoBehaviour
         director = timeline.GetComponent<PlayableDirector>();
         PlayableAsset playable = director.playableAsset;
         TimelineAsset timelineAsset = (TimelineAsset)playable;
-        TrackAsset UItrack = timelineAsset.GetOutputTrack(5);
+        TrackAsset UItrack = timelineAsset.GetOutputTrack(6);
         director.SetGenericBinding(UItrack, UI);
         director.Play();
 
