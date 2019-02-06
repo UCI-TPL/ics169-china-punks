@@ -12,6 +12,7 @@ public class Scholar:UserUnit
 
         foreach (int p in mc.expansion_of_tiles[mc.picked_pos])
         {
+			mc.mark_tile[p] = true;
             mc.map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
         }
 

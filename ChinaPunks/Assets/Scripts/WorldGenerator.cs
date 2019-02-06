@@ -203,21 +203,6 @@ public class WorldGenerator : MonoBehaviour
         //    }
         //    UI_yPos -= 140;
         //}
-		foreach (Gameobject_Position_prefab GP in characters_prefab){
-			GameObject character;
-			for (int i = 0; i < GP.positions.Count; ++i)
-			{
-				character = Instantiate(GP.prefab);
-				character.GetComponent<UserUnit>().mc = map_ctr;
-				character.GetComponent<UserUnit>().turn_ctr = Turn_ctr;
-				character.GetComponent<UserUnit>().currentPos = GP.positions[i];
-
-				UI_ctr.Characters_clone.Add(character);
-                WLcheck_ctr.character_list.Add(character);
-			}         
-		}
-
-
 
 		//UI_yPos = -220;
 		//foreach (Gameobject_Position_prefab GP in AI_prefabs)
@@ -253,20 +238,35 @@ public class WorldGenerator : MonoBehaviour
 		}
 
 
-        //GameObject Peach = Instantiate(peach_prefab);
-        //Peach.GetComponent<Peach>().mc = map_ctr;
-        //Peach.GetComponent<Peach>().turn_ctr = Turn_ctr;
-        //Peach.GetComponent<Peach>().currentPos = peach_pos;
+		//GameObject Peach = Instantiate(peach_prefab);
+		//Peach.GetComponent<Peach>().mc = map_ctr;
+		//Peach.GetComponent<Peach>().turn_ctr = Turn_ctr;
+		//Peach.GetComponent<Peach>().currentPos = peach_pos;
 
 
-        //foreach(int pos in trap_positions){
-        //    GameObject trap = Instantiate(trap_prefab);
-        //    trap.GetComponent<trap>().mc = map_ctr;
-        //    trap.GetComponent<trap>().pos = pos;
-        //    map_ctr.map_tiles[pos].GetComponent<Tile>().trap = trap;
-        //}
+		//foreach(int pos in trap_positions){
+		//    GameObject trap = Instantiate(trap_prefab);
+		//    trap.GetComponent<trap>().mc = map_ctr;
+		//    trap.GetComponent<trap>().pos = pos;
+		//    map_ctr.map_tiles[pos].GetComponent<Tile>().trap = trap;
+		//}
 
 
+
+		foreach (Gameobject_Position_prefab GP in characters_prefab)
+        {
+            GameObject character;
+            for (int i = 0; i < GP.positions.Count; ++i)
+            {
+                character = Instantiate(GP.prefab);
+                character.GetComponent<UserUnit>().mc = map_ctr;
+                character.GetComponent<UserUnit>().turn_ctr = Turn_ctr;
+                character.GetComponent<UserUnit>().currentPos = GP.positions[i];
+
+                UI_ctr.Characters_clone.Add(character);
+                WLcheck_ctr.character_list.Add(character);
+            }
+        }
 
     }
 

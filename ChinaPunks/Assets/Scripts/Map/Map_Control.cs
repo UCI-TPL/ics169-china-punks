@@ -83,6 +83,12 @@ public class Map_Control : MonoBehaviour
 
     public bool character_moving = false;
 
+	// Dictionary used for tracking who has visibility on each tile;
+	public Dictionary<int, HashSet<string>> tile_visibility = new Dictionary<int, HashSet<string>>();
+
+    // List used for checking whether a tile should be handled by visibility update
+	public List<bool> mark_tile = new List<bool>();
+
     private void Awake()
     {
         //for (int i = 0; i < map_size * map_size; i++)
@@ -96,24 +102,32 @@ public class Map_Control : MonoBehaviour
         turn_count = 1;
         Tile_Store();
 
-        //GameObject select_Char_Avatar = Selected_Char_info_HUD.transform.Find("Char_avatar_back").Find("Char_avatar").gameObject;
-        //GameObject select_Char_Health = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_number").gameObject;
-        //GameObject select_Char_Health_bar = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject;
-        //GameObject select_Char_Move   = Selected_Char_info_HUD.transform.Find("Char_Move").Find("Move_range").gameObject;
-        //GameObject select_Char_Attack = Selected_Char_info_HUD.transform.Find("Char_Attack").Find("Attack_Damage").gameObject;
+		//GameObject select_Char_Avatar = Selected_Char_info_HUD.transform.Find("Char_avatar_back").Find("Char_avatar").gameObject;
+		//GameObject select_Char_Health = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_number").gameObject;
+		//GameObject select_Char_Health_bar = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject;
+		//GameObject select_Char_Move   = Selected_Char_info_HUD.transform.Find("Char_Move").Find("Move_range").gameObject;
+		//GameObject select_Char_Attack = Selected_Char_info_HUD.transform.Find("Char_Attack").Find("Attack_Damage").gameObject;
 
-        //Char_avatar = select_Char_Avatar.GetComponent<Image>();
-        //Health_number = select_Char_Health.GetComponent<Text>();
-        //Char_Move = select_Char_Move.GetComponent<Text>();
-        //Char_attack = select_Char_Attack.GetComponent<Text>();
-        //healthfill = select_Char_Health_bar.GetComponent<Image>();
+		//Char_avatar = select_Char_Avatar.GetComponent<Image>();
+		//Health_number = select_Char_Health.GetComponent<Text>();
+		//Char_Move = select_Char_Move.GetComponent<Text>();
+		//Char_attack = select_Char_Attack.GetComponent<Text>();
+		//healthfill = select_Char_Health_bar.GetComponent<Image>();
 
-        //Selected_Char_info_HUD.SetActive(false);
+		//Selected_Char_info_HUD.SetActive(false);
+
+		//Start with each tile has no character who has visual on them. Initial visibility set by player characters Start()
+		for (int i = 0; i < 100; i++){
+			tile_visibility.Add(i, new HashSet<string>());
+			mark_tile.Add(false);
+		}      
     }
 
     // Update is called once per frame
     void Update()
     {
+		change_visibility();
+
         if (Input.GetMouseButtonDown(1))
         {
             reset();
@@ -205,6 +219,7 @@ public class Map_Control : MonoBehaviour
             foreach (int i in expanded_tiles)
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+				mark_tile[i] = false;
             }
         }
         //recover tile colors from attack state and pick state
@@ -213,6 +228,7 @@ public class Map_Control : MonoBehaviour
             foreach (int i in expansion_of_tiles[picked_pos])
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+				mark_tile[i] = false;
             }
 
             //Archer
@@ -220,6 +236,7 @@ public class Map_Control : MonoBehaviour
                 foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
                 {
                     map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+					mark_tile[i] = false;
                 }
             }
 
@@ -227,6 +244,7 @@ public class Map_Control : MonoBehaviour
         //recover attack range tile colors;
         foreach(int pos in attackRange){
             map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+			mark_tile[pos] = false;
         }
         attackRange.Clear();
 
@@ -236,6 +254,7 @@ public class Map_Control : MonoBehaviour
             foreach(KeyValuePair<int,List<int>> pair in skill_tiles){
                 foreach(int pos in pair.Value){
                     map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+					mark_tile[pos] = false;
                 }
             }
 
@@ -260,6 +279,7 @@ public class Map_Control : MonoBehaviour
             foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+				mark_tile[i] = false;
             }
         }
 
@@ -268,6 +288,7 @@ public class Map_Control : MonoBehaviour
             foreach (int i in expanded_tiles)
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+				mark_tile[i] = false;
             }
         }
 
@@ -277,6 +298,7 @@ public class Map_Control : MonoBehaviour
             foreach (int i in expansion_of_tiles[picked_pos])
             {
                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+				mark_tile[i] = false;
             }
 
             //Archer
@@ -285,6 +307,7 @@ public class Map_Control : MonoBehaviour
                 foreach (int i in units_state[picked_pos].GetComponent<Archer>().Attack_range())
                 {
                     map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+					mark_tile[i] = false;
                 }
             }
 
@@ -304,14 +327,17 @@ public class Map_Control : MonoBehaviour
         {
             if (picked_pos + position >= 0 && picked_pos + position <= map_size * map_size - 1)
             {
-                map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(0, 0, 250);
+				mark_tile[picked_pos + position] = true;
+				map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(0, 0, 250);
                 if (picked_pos % 10 == 0 && (picked_pos + position + 1) % 10 == 0)
                 {
                     map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+					mark_tile[picked_pos + position] = false;
                 }
                 else if ((picked_pos + 1) % 10 == 0 && (picked_pos + position) % 10 == 0)
                 {
                     map_tiles[picked_pos + position].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+					mark_tile[picked_pos + position] = false;
                 }
             }
         }
@@ -337,7 +363,8 @@ public class Map_Control : MonoBehaviour
         all_paths = Search_solution(picked_pos, move_range, "Player", null, null);
         foreach (int i in expanded_tiles)
         {
-            map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
+			mark_tile[i] = true;
+			map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
         }
         tile_picked = false;
         first_click = false;
@@ -369,6 +396,7 @@ public class Map_Control : MonoBehaviour
 
         foreach (int position in attackRange)
         {
+			mark_tile[position] = true;
             map_tiles[position].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
         }
 
@@ -461,6 +489,7 @@ public class Map_Control : MonoBehaviour
                         foreach (int i in expanded_tiles)
                         {
                             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+							mark_tile[i] = false;
                         }
 
                         //acting_state = 0;
@@ -527,6 +556,7 @@ public class Map_Control : MonoBehaviour
                         foreach (int i in expanded_tiles)
                         {
                             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+							mark_tile[i] = false;
                         }
                         all_paths.Clear();
                         expanded_tiles.Clear();
@@ -568,6 +598,7 @@ public class Map_Control : MonoBehaviour
                             foreach (int i in expansion_of_tiles[picked_pos])
                             {
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+								mark_tile[i] = false;
                             }
                         }
                         units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
@@ -602,6 +633,7 @@ public class Map_Control : MonoBehaviour
                             foreach (int i in expansion_of_tiles[picked_pos])
                             {
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+								mark_tile[i] = false;
                             }
                         }
 
@@ -645,6 +677,7 @@ public class Map_Control : MonoBehaviour
                         foreach(int k in skill_tiles.Keys){
                             foreach(int pos in skill_tiles[k]){
                                 map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+								mark_tile[pos] = false;
                             }
                         }
                         //apply skill cd
@@ -696,7 +729,11 @@ public class Map_Control : MonoBehaviour
         }
     }
 
-    //search for all tiles that are considered solution for AI
+    /* search for all tiles that are considered solution for the input Condition
+     * Different user modes:
+     *      "Player": used for finding the tiles that a player character can move to
+     *      "AI": used for AI desicion making
+     */
     public Dictionary<int, List<int>> Search_solution(int start_tile, int range, string userMode, string unitTag, Condition myCondition)
     {
         //search algorithm
@@ -777,10 +814,10 @@ public class Map_Control : MonoBehaviour
                             if (!all_paths.ContainsKey(pos))
                                 all_paths[pos] = new List<int>(all_paths[pos_to_explore]);
 
-                            if (userMode == "AI" && myCondition(pos, unitTag))
+                            if (myCondition(pos, unitTag))
                                 solution[pos] = all_paths[pos];
                         }
-                        if (userMode == "AI" && solution.Count != 0)
+                        if (solution.Count != 0)
                             return solution;
 
                     }
@@ -847,6 +884,7 @@ public class Map_Control : MonoBehaviour
     public void color_skill_tiles(int pos) {
         if(skill_tiles.ContainsKey(pos)){
             foreach(int p in skill_tiles[pos]){
+				mark_tile[p] = true;
                 map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(200, 0, 0);
             }
         }
@@ -854,13 +892,81 @@ public class Map_Control : MonoBehaviour
     public void uncolor_skill_tiles(int pos){
         if (skill_tiles.ContainsKey(pos)){
             foreach (int p in skill_tiles[pos]){
-                if(!skill_tiles.ContainsKey(p))
-                    map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+				if(!skill_tiles.ContainsKey(p)){
+					map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+					mark_tile[p] = false;
+				} 
                 else{
-                    map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
+					mark_tile[p] = true;
+					map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
                 }
             }
         }
     }
+
+    /* Function used for changing the visibility of a group of tiles around a center
+     * input:
+     *      tile: center of the group
+     *      view_range: view range of the character
+     *      visual: boolean of whether a tile is visiable or not
+     *      character_name: name of the characters
+     */
+	public void set_tile_group_visibility(int tile, int view_range, bool visual, string character_name){
+		// Variables for the search algorithm
+		HashSet<int> visited = new HashSet<int>(){tile};
+		List<int> frontier = new List<int>(){tile};
+		List<int> to_search = new List<int>();
+
+		// Change center visibility
+		set_tile_visibility(tile, visual, character_name);
+
+		// Change other tiles visibility
+		for (int i = 0; i < view_range; i++){
+			foreach(int t in frontier){
+				foreach(int new_tile in expansion_of_tiles[t]){
+					if(!visited.Contains(new_tile)){
+						set_tile_visibility(new_tile, visual, character_name);
+						to_search.Add(new_tile);
+						visited.Add(new_tile);
+					}
+				}
+			}
+			frontier = to_search;
+			to_search = new List<int>();
+		}
+	}
+
+
+	/* Function used for changing the visibility of a single tile
+     * input is similar to the previous function
+     */
+	private void set_tile_visibility(int tile, bool visual, string character_name){
+		if (visual)
+			tile_visibility[tile].Add(character_name);
+        else
+			tile_visibility[tile].Remove(character_name);
+	}
+
+    /* Function used for updating the visibility of all tiles
+     * 
+     */
+	private void change_visibility(){
+		for (int tile = 0; tile < 100; tile++){
+			if(tile_visibility[tile].Count >= 1){
+				if(units_state[tile] != null)
+				    units_state[tile].GetComponent<SpriteRenderer>().enabled = true;
+				if(!mark_tile[tile])
+				    map_tiles[tile].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+			}
+			else{
+				if(units_state[tile] != null)
+				    units_state[tile].GetComponent<SpriteRenderer>().enabled = false;
+				if(!mark_tile[tile])
+					map_tiles[tile].GetComponent<SpriteRenderer>().color = Color.gray;
+			}
+		}
+	}
+
+
 
 }

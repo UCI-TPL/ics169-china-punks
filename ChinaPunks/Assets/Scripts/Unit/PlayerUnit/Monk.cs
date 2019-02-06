@@ -7,27 +7,10 @@ public class Monk : UserUnit {
 
     float attack_dmg;
     int move_range;
-
+    
     public float LostControl_Probability;
     public bool control_lost;
 
-
-    void Start()
-    {
-        mc.units_state[currentPos] = gameObject;
-        mapInfo = mc.map_tiles;                                                          //get map info from GameController
-        Vector3 xyPosition = mapInfo[currentPos].transform.position;
-        transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);
-
-        //store values for Reset_Skill
-        attack_dmg = attack_damage;
-        move_range = moveRange;
-        current_health = health;
-		_moveSpeed = moveSpeed;
-        
-        
-        
-    }
 
     public override void Skill(){
         ////0 ->[+attack,-movement], 1->[-attack,+movement]

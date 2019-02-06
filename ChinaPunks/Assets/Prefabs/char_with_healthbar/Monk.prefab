@@ -231,7 +231,7 @@ MonoBehaviour:
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
-  moveRange: 4
+  moveRange: 2
   attack_damage: 6
   skill_damage: 0
   anim: {fileID: 95195270284860398}
@@ -247,6 +247,7 @@ MonoBehaviour:
   fire_damage: 10
   trap_damage: 10
   skill_cd: 3
+  view_range: 3
   LostControl_Probability: 0
   control_lost: 0
 --- !u!212 &212249281345922930

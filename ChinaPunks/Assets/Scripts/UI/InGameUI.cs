@@ -268,7 +268,7 @@ public class InGameUI : MonoBehaviour {
 				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
 				                          (Characters_clone[i].GetComponent<Monk>().health));
 
-				Debug.Log("monk current health: " + (Characters_clone[i].GetComponent<Monk>().current_health).ToString());
+//				Debug.Log("monk current health: " + (Characters_clone[i].GetComponent<Monk>().current_health).ToString());
 				foreach (var item in Char_infos)
                 {
                     if (item.active == true)

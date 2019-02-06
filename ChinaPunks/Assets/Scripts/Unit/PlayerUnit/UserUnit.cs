@@ -43,6 +43,10 @@ public class UserUnit : Unit
 
     Vector3 moveDestination = new Vector3();
 
+	// Variables used for view changes
+	public int view_range;
+
+
 
     // Use this for initialization
     void Start()
@@ -57,6 +61,9 @@ public class UserUnit : Unit
         _fire_cd = fire_cd;
 		_moveSpeed = moveSpeed;
         current_health = health;
+        
+		// Initialize the visibility at the begining of each level
+		mc.set_tile_group_visibility(currentPos, view_range, true, gameObject.name);
     }
 
     // Update is called once per frame
@@ -100,15 +107,20 @@ public class UserUnit : Unit
         //if path got, starts walking
         if (mc.path.Count > 0)
         {
+
             moveDestination = mapInfo[mc.path[0]].transform.position;
             moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
             //already move to the destination(next tile)
             if (transform.position == moveDestination && currentPos == mc.path[0])
             {
+            
                 mc.path.RemoveAt(0);
                 //check if there is next tile to go to
                 if (mc.path.Count > 0)
                 {
+					// Remove visual from the current position
+                    mc.set_tile_group_visibility(currentPos, view_range, false, gameObject.name);
+
                     //check if next tile is snow tile
                     if (mc.map_tiles[mc.path[0]].GetComponent<Tile>().tile_type == "Snow")
                     {
@@ -169,10 +181,14 @@ public class UserUnit : Unit
                     moveDestination = mapInfo[mc.path[0]].transform.position;
                     moveDestination = new Vector3(moveDestination.x, moveDestination.y + 0.7f, moveDestination.z - 1.0f);
                     mc.character_moving = true;
+
+					// add visual to the tiles around the new position
+					mc.set_tile_group_visibility(currentPos, view_range, true, gameObject.name);
                 }
                 //if no next tile, moveing ends
                 else
                 {
+
                     //if moves to fire tile, change health
                     if (mc.map_tiles[currentPos].GetComponent<Tile>().on_fire)
                     {

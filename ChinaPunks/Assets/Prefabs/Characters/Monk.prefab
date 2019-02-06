@@ -103,6 +103,7 @@ MonoBehaviour:
   fire_damage: 10
   trap_damage: 10
   skill_cd: 3
+  view_range: 3
   LostControl_Probability: 0
   control_lost: 0
 --- !u!212 &212134354144729680
