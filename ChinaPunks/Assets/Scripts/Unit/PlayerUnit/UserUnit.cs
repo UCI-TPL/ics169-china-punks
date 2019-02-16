@@ -98,7 +98,17 @@ public class UserUnit : Unit
             }
         }
 
-
+		//Make user units with turnComplete graier
+		if (turnComplete)
+		{
+			gameObject.GetComponent<Animator>().enabled = false;
+			gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+			gameObject.GetComponent<Animator>().enabled = true;         
+		}
+		else
+		{
+			gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+		}      
     }
 
     public override void TurnUpdate()

@@ -47,8 +47,8 @@ public class Monk : UserUnit {
     public override void Reset_Skill()
     {
         base.Reset_Skill();
-        attack_damage = attack_dmg;
-        moveRange = move_range;
+        //attack_damage = attack_dmg;
+        //moveRange = move_range;
         //provocative = false;
         //mc.provocative = false;
     }

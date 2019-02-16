@@ -988,7 +988,7 @@ Prefab:
         type: 2}
       propertyPath: characters_prefab.Array.data[1].prefab
       value: 
-      objectReference: {fileID: 1386867636540566, guid: c95c873b961ea4f81a84f0c3dd3567db,
+      objectReference: {fileID: 1844782211568578, guid: b28f3875ff1504c39ac00f1c1c546d77,
         type: 2}
     - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
         type: 2}
