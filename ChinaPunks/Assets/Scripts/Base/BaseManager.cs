@@ -18,7 +18,7 @@ public class BaseManager : MonoBehaviour {
 	private void Awake()
 	{
 		team = new List<string>() { null, null, null, null };
-		team_position = new List<Vector2>() { new Vector2(-6, 3), new Vector2(-2, 3), new Vector2(2, 3), new Vector2(6, 3) };
+		team_position = new List<Vector2>() { new Vector2(-5.84f, 1.44f), new Vector2(-2.38f, 1.44f), new Vector2(2.3f, 1.44f), new Vector2(5.71f, 1.44f) };
 		base_UI = GameObject.Find("Canvas").GetComponent<BaseUI>();
 	}
 
@@ -71,6 +71,6 @@ public class BaseManager : MonoBehaviour {
 			Team.add_member(team[i]);
 
 		// Load level one
-		SceneManager.LoadScene("level？");
+		SceneManager.LoadScene("level1");
 	}
 }

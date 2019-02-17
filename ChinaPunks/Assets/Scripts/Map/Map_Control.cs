@@ -117,7 +117,7 @@ public class Map_Control : MonoBehaviour
 		//Selected_Char_info_HUD.SetActive(false);
 
 		//Start with each tile has no character who has visual on them. Initial visibility set by player characters Start()
-		for (int i = 0; i < 100; i++){
+		for (int i = 0; i < map_tiles_pos.Count; i++){
 			tile_visibility.Add(i, new HashSet<string>());
 			mark_tile.Add(false);
 		}      
@@ -951,7 +951,7 @@ public class Map_Control : MonoBehaviour
      * 
      */
 	private void change_visibility(){
-		for (int tile = 0; tile < 100; tile++){
+		for (int tile = 0; tile < map_tiles.Count; tile++){
 			if(tile_visibility[tile].Count >= 1){
 				if(units_state[tile] != null)
 				    units_state[tile].GetComponent<SpriteRenderer>().enabled = true;

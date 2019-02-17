@@ -159,7 +159,7 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
-  health: 0
+  health: 20
   current_health: 0
   moveComplete: 0
   turnComplete: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   isClicked: 0
   attackRange: 01000000ffffffff0a000000f6ffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
-  moveRange: 2
+  moveRange: 3
   attack_damage: 0
   skill_damage: 0
   anim: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
     type: 2}
   charater_type: 
   coolDown: 0
-  moveSpeed: 0
+  moveSpeed: 1
   slippery: 0
   fire_cd: 0
   poison_cd: 0

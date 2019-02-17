@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour {
+
+	public GameObject char_info_ui;
+	Text char_description;
 
 	private GameObject base_manager;
 
@@ -21,7 +25,7 @@ public class CharacterSelection : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		char_description = char_info_ui.GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,7 @@ public class CharacterSelection : MonoBehaviour {
 
 	private void OnMouseExit()
 	{
+        char_info_ui.SetActive(false);
 		gameObject.transform.localScale = gameObject.transform.localScale / 1.2f;
 	}
 
@@ -58,8 +63,15 @@ public class CharacterSelection : MonoBehaviour {
 			transform.Translate(distance);
 			in_team = false;
 			base_manager.GetComponent<BaseManager>().RemoveMember(gameObject.name);
+		}      
+	}
+
+	private void OnMouseOver()
+	{
+		if(!in_team)
+		{
+			char_info_ui.SetActive(true);
+            char_description.text = this.gameObject.name;
 		}
-
-
 	}
 }

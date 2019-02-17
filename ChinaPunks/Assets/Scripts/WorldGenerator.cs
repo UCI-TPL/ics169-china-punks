@@ -10,7 +10,7 @@ public class WorldGenerator : MonoBehaviour
 {
 
     public GameObject map_prefab;
-    Map_Control map_ctr;
+    public Map_Control map_ctr;
     public GameObject UI_prefab;
     InGameUI UI_ctr;
     public GameObject Turn_prefab;
@@ -33,9 +33,19 @@ public class WorldGenerator : MonoBehaviour
         public GameObject prefab;
         public List<int> positions;
     }
+
+	[System.Serializable]
+    public class AI_Position_prefab
+    {
+        public List<GameObject> AIPrefabs;
+        public int generatedNum;
+        public List<int> randomBlockPositions;
+
+    }
+
     public List<Gameobject_Position_prefab> Tiles_prefabs = new List<Gameobject_Position_prefab>();
     public List<Gameobject_Position_prefab> characters_prefab = new List<Gameobject_Position_prefab>();
-    public List<Gameobject_Position_prefab> AI_prefabs = new List<Gameobject_Position_prefab>();
+	public List<AI_Position_prefab> AI_prefabs = new List<AI_Position_prefab>();
     public List<Gameobject_Position_prefab> Block_prefabs = new List<Gameobject_Position_prefab>();
 
     public GameObject trap_prefab;
@@ -147,16 +157,15 @@ public class WorldGenerator : MonoBehaviour
 		//StartCoroutine(StartPause());
         
 
-
         foreach (Gameobject_Position_prefab GP in Tiles_prefabs){
             GameObject tile;
             for (int i = 0; i < GP.positions.Count; ++i)
             {
                 tile = Instantiate(GP.prefab);
-                tile.GetComponent<Tile>().currentPos = GP.positions[i];
+				tile.GetComponent<Tile>().currentPos = i;
                 tile.GetComponent<Tile>().map_tiles = map;
                 tile.GetComponent<Tile>().turn_control = Turn;
-                map_ctr.map_tiles[GP.positions[i]] = tile;
+				map_ctr.map_tiles[i] = tile;
             }
 
         }
@@ -225,17 +234,20 @@ public class WorldGenerator : MonoBehaviour
 		//    UI_yPos -= 140;
 		//}
 
-		foreach (Gameobject_Position_prefab GP in AI_prefabs)
-		{
-			GameObject AI;
-			for (int i = 0; i < GP.positions.Count; ++i)
-			{
-				AI = Instantiate(GP.prefab);
-				AI.GetComponent<AIUnit>().mc = map_ctr;
-				AI.GetComponent<AIUnit>().turn_ctr = Turn_ctr;
-				AI.GetComponent<AIUnit>().currentPos = GP.positions[i];
-			}
-		}
+		foreach (AI_Position_prefab GP in AI_prefabs)
+        {
+            GameObject AI;
+            List<int> randomPos = new List<int>(GP.randomBlockPositions);
+            for (int i = 0; i < GP.generatedNum; ++i)
+            {
+                AI = Instantiate(GP.AIPrefabs[Random.Range(0, GP.AIPrefabs.Count)]);
+                int pos = randomPos[Random.Range(0, randomPos.Count)];
+                AI.GetComponent<AIUnit>().mc = map_ctr;
+                AI.GetComponent<AIUnit>().turn_ctr = Turn_ctr;
+                AI.GetComponent<AIUnit>().currentPos = pos;
+                randomPos.Remove(pos);
+            }
+        }
 
 
 		//GameObject Peach = Instantiate(peach_prefab);
