@@ -39,14 +39,27 @@ public class WorldGenerator : MonoBehaviour
     {
         public List<GameObject> AIPrefabs;
         public int generatedNum;
+        public bool squareBlock;
+        public int bottomLeftPos;
+        public int topRightPos;
         public List<int> randomBlockPositions;
 
     }
 
+	[System.Serializable]
+    public class Player_Position_prefab
+    {
+        public List<GameObject> PlayerPrefabs;
+        public int bottomLeftPos;
+        public int topRightPos;
+
+    }
+
     public List<Gameobject_Position_prefab> Tiles_prefabs = new List<Gameobject_Position_prefab>();
-    public List<Gameobject_Position_prefab> characters_prefab = new List<Gameobject_Position_prefab>();
+	public List<Player_Position_prefab> characters_prefab = new List<Player_Position_prefab>();
 	public List<AI_Position_prefab> AI_prefabs = new List<AI_Position_prefab>();
     public List<Gameobject_Position_prefab> Block_prefabs = new List<Gameobject_Position_prefab>();
+	public Gameobject_Position_prefab Merchant_prefab;
 
     public GameObject trap_prefab;
     public List<int> trap_positions = new List<int>();
@@ -72,6 +85,10 @@ public class WorldGenerator : MonoBehaviour
     public GameObject peach;
 
 
+	//used to store Units positions, to avoid generating Units on the same tile
+        List<int> unitsPos = new List<int>();
+        List<int> enemyBlockPos = new List<int>(); //for exit
+        
 
 
 
@@ -157,19 +174,23 @@ public class WorldGenerator : MonoBehaviour
 		//StartCoroutine(StartPause());
         
 
-        foreach (Gameobject_Position_prefab GP in Tiles_prefabs){
+		//generate tiles
+        foreach (Gameobject_Position_prefab GP in Tiles_prefabs)
+        {
             GameObject tile;
             for (int i = 0; i < GP.positions.Count; ++i)
             {
                 tile = Instantiate(GP.prefab);
-				tile.GetComponent<Tile>().currentPos = i;
+                tile.GetComponent<Tile>().currentPos = i;
                 tile.GetComponent<Tile>().map_tiles = map;
                 tile.GetComponent<Tile>().turn_control = Turn;
-				map_ctr.map_tiles[i] = tile;
+                map_ctr.map_tiles[i] = tile;
             }
 
         }
 
+
+		//generate block units
         foreach (Gameobject_Position_prefab GP in Block_prefabs)
         {
             GameObject block;
@@ -179,75 +200,69 @@ public class WorldGenerator : MonoBehaviour
                 block.GetComponent<Unit>().mc = map_ctr;
                 block.GetComponent<Unit>().turn_ctr = Turn_ctr;
                 block.GetComponent<Unit>().currentPos = GP.positions[i];
+                unitsPos.Add(GP.positions[i]);
             }
 
         }
 
-        foreach (int pos in exit_pos)
-        {
-            map_ctr.map_tiles[pos].GetComponent<Tile>().exit = true;
-            GameObject exit_icon = Instantiate(exit_icon_prefab);
-            exit_icon.GetComponent<Exit_icon>().map = map;
-            exit_icon.GetComponent<Exit_icon>().currentPos = pos;
-
-            WLcheck_ctr.exits.Add(pos);
-        }
-
-
-
-        //int UI_yPos = -220;
-        //foreach (Gameobject_Position_prefab GP in characters_prefab){
-        //    GameObject character;
-        //    for (int i = 0; i < GP.positions.Count;++i){
-        //        character = Instantiate(GP.prefab);
-        //        character.GetComponent<UserUnit>().mc = map_ctr;
-        //        character.GetComponent<UserUnit>().turn_ctr = Turn_ctr;
-        //        character.GetComponent<UserUnit>().currentPos = GP.positions[i];
-
-        //        string character_name = character.name.Remove(character.name.Length-7);
-        //        GameObject characterUI = UI.transform.Find(character_name).gameObject;
-        //        characterUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(200,UI_yPos);
-        //        characterUI.SetActive(true);
-        //        character.GetComponent<UserUnit>().healthFillImage = characterUI.transform.Find("Image (1)").Find("Health_FILLImage").gameObject.GetComponent<Image>();
-        //    }
-        //    UI_yPos -= 140;
-        //}
-
-		//UI_yPos = -220;
-		//foreach (Gameobject_Position_prefab GP in AI_prefabs)
-		//{
-		//    GameObject AI;
-		//    Vector2 UI_pos = new Vector2(750, 300);
-		//    for (int i = 0; i < GP.positions.Count; ++i)
-		//    {
-		//        AI = Instantiate(GP.prefab);
-		//        AI.GetComponent<AIUnit>().mc = map_ctr;
-		//        AI.GetComponent<AIUnit>().turn_ctr = Turn_ctr;
-		//        AI.GetComponent<AIUnit>().currentPos = GP.positions[i];
-
-		//        string AI_name = AI.name.Remove(AI.name.Length - 7);
-		//        GameObject AIUI = UI.transform.Find(AI_name).gameObject;
-		//        AIUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(1700,UI_yPos);
-		//        AIUI.SetActive(true);
-		//        AI.GetComponent<AIUnit>().healthFillImage = AIUI.transform.Find("Image (1)").Find("Health_FILLImage").gameObject.GetComponent<Image>();
-		//    }
-		//    UI_yPos -= 140;
-		//}
-
+		//generate AI/enemy
 		foreach (AI_Position_prefab GP in AI_prefabs)
         {
             GameObject AI;
-            List<int> randomPos = new List<int>(GP.randomBlockPositions);
+            List<int> randomPos = new List<int>();
+            if (GP.squareBlock)
+            {
+                KeyValuePair<int, int> startPos = new KeyValuePair<int, int>(Mathf.FloorToInt(GP.bottomLeftPos / map_ctr.map_size), Mathf.FloorToInt(GP.bottomLeftPos % map_ctr.map_size));
+                KeyValuePair<int, int> endPos = new KeyValuePair<int, int>(Mathf.FloorToInt(GP.topRightPos / map_ctr.map_size), Mathf.FloorToInt(GP.topRightPos % map_ctr.map_size));
+                int height = endPos.Value - startPos.Value + 1;
+                int width = endPos.Key - startPos.Key + 1;
+
+                for (int i = 0; i < width; ++i)
+                {
+                    for (int j = 0; j < height; ++j)
+                    {
+                        randomPos.Add((startPos.Key + i) * map_ctr.map_size + startPos.Value + j);
+
+                    }
+                }
+
+                Debug.Log("height" + height);
+                Debug.Log("width" + width);
+                for (int i = 0; i < randomPos.Count; ++i)
+                    Debug.Log(randomPos[i]);
+
+            }
+            else
+            {
+                randomPos = new List<int>(GP.randomBlockPositions);
+            }
+
+            enemyBlockPos.AddRange(randomPos);
             for (int i = 0; i < GP.generatedNum; ++i)
             {
                 AI = Instantiate(GP.AIPrefabs[Random.Range(0, GP.AIPrefabs.Count)]);
-                int pos = randomPos[Random.Range(0, randomPos.Count)];
+                int pos = randomPos[Random.Range(0, randomPos.Count)]; ;
+                while (unitsPos.Contains(pos))
+                    pos = randomPos[Random.Range(0, randomPos.Count)];
+
                 AI.GetComponent<AIUnit>().mc = map_ctr;
                 AI.GetComponent<AIUnit>().turn_ctr = Turn_ctr;
                 AI.GetComponent<AIUnit>().currentPos = pos;
                 randomPos.Remove(pos);
+                unitsPos.Add(pos);
             }
         }
+
+		//generate exit
+        int exitPos = enemyBlockPos[Random.Range(0, enemyBlockPos.Count)];
+        map_ctr.map_tiles[exitPos].GetComponent<Tile>().exit = true;
+        GameObject exit_icon = Instantiate(exit_icon_prefab);
+        exit_icon.GetComponent<Exit_icon>().map = map;
+        exit_icon.GetComponent<Exit_icon>().currentPos = exitPos;
+        unitsPos.Add(exitPos);
+        WLcheck_ctr.exits.Add(exitPos);
+
+
 
 
 		//GameObject Peach = Instantiate(peach_prefab);
@@ -265,21 +280,50 @@ public class WorldGenerator : MonoBehaviour
 
 
 
-		foreach (Gameobject_Position_prefab GP in characters_prefab)
+		foreach (Player_Position_prefab GP in characters_prefab)
         {
             GameObject character;
-            for (int i = 0; i < GP.positions.Count; ++i)
+            List<int> randomPos = new List<int>();
+            KeyValuePair<int, int> startPos = new KeyValuePair<int, int>(Mathf.FloorToInt(GP.bottomLeftPos / map_ctr.map_size), Mathf.FloorToInt(GP.bottomLeftPos % map_ctr.map_size));
+            KeyValuePair<int, int> endPos = new KeyValuePair<int, int>(Mathf.FloorToInt(GP.topRightPos / map_ctr.map_size), Mathf.FloorToInt(GP.topRightPos % map_ctr.map_size));
+            int height = endPos.Value - startPos.Value + 1;
+            int width = endPos.Key - startPos.Key + 1;
+
+            for (int i = 0; i < width; ++i)
             {
-                character = Instantiate(GP.prefab);
+                for (int j = 0; j < height; ++j)
+                {
+                    randomPos.Add((startPos.Key + i) * map_ctr.map_size + startPos.Value + j);
+
+                }
+            }
+
+
+            for (int i = 0; i < GP.PlayerPrefabs.Count; ++i)
+            {
+                character = Instantiate(GP.PlayerPrefabs[i]);
+                int pos = randomPos[Random.Range(0, randomPos.Count)];
+                while (unitsPos.Contains(pos))
+                    pos = randomPos[Random.Range(0, randomPos.Count)];
                 character.GetComponent<UserUnit>().mc = map_ctr;
                 character.GetComponent<UserUnit>().turn_ctr = Turn_ctr;
-                character.GetComponent<UserUnit>().currentPos = GP.positions[i];
+                character.GetComponent<UserUnit>().currentPos = pos;
+                randomPos.Remove(pos);
+                unitsPos.Add(pos);
 
                 UI_ctr.Characters_clone.Add(character);
                 WLcheck_ctr.character_list.Add(character);
             }
         }
 
+		// Merchant generating
+		GameObject merchant = Instantiate(Merchant_prefab.prefab);
+		merchant.GetComponent<Merchant>().mc = map_ctr;
+		merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
+		merchant.GetComponent<Merchant>().currentPos = Merchant_prefab.positions[0];
+		merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
+		merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
+        
     }
 
 	IEnumerator StartPause()

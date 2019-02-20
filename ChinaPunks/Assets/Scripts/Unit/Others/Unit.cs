@@ -11,10 +11,7 @@ public class Unit : MonoBehaviour {
     public bool hide;
     public bool on_fire;
     public bool provocative;
-    public bool poisoned;
-    
-
-
+    public bool poisoned;   
 
     public float health;
     public float current_health;
@@ -22,15 +19,6 @@ public class Unit : MonoBehaviour {
     //Check if a unit has complete its turn
     public bool moveComplete;
     public bool turnComplete;
-
-    void Awake()
-    {
-        //GameObject controller = GameObject.Find("map_tiles");                            //get reference of GameController
-        //mc = controller.GetComponent<Map_Control>();
-        //GameObject controller2 = GameObject.Find("turn_control");                            //get reference of GameController
-        //turn_ctr = controller2.GetComponent<Turn_Control>();
-
-    }
 
     // Use this for initialization
     void Start () {

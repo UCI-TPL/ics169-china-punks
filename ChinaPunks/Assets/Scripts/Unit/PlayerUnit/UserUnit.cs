@@ -305,6 +305,11 @@ public class UserUnit : Unit
         poison_cd = _poison_cd;
     }
 
+    // Function used for adding consumable item to the character inventory
+	public void add_Inventory(GameObject item){
+		
+	}
+
     IEnumerator waitforanim(Animator anim)
     {
         anim.Play("Attacked");

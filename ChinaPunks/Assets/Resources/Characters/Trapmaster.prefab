@@ -175,7 +175,7 @@ MonoBehaviour:
     type: 2}
   charater_type: 
   coolDown: 0
-  moveSpeed: 1
+  moveSpeed: 3
   slippery: 0
   fire_cd: 0
   poison_cd: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   fire_damage: 0
   trap_damage: 0
   skill_cd: 0
-  view_range: 0
+  view_range: 3
   trap_prefab: {fileID: 0}
 --- !u!114 &114276484414177868
 MonoBehaviour:
