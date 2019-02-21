@@ -40,7 +40,7 @@ public class WinLoseCheck : MonoBehaviour {
             }
 
 
-            if (win_conditions_count == 2)
+            if (win_conditions_count == 1)
             {
                 if (!mc.character_moving)
                 {

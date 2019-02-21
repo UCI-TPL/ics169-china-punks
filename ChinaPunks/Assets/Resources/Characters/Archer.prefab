@@ -159,7 +159,7 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
-  health: 20
+  health: 25
   current_health: 0
   moveComplete: 0
   turnComplete: 0

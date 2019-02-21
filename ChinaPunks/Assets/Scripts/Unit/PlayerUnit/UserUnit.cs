@@ -225,6 +225,8 @@ public class UserUnit : Unit
 
     public override void Health_Change(float damage)
     {
+		Debug.Log("hit by enemy");
+
         base.Health_Change(damage);
         StartCoroutine(waitforanim(anim));
 

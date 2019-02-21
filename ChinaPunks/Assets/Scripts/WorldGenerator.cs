@@ -127,7 +127,7 @@ public class WorldGenerator : MonoBehaviour
         TrackAsset UItrack = timelineAsset.GetOutputTrack(6);
         director.SetGenericBinding(UItrack, UI);
         director.Play();
-
+          
         LevelStart();
 
 
@@ -201,6 +201,7 @@ public class WorldGenerator : MonoBehaviour
                 block.GetComponent<Unit>().turn_ctr = Turn_ctr;
                 block.GetComponent<Unit>().currentPos = GP.positions[i];
                 unitsPos.Add(GP.positions[i]);
+          
             }
 
         }
@@ -255,6 +256,8 @@ public class WorldGenerator : MonoBehaviour
 
 		//generate exit
         int exitPos = enemyBlockPos[Random.Range(0, enemyBlockPos.Count)];
+		while(unitsPos.Contains(exitPos))
+			exitPos = enemyBlockPos[Random.Range(0, enemyBlockPos.Count)];
         map_ctr.map_tiles[exitPos].GetComponent<Tile>().exit = true;
         GameObject exit_icon = Instantiate(exit_icon_prefab);
         exit_icon.GetComponent<Exit_icon>().map = map;

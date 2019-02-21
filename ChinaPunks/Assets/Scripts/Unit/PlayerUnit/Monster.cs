@@ -5,82 +5,60 @@ using UnityEngine;
 public class Monster : UserUnit {
 
 
-    public override void Skill(){
-        base.Skill();
+    float attack_dmg;
+    int move_range;
 
-        //foreach (int p in mc.expansion_of_tiles[mc.picked_pos])
+    public float LostControl_Probability;
+    public bool control_lost;
+
+
+    public override void Skill()
+    {
+        ////0 ->[+attack,-movement], 1->[-attack,+movement]
+        //int dice = Random.Range(0, 2);
+        ////change value
+        //if (dice == 0)
         //{
-        //    mc.map_tiles[p].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
+        //    attack_damage *= 2;
+        //    moveRange--;
         //}
+        //else if(dice == 1){
+        //    attack_damage /= 2;
+        //    moveRange++;
+        //}
+        //turnComplete = true;
+        //coolDown += skill_cd;
+        //provocative = true;
+        //mc.provocative = true;
+        //mc.reset();
 
-        KeyValuePair<int, int> current_pos = new KeyValuePair<int, int>(mc.picked_pos % mc.map_size, mc.picked_pos / mc.map_size);
-        //top boundary & no teammate character
-        if (current_pos.Value + 2 < mc.map_size)
-        {
-            List<int> temp = new List<int>();
-            temp.Add(current_pos.Key + (current_pos.Value + 2) * mc.map_size);
 
-            mc.map_tiles[(current_pos.Key + (current_pos.Value + 2) * mc.map_size)].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
-            mc.skill_tiles.Add((current_pos.Key + (current_pos.Value + 2) * mc.map_size), temp);
-        }
-        //bottom boundary & no teammate character
-        if (current_pos.Value - 2 >= 0)
-        {
-            List<int> temp = new List<int>();
-            temp.Add(current_pos.Key + (current_pos.Value - 2) * mc.map_size);
+        check_control();
 
-            mc.map_tiles[(current_pos.Key + (current_pos.Value - 2) * mc.map_size)].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
-            mc.skill_tiles.Add((current_pos.Key + (current_pos.Value - 2) * mc.map_size), temp);
-        }
-        //left boundary & no teammate character
-        if (current_pos.Key - 2 >= 0)
-        {
-            List<int> temp = new List<int>();
-            temp.Add(current_pos.Key - 2 + current_pos.Value * mc.map_size);
+        attack_damage += 3;
+        moveRange = 1;
+        turnComplete = true;
+        coolDown = skill_cd;
+        LostControl_Probability += 0.25f;
+        mc.reset();
 
-            mc.map_tiles[(current_pos.Key - 2 + current_pos.Value * mc.map_size)].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
-            mc.skill_tiles.Add((current_pos.Key - 2 + current_pos.Value * mc.map_size), temp);
-        }
-        //right boundary & no teammate character
-        if (current_pos.Key + 2 < mc.map_size)
-        {
-            List<int> temp = new List<int>();
-            temp.Add(current_pos.Key + 2 + current_pos.Value * mc.map_size);
-
-            mc.map_tiles[(current_pos.Key + 2 + current_pos.Value * mc.map_size)].GetComponent<SpriteRenderer>().color = new Color(0, 0, 200);
-            mc.skill_tiles.Add((current_pos.Key + 2 + current_pos.Value * mc.map_size), temp);
-        }
 
 
     }
-
-    public List<int> Attack_range(){
-        List<int> range = new List<int>();
-
-        KeyValuePair<int, int> current_pos = new KeyValuePair<int, int>(mc.picked_pos % mc.map_size, mc.picked_pos / mc.map_size);
-        //top boundary & no teammate character
-        if (current_pos.Value + 2 < mc.map_size)
-        {
-            range.Add(current_pos.Key + (current_pos.Value + 2) * mc.map_size);
-
-        }
-        //bottom boundary & no teammate character
-        if (current_pos.Value - 2 >= 0)
-        {
-            range.Add(current_pos.Key + (current_pos.Value - 2) * mc.map_size);
-        }
-        //left boundary & no teammate character
-        if (current_pos.Key - 2 >= 0)
-        {
-            range.Add(current_pos.Key - 2 + current_pos.Value * mc.map_size);
-        }
-        //right boundary & no teammate character
-        if (current_pos.Key + 2 < mc.map_size)
-        {
-            range.Add(current_pos.Key + 2 + current_pos.Value * mc.map_size);
-        }
-
-
-        return range;
+    public override void Reset_Skill()
+    {
+        base.Reset_Skill();
+        //attack_damage = attack_dmg;
+        //moveRange = move_range;
+        //provocative = false;
+        //mc.provocative = false;
     }
+
+    private void check_control()
+    {
+        float value = Random.Range(0f, 1f);
+        if (value <= LostControl_Probability)
+            control_lost = true;
+    }
+    
 }

@@ -7,6 +7,7 @@ public class Merchant : Unit {
 
 	// Boolean for checking whether the player can trade with the merchant
 	private bool can_trade;
+	public AudioSource _AudioSource;
 
 	// Reference to the map 
 	private List<int> adjacent_tiles;
@@ -59,6 +60,7 @@ public class Merchant : Unit {
     // Function called by the trade button
 	void shop_open(){
 		shop_panel.SetActive(true);
+		_AudioSource.Play();
 	}
 
     // Function called by the shop back button

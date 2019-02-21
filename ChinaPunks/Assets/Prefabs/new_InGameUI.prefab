@@ -3587,8 +3587,8 @@ MonoBehaviour:
   Monster: {fileID: 21300000, guid: 7c281ab03105b4b6d8f3bb7a5ffcff2a, type: 3}
   SwordMan: {fileID: 21300000, guid: fde0f8f0c11734b7eb036f6b31c60c48, type: 3}
   Archor: {fileID: 21300000, guid: df81f10a564d643cbb96f903a7a46a05, type: 3}
-  Farmer: {fileID: 21300000, guid: 5b052b7c9cb0d47fa9108b38339c6d8e, type: 3}
-  Farmer_Leader: {fileID: 21300000, guid: 64e6aaf2b9dfa47ae991013907e6f6e3, type: 3}
+  Farmer: {fileID: 21300000, guid: 71eabf84d27ee4a1aa6151e546b4e192, type: 3}
+  Farmer_Leader: {fileID: 21300000, guid: 2834bd806d3bb41df8628e02b7dd6f41, type: 3}
   Tile_1: {fileID: 21300000, guid: 4ca496dcbd86e4a27b2114d0ad40713e, type: 3}
   MouseOver_Tile_Info: {fileID: 1947396069011694}
   Quest_Objectives: {fileID: 1523551669345908}
@@ -3838,7 +3838,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: de69e3e7e181949908fbed5ab2a7c8da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4369,7 +4369,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cf5f21a6d50ad4f4eba7aef67d05519a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6717,7 +6717,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e108387ae2dd3466092a1c2c42ef35ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

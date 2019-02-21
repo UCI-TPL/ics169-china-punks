@@ -14,7 +14,7 @@ public class BGMController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _AudioSource.clip = _AudioClip_lobby;
+		_AudioSource.clip = _AudioClip_InGame;
 
         _AudioSource.Play();
 
@@ -32,6 +32,8 @@ public class BGMController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         Current_Scene = SceneManager.GetActiveScene();
+
+		Debug.Log(Current_Scene.name);
         if (Current_Scene.name == "SampleScene")
         {
             if (_AudioSource.clip == _AudioClip_lobby)
@@ -40,13 +42,12 @@ public class BGMController : MonoBehaviour {
                 _AudioSource.Play();
             }
         }
-        if (Current_Scene.name == "Player_Lobby")
+		if (Current_Scene.name == "Level1")
         {
-            if (_AudioSource.clip == _AudioClip_InGame)
-            {
-                _AudioSource.clip = _AudioClip_lobby;
-                _AudioSource.Play();
-            }
+			//Debug.Log("level !!!1");
+
+			//_AudioSource.clip = _AudioClip_InGame;
+            //_AudioSource.Play();
         }
     }
 }

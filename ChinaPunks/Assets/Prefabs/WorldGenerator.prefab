@@ -83,16 +83,17 @@ MonoBehaviour:
   AI_prefabs:
   - AIPrefabs:
     - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
-    generatedNum: 1
+    generatedNum: 4
     squareBlock: 1
     bottomLeftPos: 0
-    topRightPos: 35
+    topRightPos: 147
     randomBlockPositions: 
-  - AIPrefabs: []
-    generatedNum: 0
+  - AIPrefabs:
+    - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
+    generatedNum: 4
     squareBlock: 1
-    bottomLeftPos: 0
-    topRightPos: 35
+    bottomLeftPos: 12
+    topRightPos: 159
     randomBlockPositions: 
   Block_prefabs: []
   Merchant_prefab:

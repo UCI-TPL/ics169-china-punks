@@ -83,7 +83,7 @@ MonoBehaviour:
   current_health: 0
   moveComplete: 0
   turnComplete: 0
-  attackRange: 01000000ffffffff0a000000f6ffffff
+  attackRange: 01000000ffffffff14000000ecffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
   hasPeach: 0
   acting: 0
@@ -135,7 +135,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5b052b7c9cb0d47fa9108b38339c6d8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39db4514f959b424ea75a78d3a71a14c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
