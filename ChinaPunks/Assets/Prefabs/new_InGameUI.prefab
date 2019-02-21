@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1064490187416602
 GameObject:
   m_ObjectHideFlags: 1
@@ -1276,7 +1276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1537664639862402
 GameObject:
   m_ObjectHideFlags: 1
@@ -3583,13 +3583,13 @@ MonoBehaviour:
   - {fileID: 1975989323962246}
   Available_Char_info_slot_num: 4
   MouseOver_Char_info: {fileID: 1855452875360320}
-  Monk: {fileID: 21300000, guid: 0241e7ad866ed42ee9a077ea1ffe00b1, type: 3}
-  Scholar: {fileID: 21300000, guid: 3425c39f7a03f4b5ca8e32a402474b70, type: 3}
-  Trapmaster: {fileID: 21300000, guid: e596c07de8c924f66b33b0d45d3c9d08, type: 3}
-  Archor: {fileID: 21300000, guid: 893ac0d6515af40f3b0ca4b24ba1ae99, type: 3}
+  Makepinggo: {fileID: 21300000, guid: 3ec8c4e5b0cb0485cb3b24ad73f92031, type: 3}
+  Monster: {fileID: 21300000, guid: 7c281ab03105b4b6d8f3bb7a5ffcff2a, type: 3}
+  SwordMan: {fileID: 21300000, guid: fde0f8f0c11734b7eb036f6b31c60c48, type: 3}
+  Archor: {fileID: 21300000, guid: df81f10a564d643cbb96f903a7a46a05, type: 3}
   Farmer: {fileID: 21300000, guid: 5b052b7c9cb0d47fa9108b38339c6d8e, type: 3}
   Farmer_Leader: {fileID: 21300000, guid: 64e6aaf2b9dfa47ae991013907e6f6e3, type: 3}
-  Tile_1: {fileID: 21300000, guid: 5730cda6685e57845ae807d3a19f8386, type: 3}
+  Tile_1: {fileID: 21300000, guid: 4ca496dcbd86e4a27b2114d0ad40713e, type: 3}
   MouseOver_Tile_Info: {fileID: 1947396069011694}
   Quest_Objectives: {fileID: 1523551669345908}
   Characters_clone: []

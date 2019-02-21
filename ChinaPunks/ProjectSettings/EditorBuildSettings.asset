@@ -9,15 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Menu.unity
     guid: f6978ea40d003b749ba495d1a6abd9d5
   - enabled: 1
-    path: Assets/Scenes/Player_Camp.unity
-    guid: 6b01f300eb4a66640aa87d3e2e0dc6c5
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/level1.unity
-    guid: ac8cfcb6f85154c4c8e9c68bb34258e1
-  - enabled: 1
     path: Assets/Scenes/TowerBase.unity
     guid: 771511210fa3b4abe900d0ae59820396
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: ac8cfcb6f85154c4c8e9c68bb34258e1
   m_configObjects: {}

@@ -12182,6 +12182,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce58098a93d6f4b869a295cd4436ef7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mc: {fileID: 0}
+  turn_ctr: {fileID: 0}
+  mapInfo: []
+  currentPos: 0
+  hide: 0
+  on_fire: 0
+  provocative: 0
+  poisoned: 0
+  health: 0
+  current_health: 0
+  moveComplete: 0
+  turnComplete: 0
+  trade_button: {fileID: 0}
+  shop_panel: {fileID: 0}
 --- !u!1001 &1030048087
 Prefab:
   m_ObjectHideFlags: 0
@@ -12700,4 +12714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e676ba52ef4f33b8576b465219845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  move_speed: 0
+  distance_to_map: 0
+  scrollSpeed: 0
+  maxCamSize: 0
+  minCamSize: 0
