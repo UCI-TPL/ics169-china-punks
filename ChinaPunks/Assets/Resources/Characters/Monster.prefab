@@ -170,7 +170,7 @@ MonoBehaviour:
   moveRange: 5
   attack_damage: 15
   skill_damage: 0
-  anim: {fileID: 0}
+  anim: {fileID: 95434497530356034}
   selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
     type: 2}
   charater_type: 

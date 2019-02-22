@@ -32,7 +32,7 @@ public class InGameUI : MonoBehaviour {
     public Sprite Makepinggo;
     public Sprite Monster;
     public Sprite SwordMan;
-	public Sprite Archor;
+	public Sprite Archer;
 	public Sprite Farmer;
 	public Sprite Farmer_Leader;
 	public Sprite Tile_1;
@@ -133,7 +133,7 @@ public class InGameUI : MonoBehaviour {
 					Char_attack.text = (Characters_clone[i].GetComponent<Monster>().attack_damage).ToString();
 					Char_Move.text = (Characters_clone[i].GetComponent<Monster>().moveRange).ToString();
 					Char_avatar.sprite = Monster;
-					char_info_slots_dict["Trapmaster"] = i;
+					char_info_slots_dict["Monster"] = i;
                 }
 				else if (Characters_clone[i].name == "Archer(Clone)")
                 {
@@ -144,8 +144,8 @@ public class InGameUI : MonoBehaviour {
 					                         (Characters_clone[i].GetComponent<Archer>().health));
 					Char_attack.text = (Characters_clone[i].GetComponent<Archer>().attack_damage).ToString();
 					Char_Move.text = (Characters_clone[i].GetComponent<Archer>().moveRange).ToString();
-					Char_avatar.sprite = Archor;  
-					char_info_slots_dict["Archor"] = i;
+					Char_avatar.sprite = Archer;  
+					char_info_slots_dict["Archer"] = i;
                 }
 				else if (Characters_clone[i].name == "SwordMan(Clone)")
                 {
@@ -196,7 +196,7 @@ public class InGameUI : MonoBehaviour {
                     }
                     if (MoveOver_Map_Info[0].name == "Archer(Clone)")
                     {
-                        Move_Over_Avatar.sprite = Archor;
+						Move_Over_Avatar.sprite = Archer;
 						Move_Over_Text.text = "Archer";
                     }
 					if (MoveOver_Map_Info[0].name == "Farmer(Clone)")
@@ -264,15 +264,13 @@ public class InGameUI : MonoBehaviour {
                 Image _fill_image = _Fill.GetComponent<Image>();
 				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monster>().current_health) /
 				                          (Characters_clone[i].GetComponent<Monster>().health));
-
-//				Debug.Log("monk current health: " + (Characters_clone[i].GetComponent<Monk>().current_health).ToString());
 				foreach (var item in Char_infos)
                 {
                     if (item.active == true)
                     {
-						Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+						Char_infos[char_info_slots_dict["Monster"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
 							                                        ((Characters_clone[i].GetComponent<Monster>().current_health) / (Characters_clone[i].GetComponent<Monster>().health)); ;
-						Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+						Char_infos[char_info_slots_dict["Monster"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
 							                                        ((Characters_clone[i].GetComponent<Monster>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Monster>().health).ToString());
                     }
                 }
@@ -303,6 +301,7 @@ public class InGameUI : MonoBehaviour {
 				foreach (var item in Char_infos)
 				if (item.active == true)
                 {
+					Debug.Log("from archer" + Char_infos[char_info_slots_dict["Archer"]].name);
 					Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
 						                                          ((Characters_clone[i].GetComponent<Archer>().current_health) / (Characters_clone[i].GetComponent<Archer>().health)); ;
 					Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =

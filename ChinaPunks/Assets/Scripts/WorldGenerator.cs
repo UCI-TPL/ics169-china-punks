@@ -15,7 +15,7 @@ public class WorldGenerator : MonoBehaviour
     InGameUI UI_ctr;
     public GameObject Turn_prefab;
     Turn_Control Turn_ctr;
-    public GameObject timeline;
+    //public GameObject timeline;
     PlayableDirector director;
     public GameObject WLcheck_prefab;
     WinLoseCheck WLcheck_ctr;
@@ -121,12 +121,12 @@ public class WorldGenerator : MonoBehaviour
         //level_ctr = LevelManager.GetComponent<LevelManager>();
         //dialogue_ctr = Dialogue.GetComponent<DialogueManager>();
 
-        director = timeline.GetComponent<PlayableDirector>();
-        PlayableAsset playable = director.playableAsset;
-        TimelineAsset timelineAsset = (TimelineAsset)playable;
-        TrackAsset UItrack = timelineAsset.GetOutputTrack(6);
-        director.SetGenericBinding(UItrack, UI);
-        director.Play();
+        //director = timeline.GetComponent<PlayableDirector>();
+        //PlayableAsset playable = director.playableAsset;
+        //TimelineAsset timelineAsset = (TimelineAsset)playable;
+        //TrackAsset UItrack = timelineAsset.GetOutputTrack(6);
+        //director.SetGenericBinding(UItrack, UI);
+        //director.Play();
           
         LevelStart();
 
@@ -137,7 +137,7 @@ public class WorldGenerator : MonoBehaviour
     }
 
     void Start () {
-
+		UI.SetActive(true);
 
     }
 	
@@ -162,7 +162,7 @@ public class WorldGenerator : MonoBehaviour
         WLcheck_ctr.mc = map_ctr;
         WLcheck_ctr.turn = Turn_ctr;
         WLcheck_ctr.Level = level;
-        WLcheck_ctr.timeline = timeline;
+        //WLcheck_ctr.timeline = timeline;
         
         //level_ctr.DialogueManager = Dialogue;
         //level_ctr.MapController = map;

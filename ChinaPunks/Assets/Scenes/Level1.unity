@@ -127,6 +127,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
         type: 2}
+      propertyPath: exit_pos.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
+        type: 2}
       propertyPath: Block_prefabs.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -338,6 +343,26 @@ Prefab:
         type: 2}
       propertyPath: Block_prefabs.Array.data[0].positions.Array.data[19]
       value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
+        type: 2}
+      propertyPath: exit_pos.Array.data[0]
+      value: 93
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
+        type: 2}
+      propertyPath: exit_pos.Array.data[1]
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
+        type: 2}
+      propertyPath: exit_pos.Array.data[2]
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
+        type: 2}
+      propertyPath: exit_pos.Array.data[3]
+      value: 96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c062cc768acdf4762879eebfb5434d0b, type: 2}
@@ -620,7 +645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1588413773146282, guid: fa8284d32498b41c2a98d0c8d4eed218, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8284d32498b41c2a98d0c8d4eed218, type: 2}
@@ -817,8 +842,7 @@ Prefab:
         type: 2}
       propertyPath: m_SceneBindings.Array.data[34].key
       value: 
-      objectReference: {fileID: 114619003272152514, guid: d2bac72f5665c48c1a4a8e8f2d99b5ae,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 320855964031941590, guid: 2089313e4ecf642be9d9120dc27833bd,
         type: 2}
       propertyPath: m_SceneBindings.Array.data[35].key
@@ -832,7 +856,7 @@ Prefab:
       objectReference: {fileID: 794600327}
     - target: {fileID: 1714417909969414, guid: 2089313e4ecf642be9d9120dc27833bd, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2089313e4ecf642be9d9120dc27833bd, type: 2}
