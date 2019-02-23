@@ -12194,6 +12194,7 @@ MonoBehaviour:
   current_health: 0
   moveComplete: 0
   turnComplete: 0
+  _AudioSource: {fileID: 0}
   trade_button: {fileID: 0}
   shop_panel: {fileID: 0}
 --- !u!1001 &1030048087

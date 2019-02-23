@@ -227,10 +227,10 @@ public class WorldGenerator : MonoBehaviour
                     }
                 }
 
-                Debug.Log("height" + height);
-                Debug.Log("width" + width);
-                for (int i = 0; i < randomPos.Count; ++i)
-                    Debug.Log(randomPos[i]);
+                //Debug.Log("height" + height);
+                //Debug.Log("width" + width);
+                //for (int i = 0; i < randomPos.Count; ++i)
+                //    Debug.Log(randomPos[i]);
 
             }
             else
@@ -259,9 +259,9 @@ public class WorldGenerator : MonoBehaviour
 		while(unitsPos.Contains(exitPos))
 			exitPos = enemyBlockPos[Random.Range(0, enemyBlockPos.Count)];
         map_ctr.map_tiles[exitPos].GetComponent<Tile>().exit = true;
-        GameObject exit_icon = Instantiate(exit_icon_prefab);
-        exit_icon.GetComponent<Exit_icon>().map = map;
-        exit_icon.GetComponent<Exit_icon>().currentPos = exitPos;
+        //GameObject exit_icon = Instantiate(exit_icon_prefab);
+        //exit_icon.GetComponent<Exit_icon>().map = map;
+        //exit_icon.GetComponent<Exit_icon>().currentPos = exitPos;
         unitsPos.Add(exitPos);
         WLcheck_ctr.exits.Add(exitPos);
 

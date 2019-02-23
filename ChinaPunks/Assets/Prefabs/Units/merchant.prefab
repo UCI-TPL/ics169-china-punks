@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212725783653821762}
   - component: {fileID: 114339450278989516}
   - component: {fileID: 82219807088688350}
+  - component: {fileID: 95748844756043886}
   m_Layer: 0
   m_Name: merchant
   m_TagString: Untagged
@@ -137,6 +138,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95748844756043886
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085644454282126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9c0b65561422ba44934a25b5ef3690b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114339450278989516
 MonoBehaviour:
   m_ObjectHideFlags: 1

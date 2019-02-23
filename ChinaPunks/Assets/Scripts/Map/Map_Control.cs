@@ -102,20 +102,6 @@ public class Map_Control : MonoBehaviour
         turn_count = 1;
         Tile_Store();
 
-		//GameObject select_Char_Avatar = Selected_Char_info_HUD.transform.Find("Char_avatar_back").Find("Char_avatar").gameObject;
-		//GameObject select_Char_Health = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_number").gameObject;
-		//GameObject select_Char_Health_bar = Selected_Char_info_HUD.transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject;
-		//GameObject select_Char_Move   = Selected_Char_info_HUD.transform.Find("Char_Move").Find("Move_range").gameObject;
-		//GameObject select_Char_Attack = Selected_Char_info_HUD.transform.Find("Char_Attack").Find("Attack_Damage").gameObject;
-
-		//Char_avatar = select_Char_Avatar.GetComponent<Image>();
-		//Health_number = select_Char_Health.GetComponent<Text>();
-		//Char_Move = select_Char_Move.GetComponent<Text>();
-		//Char_attack = select_Char_Attack.GetComponent<Text>();
-		//healthfill = select_Char_Health_bar.GetComponent<Image>();
-
-		//Selected_Char_info_HUD.SetActive(false);
-
 		//Start with each tile has no character who has visual on them. Initial visibility set by player characters Start()
 		for (int i = 0; i < map_tiles_pos.Count; i++){
 			tile_visibility.Add(i, new HashSet<string>());
@@ -132,65 +118,6 @@ public class Map_Control : MonoBehaviour
         {
             reset();
         }
-
-        //if (small_health_bars == null)
-        //{
-        //    small_health_bars = GameObject.FindGameObjectsWithTag("small_health_fill");
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    if (small_health_bars_is_hidden == true)
-        //        small_health_bars_is_hidden = false;
-        //    else
-        //        small_health_bars_is_hidden = true;
-        //}
-
-        //if(small_health_bars_is_hidden == true)
-        //{
-        //    foreach (GameObject small_health_bar in small_health_bars)
-        //    {
-        //        small_health_bar.SetActive(false);
-        //    }
-        //}
-        //else
-        //{
-        //    foreach (GameObject small_health_bar in small_health_bars)
-        //    {
-        //        small_health_bar.SetActive(true);
-        //    }
-        //}
-
-
-        //scholar info
-        //Health_number.text = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health).ToString() + "/" + (GameObject.Find("Scholar").GetComponent<Scholar>().health).ToString());
-        //healthfill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
-        //GameObject _FILL = GameObject.Find("Scholar").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        //Image _fill = _FILL.GetComponent<Image>();
-        //_fill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
-
-        ////monk info
-        //Health_number.text = ((GameObject.Find("Monk").GetComponent<Monk>().current_health).ToString() + "/" + (GameObject.Find("Monk").GetComponent<Monk>().health).ToString());
-        //healthfill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
-        //GameObject _1FILL = GameObject.Find("Monk").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        //Image _1fill = _1FILL.GetComponent<Image>();
-        //_1fill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
-
-        ////trap info
-        //Health_number.text = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health).ToString() + "/" + (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health).ToString());
-        //healthfill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
-        //GameObject _2FILL = GameObject.Find("Trapmaster").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        //Image _2fill = _2FILL.GetComponent<Image>();
-        //_2fill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
-
-        ////archor info
-        //Health_number.text = ((GameObject.Find("Archer").GetComponent<Archer>().current_health).ToString() + "/" + (GameObject.Find("Archer").GetComponent<Archer>().health).ToString());
-        //healthfill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
-        //GameObject _3FILL = GameObject.Find("Archer").transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-        //Image _3fill = _3FILL.GetComponent<Image>();
-        //_3fill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
-
-
 
     }
 
@@ -348,7 +275,6 @@ public class Map_Control : MonoBehaviour
 
     public void Character_Move()
     {
-
         acting_state = 1;
         int move_range;
         units_state[picked_pos].GetComponent<UserUnit>().isClicked = true;
@@ -364,13 +290,11 @@ public class Map_Control : MonoBehaviour
         foreach (int i in expanded_tiles)
         {
 			mark_tile[i] = true;
-			map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 200, 0);
+			map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 255, 114);
         }
         tile_picked = false;
         first_click = false;
         playerHUD_showed = true;
-
-
     }
 
     public void Character_Attack()
@@ -586,6 +510,7 @@ public class Map_Control : MonoBehaviour
                         && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit"
                         && attackRange.Contains(map_tiles_pos[pickEndTile]) )
                     {
+                        units_state[picked_pos].GetComponent<UserUnit>().anim.Play("Attack");
                         float attack_damage = units_state[picked_pos].GetComponent<UserUnit>().attack_damage;
                         Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
                                   + units_state[map_tiles_pos[pickEndTile]].gameObject.name);

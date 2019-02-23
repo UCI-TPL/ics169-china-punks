@@ -56,7 +56,6 @@ MonoBehaviour:
   UI_prefab: {fileID: 1177051568776792, guid: f8ee88eeab93848e8a4af6a51c8ee859, type: 2}
   Turn_prefab: {fileID: 1869701087958602, guid: c4167d91ac00645d78e7f1d6ae86c3c3,
     type: 2}
-  timeline: {fileID: 0}
   WLcheck_prefab: {fileID: 1009372515287232, guid: 86d9afa53525d4f71b754a7515eefe9f,
     type: 2}
   level: 0
@@ -95,7 +94,11 @@ MonoBehaviour:
     bottomLeftPos: 12
     topRightPos: 159
     randomBlockPositions: 
-  Block_prefabs: []
+  Block_prefabs:
+  - prefab: {fileID: 1617561432325914, guid: 47c94cad595b249dc97652e1e012fd78, type: 2}
+    positions: 460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f00000050000000190000002d0000004100000055000000690000007d00000091000000a5000000b9000000
+  - prefab: {fileID: 1492919451614880, guid: 6436ac14d89da4db281a9321c820d757, type: 2}
+    positions: 02000000410100004d0100007a0000009b000000dc000000020100002b010000
   Merchant_prefab:
     prefab: {fileID: 1085644454282126, guid: d5f78e07a8ed14e4cb795ea7f2a7f94f, type: 2}
     positions: 7c010000
@@ -105,9 +108,8 @@ MonoBehaviour:
   peach_prefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
     type: 2}
   peach_pos: 4
-  exit_icon_prefab: {fileID: 1033292084980674, guid: 8442fc627610849a9af612eded936226,
-    type: 2}
-  exit_pos: 5d0000005e0000005f00000060000000
+  exit_icon_prefab: {fileID: 0}
+  exit_pos: 
   map: {fileID: 0}
   UI: {fileID: 0}
   Turn: {fileID: 0}

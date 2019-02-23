@@ -41,12 +41,13 @@ public class UserUnit : Unit
 
     public int skill_cd;
 
+    public bool face_right;
+    private SpriteRenderer SR;
+
     Vector3 moveDestination = new Vector3();
 
 	// Variables used for view changes
 	public int view_range;
-
-
 
     // Use this for initialization
     void Start()
@@ -61,9 +62,12 @@ public class UserUnit : Unit
         _fire_cd = fire_cd;
 		_moveSpeed = moveSpeed;
         current_health = health;
-        
-		// Initialize the visibility at the begining of each level
-		mc.set_tile_group_visibility(currentPos, view_range, true, gameObject.name);
+
+        SR = this.gameObject.GetComponent<SpriteRenderer>();
+        face_right = true;
+
+        // Initialize the visibility at the begining of each level
+        mc.set_tile_group_visibility(currentPos, view_range, true, gameObject.name);
     }
 
     // Update is called once per frame
@@ -75,7 +79,17 @@ public class UserUnit : Unit
             TurnUpdate();
             if (mc.character_moving)
             {
-                Debug.Log("Move!!!!!!");
+                if((this.transform.position.x - moveDestination.x) > 0)
+                {
+                    face_right = false;
+                    SR.flipX = true;
+                }
+                else if ((this.transform.position.x - moveDestination.x) <= 0)
+                {
+                    face_right = true;
+                    SR.flipX = false;
+                }
+
                 float step = moveSpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, moveDestination, step);
             }

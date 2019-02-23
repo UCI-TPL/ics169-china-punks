@@ -35,6 +35,8 @@ public class WinLoseCheck : MonoBehaviour {
         //level? win/lose check
         if (Level == 0){
             foreach(GameObject character in character_list){
+                if (character == null)
+                    return;
                 if (exits.Contains(character.GetComponent<UserUnit>().currentPos))
                     win_conditions_count++;
             }

@@ -30,11 +30,13 @@ public class InGameUI : MonoBehaviour {
 	public GameObject MouseOver_Char_info;
 
     public Sprite Makepinggo;
-    public Sprite Monster;
+    public Sprite Tauren;
     public Sprite SwordMan;
 	public Sprite Archer;
-	public Sprite Farmer;
-	public Sprite Farmer_Leader;
+    public Sprite Skeleton;
+	public Sprite Skeleton_Leader;
+    public Sprite Table;
+    public Sprite Bucket;
 	public Sprite Tile_1;
 
 	Image Char_avatar;
@@ -46,6 +48,10 @@ public class InGameUI : MonoBehaviour {
 	Image Move_Over_Avatar;
 	Text  Move_Over_Text;
 	Image Move_Over_Tile;
+    Text Move_Over_Tile_Name;
+
+    public int Level = 1;
+
     //Tile and quest Info
 	public GameObject MouseOver_Tile_Info;
 	public GameObject Quest_Objectives;
@@ -81,9 +87,11 @@ public class InGameUI : MonoBehaviour {
 		GameObject Move_Over_Avatar_Name_Info = MouseOver_Char_info.transform.Find("Char_avatar_back").Find("name").gameObject;
 		Move_Over_Text = Move_Over_Avatar_Name_Info.GetComponent<Text>();
 
-		GameObject MouseOver_Tile_Info_ = MouseOver_Tile_Info.transform.Find("Image").gameObject;
-		Move_Over_Tile = MouseOver_Tile_Info_.GetComponent<Image>();
-       
+		GameObject MouseOver_Tile_Info_1 = MouseOver_Tile_Info.transform.Find("Image").gameObject;
+		Move_Over_Tile = MouseOver_Tile_Info_1.GetComponent<Image>();
+
+        GameObject MouseOver_Tile_Info_2 = MouseOver_Tile_Info.transform.Find("Tile_name").gameObject;
+        Move_Over_Tile_Name = MouseOver_Tile_Info_2.GetComponent<Text>();
 
         for (int i = 0; i < 4; i++)
 		{
@@ -123,17 +131,17 @@ public class InGameUI : MonoBehaviour {
 					Char_avatar.sprite = Makepinggo;
 					char_info_slots_dict["Makepinggo"] = i;
 				}
-				else if (Characters_clone[i].name == "Monster(Clone)")
+				else if (Characters_clone[i].name == "Tauren(Clone)")
                 {
 					Char_infos[i].SetActive(true);               
-					Health_number.text = ((Characters_clone[i].GetComponent<Monster>().current_health).ToString() + "/" +
-					                      (Characters_clone[i].GetComponent<Monster>().health).ToString());
-					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Monster>().current_health) /
-					                         (Characters_clone[i].GetComponent<Monster>().health));
-					Char_attack.text = (Characters_clone[i].GetComponent<Monster>().attack_damage).ToString();
-					Char_Move.text = (Characters_clone[i].GetComponent<Monster>().moveRange).ToString();
-					Char_avatar.sprite = Monster;
-					char_info_slots_dict["Monster"] = i;
+					Health_number.text = ((Characters_clone[i].GetComponent<Tauren>().current_health).ToString() + "/" +
+					                      (Characters_clone[i].GetComponent<Tauren>().health).ToString());
+					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Tauren>().current_health) /
+					                         (Characters_clone[i].GetComponent<Tauren>().health));
+					Char_attack.text = (Characters_clone[i].GetComponent<Tauren>().attack_damage).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<Tauren>().moveRange).ToString();
+					Char_avatar.sprite = Tauren;
+					char_info_slots_dict["Tauren"] = i;
                 }
 				else if (Characters_clone[i].name == "Archer(Clone)")
                 {
@@ -169,6 +177,14 @@ public class InGameUI : MonoBehaviour {
 	void Update () {
         Character_Click();
 
+        foreach (var item in GameObject.FindGameObjectsWithTag("EnemyUnit"))
+        {
+            GameObject _Fill = item.transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+            Image _fill_image = _Fill.GetComponent<Image>();
+            _fill_image.fillAmount = ((item.transform.GetComponent<AIUnit>().current_health) /
+                                      (item.transform.GetComponent<AIUnit>().health));
+        } 
+
 
         if (mouse_is_on_map == true)
 		{
@@ -177,17 +193,20 @@ public class InGameUI : MonoBehaviour {
                 MouseOver_Char_info.SetActive(true);
                 MouseOver_Tile_Info.SetActive(false);
 
-				if (map_ctr.acting_state != 1)
+                Debug.Log("over name: "+MoveOver_Map_Info[0].name);
+
+
+                if (map_ctr.acting_state != 1)
 				{
 					if (MoveOver_Map_Info[0].name == "Makepinggo(Clone)")
                     {
                         Move_Over_Avatar.sprite = Makepinggo;
 						Move_Over_Text.text = "Makepinggo";
                     }
-					if (MoveOver_Map_Info[0].name == "Monster(Clone)")
+					if (MoveOver_Map_Info[0].name == "Tauren(Clone)")
                     {
-                        Move_Over_Avatar.sprite = Monster;
-						Move_Over_Text.text = "Monster";
+                        Move_Over_Avatar.sprite = Tauren;
+						Move_Over_Text.text = "Tauren";
                     }
                     if (MoveOver_Map_Info[0].name == "SwordMan(Clone)")
                     {
@@ -199,17 +218,29 @@ public class InGameUI : MonoBehaviour {
 						Move_Over_Avatar.sprite = Archer;
 						Move_Over_Text.text = "Archer";
                     }
-					if (MoveOver_Map_Info[0].name == "Farmer(Clone)")
+					if (MoveOver_Map_Info[0].name == "Skeleton(Clone)")
                     {
-                        Move_Over_Avatar.sprite = Farmer;
-                        Move_Over_Text.text = "Farmer";
+                        Move_Over_Avatar.sprite = Skeleton;
+                        Move_Over_Text.text = "Skeleton";
                     }
-					if (MoveOver_Map_Info[0].name == "FarmerLeader(Clone)")
+					if (MoveOver_Map_Info[0].name == "SkeletonLeader(Clone)")
                     {
-						Move_Over_Avatar.sprite = Farmer_Leader;
-						Move_Over_Text.text = "FarmerLeader";
+						Move_Over_Avatar.sprite = Skeleton_Leader;
+						Move_Over_Text.text = "SkeletonLeader";
                     }
-				}            
+
+                    if (MoveOver_Map_Info[0].name == "Table(Clone)")
+                    {
+                        Move_Over_Avatar.sprite = Table;
+                        Move_Over_Text.text = "Table";
+                    }
+
+                    if (MoveOver_Map_Info[0].name == "Bucket(Clone)")
+                    {
+                        Move_Over_Avatar.sprite = Bucket;
+                        Move_Over_Text.text = "Bucket";
+                    }
+                }            
             }
             else if (MoveOver_Map_Info.Count == 0)
             {
@@ -218,7 +249,11 @@ public class InGameUI : MonoBehaviour {
 					MouseOver_Char_info.SetActive(false);
 				}
                 MouseOver_Tile_Info.SetActive(true);
-                Move_Over_Tile.sprite = Tile_1;
+                if(Level == 1)
+                {
+                    Move_Over_Tile.sprite = Tile_1;
+                    Move_Over_Tile_Name.text = "Grass";
+                }
             }
 		}
 		else
@@ -240,6 +275,9 @@ public class InGameUI : MonoBehaviour {
                 break;
             }
 
+            if (Characters_clone[i] == null)
+                return;
+
 			if(Characters_clone[i].name == "Makepinggo(Clone)")
 			{
 				GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
@@ -251,27 +289,40 @@ public class InGameUI : MonoBehaviour {
 					if (item.active == true)
 					{
 						Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount = 
-							((Characters_clone[i].GetComponent<Makepinggo>().current_health) / (Characters_clone[i].GetComponent<Makepinggo>().health));;
-						Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+							((Characters_clone[i].GetComponent<Makepinggo>().current_health) / (Characters_clone[i].GetComponent<Makepinggo>().health));
+
+                        if ((Characters_clone[i].GetComponent<Makepinggo>().current_health) <= 0)
+                        {
+                            Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Makepinggo>().health).ToString();
+                            return;
+                        }
+                        Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
 							                                              ((Characters_clone[i].GetComponent<Makepinggo>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Makepinggo>().health).ToString());                                      
 					}
 				}
 			}
 
-			if (Characters_clone[i].name == "Monster(Clone)")
+			if (Characters_clone[i].name == "Tauren(Clone)")
             {
                 GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
                 Image _fill_image = _Fill.GetComponent<Image>();
-				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monster>().current_health) /
-				                          (Characters_clone[i].GetComponent<Monster>().health));
+				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Tauren>().current_health) /
+				                          (Characters_clone[i].GetComponent<Tauren>().health));
 				foreach (var item in Char_infos)
                 {
                     if (item.active == true)
                     {
-						Char_infos[char_info_slots_dict["Monster"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-							                                        ((Characters_clone[i].GetComponent<Monster>().current_health) / (Characters_clone[i].GetComponent<Monster>().health)); ;
-						Char_infos[char_info_slots_dict["Monster"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-							                                        ((Characters_clone[i].GetComponent<Monster>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Monster>().health).ToString());
+                        Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+							                                        ((Characters_clone[i].GetComponent<Tauren>().current_health) / (Characters_clone[i].GetComponent<Tauren>().health));
+                        if ((Characters_clone[i].GetComponent<Tauren>().current_health) <= 0)
+                        {
+                            Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Tauren>().health).ToString();
+                            return;
+                        }
+                        Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+							                                        ((Characters_clone[i].GetComponent<Tauren>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Tauren>().health).ToString());
                     }
                 }
             }
@@ -283,12 +334,20 @@ public class InGameUI : MonoBehaviour {
 				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<SwordMan>().current_health) /
 				                          (Characters_clone[i].GetComponent<SwordMan>().health));
 				foreach (var item in Char_infos)
-				if (item.active == true)
                 {
-					Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-						                                              ((Characters_clone[i].GetComponent<SwordMan>().current_health) / (Characters_clone[i].GetComponent<SwordMan>().health)); ;
-					Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-						                                              ((Characters_clone[i].GetComponent<SwordMan>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString());
+                    if (item.active == true)
+                    {
+                        Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+                                                                      ((Characters_clone[i].GetComponent<SwordMan>().current_health) / (Characters_clone[i].GetComponent<SwordMan>().health));
+                        if ((Characters_clone[i].GetComponent<SwordMan>().current_health) <= 0)
+                        {
+                            Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          "0" + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString();
+                            return;
+                        }
+                        Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          ((Characters_clone[i].GetComponent<SwordMan>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString());
+                    }
                 }
             }
 
@@ -299,13 +358,20 @@ public class InGameUI : MonoBehaviour {
 				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Archer>().current_health) /
 				                          (Characters_clone[i].GetComponent<Archer>().health));
 				foreach (var item in Char_infos)
-				if (item.active == true)
                 {
-					Debug.Log("from archer" + Char_infos[char_info_slots_dict["Archer"]].name);
-					Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-						                                          ((Characters_clone[i].GetComponent<Archer>().current_health) / (Characters_clone[i].GetComponent<Archer>().health)); ;
-					Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-						                                          ((Characters_clone[i].GetComponent<Archer>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString());
+                    if (item.active == true)
+                    {
+                        Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+                                                                  ((Characters_clone[i].GetComponent<Archer>().current_health) / (Characters_clone[i].GetComponent<Archer>().health));
+                        if ((Characters_clone[i].GetComponent<Archer>().current_health) <= 0)
+                        {
+                            Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString();
+                            return;
+                        }
+                        Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      ((Characters_clone[i].GetComponent<Archer>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString());
+                    }
                 }
             }
 		}

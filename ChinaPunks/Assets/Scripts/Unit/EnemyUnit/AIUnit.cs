@@ -31,6 +31,9 @@ public class AIUnit : Unit
     public int fire_damage;
     public int trap_damage;
 
+    public bool face_right;
+    private SpriteRenderer SR;
+
     public bool anim_is_playing;
 
     Vector3 moveDestination = new Vector3();
@@ -55,17 +58,30 @@ public class AIUnit : Unit
         _fire_cd = fire_cd;
 		_moveSpeed = moveSpeed;
         current_health = health;
+
+        SR = this.gameObject.GetComponent<SpriteRenderer>();
+        face_right = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (acting && turn_ctr.gameRound == "AI")
         {
             TurnUpdate();
             if (mc.character_moving)                                                                     //if the unit need to move then...
             {
+                if ((this.transform.position.x - moveDestination.x) > 0)
+                {
+                    face_right = true;
+                    SR.flipX = false;
+                }
+                else if ((this.transform.position.x - moveDestination.x) <= 0)
+                {
+                    face_right = false;
+                    SR.flipX = true;
+                }
+
                 if (hasPeach)
                 {
                     mc.peach_pos = currentPos;
