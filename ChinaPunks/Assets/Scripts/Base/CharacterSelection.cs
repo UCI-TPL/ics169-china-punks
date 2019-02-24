@@ -16,6 +16,11 @@ public class CharacterSelection : MonoBehaviour {
     // Cache the start point of the character
 	private Vector2 start_position;
 
+    // UI Sound Effect
+    public AudioSource Audio;
+    public AudioClip Mouse_Over;
+    public AudioClip Mouse_Click;
+
 	private void Awake()
 	{
 		base_manager = GameObject.Find("BaseManager");
@@ -48,8 +53,9 @@ public class CharacterSelection : MonoBehaviour {
 
 	private void OnMouseDown()
 	{
-		// If character not in team and the team still have empty spot, move the character to the empty spot
-		if(!in_team){
+        Audio.PlayOneShot(Mouse_Click);
+        // If character not in team and the team still have empty spot, move the character to the empty spot
+        if (!in_team){
 			Vector2 destination = base_manager.GetComponent<BaseManager>().AddMember(gameObject.name);
 			Vector2 distance = destination - start_position;
 			if (!destination.Equals(Vector2.zero))
@@ -68,9 +74,13 @@ public class CharacterSelection : MonoBehaviour {
 
 	private void OnMouseOver()
 	{
-		if(!in_team)
+        
+
+
+        if (!in_team)
 		{
-			char_info_ui.SetActive(true);
+            char_info_ui.SetActive(true);
+
             char_description.text = this.gameObject.name;
 		}
 	}

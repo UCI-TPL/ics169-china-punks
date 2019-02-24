@@ -33,6 +33,7 @@ public class InGameUI : MonoBehaviour {
     public Sprite Tauren;
     public Sprite SwordMan;
 	public Sprite Archer;
+    public Sprite Monk;
     public Sprite Skeleton;
 	public Sprite Skeleton_Leader;
     public Sprite Table;
@@ -119,7 +120,20 @@ public class InGameUI : MonoBehaviour {
                 Char_attack = Char_Attack.GetComponent<Text>();
                 healthfill = Char_Health_bar.GetComponent<Image>();
 
-				if(Characters_clone[i].name == "Makepinggo(Clone)")
+                if (Characters_clone[i].name == "Monk(Clone)")
+                {
+                    Char_infos[i].SetActive(true);
+                    Health_number.text = ((Characters_clone[i].GetComponent<Monk>().current_health).ToString() + "/" +
+                                          (Characters_clone[i].GetComponent<Monk>().health).ToString());
+                    healthfill.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
+                                             (Characters_clone[i].GetComponent<Monk>().health));
+                    Char_attack.text = (Characters_clone[i].GetComponent<Monk>().attack_damage).ToString();
+                    Char_Move.text = (Characters_clone[i].GetComponent<Monk>().moveRange).ToString();
+                    Char_avatar.sprite = Monk;
+                    char_info_slots_dict["Monk"] = i;
+                }
+
+                if (Characters_clone[i].name == "Makepinggo(Clone)")
 				{
                     Char_infos[i].SetActive(true);               
 					Health_number.text = ((Characters_clone[i].GetComponent<Makepinggo>().current_health).ToString() + "/" +
@@ -203,7 +217,12 @@ public class InGameUI : MonoBehaviour {
                         Move_Over_Avatar.sprite = Makepinggo;
 						Move_Over_Text.text = "Makepinggo";
                     }
-					if (MoveOver_Map_Info[0].name == "Tauren(Clone)")
+                    if (MoveOver_Map_Info[0].name == "Monk(Clone)")
+                    {
+                        Move_Over_Avatar.sprite = Monk;
+                        Move_Over_Text.text = "Monk";
+                    }
+                    if (MoveOver_Map_Info[0].name == "Tauren(Clone)")
                     {
                         Move_Over_Avatar.sprite = Tauren;
 						Move_Over_Text.text = "Tauren";
@@ -218,12 +237,12 @@ public class InGameUI : MonoBehaviour {
 						Move_Over_Avatar.sprite = Archer;
 						Move_Over_Text.text = "Archer";
                     }
-					if (MoveOver_Map_Info[0].name == "Skeleton(Clone)")
+					if (MoveOver_Map_Info[0].name == "Skeleton(Clone)" && MoveOver_Map_Info[0].gameObject.transform.GetChild(0).gameObject.activeSelf == true)
                     {
                         Move_Over_Avatar.sprite = Skeleton;
                         Move_Over_Text.text = "Skeleton";
                     }
-					if (MoveOver_Map_Info[0].name == "SkeletonLeader(Clone)")
+					if (MoveOver_Map_Info[0].name == "SkeletonLeader(Clone)" && MoveOver_Map_Info[0].gameObject.transform.GetChild(0).gameObject.activeSelf == true)
                     {
 						Move_Over_Avatar.sprite = Skeleton_Leader;
 						Move_Over_Text.text = "SkeletonLeader";
@@ -303,7 +322,32 @@ public class InGameUI : MonoBehaviour {
 				}
 			}
 
-			if (Characters_clone[i].name == "Tauren(Clone)")
+            if (Characters_clone[i].name == "Monk(Clone)")
+            {
+                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+                Image _fill_image = _Fill.GetComponent<Image>();
+                _fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
+                                          (Characters_clone[i].GetComponent<Monk>().health));
+                foreach (var item in Char_infos)
+                {
+                    if (item.active == true)
+                    {
+                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+                            ((Characters_clone[i].GetComponent<Monk>().current_health) / (Characters_clone[i].GetComponent<Monk>().health));
+
+                        if ((Characters_clone[i].GetComponent<Monk>().current_health) <= 0)
+                        {
+                            Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString();
+                            return;
+                        }
+                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                          ((Characters_clone[i].GetComponent<Monk>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString());
+                    }
+                }
+            }
+
+            if (Characters_clone[i].name == "Tauren(Clone)")
             {
                 GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
                 Image _fill_image = _Fill.GetComponent<Image>();

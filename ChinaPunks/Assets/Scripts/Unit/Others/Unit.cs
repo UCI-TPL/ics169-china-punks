@@ -11,7 +11,8 @@ public class Unit : MonoBehaviour {
     public bool hide;
     public bool on_fire;
     public bool provocative;
-    public bool poisoned;   
+    public bool poisoned;
+    public bool In_Fog = true;
 
     public float health;
     public float current_health;
@@ -22,7 +23,7 @@ public class Unit : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        In_Fog = true;
 
         mc.units_state[currentPos] = gameObject;
 

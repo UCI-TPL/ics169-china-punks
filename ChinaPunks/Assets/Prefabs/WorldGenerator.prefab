@@ -58,6 +58,16 @@ MonoBehaviour:
     type: 2}
   WLcheck_prefab: {fileID: 1009372515287232, guid: 86d9afa53525d4f71b754a7515eefe9f,
     type: 2}
+  Monk_Prefab: {fileID: 1245960340110376, guid: 0c9e04aba3742ce4fabffa1aeeafb419,
+    type: 2}
+  Archer_Prefab: {fileID: 1013872608658132, guid: 417260df613bf4a2cace34ae1906cff9,
+    type: 2}
+  Makepinggo_Prefab: {fileID: 1013872608658132, guid: 281ae339558916546b2cb8668932c77e,
+    type: 2}
+  Tauren_Prefab: {fileID: 1013872608658132, guid: 81ce6a39ef84af545a4aa1556746f17a,
+    type: 2}
+  Swordman_Prefab: {fileID: 1013872608658132, guid: ef81eea7ab0f337449c0a5a1725be105,
+    type: 2}
   level: 0
   Tiles_prefabs:
   - prefab: {fileID: 1792288182856016, guid: dfe6afd255e9a46e893a307ba9f2ab0a, type: 2}
@@ -72,11 +82,11 @@ MonoBehaviour:
     bottomLeftPos: 169
     topRightPos: 211
   - PlayerPrefabs:
-    - {fileID: 1013872608658132, guid: 81ce6a39ef84af545a4aa1556746f17a, type: 2}
+    - {fileID: 1245960340110376, guid: 0c9e04aba3742ce4fabffa1aeeafb419, type: 2}
     bottomLeftPos: 169
     topRightPos: 211
   - PlayerPrefabs:
-    - {fileID: 1013872608658132, guid: ef81eea7ab0f337449c0a5a1725be105, type: 2}
+    - {fileID: 1013872608658132, guid: 81ce6a39ef84af545a4aa1556746f17a, type: 2}
     bottomLeftPos: 169
     topRightPos: 211
   AI_prefabs:

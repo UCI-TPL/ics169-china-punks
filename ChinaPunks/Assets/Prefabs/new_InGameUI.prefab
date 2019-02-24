@@ -3570,6 +3570,7 @@ MonoBehaviour:
   Tauren: {fileID: 21300000, guid: 7c281ab03105b4b6d8f3bb7a5ffcff2a, type: 3}
   SwordMan: {fileID: 21300000, guid: fde0f8f0c11734b7eb036f6b31c60c48, type: 3}
   Archer: {fileID: 21300000, guid: df81f10a564d643cbb96f903a7a46a05, type: 3}
+  Monk: {fileID: 21300000, guid: fa9893215f3530140b106e9c60d3c918, type: 3}
   Skeleton: {fileID: 21300000, guid: 71eabf84d27ee4a1aa6151e546b4e192, type: 3}
   Skeleton_Leader: {fileID: 21300000, guid: 2834bd806d3bb41df8628e02b7dd6f41, type: 3}
   Table: {fileID: 21300000, guid: 11e39b5a08995427a9aa56d90bc5dd5e, type: 3}

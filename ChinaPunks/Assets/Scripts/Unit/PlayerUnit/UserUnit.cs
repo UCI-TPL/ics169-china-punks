@@ -49,6 +49,12 @@ public class UserUnit : Unit
 	// Variables used for view changes
 	public int view_range;
 
+    // Sound
+    public AudioSource AS;
+    public AudioClip Attack_Clip;
+    public AudioClip Be_Attacked_Clip;
+    public AudioClip Death_Clip;
+
     // Use this for initialization
     void Start()
     {
@@ -241,6 +247,8 @@ public class UserUnit : Unit
     {
 		Debug.Log("hit by enemy");
 
+        AS.clip = Be_Attacked_Clip;
+        AS.Play();
         base.Health_Change(damage);
         StartCoroutine(waitforanim(anim));
 
@@ -272,14 +280,6 @@ public class UserUnit : Unit
             }
             hasPeach = false;
         }
-        //healthFillImage.fillAmount = current_health / health;
-
-        //if (health <= 0)
-        //{
-        //    Debug.Log(this.gameObject.name + " is Dead!");
-        //    mc.units_state[currentPos] = null;
-        //    Destroy(this.gameObject);
-        //}
     }
 
     public void show_clickEffect()
@@ -333,6 +333,8 @@ public class UserUnit : Unit
         if (current_health <= 0)
         {
             Debug.Log(this.gameObject.name + " is Dead!");
+            AS.clip = Death_Clip;
+            AS.Play();
             mc.units_state[currentPos] = null;
             Destroy(this.gameObject);
         }

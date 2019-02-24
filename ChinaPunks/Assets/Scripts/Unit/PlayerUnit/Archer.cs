@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Archer : UserUnit {
 
-
     public override void Skill(){
         base.Skill();
 

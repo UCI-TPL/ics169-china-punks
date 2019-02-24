@@ -42,22 +42,6 @@ public class Map_Control : MonoBehaviour
 
     public bool animation_is_playing;
 
-    public GameObject Selected_Char_info_HUD;
-
-    public Sprite Scholar;
-    public Sprite Monk;
-    public Sprite archer;
-    public Sprite trapmaster;
-
-    Image Char_avatar;
-    Image healthfill;
-    Text Health_number;
-    Text Char_Move;
-    Text Char_attack;
-
-    GameObject[] small_health_bars;
-    bool small_health_bars_is_hidden = false;
-
     //bool ShowedClickedEffect;
 
     //0 for original state, 1 for movement, 2 for attack, 3 for PickUp...
@@ -89,6 +73,10 @@ public class Map_Control : MonoBehaviour
     // List used for checking whether a tile should be handled by visibility update
 	public List<bool> mark_tile = new List<bool>();
 
+    // Map Audio
+    public AudioSource Audio;
+    public AudioClip Grass_sound;
+
     private void Awake()
     {
         //for (int i = 0; i < map_size * map_size; i++)
@@ -119,6 +107,14 @@ public class Map_Control : MonoBehaviour
             reset();
         }
 
+        if (!character_moving)
+        {
+            Audio.Pause();
+        }
+        else if(character_moving)
+        {
+            Audio.UnPause();
+        }
     }
 
 
@@ -436,39 +432,6 @@ public class Map_Control : MonoBehaviour
                            && units_state[map_tiles_pos[pickTile]].tag == "PlayerUnit")
                             units_state[map_tiles_pos[pickTile]].GetComponent<UserUnit>().destory_clickEffect();
 
-                        //if ((units_state[map_tiles_pos[pickEndTile]].name) == "Scholar")
-                        //{
-                        //    Char_avatar.sprite = Scholar;
-                        //    Health_number.text = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health).ToString() + "/" + (GameObject.Find("Scholar").GetComponent<Scholar>().health).ToString());
-                        //    Char_Move.text = (GameObject.Find("Scholar").GetComponent<Scholar>().moveRange).ToString();
-                        //    Char_attack.text = (GameObject.Find("Scholar").GetComponent<Scholar>().attack_damage).ToString();
-                        //    healthfill.fillAmount = ((GameObject.Find("Scholar").GetComponent<Scholar>().current_health) / (GameObject.Find("Scholar").GetComponent<Scholar>().health));
-                        //}
-                        //else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Monk")
-                        //{
-                        //    Char_avatar.sprite = Monk;
-                        //    Health_number.text = ((GameObject.Find("Monk").GetComponent<Monk>().current_health).ToString() + "/" + (GameObject.Find("Monk").GetComponent<Monk>().health).ToString());
-                        //    Char_Move.text = (GameObject.Find("Monk").GetComponent<Monk>().moveRange).ToString();
-                        //    Char_attack.text = (GameObject.Find("Monk").GetComponent<Monk>().attack_damage).ToString();
-                        //    healthfill.fillAmount = ((GameObject.Find("Monk").GetComponent<Monk>().current_health) / (GameObject.Find("Monk").GetComponent<Monk>().health));
-                        //}
-                        //else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Archer")
-                        //{
-                        //    Char_avatar.sprite = archer;
-                        //    Health_number.text = ((GameObject.Find("Archer").GetComponent<Archer>().current_health).ToString() + "/" + (GameObject.Find("Archer").GetComponent<Archer>().health).ToString());
-                        //    Char_Move.text = (GameObject.Find("Archer").GetComponent<Archer>().moveRange).ToString();
-                        //    Char_attack.text = (GameObject.Find("Archer").GetComponent<Archer>().attack_damage).ToString();
-                        //    healthfill.fillAmount = ((GameObject.Find("Archer").GetComponent<Archer>().current_health) / (GameObject.Find("Archer").GetComponent<Archer>().health));
-                        //}
-                        //else if ((units_state[map_tiles_pos[pickEndTile]].name) == "Trapmaster")
-                        //{
-                        //    Char_avatar.sprite = trapmaster;
-                        //    Health_number.text = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health).ToString() + "/" + (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health).ToString());
-                        //    Char_Move.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().moveRange).ToString();
-                        //    Char_attack.text = (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().attack_damage).ToString();
-                        //    healthfill.fillAmount = ((GameObject.Find("Trapmaster").GetComponent<Trapmaster>().current_health) / (GameObject.Find("Trapmaster").GetComponent<Trapmaster>().health));
-                        //}
-
                         //create selectEffect of switched character
                         units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
 
@@ -511,6 +474,8 @@ public class Map_Control : MonoBehaviour
                         && attackRange.Contains(map_tiles_pos[pickEndTile]) )
                     {
                         units_state[picked_pos].GetComponent<UserUnit>().anim.Play("Attack");
+                        units_state[picked_pos].GetComponent<UserUnit>().AS.clip = units_state[picked_pos].GetComponent<UserUnit>().Attack_Clip;
+                        units_state[picked_pos].GetComponent<UserUnit>().AS.Play();
                         float attack_damage = units_state[picked_pos].GetComponent<UserUnit>().attack_damage;
                         Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
                                   + units_state[map_tiles_pos[pickEndTile]].gameObject.name);
@@ -879,13 +844,27 @@ public class Map_Control : MonoBehaviour
 		for (int tile = 0; tile < map_tiles.Count; tile++){
 			if(tile_visibility[tile].Count >= 1){
 				if(units_state[tile] != null)
-				    units_state[tile].GetComponent<SpriteRenderer>().enabled = true;
-				if(!mark_tile[tile])
+                {
+                    units_state[tile].GetComponent<SpriteRenderer>().enabled = true;
+                    if (units_state[tile].gameObject.tag == "EnemyUnit")
+                    {
+                        units_state[tile].gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                }
+
+                if (!mark_tile[tile])
 				    map_tiles[tile].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
 			}
 			else{
 				if(units_state[tile] != null)
-				    units_state[tile].GetComponent<SpriteRenderer>().enabled = false;
+                {
+                    units_state[tile].GetComponent<SpriteRenderer>().enabled = false;
+                    if (units_state[tile].gameObject.tag == "EnemyUnit")
+                    {
+                        units_state[tile].gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    }
+                }
+
 				if(!mark_tile[tile])
 					map_tiles[tile].GetComponent<SpriteRenderer>().color = Color.gray;
 			}

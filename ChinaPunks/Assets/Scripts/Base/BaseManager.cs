@@ -24,12 +24,11 @@ public class BaseManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        PlayerPrefs.DeleteAll();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
     // Add a character to the current team if there is still position open
@@ -68,7 +67,32 @@ public class BaseManager : MonoBehaviour {
 
         // Confirm Team successful
 		for (int i = 0; i < 4; i++)
-			Team.add_member(team[i]);
+        {
+            Team.add_member(team[i]);
+            if (team[i] == "Monk")
+            {
+                PlayerPrefs.SetInt("Monk", 1);
+            }
+            if (team[i] == "Archer")
+            {
+                PlayerPrefs.SetInt("Archer", 1);
+            }
+            if (team[i] == "Makepingguo")
+            {
+                Debug.Log("makepinggo is here!");
+                PlayerPrefs.SetInt("Makepinggo", 1);
+            }
+            if (team[i] == "Tauren")
+            {
+                PlayerPrefs.SetInt("Tauren", 1);
+            }
+            if (team[i] == "Swordman")
+            {
+                PlayerPrefs.SetInt("Swordman", 1);
+            }
+        }
+
+
 
 		// Load level one
 		SceneManager.LoadScene("level1");
