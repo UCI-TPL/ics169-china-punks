@@ -13,6 +13,7 @@ public class UserUnit : Unit
 
     public int moveRange;
     public float attack_damage;
+    protected float _attack_damage;
     public float skill_damage;
 
     //public Image healthFillImage;
@@ -67,6 +68,7 @@ public class UserUnit : Unit
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.7f, xyPosition.z - 1.0f);      //initialize my current position on map
         _fire_cd = fire_cd;
 		_moveSpeed = moveSpeed;
+        _attack_damage = attack_damage;
         current_health = health;
 
         SR = this.gameObject.GetComponent<SpriteRenderer>();

@@ -37,9 +37,6 @@ public class Map_Control : MonoBehaviour
 
     public bool provocative;
 
-    public GameObject BGCurve;
-    public GameObject BGCurve_prefab;
-
     public bool animation_is_playing;
 
     //bool ShowedClickedEffect;
@@ -183,8 +180,6 @@ public class Map_Control : MonoBehaviour
 
             
         }
-        //disable bgcurve
-        BGCurve.SetActive(false);
 
         expanded_tiles.Clear();
         skill_tiles.Clear();
@@ -334,6 +329,10 @@ public class Map_Control : MonoBehaviour
 
         acting_state = 4;
 
+        if (units_state[picked_pos].gameObject.name.StartsWith("Monk"))
+        {
+            units_state[picked_pos].GetComponent<Animator>().Play("Monk_skill");
+        }
 
         //skill
         units_state[picked_pos].GetComponent<UserUnit>().Skill();
@@ -364,7 +363,7 @@ public class Map_Control : MonoBehaviour
                 {
                     //if this tile has playerUnit, show its clickEffect
                     units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
-                    
+
                     //lock the Mouse Over info to character
 
                     first_click = false;
@@ -395,7 +394,7 @@ public class Map_Control : MonoBehaviour
                     if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
                         && all_paths.ContainsKey(map_tiles_pos[pickEndTile]))
                     {
-                        path = new List<int>( all_paths[map_tiles_pos[pickEndTile]]);
+                        path = new List<int>(all_paths[map_tiles_pos[pickEndTile]]);
                         path.Add(map_tiles_pos[pickEndTile]);
 
                         units_state[picked_pos].GetComponent<UserUnit>().moveComplete = true;
@@ -409,7 +408,7 @@ public class Map_Control : MonoBehaviour
                         foreach (int i in expanded_tiles)
                         {
                             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-							mark_tile[i] = false;
+                            mark_tile[i] = false;
                         }
 
                         //acting_state = 0;
@@ -443,7 +442,7 @@ public class Map_Control : MonoBehaviour
                         foreach (int i in expanded_tiles)
                         {
                             map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-							mark_tile[i] = false;
+                            mark_tile[i] = false;
                         }
                         all_paths.Clear();
                         expanded_tiles.Clear();
@@ -469,9 +468,9 @@ public class Map_Control : MonoBehaviour
                 else if (acting_state == 2)
                 {
                     //check second-clicked tile has unit
-                    if (units_state[map_tiles_pos[pickEndTile]] != null 
+                    if (units_state[map_tiles_pos[pickEndTile]] != null
                         && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit"
-                        && attackRange.Contains(map_tiles_pos[pickEndTile]) )
+                        && attackRange.Contains(map_tiles_pos[pickEndTile]))
                     {
                         units_state[picked_pos].GetComponent<UserUnit>().anim.Play("Attack");
                         units_state[picked_pos].GetComponent<UserUnit>().AS.clip = units_state[picked_pos].GetComponent<UserUnit>().Attack_Clip;
@@ -488,7 +487,7 @@ public class Map_Control : MonoBehaviour
                             foreach (int i in expansion_of_tiles[picked_pos])
                             {
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-								mark_tile[i] = false;
+                                mark_tile[i] = false;
                             }
                         }
                         units_state[map_tiles_pos[pickEndTile]].GetComponent<Unit>().Health_Change(attack_damage);
@@ -523,7 +522,7 @@ public class Map_Control : MonoBehaviour
                             foreach (int i in expansion_of_tiles[picked_pos])
                             {
                                 map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-								mark_tile[i] = false;
+                                mark_tile[i] = false;
                             }
                         }
 
@@ -540,34 +539,73 @@ public class Map_Control : MonoBehaviour
                 }
                 //skill state
                 else if (acting_state == 4)
-                {   
+                {
                     //second click is on the available tile
-                    if (skill_tiles.ContainsKey(map_tiles_pos[pickEndTile])){
+                    if (skill_tiles.ContainsKey(map_tiles_pos[pickEndTile]))
+                    {
                         //get skill damage
                         float skill_damage = units_state[picked_pos].GetComponent<UserUnit>().skill_damage;
-                        foreach (int pos in skill_tiles[map_tiles_pos[pickEndTile]]){
+                        foreach (int pos in skill_tiles[map_tiles_pos[pickEndTile]])
+                        {
                             //there is unit on this tile
-                            //apply fire effect if attacker is archer
+                            if (units_state[pos] != null)
+                            {
+                                if (units_state[picked_pos].gameObject.name.StartsWith("Tauren"))
+                                {
+                                    if (units_state[pos].tag == "EnemyUnit")
+                                    {
+                                        int dashDesPos = picked_pos + (pos - picked_pos) * 2;
+                                        if (dashDesPos >= 0
+                                            && dashDesPos < map_size * map_size
+                                            && units_state[dashDesPos] == null)
+                                        {
+
+                                            Debug.Log("dash");
+                                            StartCoroutine(units_state[pos].GetComponent<AIUnit>().Dashed(dashDesPos, 2f));
+                                        }
+
+                                    }
+
+                                }
+
+                                    //showing attack message
+                                Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
+                                + units_state[pos].gameObject.name);
+                                units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
+
+
+                            }
+
                             if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
                             {
-                                map_tiles[pos].GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Mud")[0];
-                                if(map_tiles[pos].GetComponent<Tile>().tile_type == "Hide")
-                                    map_tiles[pos].transform.GetChild(1).gameObject.SetActive(false);
-                                map_tiles[pos].GetComponent<Tile>().tile_type = "Muddy";
+                                map_tiles[pos].GetComponent<Animator>().Play("ArrowEffectOnTile");
                             }
-                            else if (units_state[pos]!= null){
-                                //showing attack message
-                                Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
-                                  + units_state[pos].gameObject.name);
-                                
-                                units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
+                            else if (units_state[picked_pos].gameObject.name.StartsWith("Makepinggo"))
+                            {
+                                map_tiles[pos].GetComponent<Animator>().Play("ExplosionEffect");
                             }
+
                         }
+                        if (units_state[picked_pos].gameObject.name.StartsWith("Tauren"))
+                        {
+                            units_state[picked_pos].GetComponent<Animator>().Play("Tauren_skill");
+                        }
+                        else if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
+                        {
+                            units_state[picked_pos].GetComponent<Animator>().Play("Archer_skill");
+                        }
+                        else if (units_state[picked_pos].gameObject.name.StartsWith("Makepinggo"))
+                        {
+                            units_state[picked_pos].GetComponent<Animator>().Play("Makepinggo_skill");
+                        }
+
                         //recover the tile colors after using skill
-                        foreach(int k in skill_tiles.Keys){
-                            foreach(int pos in skill_tiles[k]){
+                        foreach (int k in skill_tiles.Keys)
+                        {
+                            foreach (int pos in skill_tiles[k])
+                            {
                                 map_tiles[pos].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-								mark_tile[pos] = false;
+                                mark_tile[pos] = false;
                             }
                         }
                         //apply skill cd
@@ -578,12 +616,12 @@ public class Map_Control : MonoBehaviour
                         reset();
                     }
                 }
-
                 tile_picked = false;
+                
+
             }
 
         }
-
     }
 
     void Tile_Store()

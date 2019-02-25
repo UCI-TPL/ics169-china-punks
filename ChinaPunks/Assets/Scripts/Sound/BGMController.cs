@@ -33,7 +33,6 @@ public class BGMController : MonoBehaviour {
     void Update () {
         Current_Scene = SceneManager.GetActiveScene();
 
-		Debug.Log(Current_Scene.name);
         if (Current_Scene.name == "SampleScene")
         {
             if (_AudioSource.clip == _AudioClip_lobby)

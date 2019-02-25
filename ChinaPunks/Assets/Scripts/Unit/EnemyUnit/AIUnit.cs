@@ -35,6 +35,8 @@ public class AIUnit : Unit
     private SpriteRenderer SR;
 
     public bool anim_is_playing;
+    public bool gotDashed;
+    public int gotDashedDes;
 
     Vector3 moveDestination = new Vector3();
 
@@ -91,7 +93,9 @@ public class AIUnit : Unit
                 transform.position = Vector3.MoveTowards(transform.position, moveDestination, step);
 
             }
+
         }
+
 
 
     }
@@ -294,4 +298,21 @@ public class AIUnit : Unit
         ////Time.time < t + anim.GetCurrentAnimatorStateInfo(0).length);
         //;
     }
+
+    public IEnumerator Dashed(int dashDesPos, float dashSpeed)
+    {
+        Vector3 dashDes = mc.map_tiles[dashDesPos].transform.position;
+        dashDes = new Vector3(dashDes.x, dashDes.y + 0.7f, dashDes.z - 1.0f);
+        while (transform.position != dashDes)
+        {
+            float step = dashSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, dashDes, step);
+            Debug.Log("dash");
+            yield return new WaitForSeconds(0.02f);
+        }
+
+
+    }
+
+
 }

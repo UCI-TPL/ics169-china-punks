@@ -88,46 +88,18 @@ public class Tile : MonoBehaviour {
     //for monk skill range showing
     private void OnMouseEnter()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
-        {
+        //if (!EventSystem.current.IsPointerOverGameObject())
+        //{
             //show selection outline
             transform.GetChild(0).gameObject.SetActive(true);
 
 
             if (map_ctr.acting_state == 4 && map_ctr.skill_tiles.ContainsKey(map_ctr.map_tiles_pos[gameObject]))
             {
-                map_ctr.BGCurve = Instantiate(map_ctr.BGCurve_prefab);
-                map_ctr.color_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
-                Vector3 start_pos = map_ctr.units_state[map_ctr.picked_pos].transform.position;
-                Vector3 end_pos = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z - 1.0f);
-
-
-                BansheeGz.BGSpline.Curve.BGCurvePoint point1 = map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().CreatePointFromWorldPosition(
-                    start_pos, (BansheeGz.BGSpline.Curve.BGCurvePoint.ControlTypeEnum)1);
-                BansheeGz.BGSpline.Curve.BGCurvePoint point2 = map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().CreatePointFromWorldPosition(
-                    end_pos, (BansheeGz.BGSpline.Curve.BGCurvePoint.ControlTypeEnum)1);
-                point1.ControlFirstLocal = new Vector3(0f, 0f);
-                point1.ControlSecondLocal = new Vector3(0f, 0f);
-                if (start_pos.x > end_pos.x)
-                {
-                    point2.ControlFirstLocal = new Vector3(0.5f, 4f);
-                    point2.ControlSecondLocal = new Vector3(-0.5f, -4f);
-                }
-                else
-                {
-                    point2.ControlFirstLocal = new Vector3(-0.5f, 4f);
-                    point2.ControlSecondLocal = new Vector3(0.5f, -4f);
-                }
-
-
-                map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().AddPoint(point1);
-                map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().AddPoint(point2);
-                map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Components.BGCcTrs>().Distance = 0;
-
-                map_ctr.BGCurve.SetActive(true);
-
+                
+                map_ctr.color_skill_tiles(currentPos);
             }
-        }
+        //}
     }
 
     private void OnMouseExit()
@@ -141,16 +113,12 @@ public class Tile : MonoBehaviour {
         //hide selection outline
         transform.GetChild(0).gameObject.SetActive(false);
 
-        if (map_ctr.acting_state == 4)
+        if (map_ctr.acting_state == 4 && map_ctr.skill_tiles.ContainsKey(map_ctr.map_tiles_pos[gameObject]))
         {
-            map_ctr.uncolor_skill_tiles(map_ctr.map_tiles_pos[gameObject]);
-            if (map_ctr.BGCurve != null)
-            {
-                map_ctr.BGCurve.GetComponent<BansheeGz.BGSpline.Curve.BGCurve>().Clear();
-                map_ctr.BGCurve.SetActive(false);
-                Destroy(map_ctr.BGCurve);
-            }
+            map_ctr.uncolor_skill_tiles(currentPos);
         }
+
+
 
     }
 

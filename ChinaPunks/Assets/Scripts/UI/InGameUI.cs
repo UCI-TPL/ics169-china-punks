@@ -207,7 +207,7 @@ public class InGameUI : MonoBehaviour {
                 MouseOver_Char_info.SetActive(true);
                 MouseOver_Tile_Info.SetActive(false);
 
-                Debug.Log("over name: "+MoveOver_Map_Info[0].name);
+                //Debug.Log("over name: "+MoveOver_Map_Info[0].name);
 
 
                 if (map_ctr.acting_state != 1)

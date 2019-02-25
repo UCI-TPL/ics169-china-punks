@@ -255,6 +255,7 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
+  In_Fog: 1
   health: 25
   current_health: 0
   moveComplete: 0
