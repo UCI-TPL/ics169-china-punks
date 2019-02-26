@@ -189,7 +189,11 @@ public class InGameUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         Character_Click();
+
+        // Change the money number to the number player team has in the battle scene
+		gameObject.transform.Find("Gold").GetChild(0).GetComponent<Text>().text = Team.get_money().ToString();
 
         foreach (var item in GameObject.FindGameObjectsWithTag("EnemyUnit"))
         {

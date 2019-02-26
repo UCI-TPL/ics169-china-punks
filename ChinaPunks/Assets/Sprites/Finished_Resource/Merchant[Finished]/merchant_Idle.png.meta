@@ -106,10 +106,10 @@ TextureImporter:
       name: merchant_Idle_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 15
-        width: 130
-        height: 125
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,7 +117,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a423c0d158585f043aee3176d079df22
+      spriteID: a4d5d2b65420741518716cd5fced73b5
       vertices: []
       indices: 
       edges: []
@@ -126,10 +126,10 @@ TextureImporter:
       name: merchant_Idle_1
       rect:
         serializedVersion: 2
-        x: 175
-        y: 15
-        width: 130
-        height: 130
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea2ba9ef247851a4a8a05f1f4bc3141c
+      spriteID: 4183818d8dd1f46e78eb728695d74d2d
       vertices: []
       indices: 
       edges: []
@@ -146,10 +146,10 @@ TextureImporter:
       name: merchant_Idle_2
       rect:
         serializedVersion: 2
-        x: 335
-        y: 15
-        width: 130
-        height: 135
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72f87058e61db8247b58825a9ef5973b
+      spriteID: 6009ff29ff5cb4994af19c0e04cd4fbc
       vertices: []
       indices: 
       edges: []
@@ -166,10 +166,10 @@ TextureImporter:
       name: merchant_Idle_3
       rect:
         serializedVersion: 2
-        x: 495
-        y: 15
-        width: 130
-        height: 135
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 139eb5ea1eae27649a1e86b33fb1574a
+      spriteID: f4812570465904b0b9915a7b7c40fbd8
       vertices: []
       indices: 
       edges: []
@@ -186,10 +186,10 @@ TextureImporter:
       name: merchant_Idle_4
       rect:
         serializedVersion: 2
-        x: 655
-        y: 15
-        width: 130
-        height: 135
+        x: 640
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7a2fa714b59ea44eac196139219db99
+      spriteID: 9e227c08c3885484d9f669fdba79e32b
       vertices: []
       indices: 
       edges: []
@@ -206,10 +206,10 @@ TextureImporter:
       name: merchant_Idle_5
       rect:
         serializedVersion: 2
-        x: 815
-        y: 15
-        width: 130
-        height: 130
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcb785e7681a94243bf99bf6bc80a59e
+      spriteID: c3fae236ccbb74949af52bb9ec57a895
       vertices: []
       indices: 
       edges: []
@@ -226,10 +226,10 @@ TextureImporter:
       name: merchant_Idle_6
       rect:
         serializedVersion: 2
-        x: 975
-        y: 15
-        width: 130
-        height: 130
+        x: 960
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a34a386423b24c2499afb8df18d848dd
+      spriteID: cc4977fec0f864402baadb07d9d027a6
       vertices: []
       indices: 
       edges: []
@@ -246,10 +246,10 @@ TextureImporter:
       name: merchant_Idle_7
       rect:
         serializedVersion: 2
-        x: 1135
-        y: 15
-        width: 130
-        height: 130
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c409c817f2a76e4aafb4f2a8446346b
+      spriteID: 0dc37f52f1f764dfb8892eb8e8ac6408
       vertices: []
       indices: 
       edges: []

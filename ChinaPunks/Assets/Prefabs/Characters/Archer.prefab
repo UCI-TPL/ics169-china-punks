@@ -268,7 +268,7 @@ MonoBehaviour:
   attack_damage: 15
   skill_damage: 15
   anim: {fileID: 95658297138986650}
-  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+  selectEffect: {fileID: 1907047352354152, guid: a47e51d8bc1b442018f5092a24ee5e32,
     type: 2}
   charater_type: Archer
   coolDown: 0

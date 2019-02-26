@@ -196,6 +196,7 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
+  In_Fog: 1
   health: 30
   current_health: 0
   moveComplete: 0
@@ -208,7 +209,7 @@ MonoBehaviour:
   attack_damage: 15
   skill_damage: 0
   anim: {fileID: 95434497530356034}
-  selectEffect: {fileID: 1074274351456474, guid: b54eca4decff6744bb6c74cfab3ef9c2,
+  selectEffect: {fileID: 1907047352354152, guid: a47e51d8bc1b442018f5092a24ee5e32,
     type: 2}
   charater_type: 
   coolDown: 0
@@ -222,6 +223,10 @@ MonoBehaviour:
   skill_cd: 0
   face_right: 0
   view_range: 5
+  AS: {fileID: 0}
+  Attack_Clip: {fileID: 0}
+  Be_Attacked_Clip: {fileID: 0}
+  Death_Clip: {fileID: 0}
 --- !u!114 &114762030999603444
 MonoBehaviour:
   m_ObjectHideFlags: 1

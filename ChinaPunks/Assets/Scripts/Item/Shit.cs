@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Shit : GameItem {
 
-	// Use this for initialization
-	void Start () {
+	public Shit(){
+		item_name = "shit";
 		description = "This is a strange poo. It looks like it has no effect...";
-		consumable = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		price = 50;
+        consumable = true;
+		use_range = new List<int>() { 1, -1, map_size, -map_size };
 	}
 
-	public override void change_character(Unit unit) { }
+	public override bool change_character(Unit unit) {
+		if(!unit.CompareTag("EnemyUnit")){
+			return false;
+		}
+		unit.Health_Change(1);
+		return true;
+	}
 }

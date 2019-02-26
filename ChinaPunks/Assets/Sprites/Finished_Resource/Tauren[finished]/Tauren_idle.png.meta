@@ -106,10 +106,10 @@ TextureImporter:
       name: Tauren_idle_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 25
-        width: 123
-        height: 130
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,7 +117,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf006f59375db3f4b870a4a35fd95093
+      spriteID: ee93be5a593b244a9bc23dcfdfb935f9
       vertices: []
       indices: 
       edges: []
@@ -126,10 +126,10 @@ TextureImporter:
       name: Tauren_idle_1
       rect:
         serializedVersion: 2
-        x: 180
-        y: 25
-        width: 115
-        height: 135
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 345dcfcfdff7a364295da76eca757d77
+      spriteID: 6b319b22431e24ead9baffc1109e69f9
       vertices: []
       indices: 
       edges: []
@@ -146,10 +146,10 @@ TextureImporter:
       name: Tauren_idle_2
       rect:
         serializedVersion: 2
-        x: 340
-        y: 25
-        width: 115
-        height: 135
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fd9f0c084e30414d9cc2fdbfac74290
+      spriteID: 9a0d2e773d4ca4b62be1e0b4bc6b40ae
       vertices: []
       indices: 
       edges: []
@@ -166,10 +166,10 @@ TextureImporter:
       name: Tauren_idle_3
       rect:
         serializedVersion: 2
-        x: 500
-        y: 25
-        width: 115
-        height: 135
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9b73ed1aecb0ba4e939e9590796d9f1
+      spriteID: 619e83a7f5fc04091ac72be252bb4430
       vertices: []
       indices: 
       edges: []
@@ -186,10 +186,10 @@ TextureImporter:
       name: Tauren_idle_4
       rect:
         serializedVersion: 2
-        x: 660
-        y: 25
-        width: 115
-        height: 130
+        x: 640
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57da681dfd7b6e14694f879d0c638618
+      spriteID: a35df998713464c0aa7ea48c0c2ba2ae
       vertices: []
       indices: 
       edges: []
@@ -206,10 +206,10 @@ TextureImporter:
       name: Tauren_idle_5
       rect:
         serializedVersion: 2
-        x: 820
-        y: 25
-        width: 115
-        height: 130
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb748953cb3f5ca448db41bef0432425
+      spriteID: 1152576293e004a74a0c8711da1be762
       vertices: []
       indices: 
       edges: []
@@ -226,10 +226,10 @@ TextureImporter:
       name: Tauren_idle_6
       rect:
         serializedVersion: 2
-        x: 980
-        y: 25
-        width: 115
-        height: 130
+        x: 960
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd529a6836397384ebbb3607625e50fc
+      spriteID: 6e4f46de81c904e729be2177e340085d
       vertices: []
       indices: 
       edges: []
@@ -246,10 +246,10 @@ TextureImporter:
       name: Tauren_idle_7
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 25
-        width: 115
-        height: 130
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5658e8384f31a65488f2405be31ccfbc
+      spriteID: e4ac4fbbd3564437796f21931c83b99e
       vertices: []
       indices: 
       edges: []

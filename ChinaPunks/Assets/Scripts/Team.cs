@@ -15,6 +15,11 @@ public static class Team{
 		money += change;
 	}
 
+    // Function that return the money variable
+	public static int get_money(){
+		return money;
+	}
+
     /* Function that is called when the player has chosen the team member
      * Input is the name of the character that will be added to the current team build 
      */

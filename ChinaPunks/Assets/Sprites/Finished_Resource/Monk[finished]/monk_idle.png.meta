@@ -106,10 +106,10 @@ TextureImporter:
       name: monk_idle_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 25
-        width: 70
-        height: 110
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,7 +117,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c66ad4958c81b0040ad4cf4a58007630
+      spriteID: 825ecc98acf4d4432a9f0d0bf821068a
       vertices: []
       indices: 
       edges: []
@@ -126,10 +126,10 @@ TextureImporter:
       name: monk_idle_1
       rect:
         serializedVersion: 2
-        x: 200
-        y: 25
-        width: 70
-        height: 110
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd707656c0f0f714d98a639276696a7d
+      spriteID: 8ceb2c95a1eb443ce8c2a47505b935c7
       vertices: []
       indices: 
       edges: []
@@ -146,10 +146,10 @@ TextureImporter:
       name: monk_idle_2
       rect:
         serializedVersion: 2
-        x: 360
-        y: 25
-        width: 70
-        height: 105
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ca277689c2c3cc4eadaff2808c42774
+      spriteID: 87060802ce74549ee9749c20507c4e79
       vertices: []
       indices: 
       edges: []
@@ -166,10 +166,10 @@ TextureImporter:
       name: monk_idle_3
       rect:
         serializedVersion: 2
-        x: 520
-        y: 25
-        width: 70
-        height: 105
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0450703422d895f42873000daafcfe48
+      spriteID: bfde7e0417f3e4d929b637ea432d3b19
       vertices: []
       indices: 
       edges: []
@@ -186,10 +186,10 @@ TextureImporter:
       name: monk_idle_4
       rect:
         serializedVersion: 2
-        x: 680
-        y: 25
-        width: 70
-        height: 110
+        x: 640
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15879e7a9f625524580c33b58b61fa66
+      spriteID: 63cacfb0a4c1144acb0823a8de0f3297
       vertices: []
       indices: 
       edges: []
@@ -206,10 +206,10 @@ TextureImporter:
       name: monk_idle_5
       rect:
         serializedVersion: 2
-        x: 840
-        y: 25
-        width: 70
-        height: 110
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5481d296ac8a35e40917f97eacdd29b6
+      spriteID: a4b3f58aa655249bb8b5ec148f7c50ed
       vertices: []
       indices: 
       edges: []
@@ -226,10 +226,10 @@ TextureImporter:
       name: monk_idle_6
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 25
-        width: 70
-        height: 105
+        x: 960
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8480aa3126231124dbf3db4cb808c373
+      spriteID: 13a08122c65e74a58b6984a915546a95
       vertices: []
       indices: 
       edges: []
@@ -246,10 +246,10 @@ TextureImporter:
       name: monk_idle_7
       rect:
         serializedVersion: 2
-        x: 1160
-        y: 25
-        width: 70
-        height: 105
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3898ac32ea2b442bd8ef01d6e09a5d
+      spriteID: 3b3bb414e3a6b4a71bc4bd98866da192
       vertices: []
       indices: 
       edges: []

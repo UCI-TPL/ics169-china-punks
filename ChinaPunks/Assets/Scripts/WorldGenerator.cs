@@ -312,34 +312,34 @@ public class WorldGenerator : MonoBehaviour
             for (int i = 0; i < GP.PlayerPrefabs.Count; ++i)
             {
                 // Character Selection
-                if (PlayerPrefs.GetInt("Monk") == 1)
-                {
-                    character = Instantiate(Monk_Prefab);
-                    PlayerPrefs.SetInt("Monk", 0);
-                }
-                else if (PlayerPrefs.GetInt("Makepinggo") == 1)
-                {
-                    Debug.Log("makepinggo is here!");
-                    character = Instantiate(Makepinggo_Prefab);
-                    PlayerPrefs.SetInt("Makepinggo", 0);
-                }
-                else if (PlayerPrefs.GetInt("Archer") == 1)
-                {
-                    character = Instantiate(Archer_Prefab);
-                    PlayerPrefs.SetInt("Archer", 0);
-                }
-                else if (PlayerPrefs.GetInt("Tauren") == 1)
-                {
-                    character = Instantiate(Tauren_Prefab);
-                    PlayerPrefs.SetInt("Tauren", 0);
-                }
-                else if (PlayerPrefs.GetInt("Swordman") == 1)
-                {
-                    character = Instantiate(Swordman_Prefab);
-                    PlayerPrefs.SetInt("Swordman", 0);
-                }
+                //if (PlayerPrefs.GetInt("Monk") == 1)
+                //{
+                //    character = Instantiate(Monk_Prefab);
+                //    PlayerPrefs.SetInt("Monk", 0);
+                //}
+                //else if (PlayerPrefs.GetInt("Makepinggo") == 1)
+                //{
+                //    Debug.Log("makepinggo is here!");
+                //    character = Instantiate(Makepinggo_Prefab);
+                //    PlayerPrefs.SetInt("Makepinggo", 0);
+                //}
+                //else if (PlayerPrefs.GetInt("Archer") == 1)
+                //{
+                //    character = Instantiate(Archer_Prefab);
+                //    PlayerPrefs.SetInt("Archer", 0);
+                //}
+                //else if (PlayerPrefs.GetInt("Tauren") == 1)
+                //{
+                //    character = Instantiate(Tauren_Prefab);
+                //    PlayerPrefs.SetInt("Tauren", 0);
+                //}
+                //else if (PlayerPrefs.GetInt("Swordman") == 1)
+                //{
+                //    character = Instantiate(Swordman_Prefab);
+                //    PlayerPrefs.SetInt("Swordman", 0);
+                //}
 
-                //character = Instantiate(GP.PlayerPrefabs[i]);
+                character = Instantiate(GP.PlayerPrefabs[i]);
                 int pos = randomPos[Random.Range(0, randomPos.Count)];
                 while (unitsPos.Contains(pos))
                     pos = randomPos[Random.Range(0, randomPos.Count)];

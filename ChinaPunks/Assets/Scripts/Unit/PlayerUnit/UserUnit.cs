@@ -50,6 +50,9 @@ public class UserUnit : Unit
 	// Variables used for view changes
 	public int view_range;
 
+	// Variable used for Inventory
+	public List<GameItem> inventory;
+
     // Sound
     public AudioSource AS;
     public AudioClip Attack_Clip;
@@ -324,7 +327,7 @@ public class UserUnit : Unit
     }
 
     // Function used for adding consumable item to the character inventory
-	public void add_Inventory(GameObject item){
+	public void add_Inventory(GameItem item){
 		
 	}
 
