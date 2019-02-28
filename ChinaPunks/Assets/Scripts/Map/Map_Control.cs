@@ -33,11 +33,17 @@ public class Map_Control : MonoBehaviour
 
     public bool playerHUD_showed = false;
 
+    public GameObject InGameUI;
+    private InGameUI InGameUI_prefab;
+
     public int peach_pos;
 
     public bool provocative;
 
     public bool animation_is_playing;
+
+    public GameObject Arrow_Effect_Prefab;
+    public GameObject Explosion_Effect_Prefab;
 
     //bool ShowedClickedEffect;
 
@@ -74,6 +80,11 @@ public class Map_Control : MonoBehaviour
     public AudioSource Audio;
     public AudioClip Grass_sound;
 
+    public AudioSource Audio_Skill;
+    public AudioClip Arrow_sound;
+    public AudioClip Explosion_sound;
+    public AudioClip Punch_sound;
+
     private void Awake()
     {
         //for (int i = 0; i < map_size * map_size; i++)
@@ -87,8 +98,10 @@ public class Map_Control : MonoBehaviour
         turn_count = 1;
         Tile_Store();
 
-		//Start with each tile has no character who has visual on them. Initial visibility set by player characters Start()
-		for (int i = 0; i < map_tiles_pos.Count; i++){
+        InGameUI_prefab = InGameUI.GetComponent<InGameUI>();
+
+        //Start with each tile has no character who has visual on them. Initial visibility set by player characters Start()
+        for (int i = 0; i < map_tiles_pos.Count; i++){
 			tile_visibility.Add(i, new HashSet<string>());
 			mark_tile.Add(false);
 		}      
@@ -285,7 +298,7 @@ public class Map_Control : MonoBehaviour
         }
         tile_picked = false;
         first_click = false;
-        playerHUD_showed = true;
+        //playerHUD_showed = true;
     }
 
     public void Character_Attack()
@@ -368,7 +381,7 @@ public class Map_Control : MonoBehaviour
 
                     first_click = false;
                     acting_state = 1;
-                    playerHUD_showed = true;
+                    //playerHUD_showed = true;
 
                     //if this playerUnit can still move, then call Character_Move()
                     if (!units_state[picked_pos].GetComponent<UserUnit>().moveComplete
@@ -420,6 +433,28 @@ public class Map_Control : MonoBehaviour
                     else if (units_state[map_tiles_pos[pickEndTile]] != null &&
                              units_state[map_tiles_pos[pickEndTile]].tag == "PlayerUnit")
                     {
+                        //change character avatar
+                        if (units_state[map_tiles_pos[pickEndTile]].name == "Monk(Clone)")
+                        {
+                            InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Monk;
+                        }
+                        else if (units_state[map_tiles_pos[pickEndTile]].name == "Makepinggo(Clone)")
+                        {
+                            InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Makepinggo;
+                        }
+                        else if (units_state[map_tiles_pos[pickEndTile]].name == "SwordMan(Clone)")
+                        {
+                            InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.SwordMan;
+                        }
+                        else if (units_state[map_tiles_pos[pickEndTile]].name == "Archer(Clone)")
+                        {
+                            InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Archer;
+                        }
+                        else if (units_state[map_tiles_pos[pickEndTile]].name == "Tauren(Clone)")
+                        {
+                            InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Tauren;
+                        }
+
                         //previous character is not being clicked now
                         units_state[picked_pos].GetComponent<UserUnit>().isClicked = false;
 
@@ -433,7 +468,6 @@ public class Map_Control : MonoBehaviour
 
                         //create selectEffect of switched character
                         units_state[picked_pos].GetComponent<UserUnit>().show_clickEffect();
-
 
                         pickTile = pickEndTile;
 
@@ -554,6 +588,7 @@ public class Map_Control : MonoBehaviour
                                 {
                                     if (units_state[pos].tag == "EnemyUnit")
                                     {
+                                        Audio_Skill.PlayOneShot(Punch_sound);
                                         int dashDesPos = picked_pos + (pos - picked_pos) * 2;
                                         if (dashDesPos >= 0
                                             && dashDesPos < map_size * map_size
@@ -578,11 +613,17 @@ public class Map_Control : MonoBehaviour
 
                             if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
                             {
-                                map_tiles[pos].GetComponent<Animator>().Play("ArrowEffectOnTile");
+                                GameObject Arrow_Effect = Instantiate(Arrow_Effect_Prefab, map_tiles[pos].transform);
+                                Audio_Skill.PlayOneShot(Arrow_sound, 0.5f);
+                                Destroy(Arrow_Effect, 0.6f);
+                                //map_tiles[pos].GetComponent<Animator>().Play("ArrowEffectOnTile");
                             }
                             else if (units_state[picked_pos].gameObject.name.StartsWith("Makepinggo"))
                             {
-                                map_tiles[pos].GetComponent<Animator>().Play("ExplosionEffect");
+                                GameObject Explosion_Effect = Instantiate(Explosion_Effect_Prefab, map_tiles[pos].transform);
+                                Audio_Skill.PlayOneShot(Explosion_sound, 0.2f);
+                                Destroy(Explosion_Effect, 1f);
+                                //map_tiles[pos].GetComponent<Animator>().Play("ExplosionEffect");
                             }
 
                         }

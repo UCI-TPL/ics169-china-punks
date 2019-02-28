@@ -46,7 +46,7 @@ public class InGameUI : MonoBehaviour {
     Text Char_Move;
     Text Char_attack;
 
-	Image Move_Over_Avatar;
+	public Image Move_Over_Avatar;
 	Text  Move_Over_Text;
 	Image Move_Over_Tile;
     Text Move_Over_Tile_Name;

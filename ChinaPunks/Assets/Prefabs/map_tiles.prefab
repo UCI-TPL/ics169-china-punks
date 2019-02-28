@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4267225140158682}
   - component: {fileID: 114831220989481764}
   - component: {fileID: 82065280234910734}
+  - component: {fileID: 82585807805073026}
   m_Layer: 0
   m_Name: map_tiles
   m_TagString: Untagged
@@ -55,6 +56,101 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &82585807805073026
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1193922694066054}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -962,11 +1058,14 @@ MonoBehaviour:
   picked_pos: 0
   current_picked_pos: -1
   playerHUD_showed: 0
+  InGameUI: {fileID: 0}
   peach_pos: 0
   provocative: 0
-  BGCurve: {fileID: 1268479188301420, guid: 50963aa850c25451f9b9d8486ebbb327, type: 2}
-  BGCurve_prefab: {fileID: 0}
   animation_is_playing: 0
+  Arrow_Effect_Prefab: {fileID: 1925977176598468, guid: 72468a1f7f9d2fe4dafa67c45db2cc7c,
+    type: 2}
+  Explosion_Effect_Prefab: {fileID: 1651094330680948, guid: 615e8f99679289742a34fd2b954c1580,
+    type: 2}
   acting_state: 0
   AI_units: []
   PeachPrefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
@@ -977,3 +1076,7 @@ MonoBehaviour:
   mark_tile: 
   Audio: {fileID: 82065280234910734}
   Grass_sound: {fileID: 8300000, guid: ed9f00c4431b4466984ee1201066f9eb, type: 3}
+  Audio_Skill: {fileID: 82585807805073026}
+  Arrow_sound: {fileID: 8300000, guid: 476569b0183e749f5a0b34b14262651b, type: 3}
+  Explosion_sound: {fileID: 8300000, guid: 258e220008da7459d87801b5399fad98, type: 3}
+  Punch_sound: {fileID: 8300000, guid: dafd85cfd317d4faf80b07624c72888f, type: 3}

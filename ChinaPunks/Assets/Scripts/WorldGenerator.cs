@@ -161,7 +161,9 @@ public class WorldGenerator : MonoBehaviour
 
         UI_ctr.map = map;
         UI_ctr.transform.GetChild(0).gameObject.GetComponent<Button>().onClick.AddListener(Turn_ctr.changeRound);
-   
+
+        map_ctr.InGameUI = UI;
+
         Turn_ctr.map = map;
         Turn_ctr.UI = UI;
         Turn_ctr.endTurnButton = UI.transform.GetChild(0).gameObject;
