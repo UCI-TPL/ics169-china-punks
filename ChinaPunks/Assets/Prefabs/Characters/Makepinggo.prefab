@@ -266,7 +266,7 @@ MonoBehaviour:
   pickRange: 01000000ffffffff0a000000f6ffffff
   moveRange: 5
   attack_damage: 15
-  skill_damage: 0
+  skill_damage: 30
   anim: {fileID: 95761441821003574}
   selectEffect: {fileID: 1907047352354152, guid: a47e51d8bc1b442018f5092a24ee5e32,
     type: 2}
