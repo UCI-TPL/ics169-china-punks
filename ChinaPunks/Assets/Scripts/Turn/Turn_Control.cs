@@ -19,6 +19,8 @@ public class Turn_Control : MonoBehaviour
     public GameObject WinScene;
     public GameObject LoseScene;
 
+    public WorldGenerator WG;
+
 
     public bool roundUI_showing;
 
@@ -116,6 +118,8 @@ public class Turn_Control : MonoBehaviour
     public void changeRound()
     {
         map_ctr.turn_count++;
+        WG.rdsGeneEnemy--;
+
         if (gameRound == "Player")
         {
 
@@ -213,6 +217,10 @@ public class Turn_Control : MonoBehaviour
                     ob.GetComponent<AIUnit>().moveComplete = false;
 
                 }
+            }
+
+            if (WG.rdsGeneEnemy == 0) {
+                WG.generateEnemy();
             }
 
             StartCoroutine(map_routine());

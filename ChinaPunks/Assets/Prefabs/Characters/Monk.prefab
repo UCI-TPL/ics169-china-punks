@@ -343,7 +343,7 @@ MonoBehaviour:
   poison_damage: 0
   fire_damage: 0
   trap_damage: 0
-  skill_cd: 2
+  skill_cd: 5
   face_right: 0
   view_range: 5
   AS: {fileID: 82809603479205322}

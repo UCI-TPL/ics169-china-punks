@@ -76,9 +76,8 @@ public class WorldGenerator : MonoBehaviour
     public int peach_pos;
     public GameObject exit_icon_prefab;
     public List<int> exit_pos = new List<int>();
-
-
-
+    public int rdsGeneEnemy;
+    int _rdsGeneEnemy;
 
     //level objects
     public GameObject map;
@@ -110,6 +109,7 @@ public class WorldGenerator : MonoBehaviour
         Turn = Instantiate(Turn_prefab);
         WLcheck = Instantiate(WLcheck_prefab);
 
+        _rdsGeneEnemy = rdsGeneEnemy;
 
 
         //LevelManager = Instantiate(LevelManager_prefab);
@@ -152,6 +152,7 @@ public class WorldGenerator : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+        
 
 
 	}
@@ -164,11 +165,13 @@ public class WorldGenerator : MonoBehaviour
 
         map_ctr.InGameUI = UI;
 
+
         Turn_ctr.map = map;
         Turn_ctr.UI = UI;
         Turn_ctr.endTurnButton = UI.transform.GetChild(0).gameObject;
         Turn_ctr.WinScene = UI.transform.GetChild(1).gameObject;
         Turn_ctr.LoseScene = UI.transform.GetChild(2).gameObject;
+        Turn_ctr.WG = GetComponent<WorldGenerator>();
 
         WLcheck_ctr.mc = map_ctr;
         WLcheck_ctr.turn = Turn_ctr;
@@ -369,5 +372,67 @@ public class WorldGenerator : MonoBehaviour
 	IEnumerator StartPause()
     {
         yield return new WaitForSeconds(1);
+    }
+
+    public void generateEnemy()
+    {
+        rdsGeneEnemy = _rdsGeneEnemy;
+
+        //generate AI/enemy
+        foreach (AI_Position_prefab GP in AI_prefabs)
+        {
+            GameObject AI;
+            List<int> randomPos = new List<int>();
+            if (GP.squareBlock)
+            {
+                KeyValuePair<int, int> startPos = new KeyValuePair<int, int>(Mathf.FloorToInt(GP.bottomLeftPos / map_ctr.map_size), Mathf.FloorToInt(GP.bottomLeftPos % map_ctr.map_size));
+                KeyValuePair<int, int> endPos = new KeyValuePair<int, int>(Mathf.FloorToInt(GP.topRightPos / map_ctr.map_size), Mathf.FloorToInt(GP.topRightPos % map_ctr.map_size));
+                int height = endPos.Value - startPos.Value + 1;
+                int width = endPos.Key - startPos.Key + 1;
+
+                for (int i = 0; i < width; ++i)
+                {
+                    for (int j = 0; j < height; ++j)
+                    {
+                        randomPos.Add((startPos.Key + i) * map_ctr.map_size + startPos.Value + j);
+
+                    }
+                }
+
+                //Debug.Log("height" + height);
+                //Debug.Log("width" + width);
+                //for (int i = 0; i < randomPos.Count; ++i)
+                //    Debug.Log(randomPos[i]);
+
+            }
+            else
+            {
+                randomPos = new List<int>(GP.randomBlockPositions);
+            }
+
+            enemyBlockPos.AddRange(randomPos);
+            for (int i = 0; i < GP.generatedNum; ++i)
+            {
+                AI = Instantiate(GP.AIPrefabs[Random.Range(0, GP.AIPrefabs.Count)]);
+                int pos = randomPos[Random.Range(0, randomPos.Count)];
+
+                int rndCounter = 0;
+                while (map_ctr.units_state[pos] != null)
+                {
+                    pos = randomPos[Random.Range(0, randomPos.Count)];
+                    rndCounter++;
+                    if (rndCounter > 10)
+                        break;
+                }
+                if (rndCounter > 10)
+                    break;
+
+                AI.GetComponent<AIUnit>().mc = map_ctr;
+                AI.GetComponent<AIUnit>().turn_ctr = Turn_ctr;
+                AI.GetComponent<AIUnit>().currentPos = pos;
+                randomPos.Remove(pos);
+                //unitsPos.Add(pos);
+            }
+        }
     }
 }

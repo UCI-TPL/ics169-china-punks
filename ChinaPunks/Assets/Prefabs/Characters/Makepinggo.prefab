@@ -281,7 +281,7 @@ MonoBehaviour:
   trap_damage: 0
   skill_cd: 0
   face_right: 0
-  view_range: 5
+  view_range: 100
   AS: {fileID: 82531443395453470}
   Attack_Clip: {fileID: 8300000, guid: b22d966262c8c4da9a4104a96996797a, type: 3}
   Be_Attacked_Clip: {fileID: 8300000, guid: 6139d3762ddd744ffb6e03dcb1d39e3b, type: 3}

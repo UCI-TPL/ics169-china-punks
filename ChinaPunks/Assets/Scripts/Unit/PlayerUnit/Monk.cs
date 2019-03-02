@@ -14,13 +14,15 @@ public class Monk : UserUnit {
         turnComplete = true;
         coolDown = skill_cd;
         mc.reset();
+        GetComponent<Animator>().SetBool("drunk", true);
 
 
     }
     public override void Reset_Skill()
     {
         attack_damage = _attack_damage;
-        GetComponent<Animator>().Play("Monk_Idle");
+        //GetComponent<Animator>().Play("Monk_Idle");
+        GetComponent<Animator>().SetBool("drunk", false);
     }
 
 }
