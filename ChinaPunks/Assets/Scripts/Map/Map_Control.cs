@@ -454,6 +454,10 @@ public class Map_Control : MonoBehaviour
                         {
                             InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Tauren;
                         }
+						else if (units_state[map_tiles_pos[pickEndTile]].name == "Wuchang(Clone)")
+                        {
+							InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Wuchang;
+                        }
 
                         //previous character is not being clicked now
                         units_state[picked_pos].GetComponent<UserUnit>().isClicked = false;
@@ -503,7 +507,8 @@ public class Map_Control : MonoBehaviour
                 {
                     //check second-clicked tile has unit
                     if (units_state[map_tiles_pos[pickEndTile]] != null
-                        && units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit"
+                        & (units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit" ||
+					       units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "Block")
                         && attackRange.Contains(map_tiles_pos[pickEndTile]))
                     {
                         units_state[picked_pos].GetComponent<UserUnit>().anim.Play("Attack");

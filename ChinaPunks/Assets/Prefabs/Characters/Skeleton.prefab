@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4671361464413878}
   - component: {fileID: 212067960408491362}
   - component: {fileID: 114896907368084304}
-  - component: {fileID: 95385305640420562}
+  - component: {fileID: 95326654282257946}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: EnemyUnit
@@ -95,7 +95,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95385305640420562
+--- !u!95 &95326654282257946
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -104,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 1233406120780834}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6333064651a604a4f96395c30611f1ee, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1c375c31b51d244c8a3e8c5329516bb4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
+  In_Fog: 1
   health: 6
   current_health: 0
   moveComplete: 0
@@ -232,8 +233,8 @@ MonoBehaviour:
   hasPeach: 0
   acting: 0
   walking: 0
-  moveRange: 2
-  anim: {fileID: 95385305640420562}
+  moveRange: 5
+  anim: {fileID: 95326654282257946}
   healthFillImage: {fileID: 0}
   attack_damage: 2
   moveSpeed: 3
@@ -245,6 +246,8 @@ MonoBehaviour:
   trap_damage: 10
   face_right: 0
   anim_is_playing: 0
+  gotDashed: 0
+  gotDashedDes: 0
 --- !u!212 &212067960408491362
 SpriteRenderer:
   m_ObjectHideFlags: 1

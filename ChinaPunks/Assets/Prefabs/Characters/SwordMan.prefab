@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4793579302578782}
   - component: {fileID: 212049859956468558}
-  - component: {fileID: 95434497530356034}
   - component: {fileID: 114655261534725164}
+  - component: {fileID: 95058383799945474}
+  - component: {fileID: 82342917918122350}
   m_Layer: 0
   m_Name: SwordMan
   m_TagString: PlayerUnit
@@ -95,7 +96,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95434497530356034
+--- !u!82 &82342917918122350
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013872608658132}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!95 &95058383799945474
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -104,7 +200,7 @@ Animator:
   m_GameObject: {fileID: 1013872608658132}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6333064651a604a4f96395c30611f1ee, type: 2}
+  m_Controller: {fileID: 9100000, guid: 066c74e84c50b4134b2758a9bfb54f65, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -208,7 +304,7 @@ MonoBehaviour:
   moveRange: 5
   attack_damage: 15
   skill_damage: 0
-  anim: {fileID: 95434497530356034}
+  anim: {fileID: 95058383799945474}
   selectEffect: {fileID: 1907047352354152, guid: a47e51d8bc1b442018f5092a24ee5e32,
     type: 2}
   charater_type: 
@@ -223,10 +319,10 @@ MonoBehaviour:
   skill_cd: 0
   face_right: 0
   view_range: 5
-  AS: {fileID: 0}
-  Attack_Clip: {fileID: 0}
-  Be_Attacked_Clip: {fileID: 0}
-  Death_Clip: {fileID: 0}
+  AS: {fileID: 82342917918122350}
+  Attack_Clip: {fileID: 8300000, guid: dafd85cfd317d4faf80b07624c72888f, type: 3}
+  Be_Attacked_Clip: {fileID: 8300000, guid: dafd85cfd317d4faf80b07624c72888f, type: 3}
+  Death_Clip: {fileID: 8300000, guid: 3cc6ed09ed93f48d091a8262ccf43a0f, type: 3}
 --- !u!114 &114762030999603444
 MonoBehaviour:
   m_ObjectHideFlags: 1

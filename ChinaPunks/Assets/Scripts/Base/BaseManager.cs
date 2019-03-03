@@ -90,6 +90,10 @@ public class BaseManager : MonoBehaviour {
             {
                 PlayerPrefs.SetInt("Swordman", 1);
             }
+			if (team[i] == "Wuchang")
+            {
+                PlayerPrefs.SetInt("Wuchang", 1);
+            }
         }
 
 

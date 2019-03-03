@@ -12,7 +12,7 @@ public class Peach : Unit {
         mapInfo = mc.map_tiles;                                                          //get map info from GameController
         Vector3 xyPosition = mapInfo[currentPos].transform.position;
         transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.4f, xyPosition.z - 1.0f);      //initialize my current position on map
-
+		current_health = health;
         //SetPos(currentPos);
     }
 	
@@ -23,7 +23,7 @@ public class Peach : Unit {
 
     public override void Health_Change(float damage)
     {
-        //base.Health_Change(damage);
+        base.Health_Change(damage);
 
         //health = 100;
     }

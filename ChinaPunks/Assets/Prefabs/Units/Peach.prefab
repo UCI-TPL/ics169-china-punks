@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114152077502835002}
   m_Layer: 0
   m_Name: Peach
-  m_TagString: Peach
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,9 @@ MonoBehaviour:
   on_fire: 0
   provocative: 0
   poisoned: 0
-  health: 0
+  In_Fog: 1
+  health: 100
+  current_health: 0
   moveComplete: 1
   turnComplete: 0
 --- !u!212 &212597979645926130

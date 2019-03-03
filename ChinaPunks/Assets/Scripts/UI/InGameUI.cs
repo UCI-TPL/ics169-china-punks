@@ -34,6 +34,7 @@ public class InGameUI : MonoBehaviour {
     public Sprite SwordMan;
 	public Sprite Archer;
     public Sprite Monk;
+	public Sprite Wuchang;
     public Sprite Skeleton;
 	public Sprite Skeleton_Leader;
     public Sprite Table;
@@ -45,6 +46,8 @@ public class InGameUI : MonoBehaviour {
     Text Health_number;
     Text Char_Move;
     Text Char_attack;
+	Text Enemy_Num;
+	Text Next_WAVE_Round;
 
 	public Image Move_Over_Avatar;
 	Text  Move_Over_Text;
@@ -55,7 +58,8 @@ public class InGameUI : MonoBehaviour {
 
     //Tile and quest Info
 	public GameObject MouseOver_Tile_Info;
-	public GameObject Quest_Objectives;
+	public GameObject Enemy_Info;
+	public GameObject Round_Info;
 
 	public List<GameObject> Characters_clone = new List<GameObject>();
 	public List<GameObject> MoveOver_Map_Info = new List<GameObject>();
@@ -93,6 +97,13 @@ public class InGameUI : MonoBehaviour {
 
         GameObject MouseOver_Tile_Info_2 = MouseOver_Tile_Info.transform.Find("Tile_name").gameObject;
         Move_Over_Tile_Name = MouseOver_Tile_Info_2.GetComponent<Text>();
+
+		GameObject Enemy_Information = Enemy_Info.transform.Find("Enemy_num").gameObject;
+		Enemy_Num = Enemy_Information.GetComponent<Text>();
+
+		GameObject Round_Information = Round_Info.transform.Find("round_remain").gameObject;
+		Next_WAVE_Round = Round_Information.GetComponent<Text>();
+       
 
         for (int i = 0; i < 4; i++)
 		{
@@ -169,6 +180,18 @@ public class InGameUI : MonoBehaviour {
 					Char_avatar.sprite = Archer;  
 					char_info_slots_dict["Archer"] = i;
                 }
+				else if (Characters_clone[i].name == "Wuchang(Clone)")
+                {
+                    Char_infos[i].SetActive(true);
+					Health_number.text = ((Characters_clone[i].GetComponent<Wuchang>().current_health).ToString() + "/" +
+					                      (Characters_clone[i].GetComponent<Wuchang>().health).ToString());
+					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Wuchang>().current_health) /
+					                         (Characters_clone[i].GetComponent<Wuchang>().health));
+					Char_attack.text = (Characters_clone[i].GetComponent<Wuchang>().attack_damage).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<Wuchang>().moveRange).ToString();
+					Char_avatar.sprite = Wuchang;
+					char_info_slots_dict["Wuchang"] = i;
+                }
 				else if (Characters_clone[i].name == "SwordMan(Clone)")
                 {
 					Char_infos[i].SetActive(true);               
@@ -201,8 +224,10 @@ public class InGameUI : MonoBehaviour {
             Image _fill_image = _Fill.GetComponent<Image>();
             _fill_image.fillAmount = ((item.transform.GetComponent<AIUnit>().current_health) /
                                       (item.transform.GetComponent<AIUnit>().health));
-        } 
+        }
 
+		Enemy_Num.text = "Enemy Number: " + (GameObject.FindGameObjectsWithTag("EnemyUnit").Length).ToString();
+		Next_WAVE_Round.text = ("Next Wave in " + WorldGenerator.GetComponent<WorldGenerator>().rdsGeneEnemy + " rounds");
 
         if (mouse_is_on_map == true)
 		{
@@ -240,6 +265,11 @@ public class InGameUI : MonoBehaviour {
                     {
 						Move_Over_Avatar.sprite = Archer;
 						Move_Over_Text.text = "Archer";
+                    }
+					if (MoveOver_Map_Info[0].name == "Wuchang(Clone)")
+                    {
+						Move_Over_Avatar.sprite = Wuchang;
+						Move_Over_Text.text = "Wuchang";
                     }
 					if (MoveOver_Map_Info[0].name == "Skeleton(Clone)" && MoveOver_Map_Info[0].gameObject.transform.GetChild(0).gameObject.activeSelf == true)
                     {
@@ -419,6 +449,29 @@ public class InGameUI : MonoBehaviour {
                         }
                         Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
                                                                       ((Characters_clone[i].GetComponent<Archer>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString());
+                    }
+                }
+            }
+			if (Characters_clone[i].name == "Wuchang(Clone)")
+            {
+                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+                Image _fill_image = _Fill.GetComponent<Image>();
+				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Wuchang>().current_health) /
+				                          (Characters_clone[i].GetComponent<Wuchang>().health));
+                foreach (var item in Char_infos)
+                {
+                    if (item.active == true)
+                    {
+						Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+							                                           ((Characters_clone[i].GetComponent<Wuchang>().current_health) / (Characters_clone[i].GetComponent<Wuchang>().health));
+						if ((Characters_clone[i].GetComponent<Wuchang>().current_health) <= 0)
+                        {
+							Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+								                                           "0" + "/" + (Characters_clone[i].GetComponent<Wuchang>().health).ToString();
+                            return;
+                        }
+						Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+							                                           ((Characters_clone[i].GetComponent<Wuchang>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Wuchang>().health).ToString());
                     }
                 }
             }

@@ -68,6 +68,8 @@ MonoBehaviour:
     type: 2}
   Swordman_Prefab: {fileID: 1013872608658132, guid: ef81eea7ab0f337449c0a5a1725be105,
     type: 2}
+  Wuchang_Prefab: {fileID: 1013872608658132, guid: 8e9d5dfc48e024b64a80bcaf789ebbd1,
+    type: 2}
   level: 0
   Tiles_prefabs:
   - prefab: {fileID: 1792288182856016, guid: dfe6afd255e9a46e893a307ba9f2ab0a, type: 2}
@@ -75,51 +77,67 @@ MonoBehaviour:
   characters_prefab:
   - PlayerPrefabs:
     - {fileID: 1013872608658132, guid: 417260df613bf4a2cace34ae1906cff9, type: 2}
-    bottomLeftPos: 169
-    topRightPos: 211
+    bottomLeftPos: 168
+    topRightPos: 231
   - PlayerPrefabs:
     - {fileID: 1013872608658132, guid: 281ae339558916546b2cb8668932c77e, type: 2}
-    bottomLeftPos: 169
-    topRightPos: 211
+    bottomLeftPos: 168
+    topRightPos: 231
   - PlayerPrefabs:
     - {fileID: 1245960340110376, guid: 0c9e04aba3742ce4fabffa1aeeafb419, type: 2}
-    bottomLeftPos: 169
-    topRightPos: 211
+    bottomLeftPos: 168
+    topRightPos: 231
   - PlayerPrefabs:
-    - {fileID: 1013872608658132, guid: 81ce6a39ef84af545a4aa1556746f17a, type: 2}
-    bottomLeftPos: 169
-    topRightPos: 211
+    - {fileID: 1013872608658132, guid: 8e9d5dfc48e024b64a80bcaf789ebbd1, type: 2}
+    bottomLeftPos: 168
+    topRightPos: 231
   AI_prefabs:
   - AIPrefabs:
     - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
-    generatedNum: 4
+    - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
+    generatedNum: 2
     squareBlock: 1
     bottomLeftPos: 0
-    topRightPos: 147
+    topRightPos: 42
     randomBlockPositions: 
   - AIPrefabs:
+    - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
     - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
-    generatedNum: 4
+    generatedNum: 2
     squareBlock: 1
-    bottomLeftPos: 12
-    topRightPos: 159
+    bottomLeftPos: 340
+    topRightPos: 382
+    randomBlockPositions: 
+  - AIPrefabs:
+    - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
+    - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
+    generatedNum: 2
+    squareBlock: 1
+    bottomLeftPos: 357
+    topRightPos: 399
+    randomBlockPositions: 
+  - AIPrefabs:
+    - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
+    - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
+    generatedNum: 2
+    squareBlock: 1
+    bottomLeftPos: 17
+    topRightPos: 59
     randomBlockPositions: 
   Block_prefabs:
-  - prefab: {fileID: 1617561432325914, guid: 47c94cad595b249dc97652e1e012fd78, type: 2}
-    positions: 460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f00000050000000190000002d0000004100000055000000690000007d00000091000000a5000000b9000000
-  - prefab: {fileID: 1492919451614880, guid: 6436ac14d89da4db281a9321c820d757, type: 2}
-    positions: 02000000410100004d0100007a0000009b000000dc000000020100002b010000
+  - prefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760, type: 2}
+    positions: bd000000be000000d1000000d2000000
   Merchant_prefab:
-    prefab: {fileID: 1085644454282126, guid: d5f78e07a8ed14e4cb795ea7f2a7f94f, type: 2}
+    prefab: {fileID: 0}
     positions: 7c010000
   trap_prefab: {fileID: 1296132908931726, guid: 775eacff3c0804ac7bbf7cdedbc4295f,
     type: 2}
   trap_positions: 
-  peach_prefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760,
-    type: 2}
+  peach_prefab: {fileID: 0}
   peach_pos: 4
   exit_icon_prefab: {fileID: 0}
   exit_pos: 
+  rdsGeneEnemy: 6
   map: {fileID: 0}
   UI: {fileID: 0}
   Turn: {fileID: 0}
