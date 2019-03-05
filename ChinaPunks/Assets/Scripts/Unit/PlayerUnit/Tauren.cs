@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tauren : UserUnit {
 
-
+	public int dash_range = 5;
 
     public override void Skill()
     {

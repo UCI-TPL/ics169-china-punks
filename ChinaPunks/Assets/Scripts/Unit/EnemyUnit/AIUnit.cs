@@ -246,7 +246,7 @@ public class AIUnit : Unit
         StartCoroutine(waitforanim(anim));
         //anim.Play("Attacked");
         base.Health_Change(damage);
-        if (health <= 0){
+        if (current_health <= 0){
             moveComplete = true;
             turnComplete = true;
             acting = false;
@@ -303,6 +303,9 @@ public class AIUnit : Unit
     {
         Vector3 dashDes = mc.map_tiles[dashDesPos].transform.position;
         dashDes = new Vector3(dashDes.x, dashDes.y + 0.7f, dashDes.z - 1.0f);
+		mc.units_state[currentPos] = null;
+        currentPos = dashDesPos;
+        mc.units_state[currentPos] = this.gameObject;
         while (transform.position != dashDes)
         {
             float step = dashSpeed * Time.deltaTime;
@@ -310,7 +313,6 @@ public class AIUnit : Unit
             Debug.Log("dash");
             yield return new WaitForSeconds(0.02f);
         }
-
 
     }
 

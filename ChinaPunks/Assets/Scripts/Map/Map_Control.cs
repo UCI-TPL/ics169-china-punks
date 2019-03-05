@@ -589,29 +589,48 @@ public class Map_Control : MonoBehaviour
                             //there is unit on this tile
                             if (units_state[pos] != null)
                             {
+								//showing attack message
+                                Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
+                                + units_state[pos].gameObject.name);
+                                units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
+                               
                                 if (units_state[picked_pos].gameObject.name.StartsWith("Tauren"))
                                 {
                                     if (units_state[pos].tag == "EnemyUnit")
                                     {
                                         Audio_Skill.PlayOneShot(Punch_sound);
-                                        int dashDesPos = picked_pos + (pos - picked_pos) * 2;
-                                        if (dashDesPos >= 0
-                                            && dashDesPos < map_size * map_size
-                                            && units_state[dashDesPos] == null)
+										int destination = pos;
+										int dashDesPos = picked_pos + (pos - picked_pos) * (units_state[picked_pos].gameObject.GetComponent<Tauren>().dash_range+1);  // here defined how many tiles enemy was dashed
+										for (int i = picked_pos + (pos - picked_pos) * 2; (i != dashDesPos) && (i >= 0) && (i < map_size * map_size); i += pos - picked_pos)
+                                        {
+                                            if (units_state[i] == null)
+                                            {
+                                                destination = i;
+                                            }
+                                            else
+                                            {
+                                                break;
+                                            }
+                                        }
+
+										dashDesPos = destination;
+
+
+										if (dashDesPos >= 0
+                                                && dashDesPos < map_size * map_size
+                                                && units_state[dashDesPos] == null)
                                         {
 
                                             Debug.Log("dash");
-                                            StartCoroutine(units_state[pos].GetComponent<AIUnit>().Dashed(dashDesPos, 2f));
+                                            if (units_state[pos].GetComponent<AIUnit>().current_health > 0)
+                                            {
+                                                StartCoroutine(units_state[pos].GetComponent<AIUnit>().Dashed(dashDesPos, 5f));
+                                            }
                                         }
 
                                     }
-
-                                }
-
-                                    //showing attack message
-                                Debug.Log(units_state[picked_pos].gameObject.name + " attacked "
-                                + units_state[pos].gameObject.name);
-                                units_state[pos].GetComponent<Unit>().Health_Change(skill_damage);
+                                    
+								}
 
 
                             }
