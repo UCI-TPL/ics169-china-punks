@@ -346,6 +346,10 @@ public class Map_Control : MonoBehaviour
         {
             units_state[picked_pos].GetComponent<Animator>().Play("Monk_skill");
         }
+        else if (units_state[picked_pos].gameObject.name.StartsWith("Wuchang"))
+        {
+            units_state[picked_pos].GetComponent<Animator>().Play("Wuchang_Skill");
+        }
 
         //skill
         units_state[picked_pos].GetComponent<UserUnit>().Skill();
@@ -662,6 +666,10 @@ public class Map_Control : MonoBehaviour
                         else if (units_state[picked_pos].gameObject.name.StartsWith("Makepinggo"))
                         {
                             units_state[picked_pos].GetComponent<Animator>().Play("Makepinggo_skill");
+                        }
+                        else if (units_state[picked_pos].gameObject.name.StartsWith("SwordMan"))
+                        {
+                            units_state[picked_pos].GetComponent<Animator>().Play("Swordman_Skill");
                         }
 
                         //recover the tile colors after using skill

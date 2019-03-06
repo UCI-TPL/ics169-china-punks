@@ -323,6 +323,7 @@ MonoBehaviour:
   Attack_Clip: {fileID: 8300000, guid: dafd85cfd317d4faf80b07624c72888f, type: 3}
   Be_Attacked_Clip: {fileID: 8300000, guid: dafd85cfd317d4faf80b07624c72888f, type: 3}
   Death_Clip: {fileID: 8300000, guid: 3cc6ed09ed93f48d091a8262ccf43a0f, type: 3}
+  skillDistance: 5
 --- !u!114 &114762030999603444
 MonoBehaviour:
   m_ObjectHideFlags: 1
