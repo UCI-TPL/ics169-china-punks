@@ -276,7 +276,13 @@ public class Turn_Control : MonoBehaviour
                 move_range = 1;
             else
                 move_range = enemy.moveRange;
-            map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkEnemy);
+            if (ob.name.StartsWith("NianShou")) {
+                map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkPeach);
+            }
+            else {
+                map_ctr.all_paths = map_ctr.Search_solution(enemy.currentPos, move_range, gameRound, ob.tag, checkEnemy);
+            }
+
             int solution_key = -1;
             foreach (int i in map_ctr.all_paths.Keys)
                 solution_key = i;
@@ -339,6 +345,27 @@ public class Turn_Control : MonoBehaviour
         }
         return false;
     }
+
+    //Check if a tile has a unit, and that unit is a peach
+    private bool checkPeach(int pos, string unitTag)
+    {
+        foreach (int i in map_ctr.expansion_of_tiles[pos])
+        {
+            if (map_ctr.units_state[i] != null
+                && map_ctr.units_state[i].gameObject.name.StartsWith("Peach"))
+            {
+                if (!map_ctr.provocative)
+                    return true;
+                else if (map_ctr.units_state[i].GetComponent<Unit>().provocative)
+                {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
 
     IEnumerator Show_Round_UI(){
         roundUI_showing = true;

@@ -363,7 +363,6 @@ public class WorldGenerator : MonoBehaviour
                 unitsPos.Add(pos);
 
                 UI_ctr.Characters_clone.Add(character);
-                WLcheck_ctr.character_list.Add(character);
             }
         }
 

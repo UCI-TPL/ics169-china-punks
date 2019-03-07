@@ -128,12 +128,12 @@ Prefab:
     - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
         type: 2}
       propertyPath: AI_prefabs.Array.data[2].AIPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
         type: 2}
       propertyPath: AI_prefabs.Array.data[1].AIPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4856426212600310, guid: c062cc768acdf4762879eebfb5434d0b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -171,13 +171,13 @@ Prefab:
         type: 2}
       propertyPath: AI_prefabs.Array.data[2].AIPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743,
+      objectReference: {fileID: 1461907750971886, guid: e37660212b1e54043bf439a0d18804e9,
         type: 2}
     - target: {fileID: 114510403198695534, guid: c062cc768acdf4762879eebfb5434d0b,
         type: 2}
       propertyPath: AI_prefabs.Array.data[1].AIPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743,
+      objectReference: {fileID: 1461907750971886, guid: e37660212b1e54043bf439a0d18804e9,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c062cc768acdf4762879eebfb5434d0b, type: 2}

@@ -13,7 +13,8 @@ public class WinLoseCheck : MonoBehaviour {
 
     public int win_conditions_count;
     public bool lose;
-    public List<GameObject> character_list = new List<GameObject>();
+    private int player_character_count;
+    private int peach_count;
     public List<int> exits;
     public GameObject timeline;
 
@@ -26,20 +27,20 @@ public class WinLoseCheck : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        peach_count = 4;
+        player_character_count = 4;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        // Lose state
+        if(peach_count == 0 || player_character_count == 0) { 
+            
+        }
+
         //level? win/lose check
         if (Level == 0){
-            foreach(GameObject character in character_list){
-                if (character == null)
-                    return;
-                if (exits.Contains(character.GetComponent<UserUnit>().currentPos))
-                    win_conditions_count++;
-            }
 
 
             if (win_conditions_count == 1)
@@ -74,7 +75,13 @@ public class WinLoseCheck : MonoBehaviour {
 
 	}
 
+    public void decrease_peach_count() {
+        peach_count--;
+    }
 
+    public void decrease_player_count() {
+        player_character_count--;
+    }
 
 
 }
