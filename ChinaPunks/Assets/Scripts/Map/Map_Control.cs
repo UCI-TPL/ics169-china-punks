@@ -641,14 +641,16 @@ public class Map_Control : MonoBehaviour
 
                             if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
                             {
-                                GameObject Arrow_Effect = Instantiate(Arrow_Effect_Prefab, map_tiles[pos].transform);
+                                Vector3 EffectPos = new Vector3(map_tiles[pos].transform.position.x, map_tiles[pos].transform.position.y + 0.5f, -1);
+                                GameObject Arrow_Effect = Instantiate(Arrow_Effect_Prefab, EffectPos, Quaternion.identity);
                                 Audio_Skill.PlayOneShot(Arrow_sound, 0.5f);
                                 Destroy(Arrow_Effect, 0.6f);
                                 //map_tiles[pos].GetComponent<Animator>().Play("ArrowEffectOnTile");
                             }
                             else if (units_state[picked_pos].gameObject.name.StartsWith("Makepinggo"))
                             {
-                                GameObject Explosion_Effect = Instantiate(Explosion_Effect_Prefab, map_tiles[pos].transform);
+                                Vector3 EffectPos = new Vector3(map_tiles[pos].transform.position.x, map_tiles[pos].transform.position.y + 0.5f, -1);
+                                GameObject Explosion_Effect = Instantiate(Explosion_Effect_Prefab, EffectPos, Quaternion.identity);
                                 Audio_Skill.PlayOneShot(Explosion_sound, 0.2f);
                                 Destroy(Explosion_Effect, 1f);
                                 //map_tiles[pos].GetComponent<Animator>().Play("ExplosionEffect");
