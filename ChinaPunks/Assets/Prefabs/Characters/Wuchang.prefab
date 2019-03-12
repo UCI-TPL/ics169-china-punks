@@ -266,26 +266,28 @@ MonoBehaviour:
   pickRange: 01000000ffffffff0a000000f6ffffff
   moveRange: 5
   attack_damage: 15
-  skill_damage: 20
+  skill_damage: 15
   anim: {fileID: 95118130621806974}
   selectEffect: {fileID: 1907047352354152, guid: a47e51d8bc1b442018f5092a24ee5e32,
     type: 2}
   charater_type: 
   coolDown: 0
-  moveSpeed: 3
+  moveSpeed: 10
   slippery: 0
   fire_cd: 0
   poison_cd: 0
   poison_damage: 0
   fire_damage: 0
   trap_damage: 0
-  skill_cd: 0
+  skill_cd: 5
   face_right: 0
   view_range: 5
   AS: {fileID: 82342917918122350}
   Attack_Clip: {fileID: 8300000, guid: 2086c888f2a9f4889a50316641b7801f, type: 3}
   Be_Attacked_Clip: {fileID: 8300000, guid: 6139d3762ddd744ffb6e03dcb1d39e3b, type: 3}
   Death_Clip: {fileID: 8300000, guid: 3cc6ed09ed93f48d091a8262ccf43a0f, type: 3}
+  Wuchang_Effect_Prefab: {fileID: 1323797109826782, guid: 2c7d8f251b26f3c4497f4e86970a85af,
+    type: 2}
 --- !u!114 &114499461957307144
 MonoBehaviour:
   m_ObjectHideFlags: 1

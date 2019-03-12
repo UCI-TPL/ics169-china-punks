@@ -1,28 +1,23 @@
 fileFormatVersion: 2
-guid: b365826f62d93eb4f964d241e03078ba
+guid: 2b0f2c8e93177794aade57fbb456cc76
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pipo-yaame_0
-    21300002: pipo-yaame_1
-    21300004: pipo-yaame_2
-    21300006: pipo-yaame_3
-    21300008: pipo-yaame_4
-    21300010: pipo-yaame_5
-    21300012: pipo-yaame_6
-    21300014: pipo-yaame_7
-    21300016: pipo-yaame_8
-    21300018: pipo-yaame_9
-    21300020: pipo-yaame_10
-    21300022: pipo-yaame_11
-    21300024: pipo-yaame_12
-    21300026: pipo-yaame_13
-    21300028: pipo-yaame_14
-    21300030: pipo-yaame_15
-    21300032: pipo-yaame_16
-    21300034: pipo-yaame_17
-    21300036: pipo-yaame_18
-    21300038: pipo-yaame_19
-    21300040: pipo-yaame_20
+    21300000: pipo-trananime001a_0
+    21300002: pipo-trananime001a_1
+    21300004: pipo-trananime001a_2
+    21300006: pipo-trananime001a_3
+    21300008: pipo-trananime001a_4
+    21300010: pipo-trananime001a_5
+    21300012: pipo-trananime001a_6
+    21300014: pipo-trananime001a_7
+    21300016: pipo-trananime001a_8
+    21300018: pipo-trananime001a_9
+    21300020: pipo-trananime001a_10
+    21300022: pipo-trananime001a_11
+    21300024: pipo-trananime001a_12
+    21300026: pipo-trananime001a_13
+    21300028: pipo-trananime001a_14
+    21300030: pipo-trananime001a_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -116,421 +111,321 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pipo-yaame_0
+      name: pipo-trananime001a_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1240
-        width: 320
-        height: 200
+        y: 2880
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bd278ac891ba634cb2089b833a44cdc
+      spriteID: f860a8dbab33c5b4794a73f6ef14102c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_1
+      name: pipo-trananime001a_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1240
-        width: 320
-        height: 200
+        x: 960
+        y: 2880
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b103db0cfef318b4db38cfe4e29cf830
+      spriteID: 18dfda549ed2cc242849f6b80e593664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_2
+      name: pipo-trananime001a_2
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1240
-        width: 320
-        height: 200
+        x: 1920
+        y: 2880
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32ca0ede48125484bae99a2a3d9e9303
+      spriteID: 72da887aab908ad4b92643639751d90a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_3
+      name: pipo-trananime001a_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1040
-        width: 320
-        height: 200
+        x: 2880
+        y: 2880
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32485d860e74a2a42b67e3f281825a13
+      spriteID: ca0ec0a7439133e45b6bd2c7a5b845dc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 1040
-        width: 320
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 069c113d0ea97b346ba360cdbc72402c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pipo-yaame_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 1040
-        width: 320
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08ff7c78c20110b498128cd5cefdd69b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pipo-yaame_6
+      name: pipo-trananime001a_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 840
-        width: 320
-        height: 200
+        y: 1920
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 461bd74b5aed79c44ae54f5097ee7643
+      spriteID: 291032b617b50d342abb4132f3ef12ae
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_7
+      name: pipo-trananime001a_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 840
-        width: 320
-        height: 200
+        x: 960
+        y: 1920
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4f405b715d3bb9479226130d31cf632
+      spriteID: d8d53711f918c2e478c463a04404e0b5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_8
+      name: pipo-trananime001a_6
       rect:
         serializedVersion: 2
-        x: 640
-        y: 840
-        width: 320
-        height: 200
+        x: 1920
+        y: 1920
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da6c20f69d6761440a8f4356b765c0db
+      spriteID: f860d7e2e17d1224a9b8f013e4bbd3e6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_9
+      name: pipo-trananime001a_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 520
-        width: 320
-        height: 200
+        x: 2880
+        y: 1920
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4710adad763a22e41bf7dfef36d643dc
+      spriteID: 69fea8394447a694f834539d6345a1aa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 520
-        width: 320
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c8bad273382fe141a15576889a7e305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pipo-yaame_11
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 520
-        width: 320
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98e81cc5e7c80244ca69ab98d7ac6f59
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pipo-yaame_12
+      name: pipo-trananime001a_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 440
-        width: 320
-        height: 200
+        y: 960
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49d8c49f5048a26459cdcab623b18bb8
+      spriteID: 5c1ea3726387a9c478ef7899771810f4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_13
+      name: pipo-trananime001a_9
       rect:
         serializedVersion: 2
-        x: 320
-        y: 440
-        width: 320
-        height: 200
+        x: 960
+        y: 960
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c3cdec051ff5a34e801c6a9843ec9f2
+      spriteID: 3e2eed925ee7f474c9deb101a4f1a269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_14
+      name: pipo-trananime001a_10
       rect:
         serializedVersion: 2
-        x: 640
-        y: 440
-        width: 320
-        height: 200
+        x: 1920
+        y: 960
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46ab50f9f05c843478cd275a346ea9a2
+      spriteID: 28db3e23664f27440aad2699c79040f9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_15
+      name: pipo-trananime001a_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 279
-        width: 320
-        height: 200
+        x: 2880
+        y: 960
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a9da4822384a7d43bab303124ef6af7
+      spriteID: a1f0c9af76f01c7429735edbbf8ba2f5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_16
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 280
-        width: 320
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47a019fd224cd5148b4c3488320ef04c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pipo-yaame_17
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 279
-        width: 320
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13fda21b3d2fda84c89fa32daea5dc5a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pipo-yaame_18
+      name: pipo-trananime001a_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 87
-        width: 320
-        height: 200
+        y: 0
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7099c7d72056aba44a5a11cab631fd75
+      spriteID: 672e071cb583f9e418dea313aa03d3bf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_19
+      name: pipo-trananime001a_13
       rect:
         serializedVersion: 2
-        x: 321
-        y: 87
-        width: 320
-        height: 200
+        x: 960
+        y: 0
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 500c14e46738197478c2b9be1cfb0ee2
+      spriteID: 60604d47a05657b41bfc13f30a817dcd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-yaame_20
+      name: pipo-trananime001a_14
       rect:
         serializedVersion: 2
-        x: 639
-        y: 87
-        width: 320
-        height: 200
+        x: 1920
+        y: 0
+        width: 960
+        height: 960
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20f5a6fc72af53b4a811998677f76674
+      spriteID: 21f63e8b1aeb59a4dbdd1d49b8bdb599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipo-trananime001a_15
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b0b1bed14b0154193f53cd0cee7d7d
       vertices: []
       indices: 
       edges: []
@@ -538,7 +433,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1f60abb6a6831e44ba5a110020807637
+    spriteID: 8d40ed121b297274c83b33bb9fd0ec33
     vertices: []
     indices: 
     edges: []

@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		tiles = GameObject.Find("WorldGenerator").GetComponent<WorldGenerator>().map_ctr.map_tiles;
 		map_size = GameObject.Find("WorldGenerator").GetComponent<WorldGenerator>().map_ctr.map_size;
-		gameObject.GetComponent<Camera>().orthographicSize = 3.5f;
+		gameObject.GetComponent<Camera>().orthographicSize = 5f;
 	}
 	
 	// Update is called once per frame

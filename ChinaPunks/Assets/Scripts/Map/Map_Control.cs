@@ -43,6 +43,7 @@ public class Map_Control : MonoBehaviour
     public bool animation_is_playing;
 
     public GameObject Arrow_Effect_Prefab;
+    public GameObject Sword_Effect_Prefab;
     public GameObject Explosion_Effect_Prefab;
 
     //bool ShowedClickedEffect;
@@ -84,6 +85,10 @@ public class Map_Control : MonoBehaviour
     public AudioClip Arrow_sound;
     public AudioClip Explosion_sound;
     public AudioClip Punch_sound;
+    public AudioClip Sword_skill_sound;
+    public AudioClip Monk_skill_sound;
+    public AudioClip Wuchang_skill_sound;
+    public AudioClip Tauren_skill_sound;
 
     private void Awake()
     {
@@ -294,7 +299,7 @@ public class Map_Control : MonoBehaviour
         foreach (int i in expanded_tiles)
         {
 			mark_tile[i] = true;
-			map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 255, 114);
+			map_tiles[i].GetComponent<SpriteRenderer>().color = new Color(0, 255, 200);
         }
         tile_picked = false;
         first_click = false;
@@ -345,15 +350,17 @@ public class Map_Control : MonoBehaviour
         if (units_state[picked_pos].gameObject.name.StartsWith("Monk"))
         {
             units_state[picked_pos].GetComponent<Animator>().Play("Monk_skill");
+            Audio_Skill.PlayOneShot(Monk_skill_sound, 0.5f);
         }
         else if (units_state[picked_pos].gameObject.name.StartsWith("Wuchang"))
         {
             units_state[picked_pos].GetComponent<Animator>().Play("Wuchang_Skill");
+            Audio_Skill.PlayOneShot(Wuchang_skill_sound, 0.5f);
         }
 
         //skill
         units_state[picked_pos].GetComponent<UserUnit>().Skill();
-       
+        playerHUD_showed = false;
 
     }
 
@@ -441,26 +448,32 @@ public class Map_Control : MonoBehaviour
                         if (units_state[map_tiles_pos[pickEndTile]].name == "Monk(Clone)")
                         {
                             InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Monk;
+                            InGameUI_prefab.Move_Over_Char_Skill.sprite = InGameUI_prefab.Monk_skill;
                         }
                         else if (units_state[map_tiles_pos[pickEndTile]].name == "Makepinggo(Clone)")
                         {
                             InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Makepinggo;
+                            InGameUI_prefab.Move_Over_Char_Skill.sprite = InGameUI_prefab.Makepinggo_skill;
                         }
                         else if (units_state[map_tiles_pos[pickEndTile]].name == "SwordMan(Clone)")
                         {
                             InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.SwordMan;
+                            InGameUI_prefab.Move_Over_Char_Skill.sprite = InGameUI_prefab.SwordMan_skill;
                         }
                         else if (units_state[map_tiles_pos[pickEndTile]].name == "Archer(Clone)")
                         {
                             InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Archer;
+                            InGameUI_prefab.Move_Over_Char_Skill.sprite = InGameUI_prefab.Archer_skill;
                         }
                         else if (units_state[map_tiles_pos[pickEndTile]].name == "Tauren(Clone)")
                         {
                             InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Tauren;
+                            InGameUI_prefab.Move_Over_Char_Skill.sprite = InGameUI_prefab.Tauren_skill;
                         }
 						else if (units_state[map_tiles_pos[pickEndTile]].name == "Wuchang(Clone)")
                         {
 							InGameUI_prefab.Move_Over_Avatar.sprite = InGameUI_prefab.Wuchang;
+                            InGameUI_prefab.Move_Over_Char_Skill.sprite = InGameUI_prefab.Wuchang_skill;
                         }
 
                         //previous character is not being clicked now
@@ -636,7 +649,6 @@ public class Map_Control : MonoBehaviour
                                     
 								}
 
-
                             }
 
                             if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
@@ -656,10 +668,19 @@ public class Map_Control : MonoBehaviour
                                 //map_tiles[pos].GetComponent<Animator>().Play("ExplosionEffect");
                             }
 
+                            else if (units_state[picked_pos].gameObject.name.StartsWith("SwordMan"))
+                            {
+                                Vector3 EffectPos = new Vector3(map_tiles[pos].transform.position.x, map_tiles[pos].transform.position.y + 0.5f, -1);
+                                GameObject Sword_Effect = Instantiate(Sword_Effect_Prefab, EffectPos, Quaternion.identity);
+                                Destroy(Sword_Effect, 0.5f);
+                                //map_tiles[pos].GetComponent<Animator>().Play("ExplosionEffect");
+                            }
+
                         }
                         if (units_state[picked_pos].gameObject.name.StartsWith("Tauren"))
                         {
                             units_state[picked_pos].GetComponent<Animator>().Play("Tauren_skill");
+                            Audio_Skill.PlayOneShot(Tauren_skill_sound, 1.2f);
                         }
                         else if (units_state[picked_pos].gameObject.name.StartsWith("Archer"))
                         {
@@ -672,6 +693,7 @@ public class Map_Control : MonoBehaviour
                         else if (units_state[picked_pos].gameObject.name.StartsWith("SwordMan"))
                         {
                             units_state[picked_pos].GetComponent<Animator>().Play("Swordman_Skill");
+                            Audio_Skill.PlayOneShot(Sword_skill_sound, 1.2f);
                         }
 
                         //recover the tile colors after using skill

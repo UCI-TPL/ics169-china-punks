@@ -336,7 +336,7 @@ MonoBehaviour:
     type: 2}
   charater_type: 
   coolDown: 0
-  moveSpeed: 3
+  moveSpeed: 10
   slippery: 0
   fire_cd: 0
   poison_cd: 0

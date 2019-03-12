@@ -6,9 +6,18 @@ using UnityEngine.UI;
 public class CharacterSelection : MonoBehaviour {
 
 	public GameObject char_info_ui;
-	Text char_description;
+    public GameObject char_skill_ui;
 
-	private GameObject base_manager;
+    Text char_description;
+    Image char_skill_info;
+    public Sprite Monk_Skill_info;
+    public Sprite Archer_Skill_info;
+    public Sprite Makepinggo_Skill_info;
+    public Sprite Wuchang_Skill_info;
+    public Sprite Tauren_Skill_info;
+    public Sprite Swordman_Skill_info;
+
+    private GameObject base_manager;
 
     // Boolean specify whether the character is in the team
 	private bool in_team;
@@ -31,7 +40,9 @@ public class CharacterSelection : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		char_description = char_info_ui.GetComponentInChildren<Text>();
-	}
+        char_skill_info = char_skill_ui.GetComponentInChildren<Image>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -47,7 +58,9 @@ public class CharacterSelection : MonoBehaviour {
 	private void OnMouseExit()
 	{
         char_info_ui.SetActive(false);
-		gameObject.transform.localScale = gameObject.transform.localScale / 1.2f;
+        char_skill_ui.SetActive(false);
+
+        gameObject.transform.localScale = gameObject.transform.localScale / 1.2f;
 	}
 
 
@@ -74,14 +87,38 @@ public class CharacterSelection : MonoBehaviour {
 
 	private void OnMouseOver()
 	{
-        
-
-
         if (!in_team)
 		{
             char_info_ui.SetActive(true);
+            char_skill_ui.SetActive(true);
 
             char_description.text = this.gameObject.name;
-		}
+
+            if(this.gameObject.name == "Monk")
+            {
+                char_skill_info.sprite = Monk_Skill_info;
+            }
+            if (this.gameObject.name == "Archer")
+            {
+                char_skill_info.sprite = Archer_Skill_info;
+            }
+            if (this.gameObject.name == "Tauren")
+            {
+                char_skill_info.sprite = Tauren_Skill_info;
+            }
+            if (this.gameObject.name == "Wuchang")
+            {
+                char_skill_info.sprite = Wuchang_Skill_info;
+            }
+            if (this.gameObject.name == "Makepingguo")
+            {
+                char_skill_info.sprite = Makepinggo_Skill_info;
+            }
+            if (this.gameObject.name == "Swordman")
+            {
+                char_skill_info.sprite = Swordman_Skill_info;
+            }
+
+        }
 	}
 }

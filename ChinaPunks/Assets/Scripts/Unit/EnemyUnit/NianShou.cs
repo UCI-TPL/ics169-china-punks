@@ -149,6 +149,7 @@ public class NianShou : AIUnit {
                                 if (mc.units_state[currentPos + position] != null
                                     && mc.units_state[currentPos + position].gameObject.name.StartsWith("Peach"))
                                 {
+                                    anim.Play("Attack");
                                     Destroy(mc.units_state[currentPos + position].gameObject);
                                     turnComplete = true;
                                     break;

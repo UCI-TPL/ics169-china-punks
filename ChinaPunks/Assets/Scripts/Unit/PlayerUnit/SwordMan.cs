@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordMan : UserUnit {
 
     public int skillDistance;
+    public GameObject Sword_Effect_Prefab;
 
     public override void Skill()
     {

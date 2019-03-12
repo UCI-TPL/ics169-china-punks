@@ -272,7 +272,7 @@ MonoBehaviour:
     type: 2}
   charater_type: 
   coolDown: 0
-  moveSpeed: 3
+  moveSpeed: 10
   slippery: 0
   fire_cd: 0
   poison_cd: 0
@@ -284,8 +284,9 @@ MonoBehaviour:
   view_range: 5
   AS: {fileID: 82939063802787578}
   Attack_Clip: {fileID: 8300000, guid: dafd85cfd317d4faf80b07624c72888f, type: 3}
-  Be_Attacked_Clip: {fileID: 8300000, guid: 6139d3762ddd744ffb6e03dcb1d39e3b, type: 3}
+  Be_Attacked_Clip: {fileID: 8300000, guid: 997d4e9f5d6432649857a6fbe8167a66, type: 3}
   Death_Clip: {fileID: 8300000, guid: 3cc6ed09ed93f48d091a8262ccf43a0f, type: 3}
+  dash_range: 5
 --- !u!114 &114499461957307144
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,6 +28,7 @@ public class InGameUI : MonoBehaviour {
 	public List<GameObject> Char_infos;
 	public int Available_Char_info_slot_num = 4;
 	public GameObject MouseOver_Char_info;
+    public GameObject MouseOver_Char_Skill_info;
 
     public Sprite Makepinggo;
     public Sprite Tauren;
@@ -41,7 +42,14 @@ public class InGameUI : MonoBehaviour {
     public Sprite Bucket;
 	public Sprite Tile_1;
 
-	Image Char_avatar;
+    public Sprite Makepinggo_skill;
+    public Sprite Tauren_skill;
+    public Sprite SwordMan_skill;
+    public Sprite Archer_skill;
+    public Sprite Monk_skill;
+    public Sprite Wuchang_skill;
+
+    Image Char_avatar;
     Image healthfill;
     Text Health_number;
     Text Char_Move;
@@ -50,7 +58,8 @@ public class InGameUI : MonoBehaviour {
 	Text Next_WAVE_Round;
 
 	public Image Move_Over_Avatar;
-	Text  Move_Over_Text;
+    public Image Move_Over_Char_Skill;
+    Text  Move_Over_Text;
 	Image Move_Over_Tile;
     Text Move_Over_Tile_Name;
 
@@ -92,7 +101,10 @@ public class InGameUI : MonoBehaviour {
 		GameObject Move_Over_Avatar_Name_Info = MouseOver_Char_info.transform.Find("Char_avatar_back").Find("name").gameObject;
 		Move_Over_Text = Move_Over_Avatar_Name_Info.GetComponent<Text>();
 
-		GameObject MouseOver_Tile_Info_1 = MouseOver_Tile_Info.transform.Find("Image").gameObject;
+        GameObject Move_Over_Char_Skill_Info = MouseOver_Char_Skill_info.transform.Find("Char_avatar_back").gameObject;
+        Move_Over_Char_Skill = Move_Over_Char_Skill_Info.GetComponent<Image>();
+
+        GameObject MouseOver_Tile_Info_1 = MouseOver_Tile_Info.transform.Find("Image").gameObject;
 		Move_Over_Tile = MouseOver_Tile_Info_1.GetComponent<Image>();
 
         GameObject MouseOver_Tile_Info_2 = MouseOver_Tile_Info.transform.Find("Tile_name").gameObject;
@@ -234,6 +246,7 @@ public class InGameUI : MonoBehaviour {
 			if (MoveOver_Map_Info.Count != 0)
             {
                 MouseOver_Char_info.SetActive(true);
+                MouseOver_Char_Skill_info.SetActive(true);
                 MouseOver_Tile_Info.SetActive(false);
 
                 //Debug.Log("over name: "+MoveOver_Map_Info[0].name);
@@ -245,31 +258,37 @@ public class InGameUI : MonoBehaviour {
                     {
                         Move_Over_Avatar.sprite = Makepinggo;
 						Move_Over_Text.text = "Makepinggo";
+                        Move_Over_Char_Skill.sprite = Makepinggo_skill;
                     }
                     if (MoveOver_Map_Info[0].name == "Monk(Clone)")
                     {
                         Move_Over_Avatar.sprite = Monk;
                         Move_Over_Text.text = "Monk";
+                        Move_Over_Char_Skill.sprite = Monk_skill;
                     }
                     if (MoveOver_Map_Info[0].name == "Tauren(Clone)")
                     {
                         Move_Over_Avatar.sprite = Tauren;
 						Move_Over_Text.text = "Tauren";
+                        Move_Over_Char_Skill.sprite = Tauren_skill;
                     }
                     if (MoveOver_Map_Info[0].name == "SwordMan(Clone)")
                     {
                         Move_Over_Avatar.sprite = SwordMan;
 						Move_Over_Text.text = "SwordMan";
+                        Move_Over_Char_Skill.sprite = SwordMan_skill;
                     }
                     if (MoveOver_Map_Info[0].name == "Archer(Clone)")
                     {
 						Move_Over_Avatar.sprite = Archer;
 						Move_Over_Text.text = "Archer";
+                        Move_Over_Char_Skill.sprite = Archer_skill;
                     }
 					if (MoveOver_Map_Info[0].name == "Wuchang(Clone)")
                     {
 						Move_Over_Avatar.sprite = Wuchang;
 						Move_Over_Text.text = "Wuchang";
+                        Move_Over_Char_Skill.sprite = Wuchang_skill;
                     }
 					if (MoveOver_Map_Info[0].name == "Skeleton(Clone)" && MoveOver_Map_Info[0].gameObject.transform.GetChild(0).gameObject.activeSelf == true)
                     {
@@ -300,6 +319,7 @@ public class InGameUI : MonoBehaviour {
 				if(map_ctr.acting_state != 1)
 				{
 					MouseOver_Char_info.SetActive(false);
+                    MouseOver_Char_Skill_info.SetActive(false);
 				}
                 MouseOver_Tile_Info.SetActive(true);
                 if(Level == 1)
@@ -314,6 +334,7 @@ public class InGameUI : MonoBehaviour {
 			if (map_ctr.acting_state != 1)
             {
                 MouseOver_Char_info.SetActive(false);
+                MouseOver_Char_Skill_info.SetActive(false);
             }
 			MouseOver_Tile_Info.SetActive(false);
 		}

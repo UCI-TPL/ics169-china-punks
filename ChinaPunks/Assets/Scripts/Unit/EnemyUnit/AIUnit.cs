@@ -42,6 +42,11 @@ public class AIUnit : Unit
 
     protected int myIndex;
 
+    // Sound
+    public AudioSource AS;
+    public AudioClip Attack_Clip;
+    public AudioClip Be_Attacked_Clip;
+
     // Use this for initialization
     void Start()
     {
@@ -194,12 +199,16 @@ public class AIUnit : Unit
                                     {
                                         mc.units_state[currentPos + position].GetComponent<UserUnit>().Health_Change(attack_damage);
                                         turnComplete = true;
+                                        anim.Play("Attack");
+                                        AS.PlayOneShot(Attack_Clip, 1.0f);
                                         break;
                                     }
                                     else if (mc.units_state[currentPos + position].GetComponent<UserUnit>().provocative)
                                     {
                                         mc.units_state[currentPos + position].GetComponent<UserUnit>().Health_Change(attack_damage);
                                         turnComplete = true;
+                                        anim.Play("Attack");
+                                        AS.PlayOneShot(Attack_Clip, 1.0f);
                                         break;
                                     }
                                 }
@@ -282,6 +291,7 @@ public class AIUnit : Unit
 
     IEnumerator waitforanim(Animator anim){
         anim.Play("Attacked");
+        AS.PlayOneShot(Be_Attacked_Clip, 1.0f);
         mc.animation_is_playing = true;
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length-0.1f);
         mc.animation_is_playing = false;

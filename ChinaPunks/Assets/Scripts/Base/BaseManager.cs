@@ -63,7 +63,7 @@ public class BaseManager : MonoBehaviour {
 				base_UI.errorEvent.Invoke("Team is not full. \n \" An incomplete team is not acceptable\"");
 				return;
 			}
-		}
+        }
 
         // Confirm Team successful
 		for (int i = 0; i < 4; i++)
