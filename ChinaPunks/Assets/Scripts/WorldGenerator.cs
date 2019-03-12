@@ -26,6 +26,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject Tauren_Prefab;
     public GameObject Swordman_Prefab;
 	public GameObject Wuchang_Prefab;
+    public GameObject Merchant;
 
     GameObject character;
 
@@ -70,7 +71,6 @@ public class WorldGenerator : MonoBehaviour
 	public List<Player_Position_prefab> characters_prefab = new List<Player_Position_prefab>();
 	public List<AI_Position_prefab> AI_prefabs = new List<AI_Position_prefab>();
     public List<Gameobject_Position_prefab> Block_prefabs = new List<Gameobject_Position_prefab>();
-	public Gameobject_Position_prefab Merchant_prefab;
 
     public GameObject trap_prefab;
     public List<int> trap_positions = new List<int>();
@@ -106,6 +106,7 @@ public class WorldGenerator : MonoBehaviour
 
     void Awake()
     {
+        Team.change_money(50);
         map = Instantiate(map_prefab);
         UI = Instantiate(UI_prefab);
         Turn = Instantiate(Turn_prefab);
@@ -363,16 +364,17 @@ public class WorldGenerator : MonoBehaviour
                 unitsPos.Add(pos);
 
                 UI_ctr.Characters_clone.Add(character);
+                characters.Add(character);
             }
         }
 
 		// Merchant generating
-		GameObject merchant = Instantiate(Merchant_prefab.prefab);
-		merchant.GetComponent<Merchant>().mc = map_ctr;
-		merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
-		merchant.GetComponent<Merchant>().currentPos = Merchant_prefab.positions[0];
-		merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
-		merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
+		//GameObject merchant = Instantiate(Merchant_prefab.prefab);
+		//merchant.GetComponent<Merchant>().mc = map_ctr;
+		//merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
+		//merchant.GetComponent<Merchant>().currentPos = Merchant_prefab.positions[0];
+		//merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
+		//merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
         
     }
 
@@ -384,6 +386,15 @@ public class WorldGenerator : MonoBehaviour
     public void generateEnemy()
     {
         rdsGeneEnemy = _rdsGeneEnemy;
+
+        // Generate merchant when the next wave of enemies arrives
+        GameObject merchant = Instantiate(Merchant, new Vector2(0, 100), Quaternion.identity);
+        //merchant.GetComponent<Merchant>().mc = map_ctr;
+        //merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
+        merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
+        merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
+        merchant.GetComponent<Merchant>().players = characters;
+        merchant.GetComponent<Merchant>().trade_button.SetActive(true);
 
         //generate AI/enemy
         foreach (AI_Position_prefab GP in AI_prefabs)

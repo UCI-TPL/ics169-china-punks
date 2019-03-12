@@ -237,7 +237,7 @@ MonoBehaviour:
   anim: {fileID: 95326654282257946}
   healthFillImage: {fileID: 0}
   attack_damage: 2
-  moveSpeed: 3
+  moveSpeed: 10
   slippery: 0
   fire_cd: 2
   poison_cd: 2
