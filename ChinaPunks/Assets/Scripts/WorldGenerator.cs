@@ -367,15 +367,6 @@ public class WorldGenerator : MonoBehaviour
                 characters.Add(character);
             }
         }
-
-		// Merchant generating
-		//GameObject merchant = Instantiate(Merchant_prefab.prefab);
-		//merchant.GetComponent<Merchant>().mc = map_ctr;
-		//merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
-		//merchant.GetComponent<Merchant>().currentPos = Merchant_prefab.positions[0];
-		//merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
-		//merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
-        
     }
 
 	IEnumerator StartPause()

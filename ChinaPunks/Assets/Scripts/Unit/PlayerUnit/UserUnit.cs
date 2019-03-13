@@ -335,7 +335,9 @@ public class UserUnit : Unit
             AS.clip = Death_Clip;
             AS.Play();
             mc.units_state[currentPos] = null;
+            mc.set_tile_group_visibility(currentPos, view_range, false, gameObject.name);
             Destroy(this.gameObject);
+            mc.user_unit_count--;
         }
 
     }

@@ -13,8 +13,8 @@ public class WinLoseCheck : MonoBehaviour {
 
     public int win_conditions_count;
     public bool lose;
-    private int player_character_count;
-    private int peach_count;
+    public int player_character_count;
+    public int peach_count;
     public List<int> exits;
     public GameObject timeline;
 
@@ -35,8 +35,8 @@ public class WinLoseCheck : MonoBehaviour {
 	void Update () {
 
         // Lose state
-        if(peach_count == 0 || player_character_count == 0) { 
-            
+        if(mc.peach_count == 0 || mc.user_unit_count == 0) {
+            turn.LoseScene.SetActive(true);
         }
 
         //level? win/lose check

@@ -151,6 +151,7 @@ public class NianShou : AIUnit {
                                 {
                                     anim.Play("Attack");
                                     Destroy(mc.units_state[currentPos + position].gameObject);
+                                    mc.peach_count--;
                                     turnComplete = true;
                                     break;
                                 }

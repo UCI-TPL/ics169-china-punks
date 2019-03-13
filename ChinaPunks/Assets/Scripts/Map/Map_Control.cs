@@ -61,6 +61,10 @@ public class Map_Control : MonoBehaviour
     //Variable that stores the reference of every AIUnit gameObject
     public List<GameObject> AI_units = new List<GameObject>();
 
+    //Variable that count how many players and peaches are alive
+    public int user_unit_count;
+    public int peach_count;
+
     public GameObject PeachPrefab;
 
     public int turn_count;
@@ -92,6 +96,9 @@ public class Map_Control : MonoBehaviour
 
     private void Awake()
     {
+        user_unit_count = 4;
+        peach_count = 4;
+
         //for (int i = 0; i < map_size * map_size; i++)
         //{
         //    units_state.Add(null);
