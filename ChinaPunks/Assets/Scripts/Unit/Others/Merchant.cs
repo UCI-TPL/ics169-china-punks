@@ -97,11 +97,6 @@ public class Merchant : Unit {
 		}
 		else{
 			//purchanse successful
-			//foreach (int i in adjacent_tiles)
-				//if (mc.units_state[i] != null && mc.units_state[i].CompareTag("PlayerUnit")){
-					//game_items[index].add_to_character(mc.units_state[i].GetComponent<UserUnit>());
-					//break;
-                    //}
 
             foreach(GameObject player in players) {
                 if(player != null)
@@ -111,7 +106,7 @@ public class Merchant : Unit {
             }
             Team.change_money(-power_ups[index].price);
 			power_ups[index] = null;
-			shop_panel.transform.Find("Item" + (index + 1).ToString()).GetComponent<Image>().sprite = null;
+			shop_panel.transform.Find("Item" + (index + 1).ToString()).gameObject.SetActive(false);
 			shop_panel.transform.Find("Message").GetComponent<Text>().text = "You are very brilliant in choosing that best quality item. There will be more coming, with higher price of course, he he he.";
 		}
 	}

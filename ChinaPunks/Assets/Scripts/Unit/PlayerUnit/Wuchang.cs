@@ -20,7 +20,8 @@ public class Wuchang : UserUnit{
                 GameObject Wuchang_Effect = Instantiate(Wuchang_Effect_Prefab, EffectPos, Quaternion.identity);
                 Destroy(Wuchang_Effect, 0.6f);
 
-                mc.first_click = true;
+                turnComplete = true;
+                mc.reset();
             }
         }
     }

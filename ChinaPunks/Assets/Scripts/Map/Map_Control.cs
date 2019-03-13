@@ -531,7 +531,7 @@ public class Map_Control : MonoBehaviour
                 {
                     //check second-clicked tile has unit
                     if (units_state[map_tiles_pos[pickEndTile]] != null
-                        & (units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit" ||
+                        && (units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "EnemyUnit" ||
 					       units_state[map_tiles_pos[pickEndTile]].gameObject.tag == "Block")
                         && attackRange.Contains(map_tiles_pos[pickEndTile]))
                     {
