@@ -320,7 +320,7 @@ MonoBehaviour:
   provocative: 0
   poisoned: 0
   In_Fog: 1
-  health: 25
+  health: 30
   current_health: 0
   moveComplete: 0
   turnComplete: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   anim: {fileID: 95879455263521662}
   healthFillImage: {fileID: 0}
   attack_damage: 4
-  moveSpeed: 10
+  moveSpeed: 15
   slippery: 0
   fire_cd: 2
   poison_cd: 2

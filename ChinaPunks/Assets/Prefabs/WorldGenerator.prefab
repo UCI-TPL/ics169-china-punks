@@ -70,6 +70,7 @@ MonoBehaviour:
     type: 2}
   Wuchang_Prefab: {fileID: 1013872608658132, guid: 8e9d5dfc48e024b64a80bcaf789ebbd1,
     type: 2}
+  Merchant: {fileID: 1085644454282126, guid: d5f78e07a8ed14e4cb795ea7f2a7f94f, type: 2}
   level: 0
   Tiles_prefabs:
   - prefab: {fileID: 1792288182856016, guid: dfe6afd255e9a46e893a307ba9f2ab0a, type: 2}
@@ -102,16 +103,16 @@ MonoBehaviour:
     randomBlockPositions: 
   - AIPrefabs:
     - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
-    - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
-    generatedNum: 2
+    - {fileID: 1461907750971886, guid: e37660212b1e54043bf439a0d18804e9, type: 2}
+    generatedNum: 3
     squareBlock: 1
     bottomLeftPos: 340
     topRightPos: 382
     randomBlockPositions: 
   - AIPrefabs:
     - {fileID: 1233406120780834, guid: 18e4a44dfebd54c0eb3efbd0ba8c7440, type: 2}
-    - {fileID: 1597725668824206, guid: 094decabf517c4902a1123527e382743, type: 2}
-    generatedNum: 2
+    - {fileID: 1461907750971886, guid: e37660212b1e54043bf439a0d18804e9, type: 2}
+    generatedNum: 3
     squareBlock: 1
     bottomLeftPos: 357
     topRightPos: 399
@@ -127,9 +128,6 @@ MonoBehaviour:
   Block_prefabs:
   - prefab: {fileID: 1850953206562126, guid: 333a93766b3af4f1cbcd53b780b6c760, type: 2}
     positions: bd000000be000000d1000000d2000000
-  Merchant_prefab:
-    prefab: {fileID: 0}
-    positions: 7c010000
   trap_prefab: {fileID: 1296132908931726, guid: 775eacff3c0804ac7bbf7cdedbc4295f,
     type: 2}
   trap_positions: 

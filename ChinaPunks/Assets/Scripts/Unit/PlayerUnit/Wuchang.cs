@@ -9,7 +9,9 @@ public class Wuchang : UserUnit{
     public override void Skill()
     {
         base.Skill();
-
+        turnComplete = true;
+        coolDown = skill_cd;
+        mc.reset();
         foreach (GameObject ob in mc.units_state)
         {
             if (ob != null && ob.tag == "EnemyUnit")

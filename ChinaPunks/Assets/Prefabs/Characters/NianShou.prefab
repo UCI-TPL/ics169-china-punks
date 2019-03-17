@@ -306,7 +306,7 @@ MonoBehaviour:
   anim: {fileID: 95534793819853314}
   healthFillImage: {fileID: 0}
   attack_damage: 2
-  moveSpeed: 10
+  moveSpeed: 15
   slippery: 0
   fire_cd: 2
   poison_cd: 2
@@ -318,7 +318,7 @@ MonoBehaviour:
   gotDashed: 0
   gotDashedDes: 0
   AS: {fileID: 82998804013819906}
-  Attack_Clip: {fileID: 0}
+  Attack_Clip: {fileID: 8300000, guid: 8322435c1805d40b99f3c3cd3fe3ab78, type: 3}
   Be_Attacked_Clip: {fileID: 0}
 --- !u!114 &114978980677522528
 MonoBehaviour:
@@ -381,7 +381,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300006, guid: 780a1b2c2f140f94a9e77b937352f0b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

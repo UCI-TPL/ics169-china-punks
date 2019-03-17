@@ -219,9 +219,17 @@ public class Turn_Control : MonoBehaviour
                 }
             }
 
-            if (WG.rdsGeneEnemy == 0) {
+            bool enemyNone = true;
+            foreach (GameObject ob in map_ctr.units_state)
+            {
+                if (ob != null && ob.tag == "EnemyUnit")
+                    enemyNone = false;
+            }
+
+            if (WG.rdsGeneEnemy == 0 || enemyNone) {
                 WG.generateEnemy();
             }
+
 
             StartCoroutine(map_routine());
 

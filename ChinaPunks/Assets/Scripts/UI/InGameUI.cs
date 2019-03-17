@@ -38,6 +38,7 @@ public class InGameUI : MonoBehaviour {
 	public Sprite Wuchang;
     public Sprite Skeleton;
 	public Sprite Skeleton_Leader;
+    public Sprite NianShou;
     public Sprite Table;
     public Sprite Bucket;
 	public Sprite Tile_1;
@@ -294,23 +295,41 @@ public class InGameUI : MonoBehaviour {
                     {
                         Move_Over_Avatar.sprite = Skeleton;
                         Move_Over_Text.text = "Skeleton";
+                        MouseOver_Char_Skill_info.SetActive(false);
                     }
 					if (MoveOver_Map_Info[0].name == "SkeletonLeader(Clone)" && MoveOver_Map_Info[0].gameObject.transform.GetChild(0).gameObject.activeSelf == true)
                     {
 						Move_Over_Avatar.sprite = Skeleton_Leader;
 						Move_Over_Text.text = "SkeletonLeader";
+                        MouseOver_Char_Skill_info.SetActive(false);
                     }
 
                     if (MoveOver_Map_Info[0].name == "Table(Clone)")
                     {
                         Move_Over_Avatar.sprite = Table;
                         Move_Over_Text.text = "Table";
+                        MouseOver_Char_Skill_info.SetActive(false);
                     }
 
                     if (MoveOver_Map_Info[0].name == "Bucket(Clone)")
                     {
                         Move_Over_Avatar.sprite = Bucket;
                         Move_Over_Text.text = "Bucket";
+                        MouseOver_Char_Skill_info.SetActive(false);
+                    }
+
+                    if (MoveOver_Map_Info[0].name == "NianShou(Clone)")
+                    {
+                        //Move_Over_Avatar.sprite = Bucket;
+                        //Move_Over_Text.text = "Bucket";
+                        MouseOver_Char_Skill_info.SetActive(false);
+                    }
+
+                    if (MoveOver_Map_Info[0].name == "Peach(Clone)")
+                    {
+                        Move_Over_Avatar.sprite = NianShou;
+                        Move_Over_Text.text = "NianShou";
+                        MouseOver_Char_Skill_info.SetActive(false);
                     }
                 }            
             }

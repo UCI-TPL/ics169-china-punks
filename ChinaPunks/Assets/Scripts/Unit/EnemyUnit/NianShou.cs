@@ -150,6 +150,7 @@ public class NianShou : AIUnit {
                                     && mc.units_state[currentPos + position].gameObject.name.StartsWith("Peach"))
                                 {
                                     anim.Play("Attack");
+                                    AS.PlayOneShot(Attack_Clip, 1.0f);
                                     Destroy(mc.units_state[currentPos + position].gameObject);
                                     mc.peach_count--;
                                     turnComplete = true;
