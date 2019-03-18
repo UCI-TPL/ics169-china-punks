@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Turn_Control : MonoBehaviour
 {
 
-
+    public static int Wave_Num = 1;
     public GameObject map;
     Map_Control map_ctr;
     public GameObject UI;
@@ -227,6 +227,7 @@ public class Turn_Control : MonoBehaviour
             }
 
             if (WG.rdsGeneEnemy == 0 || enemyNone) {
+                Wave_Num += 1;
                 WG.generateEnemy();
             }
 

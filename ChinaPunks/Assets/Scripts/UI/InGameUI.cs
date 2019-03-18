@@ -7,6 +7,15 @@ using UnityEngine.Playables;
 
 public class InGameUI : MonoBehaviour {
 
+    public static int Score;
+
+    public GameObject wave_info;
+    Text wave_num;
+
+    public GameObject score_info;
+    Text score_num;
+
+    public GameObject UI_WAVE;
     public GameObject map;
     private Map_Control map_ctr;
 
@@ -29,6 +38,7 @@ public class InGameUI : MonoBehaviour {
 	public int Available_Char_info_slot_num = 4;
 	public GameObject MouseOver_Char_info;
     public GameObject MouseOver_Char_Skill_info;
+    public GameObject MouseOver_Skill_CD_Info;
 
     public Sprite Makepinggo;
     public Sprite Tauren;
@@ -57,6 +67,7 @@ public class InGameUI : MonoBehaviour {
     Text Char_attack;
 	Text Enemy_Num;
 	Text Next_WAVE_Round;
+    Text Current_Char_Skill_CD;
 
 	public Image Move_Over_Avatar;
     public Image Move_Over_Char_Skill;
@@ -116,7 +127,11 @@ public class InGameUI : MonoBehaviour {
 
 		GameObject Round_Information = Round_Info.transform.Find("round_remain").gameObject;
 		Next_WAVE_Round = Round_Information.GetComponent<Text>();
-       
+
+        wave_num = wave_info.transform.Find("wave").gameObject.GetComponent<Text>();
+        score_num = score_info.transform.Find("score").gameObject.GetComponent<Text>();
+
+        UI_WAVE.SetActive(false);
 
         for (int i = 0; i < 4; i++)
 		{
@@ -152,7 +167,7 @@ public class InGameUI : MonoBehaviour {
                     healthfill.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
                                              (Characters_clone[i].GetComponent<Monk>().health));
                     Char_attack.text = (Characters_clone[i].GetComponent<Monk>().attack_damage).ToString();
-                    Char_Move.text = (Characters_clone[i].GetComponent<Monk>().moveRange).ToString();
+                    Char_Move.text = (Characters_clone[i].GetComponent<Monk>().dmgUp_by_skill).ToString();
                     Char_avatar.sprite = Monk;
                     char_info_slots_dict["Monk"] = i;
                 }
@@ -165,7 +180,7 @@ public class InGameUI : MonoBehaviour {
 					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Makepinggo>().current_health) /
 					                         (Characters_clone[i].GetComponent<Makepinggo>().health));
 					Char_attack.text = (Characters_clone[i].GetComponent<Makepinggo>().attack_damage).ToString();
-					Char_Move.text = (Characters_clone[i].GetComponent<Makepinggo>().moveRange).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<Makepinggo>().skill_damage).ToString();
 					Char_avatar.sprite = Makepinggo;
 					char_info_slots_dict["Makepinggo"] = i;
 				}
@@ -177,7 +192,7 @@ public class InGameUI : MonoBehaviour {
 					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Tauren>().current_health) /
 					                         (Characters_clone[i].GetComponent<Tauren>().health));
 					Char_attack.text = (Characters_clone[i].GetComponent<Tauren>().attack_damage).ToString();
-					Char_Move.text = (Characters_clone[i].GetComponent<Tauren>().moveRange).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<Tauren>().skill_damage).ToString();
 					Char_avatar.sprite = Tauren;
 					char_info_slots_dict["Tauren"] = i;
                 }
@@ -189,7 +204,7 @@ public class InGameUI : MonoBehaviour {
 					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Archer>().current_health) /
 					                         (Characters_clone[i].GetComponent<Archer>().health));
 					Char_attack.text = (Characters_clone[i].GetComponent<Archer>().attack_damage).ToString();
-					Char_Move.text = (Characters_clone[i].GetComponent<Archer>().moveRange).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<Archer>().skill_damage).ToString();
 					Char_avatar.sprite = Archer;  
 					char_info_slots_dict["Archer"] = i;
                 }
@@ -201,7 +216,7 @@ public class InGameUI : MonoBehaviour {
 					healthfill.fillAmount = ((Characters_clone[i].GetComponent<Wuchang>().current_health) /
 					                         (Characters_clone[i].GetComponent<Wuchang>().health));
 					Char_attack.text = (Characters_clone[i].GetComponent<Wuchang>().attack_damage).ToString();
-					Char_Move.text = (Characters_clone[i].GetComponent<Wuchang>().moveRange).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<Wuchang>().skill_damage).ToString();
 					Char_avatar.sprite = Wuchang;
 					char_info_slots_dict["Wuchang"] = i;
                 }
@@ -213,7 +228,7 @@ public class InGameUI : MonoBehaviour {
 					healthfill.fillAmount = ((Characters_clone[i].GetComponent<SwordMan>().current_health) /
 					                         (Characters_clone[i].GetComponent<SwordMan>().health));
 					Char_attack.text = (Characters_clone[i].GetComponent<SwordMan>().attack_damage).ToString();
-					Char_Move.text = (Characters_clone[i].GetComponent<SwordMan>().moveRange).ToString();
+					Char_Move.text = (Characters_clone[i].GetComponent<SwordMan>().skill_damage).ToString();
 					Char_avatar.sprite = SwordMan;   
 					char_info_slots_dict["SwordMan"] = i;
                 }            
@@ -225,6 +240,18 @@ public class InGameUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        wave_num.text = ("Wave: " + Turn_Control.Wave_Num.ToString());
+        score_num.text = ("Score: " + Score);
+        Debug.Log("score: " + Score);
+
+        if (map_ctr.units_state[map_ctr.picked_pos] != null)
+        {
+            if (!map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete)
+            {
+                UI_WAVE.SetActive(false);
+            }
+        }
 
         Character_Click();
 
@@ -260,6 +287,7 @@ public class InGameUI : MonoBehaviour {
                         Move_Over_Avatar.sprite = Makepinggo;
 						Move_Over_Text.text = "Makepinggo";
                         Move_Over_Char_Skill.sprite = Makepinggo_skill;
+
                     }
                     if (MoveOver_Map_Info[0].name == "Monk(Clone)")
                     {
@@ -417,6 +445,7 @@ public class InGameUI : MonoBehaviour {
                         }
                         Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
                                                                           ((Characters_clone[i].GetComponent<Monk>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString());
+                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text = (Characters_clone[i].GetComponent<Monk>().attack_damage).ToString();
                     }
                 }
             }
@@ -535,6 +564,9 @@ public class InGameUI : MonoBehaviour {
             {
                 //Show player HUD
                 InGameHUD.SetActive(true);
+
+                MouseOver_Skill_CD_Info.transform.Find("Text").GetComponent<Text>().text = ("CD: " + (map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().coolDown).ToString() + " Turn");
+
             }
 
             // disable buttons if character's turn ends

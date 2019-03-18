@@ -92,30 +92,36 @@ public class CharacterSelection : MonoBehaviour {
             char_info_ui.SetActive(true);
             char_skill_ui.SetActive(true);
 
-            char_description.text = this.gameObject.name;
+            char_description.text = (this.gameObject.name);
 
             if(this.gameObject.name == "Monk")
             {
+                char_description.text = (this.gameObject.name + "\n" + "Health: 40 " + "Attack: 20" + "\n" + "Skill: Drink Wine");
                 char_skill_info.sprite = Monk_Skill_info;
             }
             if (this.gameObject.name == "Archer")
             {
+                char_description.text = (this.gameObject.name + "\n" + "Health: 25 " + "Attack: 15" + "\n" + "Skill: Arrow Rain");
                 char_skill_info.sprite = Archer_Skill_info;
             }
             if (this.gameObject.name == "Tauren")
             {
+                char_description.text = (this.gameObject.name + "\n" + "Health: 50 " + "Attack: 20" + "\n" + "Skill: Tauren’s Punch");
                 char_skill_info.sprite = Tauren_Skill_info;
             }
             if (this.gameObject.name == "Wuchang")
             {
+                char_description.text = (this.gameObject.name + "\n" + "Health: 20 " + "Attack: 15" + "\n" + "Skill: Calls From Hell");
                 char_skill_info.sprite = Wuchang_Skill_info;
             }
             if (this.gameObject.name == "Makepingguo")
             {
+                char_description.text = (this.gameObject.name + "\n" + "Health: 30 " + "Attack: 15" + "\n" + "Skill: BOMB!");
                 char_skill_info.sprite = Makepinggo_Skill_info;
             }
             if (this.gameObject.name == "Swordman")
             {
+                char_description.text = (this.gameObject.name + "\n" + "Health: 35 " + "Attack: 20" + "\n" + "Skill: Critical Hit");
                 char_skill_info.sprite = Swordman_Skill_info;
             }
 

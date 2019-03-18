@@ -332,7 +332,7 @@ MonoBehaviour:
   moveRange: 5
   anim: {fileID: 95326654282257946}
   healthFillImage: {fileID: 0}
-  attack_damage: 2
+  attack_damage: 4
   moveSpeed: 15
   slippery: 0
   fire_cd: 2

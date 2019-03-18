@@ -301,6 +301,7 @@ public class AIUnit : Unit
             Debug.Log(this.gameObject.name + " is Dead!");
             mc.units_state[currentPos] = null;
             Destroy(this.gameObject);
+            InGameUI.Score += 5;
         }
 
         //while (

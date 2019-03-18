@@ -293,7 +293,7 @@ MonoBehaviour:
   provocative: 0
   poisoned: 0
   In_Fog: 1
-  health: 30
+  health: 35
   current_health: 0
   moveComplete: 0
   turnComplete: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
   attackRange: 01000000ffffffff0a000000f6ffffff
   pickRange: 01000000ffffffff0a000000f6ffffff
   moveRange: 5
-  attack_damage: 15
-  skill_damage: 20
+  attack_damage: 20
+  skill_damage: 25
   anim: {fileID: 95058383799945474}
   selectEffect: {fileID: 1907047352354152, guid: a47e51d8bc1b442018f5092a24ee5e32,
     type: 2}
@@ -316,7 +316,7 @@ MonoBehaviour:
   poison_damage: 0
   fire_damage: 0
   trap_damage: 0
-  skill_cd: 0
+  skill_cd: 3
   face_right: 0
   view_range: 5
   AS: {fileID: 82342917918122350}

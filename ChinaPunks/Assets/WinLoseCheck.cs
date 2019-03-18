@@ -5,7 +5,6 @@ using UnityEngine.Playables;
 
 public class WinLoseCheck : MonoBehaviour {
 
-
     public int Level;
 
     public Map_Control mc;

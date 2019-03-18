@@ -8,7 +8,6 @@ using UnityEngine.Timeline;
 
 public class WorldGenerator : MonoBehaviour
 {
-
     public GameObject map_prefab;
     public Map_Control map_ctr;
     public GameObject UI_prefab;
@@ -180,6 +179,7 @@ public class WorldGenerator : MonoBehaviour
         WLcheck_ctr.mc = map_ctr;
         WLcheck_ctr.turn = Turn_ctr;
         WLcheck_ctr.Level = level;
+
         //WLcheck_ctr.timeline = timeline;
         
         //level_ctr.DialogueManager = Dialogue;
@@ -378,14 +378,18 @@ public class WorldGenerator : MonoBehaviour
     {
         rdsGeneEnemy = _rdsGeneEnemy;
 
+        // Next Wave UI
+        Debug.Log("show wave UI!!!");
+        UI_ctr.UI_WAVE.SetActive(true);
+
         // Generate merchant when the next wave of enemies arrives
-        GameObject merchant = Instantiate(Merchant, new Vector2(0, 100), Quaternion.identity);
+        //GameObject merchant = Instantiate(Merchant, new Vector2(0, 100), Quaternion.identity);
         //merchant.GetComponent<Merchant>().mc = map_ctr;
         //merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
-        merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
-        merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
-        merchant.GetComponent<Merchant>().players = characters;
-        merchant.GetComponent<Merchant>().trade_button.SetActive(true);
+        //merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
+        //merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
+        //merchant.GetComponent<Merchant>().players = characters;
+        //merchant.GetComponent<Merchant>().trade_button.SetActive(true);
 
         //generate AI/enemy
         foreach (AI_Position_prefab GP in AI_prefabs)
