@@ -47,6 +47,9 @@ public class AIUnit : Unit
     public AudioClip Attack_Clip;
     public AudioClip Be_Attacked_Clip;
 
+    // Money that the enemy will drop when die
+    public int money;
+
     // Use this for initialization
     void Start()
     {
@@ -300,6 +303,7 @@ public class AIUnit : Unit
             mc.AI_units.Remove(gameObject);
             Debug.Log(this.gameObject.name + " is Dead!");
             mc.units_state[currentPos] = null;
+            Team.change_money(money);
             Destroy(this.gameObject);
             InGameUI.Score += 5;
         }

@@ -17,19 +17,12 @@ public class Merchant : Unit {
 	// Merchant PowerUp list
 	private List<PowerUp> power_ups;
     // Potential PowerUps
-    private List<PowerUp> prepared_powerUps = new List<PowerUp>() { new HealthPowerUp(), new AttDmgPowerUp(), new ViewPowerUp(), new MovRangePowerUp() };
+    private List<PowerUp> prepared_powerUps = new List<PowerUp>() { new HealthPowerUp(), new AttDmgPowerUp(), new SkillDmgPowerUp(), new MovRangePowerUp() };
 
 
     void Start()
 	{
 	    power_ups = new List<PowerUp>();
-        
-		//adjacent_tiles = mc.expansion_of_tiles[currentPos];
-
-		//mc.units_state[currentPos] = gameObject;
-        //mapInfo = mc.map_tiles;                                                          //get map info from GameController
-        //Vector3 xyPosition = mapInfo[currentPos].transform.position;
-        //transform.position = new Vector3(xyPosition.x, xyPosition.y + 0.5f, xyPosition.z - 1.0f);      //initialize my current position on map
 
 		// Shop preparation, including generating items for selling
 		set_up_shop();
@@ -58,7 +51,6 @@ public class Merchant : Unit {
 
     // Function used to generate shop items and set up the shop at the beginning of each level
 	void set_up_shop(){
-        //power_ups.Add();
         int skip_index = Random.Range(0,4);
 
         for (int i = 0; i < 4; i++) {
@@ -69,10 +61,12 @@ public class Merchant : Unit {
 
         for (int i = 0; i < 3; i++){
 			Sprite image = Resources.Load<Sprite>("PowerUp/" + power_ups[i].attribute);
-			shop_panel.transform.Find("Item" + (i + 1).ToString()).GetComponent<Image>().sprite = image;
+            shop_panel.transform.Find("Item" + (i + 1).ToString()).gameObject.SetActive(true);
+            shop_panel.transform.Find("Item" + (i + 1).ToString()).GetComponent<Image>().sprite = image;
+            shop_panel.transform.Find("Item" + (i + 1).ToString()).GetComponent<ItemDescription>().description = power_ups[i].description;
 
-			// Bind generated buttons to the call back function
-			int index = i;
+            // Bind generated buttons to the call back function
+            int index = i;
             trade_button.GetComponent<Button>().onClick.AddListener(shop_open);
             shop_panel.transform.Find("Back").GetComponent<Button>().onClick.AddListener(shop_close);
             shop_panel.transform.Find("Gold").GetChild(0).GetComponent<Text>().text = Team.get_money().ToString();

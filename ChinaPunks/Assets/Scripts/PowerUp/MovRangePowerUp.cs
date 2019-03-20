@@ -8,7 +8,7 @@ public class MovRangePowerUp : PowerUp {
     {
         attribute = "moveRange";
         description = "Increase the move range of all units";
-        price = 20;
+        price = 150;
         change_range = new List<float>() { 1.0f, 1.0f };
 
     }

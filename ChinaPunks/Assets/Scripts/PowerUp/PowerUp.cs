@@ -11,7 +11,6 @@ public class PowerUp
     public int price;
     public List<float> change_range;
 
-
     // Function called when the player character acquire the item
     public void powerUp(UserUnit userUnit)
     {
@@ -27,14 +26,15 @@ public class PowerUp
 
             case "moveRange":
                 userUnit.moveRange += change_number;
+                userUnit.view_range += change_number;
                 break;
 
             case "attack_damage":
                 userUnit.attack_damage += change_number;
                 break;
 
-            case "view_range":
-                userUnit.view_range += change_number;
+            case "skill_damage":
+                userUnit.skill_damage += change_number;
                 break;
         }
     }

@@ -13,7 +13,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject UI_prefab;
     InGameUI UI_ctr;
     public GameObject Turn_prefab;
-    Turn_Control Turn_ctr;
+    public Turn_Control Turn_ctr;
     //public GameObject timeline;
     PlayableDirector director;
     public GameObject WLcheck_prefab;
@@ -105,7 +105,6 @@ public class WorldGenerator : MonoBehaviour
 
     void Awake()
     {
-        Team.change_money(50);
         map = Instantiate(map_prefab);
         UI = Instantiate(UI_prefab);
         Turn = Instantiate(Turn_prefab);
@@ -383,13 +382,13 @@ public class WorldGenerator : MonoBehaviour
         UI_ctr.UI_WAVE.SetActive(true);
 
         // Generate merchant when the next wave of enemies arrives
-        //GameObject merchant = Instantiate(Merchant, new Vector2(0, 100), Quaternion.identity);
-        //merchant.GetComponent<Merchant>().mc = map_ctr;
-        //merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
-        //merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
-        //merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
-        //merchant.GetComponent<Merchant>().players = characters;
-        //merchant.GetComponent<Merchant>().trade_button.SetActive(true);
+        GameObject merchant = Instantiate(Merchant, new Vector2(0, 100), Quaternion.identity);
+        merchant.GetComponent<Merchant>().mc = map_ctr;
+        merchant.GetComponent<Merchant>().turn_ctr = Turn_ctr;
+        merchant.GetComponent<Merchant>().trade_button = UI.transform.Find("TradeButton").gameObject;
+        merchant.GetComponent<Merchant>().shop_panel = UI.transform.Find("ShopPanel").gameObject;
+        merchant.GetComponent<Merchant>().players = characters;
+        merchant.GetComponent<Merchant>().trade_button.SetActive(true);
 
         //generate AI/enemy
         foreach (AI_Position_prefab GP in AI_prefabs)

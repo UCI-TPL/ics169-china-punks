@@ -97,7 +97,7 @@ public class BaseManager : MonoBehaviour {
         }
 
 
-
+        Team.change_money(50 - Team.get_money());
 		// Load level one
 		SceneManager.LoadScene("level1");
 	}

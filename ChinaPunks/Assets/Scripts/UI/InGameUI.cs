@@ -245,12 +245,10 @@ public class InGameUI : MonoBehaviour {
         score_num.text = ("Score: " + Score);
         Debug.Log("score: " + Score);
 
-        if (map_ctr.units_state[map_ctr.picked_pos] != null)
+        if (map_ctr.units_state[map_ctr.picked_pos] != null && map_ctr.units_state[map_ctr.picked_pos].gameObject.tag.Equals("PlayerUnit")
+             && !map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete)
         {
-            if (!map_ctr.units_state[map_ctr.picked_pos].gameObject.GetComponent<UserUnit>().turnComplete)
-            {
-                UI_WAVE.SetActive(false);
-            }
+            UI_WAVE.SetActive(false);
         }
 
         Character_Click();
@@ -277,7 +275,7 @@ public class InGameUI : MonoBehaviour {
                 MouseOver_Char_Skill_info.SetActive(true);
                 MouseOver_Tile_Info.SetActive(false);
 
-                //Debug.Log("over name: "+MoveOver_Map_Info[0].name);
+                Debug.Log("over name: "+MoveOver_Map_Info[0].name);
 
 
                 if (map_ctr.acting_state != 1)
@@ -389,162 +387,203 @@ public class InGameUI : MonoBehaviour {
         //update character info in the left
      
         
-        for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
+	{
+		if (i + 1 > Characters_clone.Count)
+        {
+            break;
+        }
+
+        if (Characters_clone[i] == null)
+            return;
+
+		if(Characters_clone[i].name == "Makepinggo(Clone)")
 		{
-			if (i + 1 > Characters_clone.Count)
-            {
-                break;
-            }
-
-            if (Characters_clone[i] == null)
-                return;
-
-			if(Characters_clone[i].name == "Makepinggo(Clone)")
+			GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+			Image _fill_image = _Fill.GetComponent<Image>();
+			_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Makepinggo>().current_health) / 
+			                          (Characters_clone[i].GetComponent<Makepinggo>().health));
+			foreach (var item in Char_infos)
 			{
-				GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-				Image _fill_image = _Fill.GetComponent<Image>();
-				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Makepinggo>().current_health) / 
-				                          (Characters_clone[i].GetComponent<Makepinggo>().health));
-				foreach (var item in Char_infos)
+				if (item.active == true)
 				{
-					if (item.active == true)
-					{
-						Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount = 
-							((Characters_clone[i].GetComponent<Makepinggo>().current_health) / (Characters_clone[i].GetComponent<Makepinggo>().health));
+					Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount = 
+						((Characters_clone[i].GetComponent<Makepinggo>().current_health) / (Characters_clone[i].GetComponent<Makepinggo>().health));
 
-                        if ((Characters_clone[i].GetComponent<Makepinggo>().current_health) <= 0)
-                        {
-                            Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Makepinggo>().health).ToString();
-                            return;
-                        }
+                    Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Makepinggo>().attack_damage.ToString();
+
+                    Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Move").Find("Move_range").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Makepinggo>().skill_damage.ToString();
+
+                    if ((Characters_clone[i].GetComponent<Makepinggo>().current_health) <= 0)
+                    {
                         Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-							                                              ((Characters_clone[i].GetComponent<Makepinggo>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Makepinggo>().health).ToString());                                      
-					}
+                                                                      "0" + "/" + (Characters_clone[i].GetComponent<Makepinggo>().health).ToString();
+                        return;
+                    }
+                    Char_infos[char_info_slots_dict["Makepinggo"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+						                                              ((Characters_clone[i].GetComponent<Makepinggo>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Makepinggo>().health).ToString());                                      
 				}
 			}
-
-            if (Characters_clone[i].name == "Monk(Clone)")
-            {
-                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-                Image _fill_image = _Fill.GetComponent<Image>();
-                _fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
-                                          (Characters_clone[i].GetComponent<Monk>().health));
-                foreach (var item in Char_infos)
-                {
-                    if (item.active == true)
-                    {
-                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-                            ((Characters_clone[i].GetComponent<Monk>().current_health) / (Characters_clone[i].GetComponent<Monk>().health));
-
-                        if ((Characters_clone[i].GetComponent<Monk>().current_health) <= 0)
-                        {
-                            Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString();
-                            return;
-                        }
-                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          ((Characters_clone[i].GetComponent<Monk>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString());
-                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text = (Characters_clone[i].GetComponent<Monk>().attack_damage).ToString();
-                    }
-                }
-            }
-
-            if (Characters_clone[i].name == "Tauren(Clone)")
-            {
-                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-                Image _fill_image = _Fill.GetComponent<Image>();
-				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Tauren>().current_health) /
-				                          (Characters_clone[i].GetComponent<Tauren>().health));
-				foreach (var item in Char_infos)
-                {
-                    if (item.active == true)
-                    {
-                        Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-							                                        ((Characters_clone[i].GetComponent<Tauren>().current_health) / (Characters_clone[i].GetComponent<Tauren>().health));
-                        if ((Characters_clone[i].GetComponent<Tauren>().current_health) <= 0)
-                        {
-                            Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Tauren>().health).ToString();
-                            return;
-                        }
-                        Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-							                                        ((Characters_clone[i].GetComponent<Tauren>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Tauren>().health).ToString());
-                    }
-                }
-            }
-
-			if (Characters_clone[i].name == "SwordMan(Clone)")
-            {
-                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-                Image _fill_image = _Fill.GetComponent<Image>();
-				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<SwordMan>().current_health) /
-				                          (Characters_clone[i].GetComponent<SwordMan>().health));
-				foreach (var item in Char_infos)
-                {
-                    if (item.active == true)
-                    {
-                        Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-                                                                      ((Characters_clone[i].GetComponent<SwordMan>().current_health) / (Characters_clone[i].GetComponent<SwordMan>().health));
-                        if ((Characters_clone[i].GetComponent<SwordMan>().current_health) <= 0)
-                        {
-                            Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          "0" + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString();
-                            return;
-                        }
-                        Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          ((Characters_clone[i].GetComponent<SwordMan>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString());
-                    }
-                }
-            }
-
-			if (Characters_clone[i].name == "Archer(Clone)")
-            {
-                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-                Image _fill_image = _Fill.GetComponent<Image>();
-				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Archer>().current_health) /
-				                          (Characters_clone[i].GetComponent<Archer>().health));
-				foreach (var item in Char_infos)
-                {
-                    if (item.active == true)
-                    {
-                        Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-                                                                  ((Characters_clone[i].GetComponent<Archer>().current_health) / (Characters_clone[i].GetComponent<Archer>().health));
-                        if ((Characters_clone[i].GetComponent<Archer>().current_health) <= 0)
-                        {
-                            Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                          "0" + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString();
-                            return;
-                        }
-                        Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-                                                                      ((Characters_clone[i].GetComponent<Archer>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString());
-                    }
-                }
-            }
-			if (Characters_clone[i].name == "Wuchang(Clone)")
-            {
-                GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
-                Image _fill_image = _Fill.GetComponent<Image>();
-				_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Wuchang>().current_health) /
-				                          (Characters_clone[i].GetComponent<Wuchang>().health));
-                foreach (var item in Char_infos)
-                {
-                    if (item.active == true)
-                    {
-						Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
-							                                           ((Characters_clone[i].GetComponent<Wuchang>().current_health) / (Characters_clone[i].GetComponent<Wuchang>().health));
-						if ((Characters_clone[i].GetComponent<Wuchang>().current_health) <= 0)
-                        {
-							Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-								                                           "0" + "/" + (Characters_clone[i].GetComponent<Wuchang>().health).ToString();
-                            return;
-                        }
-						Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
-							                                           ((Characters_clone[i].GetComponent<Wuchang>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Wuchang>().health).ToString());
-                    }
-                }
-            }
 		}
+
+        if (Characters_clone[i].name == "Monk(Clone)")
+        {
+            GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+            Image _fill_image = _Fill.GetComponent<Image>();
+            _fill_image.fillAmount = ((Characters_clone[i].GetComponent<Monk>().current_health) /
+                                      (Characters_clone[i].GetComponent<Monk>().health));
+            foreach (var item in Char_infos)
+            {
+                if (item.active == true)
+                {
+                    Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+                        ((Characters_clone[i].GetComponent<Monk>().current_health) / (Characters_clone[i].GetComponent<Monk>().health));
+
+                    Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Monk>().attack_damage.ToString();
+
+                    Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Move").Find("Move_range").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Monk>().skill_damage.ToString();
+
+                    if ((Characters_clone[i].GetComponent<Monk>().current_health) <= 0)
+                    {
+                        Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      "0" + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString();
+                        return;
+                    }
+                    Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      ((Characters_clone[i].GetComponent<Monk>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Monk>().health).ToString());
+                    Char_infos[char_info_slots_dict["Monk"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text = (Characters_clone[i].GetComponent<Monk>().attack_damage).ToString();
+                }
+            }
+        }
+
+        if (Characters_clone[i].name == "Tauren(Clone)")
+        {
+            GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+            Image _fill_image = _Fill.GetComponent<Image>();
+			_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Tauren>().current_health) /
+			                          (Characters_clone[i].GetComponent<Tauren>().health));
+			foreach (var item in Char_infos)
+            {
+                if (item.active == true)
+                {
+                    Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+						                                        ((Characters_clone[i].GetComponent<Tauren>().current_health) / (Characters_clone[i].GetComponent<Tauren>().health));
+
+                    Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Tauren>().attack_damage.ToString();
+
+                    Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Move").Find("Move_range").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Tauren>().skill_damage.ToString();
+
+                    if ((Characters_clone[i].GetComponent<Tauren>().current_health) <= 0)
+
+                    {
+                        Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      "0" + "/" + (Characters_clone[i].GetComponent<Tauren>().health).ToString();
+                        return;
+                    }
+                    Char_infos[char_info_slots_dict["Tauren"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+						                                        ((Characters_clone[i].GetComponent<Tauren>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Tauren>().health).ToString());
+                }
+            }
+        }
+
+		if (Characters_clone[i].name == "SwordMan(Clone)")
+        {
+            GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+            Image _fill_image = _Fill.GetComponent<Image>();
+			_fill_image.fillAmount = ((Characters_clone[i].GetComponent<SwordMan>().current_health) /
+			                          (Characters_clone[i].GetComponent<SwordMan>().health));
+			foreach (var item in Char_infos)
+            {
+                if (item.active == true)
+                {
+                    Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+                                                                  ((Characters_clone[i].GetComponent<SwordMan>().current_health) / (Characters_clone[i].GetComponent<SwordMan>().health));
+
+                    Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<SwordMan>().attack_damage.ToString();
+
+                    Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Move").Find("Move_range").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<SwordMan>().skill_damage.ToString();
+
+                    if ((Characters_clone[i].GetComponent<SwordMan>().current_health) <= 0)
+                    {
+                        Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      "0" + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString();
+                        return;
+                    }
+                    Char_infos[char_info_slots_dict["SwordMan"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      ((Characters_clone[i].GetComponent<SwordMan>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<SwordMan>().health).ToString());
+                }
+            }
+        }
+
+		if (Characters_clone[i].name == "Archer(Clone)")
+        {
+            GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+            Image _fill_image = _Fill.GetComponent<Image>();
+			_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Archer>().current_health) /
+			                          (Characters_clone[i].GetComponent<Archer>().health));
+			foreach (var item in Char_infos)
+            {
+                if (item.active == true)
+                {
+                    Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+                                                              ((Characters_clone[i].GetComponent<Archer>().current_health) / (Characters_clone[i].GetComponent<Archer>().health));
+
+                    Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Archer>().attack_damage.ToString();
+
+                    Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Move").Find("Move_range").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Archer>().skill_damage.ToString();
+
+                    if ((Characters_clone[i].GetComponent<Archer>().current_health) <= 0)
+                    {
+                        Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                      "0" + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString();
+                        return;
+                    }
+                    Char_infos[char_info_slots_dict["Archer"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+                                                                  ((Characters_clone[i].GetComponent<Archer>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Archer>().health).ToString());
+                }
+            }
+        }
+		if (Characters_clone[i].name == "Wuchang(Clone)")
+        {
+            GameObject _Fill = Characters_clone[i].transform.Find("health_canvas/Small_Health_bar/fill").gameObject;
+            Image _fill_image = _Fill.GetComponent<Image>();
+			_fill_image.fillAmount = ((Characters_clone[i].GetComponent<Wuchang>().current_health) /
+			                          (Characters_clone[i].GetComponent<Wuchang>().health));
+            foreach (var item in Char_infos)
+            {
+                if (item.active == true)
+                {
+					Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_FILLImage").gameObject.GetComponent<Image>().fillAmount =
+						                                           ((Characters_clone[i].GetComponent<Wuchang>().current_health) / (Characters_clone[i].GetComponent<Wuchang>().health));
+
+                    Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Attack").Find("Attack_Damage").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Wuchang>().attack_damage.ToString();
+
+                    Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Move").Find("Move_range").gameObject.GetComponent<Text>().text =
+                        Characters_clone[i].GetComponent<Wuchang>().skill_damage.ToString();
+
+                    if ((Characters_clone[i].GetComponent<Wuchang>().current_health) <= 0)
+                    {
+						Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+							                                           "0" + "/" + (Characters_clone[i].GetComponent<Wuchang>().health).ToString();
+                        return;
+                    }
+					Char_infos[char_info_slots_dict["Wuchang"]].transform.Find("Char_Health_bar").Find("Health_number").gameObject.GetComponent<Text>().text =
+						                                           ((Characters_clone[i].GetComponent<Wuchang>().current_health).ToString() + "/" + (Characters_clone[i].GetComponent<Wuchang>().health).ToString());
+                }
+            }
+        }
+	}
 
     }
 

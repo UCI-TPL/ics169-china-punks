@@ -347,6 +347,7 @@ MonoBehaviour:
   AS: {fileID: 82962465609745210}
   Attack_Clip: {fileID: 8300000, guid: 7fdcaca019c3f8647980f3eed48a1977, type: 3}
   Be_Attacked_Clip: {fileID: 8300000, guid: a2628b3f98f246c43b87440c18d7099a, type: 3}
+  money: 2
 --- !u!212 &212067960408491362
 SpriteRenderer:
   m_ObjectHideFlags: 1
