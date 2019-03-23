@@ -1556,8 +1556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AudioSource: {fileID: 1808695539}
-  _AudioClip_lobby: {fileID: 8300000, guid: cc2135f590fd4d94ba0c2404e2d252d5, type: 3}
-  _AudioClip_InGame: {fileID: 8300000, guid: 4aaa047a4ed1bb74fb463868041da181, type: 3}
+  _AudioClip_lobby: {fileID: 8300000, guid: 4aaa047a4ed1bb74fb463868041da181, type: 3}
+  _AudioClip_InGame: {fileID: 8300000, guid: 286bd4aa626004800b5883657eac27ef, type: 3}
 --- !u!1 &1811889296
 GameObject:
   m_ObjectHideFlags: 0
